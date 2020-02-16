@@ -42,3 +42,7 @@ def os():
 @app.route("/os/imprimir")
 def print1():
     return render_template("print_os.html")
+
+@app.route("/os/buscar")
+	def buscar():
+    return render_template("buscar_os.html")
