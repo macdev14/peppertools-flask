@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="table-responsive-md">
+    <table class="table">
+    <thead> <tr>
+    {% for col in os %}    
+        {% if col != 'Id' and col != 'Id_cliente' %}
+        <th class="{{ col }} header" scope="col">{{ col.capitalize() }}</th>
+        {% endif %}
+    {% endfor %}
+    <th class="editar" scope="col">Editar</th>
+    </tr>
+</thead>
+<tbody>
+    
+    {% for row_data in range(val_len) %} 
+       {% if row_data != 0 or  row_data != 3 %}
+    <tr>   
+            {% for col_data in range(os_len) %} 
+            {% if col_data != 0 %}
+                <td>
+                    {% if not os_val[row_data][col_data] %}
+                     {{" "}}
+                     {% else %}
+                        {{os_val[row_data][col_data] }}
+                    {% endif %}
+                </td>
+                {% endif %} 
+            {% endfor %}
+           
+            <td width="15%" float="left"><form action="os/editar" method="post">
+                <button type="submit" name="id" value="{{ os_val[row_data][0] }}" class="btn-link">Editar</button>
+            </form></td>
+    </tr> 
+    {% endif %}       
+    {% endfor %}
+
+</tbody>
+   
+    
+    </table>
+</div>
+
+{% endblock %}

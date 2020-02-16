@@ -1,0 +1,15 @@
+{% extends "layout.html"%}
+{% block body %}
+<div class="container" class="forms-margins">
+<form>
+    {% for col in clientes %}
+    {% if col != 'ID' %}
+    <div class="form-group">
+      <label for="col">{{ col.capitalize() }}</label>
+      <input type="text" class="form-control" id="col" aria-describedby="{{col}}" placeholder="Insira {{ col }}">
+    </div>
+     {% endif %}
+    {% endfor %}
+</form>
+</div>
+{% endblock %}
