@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("navbar.html", title= "Inicio", active1="active",active2="", active3="", active4="")
+    return render_template("layout.html", title= "Inicio", active1="active",active2="", active3="", active4="")
 
 @app.route('/clientes')
 def clientes():
