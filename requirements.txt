@@ -1,9 +1,11 @@
 Click==7.0
-Flask==1.1.1
-Flask-Session==0.3.1
 gunicorn==19.10.0
 itsdangerous==1.1.0
 Jinja2==2.11.1
 MarkupSafe==1.1.1
 werkzeug==0.16.1
 pymongo==3.10.1
+cs50
+Flask
+Flask-Session
+requests
