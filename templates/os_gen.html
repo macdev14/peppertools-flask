@@ -1,0 +1,263 @@
+{% extends 'layout.html'%}
+
+{% block body%}
+   
+<h2 class="text-center"> 
+O.S <i class="fa fa-user-edit"></i>
+
+</h2>
+<h5 class="text-center"> 
+Datas serao alteradas para 'dd/mm/ano' <i class="fa fa-user-edit"></i>
+
+</h5>
+
+ <hr>
+
+<form method="post" action="/os/form/{{field['Numero_Os']}}">
+
+<div class="container">
+	<div class="form-row">
+
+		
+		<div class="col-md-4">
+            Numero OS: <i class="fa fa-user"></i>
+            {% if field['Numero_Os'] != nill %}
+            <input class="form-control" type="text" name="Numero_Os" readonly required autofocus value="{{field['Numero_Os']}}">	<br>
+            {% else %}
+			<input class="form-control" type="text" name="Numero_Os" readonly required autofocus value="{{os_num}}">	<br>
+            {% endif %}
+		</div>
+
+		
+         	
+
+
+		<div class="col-md-6">
+			Cliente: <i class="fa fa-user"></i>
+				
+
+			<select name="Id_Cliente" class="Id_Cliente"> 
+            <option value="0" selected>SELECIONAR CLIENTE</option>
+            
+            {% for client in range(clients_len -1) %}
+                {%if field['Id_Cliente'] != nill and field['Id_Cliente'] == clients[client]['ID']%} 
+                <option value="{{clients[client]['ID']}}" selected>{{clients[client]['nome']}}</option>
+                {% else %}
+                <option value="{{clients[client]['ID']}}">{{clients[client]['nome']}}</option>
+                {% endif %}	
+            {%endfor%}
+			 
+			</select> <br>
+
+
+
+		</div>
+
+<div class="col-md-12">
+			
+
+		</div>
+
+
+		<div class="col-md-12">
+			
+
+		</div>
+
+		<div class="col-md-6">
+			Ferramenta <i class="fa fa-envelope"></i>
+			<input class="form-control" type="text" name="Ferramenta" value="{{ field['Ferramenta'] }}"><br>
+
+		</div>
+
+		<div class="col-md-4">
+			Desenho Cliente <i class="fa fa-address-card"></i>
+			<input class="form-control" type="text" name="Desenho_Cliente"  id="Desenho_Cliente" value="{{field['Desenho_Cliente']}}">	<br>
+
+		</div>
+
+		<div class="col-md-4">
+			Desenho Pimentel <i class="fa fa-address-card"></i>
+			<input class="form-control" type="text" name="Desenho_Pimentel" id="Desenho_Pimentel" value="{{field['Desenho_Pimentel']}}">	<br>
+
+		</div>
+
+		<div class="col-md-2">
+            Data (ordem correta): <i class="fa fa-calender"></i>
+            {% if field['Data'] != nill %}
+            <input class="form-control" type="text" name="Data" data-mask="00/00/0000" readonly value="{{field['Data']}}">	<br>
+            {% else %}
+            <input class="form-control da" type="text" name="Data" data-mask="00/00/0000" readonly value="{{data}}">	<br> 
+            {% endif %}
+
+		</div>
+
+		<div class="col-md-2">
+			Prazo: <i class="fa fa-calender"></i>
+			<input class="form-control da" type="text" name="Prazo" data-mask="00/00/0000" value="{{field['prazo']}}" >	<br>
+
+		</div>
+
+		<div class="col-md-6">
+			Especificacao: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="Especificacao" value="{{field['Especificacao']}}">	<br>
+
+		</div>
+
+		<div class="col-md-6">
+			Grava&ccedil;&atilde;o: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="gravacao" value="{{field['gravacao']}}">	<br>
+
+		</div>
+
+		<div class="col-md-6">
+			Grava&ccedil;&atilde;o 2: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="gravacao2" value="{{field['gravacao2']}}">	<br>
+
+		</div>
+
+
+		<div class="col-md-6">
+			Material: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="Material" value="{{field['Material']}}">	<br>
+
+		</div>
+
+		<div class="col-md-2">
+			Unidade: <i class="fa fa-user"></i>
+				
+
+			<select name="unidade" class=""> 
+			{% if field['unidade'] != nill %}
+
+                {% if field['unidade'] == 'jogo' %}
+                <option value='jogo' selected>Jogo</option>
+                {% else %}
+                <option value='peca' selected>Pe&ccedil;a</option>
+                {%endif%}
+            {%else%}    
+            <option value='peca' selected >Pe&ccedil;a</option>    
+            <option value='jogo'>Jogo</option>
+            {%endif%}
+           
+			</select> <br>
+
+
+
+		</div>
+
+
+		<div class="col-md-2">
+			Tipo: <i class="fa fa-user"></i>
+				
+
+			<select name="Tipo">
+                {% if field['Tipo'] != nill %} 
+                    {% if field['Tipo'] == 'fabricacao' %} 
+                        <option value='fabricacao' selected>Fabrica&ccedil;&atilde;o</option>
+                    {%elif field['Tipo'] == 'modificacao'%}    
+                        <option value='modificacao' selected>Modifica&ccedil;&atilde;o</option>
+                    {% else %}    
+                        <option value='afiacao' selected>Afia&ccedil;&atilde;o</option>
+                        {% endif %}
+                {% else %}
+			    <option value='fabricacao'>Fabrica&ccedil;&atilde;o</option>
+            	<option value='modificacao'>Modifica&ccedil;&atilde;o</option>
+                <option value='afiacao' selected>Afia&ccedil;&atilde;o</option>
+                {% endif %}
+           
+           
+			</select> <br>
+
+
+
+		</div>
+
+
+		<div class="col-md-2">
+			Quantidade: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="Quantidade" value="{{field['Quantidade']}}">	<br>
+
+		</div>
+
+		<div class="col-md-4">
+			Nota Fiscal: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="Numero_Nf" value="{{field['Numero_Nf']}}">	<br>
+
+		</div>
+
+		<div class="col-md-4">
+		Numero do Pedido: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="Numero_Pedido" value="{{field['Numero_Pedido']}}">	<br>
+
+		</div>
+
+		<div class="col-md-2">
+		Data da Nota Fiscal: <i class="fa fa-map"></i>
+			<input class="form-control da" type="text" name="Data_Nf" data-mask="00/00/0000" value="{{field['Data_Nf']}}">	<br>
+
+		</div>
+
+		<div class="col-md-2">
+		Data do Pedido: <i class="fa fa-map"></i>
+			<input class="form-control da" type="text" name="Data_Pedido" data-mask="00/00/0000" value="{{field['Data_Pedido']}}">	<br>
+
+		</div>		
+		
+		<div class="col-md-4">
+		STATUS: <i class="fa fa-map"></i>
+			<input class="form-control" type="text" name="STATUS" value="{{field['STATUS']}}">	<br>
+
+		</div>
+
+
+
+       <div class="col-md-4">
+	<input type="hidden" name="Id" value="{{field['Id']}}">
+
+    {% if field['Id'] != nill %}
+    <button class="btn btn-warning btn-lg">
+        Alterar O.S <i class=".glyphicon-glyphicon-pencil"></i>
+
+    </button><br><br>
+   
+    {% else %}
+
+       	<button class="btn btn-warning btn-lg">
+       		Cadastrar O.S <i class=".glyphicon-glyphicon-pencil"></i>
+
+           </button><br><br>
+    {% endif %}
+       	<a href="/os">
+       		Voltar
+       	</a>
+
+       </div>
+
+
+
+	</div>
+
+
+</div>
+
+ </form>
+ {% if field['Id'] != nill %}
+ <a href="/os/form/delete/{{field['Id']}}">
+    <button class="btn btn-danger btn-lg">
+        Deletar O.S <i class=".glyphicon-glyphicon-pencil"></i>
+    </button><br>
+    </a>
+{% endif %}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script> 
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.mask.js')}}"></script> 
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.mask.min.js')}}"></script> 
+
+
+
+
+
+{% endblock%}

@@ -3,7 +3,7 @@ import sqlite3
 import requests
 import urllib.parse
 from cs50 import SQL
-from flask import redirect, render_template, request, session
+from flask import flash, redirect, render_template, request, session, escape 
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
@@ -60,7 +60,8 @@ def login_required(f):
 
 def login_user(user, password):
     rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)
-    if len(rows) != 1 or password != rows[0]["ds_senha"]:
+    if len(rows) != 1 or not check_password_hash(rows[0]["ds_senha"], password):
+            flash("Login Inválido")
             return redirect('/login')
     else:
         session["user_id"] = rows[0]["ID"]
@@ -68,3 +69,61 @@ def login_user(user, password):
 
 def underdev():
     return render_template('manutencao.html',  title= "Inicio", active1="",active2="", active3="", active4="active")
+
+def insertData(list, table):
+    final = "error"
+
+    stmt = "INSERT INTO "+table+" ("
+    values = " VALUES ("
+
+    for val in list:
+        if not list[val] or list[val] == val:
+            pass
+        else:
+            stmt = stmt + str(val) + ","
+            if not isinstance(list[val], str):
+                values = values + list[val] + ","
+            else:
+                values = values + "\'" + list[val] +  "\'" + ","
+    values = values[:-1]
+    stmt = stmt[:-1]
+    final = stmt + ")" + values + ")"
+    db.execute(final)
+    return final, redirect('os/form/', 200)
+def getClient() :
+    rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
+    return rows
+
+def getOs(option = 'ALL'):
+    if option == 'ALL':
+        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
+        rows = int(rows[0]['num_os']) + 1
+    else:
+        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Numero_Os = ?', option)   
+    return rows
+
+def updateData(list, table, col, Id):
+    stmt = "UPDATE " + table + " SET "
+    values = ""
+    for item in list:
+        if not list[item] or list[item] == item or item == 'id':
+            pass
+        else:
+            if not isinstance(list[item], str):
+                values = values + item + "=" + str(list[item]) + ","
+            else:
+                values = values + item + "= \'" + list[item] +  "\'" + ","
+       
+    values = values[:-1]
+    values = values + " WHERE "+col+" = "+ str(Id)
+    final = stmt + values
+    db.execute(final)
+    return print(final)
+
+def deleteData(table,col,Id):
+    try:
+        db.execute('DELETE FROM ' + table + ' WHERE ' + col + ' = ' + str(Id))
+        return redirect('/os')
+    except:
+        return redirect('/os/form/' + str(Id))
+    

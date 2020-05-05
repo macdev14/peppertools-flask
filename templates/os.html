@@ -2,14 +2,14 @@
 {% block body %}
 
 <div class="table-responsive-md">
-    <table class="table">
+    <table id="dtBasicExample" class="table table-borderless table-dark" cellspacing="0">
     <thead> <tr>
     {% for col in os %}    
         {% if col != 'Id' and col != 'Id_cliente' %}
-        <th class="{{ col }} header" scope="col">{{ col.capitalize() }}</th>
+        <th class="{{ col }} header th-sm" scope="col">{{ col.capitalize() }}</th>
         {% endif %}
     {% endfor %}
-    <th class="editar" scope="col">Editar</th>
+    <th class="editar" scope="col">A&ccedil;&otilde;es</th>
     </tr>
 </thead>
 <tbody>
@@ -29,9 +29,13 @@
                 {% endif %} 
             {% endfor %}
            
-            <td width="15%" float="left"><form action="os/editar" method="post">
-                <button type="submit" name="id" value="{{ os_val[row_data][0] }}" class="btn-link">Editar</button>
-            </form></td>
+            <td width="15%" float="left"><form action="os/form/{{os_val[row_data][2]}}">
+                <button type="submit" class="btn-link">Editar</button>
+            </form>
+            <form action="os/form/delete/{{os_val[row_data][2]}}">
+                <button type="submit" class="btn-link">Deletar</button>
+            </form>
+            </td>
     </tr> 
     {% endif %}       
     {% endfor %}
@@ -41,5 +45,11 @@
     
     </table>
 </div>
+
+
+<script type="text/javascript">
+    // Basic example
+
+</script>
 
 {% endblock %}
