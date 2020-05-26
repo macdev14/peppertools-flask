@@ -144,6 +144,8 @@ def os_edit(osid):
             data['Numero_Pedido'] = int(data['Numero_Pedido'])
             data['Quantidade'] = int(data['Quantidade'])
             data['Id'] = int(data['Id'])
+            data['Data'] = datetime.datetime.strptime(checkDate(data['Data']), '%m/%d/%y').strftime('%d/%m/%Y')
+            data['Data_Pedido'] = datetime.datetime.strptime(checkDate(data['Data']), '%m/%d/%y').strftime('%d/%m/%Y')
         except:
             pass
         
@@ -155,6 +157,14 @@ def os_edit(osid):
     os = getOs(osid)
     print(dict(os[0]))
     field = os[0]
+    if field['Data_Pedido']:
+       field['Data_Pedido'] = checkDate(field['Data_Pedido'])
+    field['Data'] = checkDate(field['Data'])
+    if field['Prazo']:
+        field['Prazo'] = checkDate(field['Prazo'])
+    if field['Data_Nf']:
+        field['Data_Nf'] = checkDate(field['Data_Nf'])
+    print(field['Data'])
     print(field['Numero_Os'])
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")

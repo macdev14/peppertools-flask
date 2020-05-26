@@ -2,6 +2,7 @@ import os
 import sqlite3
 import requests
 import urllib.parse
+import datetime
 from cs50 import SQL
 from flask import flash, redirect, render_template, request, session, escape 
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
@@ -127,3 +128,19 @@ def deleteData(table,col,Id):
     except:
         return redirect('/os/form/' + str(Id))
     
+def checkDate(str1):
+    print (len(str1))
+    str2 = str1
+    try:
+        if len(str1) != 10:
+            str2 = ''
+            str2 = '0' + str1
+            str2 = datetime.datetime.strptime(str2, '%m/%d/%y, %H:%M:%S %p').strftime('%d/%m/%Y')  
+        else:
+            str2 = ''
+            str2 = datetime.datetime.strptime(str1, '%d/%m/%Y').strftime('%d/%m/%Y')
+    except:
+        pass
+    
+         
+    return str2
