@@ -29,12 +29,12 @@
                 {% endif %} 
             {% endfor %}
            
-            <td width="15%" float="left"><form action="os/form/{{os_val[row_data][2]}}">
+            <td width="15%" float="left"><a href="os/form/{{os_val[row_data][2]}}" target='_blank'>
                 <button type="submit" class="btn-link">Editar</button>
-            </form>
-            <form action="os/form/delete/{{os_val[row_data][2]}}">
+            </a>
+            <a href="os/form/delete/{{os_val[row_data][2]}}" target='_blank'>
                 <button type="submit" class="btn-link">Deletar</button>
-            </form>
+            </a>
             </td>
     </tr> 
     {% endif %}       
