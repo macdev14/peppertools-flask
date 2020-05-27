@@ -1,89 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Login - Peppertools</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico')}}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animate/animate.css')}}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animsition/css/animsition.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css')}}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
-<!--===============================================================================================-->
-</head>
-<body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-b-160 p-t-50">
-				<form class="login100-form validate-form" action="/login" method="POST">
-					<span class="login100-form-title p-b-43">
-						Peppertools <br>  <br> {{date}}
-					</span>
-					
-					<div class="wrap-input100 rs1 validate-input" data-validate = "Username is required">
-						<input class="input100" type="text" name="user" autocomplete>
-						<span class="label-input100">Username</span>
-					</div>
-					
-					
-					<div class="wrap-input100 rs2 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="password" autocomplete>
-						<span class="label-input100">Password</span>
-					</div>
+{% extends "default.html" %}
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login 
-						</button>
-					</div>
-					
-				<!--<div class="text-center w-full p-t-23">
-						<a href="#" class="txt1">
-							Forgot password?
-						</a>
-					</div> -->	
-				</form>
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+	<form action="/login" method="post" class="form-signin">
+	
+	
+			<h1 class="h4 mb-3 font-weight-normal"><b>PepperTools</b></h1>
+			<h1 class="h4 mb-3 font-weight-normal"><br>{{date}}</h1>
+			<br>
+			<label for="user" class="sr-only">Usuário</label>
+			<input type="text" id="user" name="user" class="form-control" placeholder="Usuário" required autofocus>
+			<label for="password" class="sr-only">Password</label>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
+			<div class="checkbox mb-3">
 			</div>
-		</div>
-	</div>
-	
-	
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+			<p class="mt-5 mb-3 text-muted">&copy; Peppertools 1995-2020</p>
 
-	
-	
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js')}}"></script>
-	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js')}}"></script>
-	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+		
+	</form>
 
-</body>
-</html>
+{% endblock %}
+

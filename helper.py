@@ -91,8 +91,12 @@ def insertData(list, table):
     final = stmt + ")" + values + ")"
     db.execute(final)
     return final, redirect('os/form/', 200)
-def getClient() :
-    rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
+def getClient( option='ALL'):
+    if option == 'ALL':
+        rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
+    else:
+        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Numero_Os = :nos', nos=option)
+        rows = rows[0]    
     return rows
 
 def getOs(option = 'ALL'):

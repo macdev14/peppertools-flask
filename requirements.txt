@@ -7,6 +7,7 @@ werkzeug==0.16.1
 pymongo==3.10.1
 cs50
 Flask
+Flask-QRcode
 Flask-Session
 flask-ssl
 requests

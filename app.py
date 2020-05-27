@@ -93,6 +93,11 @@ def buscar():
 @ssl_redirect
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    """
+    if not request.is_secure and app.env != "development":
+        url = request.url.replace("http://", "https://", 1)
+        code = 301
+        return redirect(url, code=code) """
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")
     if request.method == 'POST':
@@ -197,21 +202,34 @@ def os_del(osid):
 @ssl_require
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
+    """Register user
+
+    if not request.is_secure and app.env != "development":
+        url = request.url.replace("http://", "https://", 1)
+        code = 301
+        return redirect(url, code=code) """
     if request.method == 'POST':
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            flash("Usuário necessário")
+            flash("Usuário inválido.")
             return redirect("/register")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            flash("Senha necessária")
+            flash("Senha inválida")
+            return redirect("/register")
+
+        elif not request.form.get("key"):
+            flash("Chave inválida")
             return redirect("/register")
 
         if request.form.get("password") != request.form.get("password-confirm"):
             flash("Senhas não coincidem")
+            return redirect("/register")
+
+        if request.form.get("key") != '12@Afiado#45':
+            flash("Chave inválida")
             return redirect("/register")
 
         # Query database for username
@@ -231,10 +249,22 @@ def register():
                 rows = db.execute("SELECT * FROM usuarios WHERE ds_login = :username",
                               username=request.form.get("username"))
                 session["user_id"] = rows[0]["ID"]
+                session["level"] = rows[0]["nivel"]
                 return redirect("/")
             except:
                 flash("Could not register user")
                 return redirect("/register")
     return render_template("register.html")
   
+@ssl_redirect
+@app.route('/os/form/print/<int:osid>', methods = ['POST', 'GET'])
+def print(osid):
+    if request.method == 'GET':
+        os = getOs(6772)
+        field = dict(os[0])
+        res = getClient(6772)
+        print(res)
+        field['nome'] = res['nome']
+        field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')
+        return render_template("imprimir_os.html", field = field)
 
