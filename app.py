@@ -94,11 +94,11 @@ def buscar():
 @ssl_redirect
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    """
+    
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code) """
+        return redirect(url, code=code)
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")
     if request.method == 'POST':
@@ -150,6 +150,10 @@ def new_os():
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
 @login_required
 def os_edit(osid):
+    try:
+        osid = session['osid']
+    except:
+        pass
     if request.method == 'POST':
         data = dict(request.form)
         try:
@@ -203,12 +207,12 @@ def os_del(osid):
 @ssl_require
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user
+    """Register user"""
 
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code) """
+        return redirect(url, code=code) 
     if request.method == 'POST':
 
         # Ensure username was submitted
@@ -265,7 +269,7 @@ def print(osid):
         field = dict(os[0])
         res = getClient(osid)
         print(res)
-        qr = "https://peppertools.cf/os/form/"+str(field['Numero_Os'])
+        qr = "https://peppertools.cf/os/"+str(field['Numero_Os'])
         field['nome'] = res['nome']
         field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')
         field['Data'] = checkDate(field['Data'])
@@ -274,3 +278,10 @@ def print(osid):
         field['Prazo'] = checkDate(field['Prazo'])
         return render_template("imprimir_os.html", field = field, qr=qr)
 
+@app.route('/os/<int:osid>', methods = ['POST', 'GET'])
+def access(osid):
+    session['osid'] = osid
+    @login_required
+    def goTo(osid):
+        return redirect('os/form/'+osid)
+    return goTo(osid)
