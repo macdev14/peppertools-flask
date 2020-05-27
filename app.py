@@ -94,11 +94,11 @@ def buscar():
 @ssl_redirect
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    """"""
+    """
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code)
+        return redirect(url, code=code) """
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")
     if request.method == 'POST':
@@ -185,6 +185,9 @@ def os_edit(osid):
         field['Data_Nf'] = checkDate(field['Data_Nf'])
     print(field['Data'])
     print(field['Numero_Os'])
+    for x in field:
+        if field[x] == None:
+            field[x] = ''
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")
     return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date)
