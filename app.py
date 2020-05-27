@@ -150,10 +150,8 @@ def new_os():
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
 @login_required
 def os_edit(osid):
-    try:
-        osid = session['osid']
-    except:
-        pass
+    
+    # osid = session['osid']
     if request.method == 'POST':
         data = dict(request.form)
         try:
@@ -185,9 +183,6 @@ def os_edit(osid):
         field['Data_Nf'] = checkDate(field['Data_Nf'])
     print(field['Data'])
     print(field['Numero_Os'])
-    for x in field:
-        if field[x] == None:
-            field[x] = ''
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")
     return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date)
@@ -210,12 +205,12 @@ def os_del(osid):
 @ssl_require
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
+    """Register user
 
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code)
+        return redirect(url, code=code) """
     if request.method == 'POST':
 
         # Ensure username was submitted
@@ -286,5 +281,5 @@ def access(osid):
     session['osid'] = osid
     @login_required
     def goTo(osid):
-        return redirect('form/'+str(osid))
+        return redirect('os/form/'+osid)
     return goTo(osid)
