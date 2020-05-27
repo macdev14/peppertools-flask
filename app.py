@@ -1,6 +1,7 @@
 
 from helper import *
 from api import *
+from flask_qrcode import QRcode 
 from flask import Flask, redirect,render_template, request, session, flash
 from flask_session.__init__ import Session
 from flask_session import Session
@@ -18,7 +19,7 @@ from flask_ssl import *
 db = SQL("sqlite:///peppertools.db")
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app = Flask(__name__)
-
+QRcode(app)
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -260,11 +261,16 @@ def register():
 @app.route('/os/form/print/<int:osid>', methods = ['POST', 'GET'])
 def print(osid):
     if request.method == 'GET':
-        os = getOs(6772)
+        os = getOs(osid)
         field = dict(os[0])
-        res = getClient(6772)
+        res = getClient(osid)
         print(res)
+        qr = "https://peppertools.cf/os/form/"+str(field['Numero_Os'])
         field['nome'] = res['nome']
         field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')
-        return render_template("imprimir_os.html", field = field)
+        field['Data'] = checkDate(field['Data'])
+        field['Data_Nf'] = checkDate(field['Data_Nf'])
+        field['Data_Pedido'] = checkDate(field['Data_Nf'])
+        field['Prazo'] = checkDate(field['Prazo'])
+        return render_template("imprimir_os.html", field = field, qr=qr)
 

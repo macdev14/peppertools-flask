@@ -133,9 +133,10 @@ def deleteData(table,col,Id):
         return redirect('/os/form/' + str(Id))
     
 def checkDate(str1):
-    print (len(str1))
+    
     str2 = str1
     try:
+        print (len(str1))
         if len(str1) != 10:
             str2 = ''
             str2 = '0' + str1

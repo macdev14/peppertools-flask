@@ -68,13 +68,13 @@
        <td width="28%" colspan="2" bgcolor="##F4F4F4"><div align="center" class="style6">N&deg; O.S</div></td>
      </tr>
      <tr>
-       <td><div align="center"><em><span class="style4">{{field['Data']}}</span><br>
+       <td><div align="center"><em><span class="style4">{{field['Data'] or '' }}</span><br>
                <br>
        </em></div></td>
        <td><div align="center"><em><span class="style5"></span><br>
                <br>
        </em></div></td>
-       <td width="28%" colspan="2"><div align="center" class="style3"><span class="style12">{{field['Numero_Os']}}/{{ field['Data_digit'] }}</span><br>
+       <td width="28%" colspan="2"><div align="center" class="style3"><span class="style12">{{ field['Numero_Os'] or '' }}/{{ field['Data_digit'] or '' }}</span><br>
                <br>
        </div></td>
      </tr>
@@ -89,15 +89,15 @@
        </div></td>
      </tr>
      <tr>
-       <td valign="top"><div align="center" class="style6"><em>{{field['quantidade']}}</em></div></td>
-       <td colspan="2" rowspan="2" valign="top"><div align="center" class="style8">{{field['nome']}}</div></td>
+       <td valign="top"><div align="center" class="style6"><em>{{field['Quantidade'] or '' }}</em></div></td>
+       <td colspan="2" rowspan="2" valign="top"><div align="center" class="style8">{{field['nome'] or '' }}</div></td>
        <td><div align="left" class="style6">
          <div align="right">N&deg;: </div>
        </div>      </td>
        <td><div align="left" class="style6">
          <div align="right"><em>
             
-                 {{field['numero_pedido']}}
+                 {{field['Numero_Pedido'] or '' }}
 
          </em> </div>
        </div>
@@ -105,16 +105,16 @@
        <td><div align="right"><span class="style6">N&deg;:</span></div></td>
        <td><div align="right"><span class="style6"><em>
             
-               {{field['numero_nf']}}
+               {{field['Numero_Nf'] or '' }}
        
          </em></span> <span class="style6"></span> </div></td>
      </tr>
      <tr>
-       <td valign="top"><div align="center"><span class="style6"><em> {{field['unidade']}}</em></span></div></td>
+       <td valign="top"><div align="center"><span class="style6"><em> {{field['unidade'] or '' }}</em></span></div></td>
        <td><div align="right"><span class="style6">DATA:</span></div></td>
-       <td><div align="right"><span class="style6"><em> {{ field['data_pedido'] }} </em></span></div></td>
+       <td><div align="right"><span class="style6"><em> {{ field['Data_Pedido']|default('', True)  }} </em></span></div></td>
        <td><div align="right"><span class="style6">DATA:</span></div></td>
-       <td><div align="right"><span class="style6"><em>{{ field['data_nf'] }}</em></span></div></td>
+       <td><div align="right"><span class="style6"><em>{{ field['Data_Nf']|default('', True)  }}</em></span></div></td>
      </tr>
      
      <tr>
@@ -129,22 +129,23 @@
      </tr>
      <tr>
        <td width="23%" class="style6"><div align="right">FERRAMENTA: &nbsp;</div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.ferramenta#</em></div></td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Ferramenta'] or ''  }}</em></div></td>
        <td width="35%"><div align="center" class="style6">TIPO DA O.S. </div></td>
      </tr>
      <tr>
        <td class="style6"><div align="right">MATERIAL: &nbsp;</div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.material#</em></div></td>
-       <td><div align="center" class="style6"><strong><em>#UCase(lista.tipo)#</em></strong></div></td>
+       <td colspan="2" class="style6"><div align="left"><em> {{ field['Material'] or '' }} </em></div></td>
+       <td><div align="center" class="style6"><strong><em>{{ field['Tipo'] or " "  }}</em></strong></div></td>
+       
      </tr>
      <tr>
        <td class="style6"><div align="right">DESENHO CLIENTE: &nbsp; </div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.desenho_cliente#</em></div></td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Cliente']|default('', True) }}</em></div></td>
        <td rowspan="5">&nbsp;</td>
      </tr>
      <tr>
        <td class="style6"><div align="right">DESENHO PIMENTEL: &nbsp; </div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.desenho_pimentel#</em></div></td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Pimentel']|default('', True)  }}</em></div></td>
      </tr>
     <!--- <tr>
        <td class="style6"><div align="right">CODIGO DO PRODUTO: &nbsp; </div></td>
@@ -152,16 +153,16 @@
      </tr>  --->
      <tr>
        <td height="59" valign="top" class="style6"><div align="right">ESPECIFICA&Ccedil;&Atilde;O: &nbsp;</div></td>
-       <td colspan="2" class="style6"><p><em>#lista.especificacao#</em></p>
+       <td colspan="2" class="style6"><p><em>{{ field['Especificacao'] or ' '  }}</em></p>
          <p>&nbsp;</p></td>
      </tr>
      <tr>
        <td valign="top" class="style6"><div align="right">GRAVA&Ccedil;&Atilde;O:</div></td>
-       <td colspan="2" class="style6"><em>#lista.gravacao#</em></td>
+       <td colspan="2" class="style6"><em>{{ field['gravacao']|default('', true)  }}</em></td>
      </tr>
      <tr>
        <td valign="top" class="style6"><div align="right">GRAVA&Ccedil;&Atilde;O C&Oacute;D: </div></td>
-       <td colspan="2" class="style6"><em>#lista.gravacao2#</em></td>
+       <td colspan="2" class="style6"><em>{{ field['gravacao2']|default('', true)  }}</em></td>
      </tr>
      <tr>
        <td colspan="4">&nbsp;</td>
@@ -383,38 +384,33 @@
    <table style="float:left" width="100%"  border="0" align="center" cellpadding="0" cellspacing="1">
       <tr> <td colspan="4">&nbsp;</td> </tr>
       <tr> <td colspan="4">&nbsp;</td> </tr>
-      <tr> <td colspan="4">&nbsp;</td> </tr>
-      <tr> <td colspan="4">&nbsp;</td> </tr>
-      <tr> <td colspan="4">&nbsp;</td> </tr>
-      <tr> <td colspan="4">&nbsp;</td> </tr>
-      <tr> <td colspan="4">&nbsp;</td> </tr>
          <tr> <td colspan="95" align="center">--------------------------------------------------------------------------------------------------------------------------------</td> </tr>
       <tr> <td colspan="4">&nbsp;</td> </tr>
-      
-      
-      
+      <tr>
+         <td class="style6"><div align="right">DESENHO PIMENTEL: &nbsp; </div></td>
+         <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Pimentel'] or ' '  }}</em></div></td><br>
+      </tr>
       <tr>
        <td width="23%" class="style6"><div align="right">FERRAMENTA: &nbsp;</div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.ferramenta#</em></div></td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Ferramenta'] or ''  }}</em></div></td>
        <td width="35%"><div align="center" class="style6">TIPO DA O.S. </div></td>
      </tr>
      <tr>
        <td class="style6"><div align="right">MATERIAL: &nbsp;</div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.material#</em></div></td>
-       <td><div align="center" class="style6"><strong><em>#UCase(lista.tipo)#</em></strong></div></td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Material'] or ' '  }}</em></div></td>
+       <td><div align="center" class="style6"><strong><em>{{ field['Tipo'] or ''  }}</em></strong></div></td>
      </tr>
      <tr>
        <td class="style6"><div align="right">DESENHO CLIENTE: &nbsp; </div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.desenho_cliente#</em></div></td>
-       <td rowspan="5">&nbsp;</td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Cliente'] or ' '  }}</em></div></td>
      </tr>
      <tr>
-       <td class="style6"><div align="right">DESENHO PIMENTEL: &nbsp; </div></td>
-       <td colspan="2" class="style6"><div align="left"><em>#lista.desenho_pimentel#</em></div></td>
+      <td class="style6"><div align="right"></div></td>
+      <td colspan="2" class="style6"><div align="left"></div></td><br>
+      <td colspan="4"  class="style6" marginLeft="150px"><div align="center" marginLeft="80px" class="style6"><img src="{{ qrcode(qr, box_size=3, border=2) }}"> </div></td>
      </tr>
     </table>
    <p><span class="style13"><strong></strong></span></p>
-   </cfoutput>
    </body>
    </html>
    
