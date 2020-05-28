@@ -267,7 +267,7 @@ def print(osid):
         field = dict(os[0])
         res = getClient(osid)
         print(res)
-        qr = "https://peppertools.cf/os/"+str(field['Numero_Os'])
+        qr = "https://peppertools.herokuapp.com/os/"+str(field['Numero_Os'])
         field['nome'] = res['nome']
         field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')
         field['Data'] = checkDate(field['Data'])
