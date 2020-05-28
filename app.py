@@ -150,8 +150,10 @@ def new_os():
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
 @login_required
 def os_edit(osid):
-    
-    # osid = session['osid']
+    try:
+        osid = session['osid']
+    except:
+        pass    
     if request.method == 'POST':
         data = dict(request.form)
         try:
