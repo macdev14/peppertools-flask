@@ -109,8 +109,7 @@ def getOs(option = 'ALL'):
         rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
         rows = int(rows[0]['num_os']) + 1
     else:
-        stmt = 'SELECT * FROM Cadastro_OS WHERE Numero_Os = '+ str(option)
-        rows = db.execute(stmt)   
+        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Numero_Os = ?', option)   
     return rows
 
 def updateData(list, table, col, Id):
