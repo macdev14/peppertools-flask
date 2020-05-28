@@ -149,7 +149,8 @@ def new_os():
 @ssl_redirect
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
 @login_required
-def os_edit(osid):  
+def os_edit(osid):
+    osid2 = osid  
     if request.method == 'POST':
         data = dict(request.form)
         try:
@@ -169,10 +170,10 @@ def os_edit(osid):
         return redirect('/os/form/'+str(osid))
     clients = getClient()
     os_num = getOs()
-    os = getOs(int(osid))
+    os = getOs(osid2)
     print(osid)
-    field = os[0]
-    field = field
+    print(os[0])
+    field = dict(os[0])
     if field['Data_Pedido']:
        field['Data_Pedido'] = checkDate(field['Data_Pedido'])
     field['Data'] = checkDate(field['Data'])
