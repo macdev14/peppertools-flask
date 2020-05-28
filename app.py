@@ -255,10 +255,10 @@ def print(osid):
     if request.method == 'GET':
         os = getOs(osid)
         field = dict(os[0])
-        res = dict(getClient(osid))
+        res = getClient(osid)
        #print(res)
         qr = "https://peppertools.herokuapp.com/os/"+str(field['Numero_Os'])
-        field['nome'] = res['nome']
+        field['nome'] = res
         field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')
         field['Data'] = checkDate(field['Data'])
         field['Data_Nf'] = checkDate(field['Data_Nf'])
