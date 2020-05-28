@@ -158,12 +158,12 @@ def os_edit(osid):
         updateData(data, 'Cadastro_OS', 'Numero_Os', osid)
         flash('O.S alterada com sucesso')
         return redirect('/os/form/'+str(osid))
+    print(osid)
     clients = getClient()
     os_num = getOs()
     os = getOs(osid)
-    print(osid)
-    print(os[0])
-    field = dict(os[0])
+    print(os)
+    field = os
     if field['Data_Pedido']:
        field['Data_Pedido'] = checkDate(field['Data_Pedido'])
     field['Data'] = checkDate(field['Data'])
