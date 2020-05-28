@@ -94,11 +94,11 @@ def buscar():
 @ssl_redirect
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    """"""
+    """
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code) 
+        return redirect(url, code=code)  """
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")
     if request.method == 'POST':
@@ -170,7 +170,7 @@ def os_edit(osid):
         return redirect('/os/form/'+str(osid))
     clients = getClient()
     os_num = getOs()
-    os = getOs(osid2)
+    os = getOs(osid)
     print(osid)
     print(os[0])
     field = dict(os[0])
@@ -205,12 +205,12 @@ def os_del(osid):
 @ssl_require
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
+    """Register user
 
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code) 
+        return redirect(url, code=code) """
     if request.method == 'POST':
 
         # Ensure username was submitted
