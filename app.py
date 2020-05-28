@@ -94,11 +94,11 @@ def buscar():
 @ssl_redirect
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    """
+    """"""
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code) """
+        return redirect(url, code=code) 
     x = datetime.datetime.now()
     date = x.strftime("%d/%m/%Y")
     if request.method == 'POST':
@@ -150,10 +150,11 @@ def new_os():
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
 @login_required
 def os_edit(osid):
+    osid2 = osid
     try:
         osid = session['osid']
     except:
-        pass    
+        osid = osid2    
     if request.method == 'POST':
         data = dict(request.form)
         try:
@@ -207,12 +208,12 @@ def os_del(osid):
 @ssl_require
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user
+    """Register user"""
 
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code) """
+        return redirect(url, code=code) 
     if request.method == 'POST':
 
         # Ensure username was submitted
@@ -269,7 +270,7 @@ def print(osid):
         field = dict(os[0])
         res = getClient(osid)
         print(res)
-        qr = "https://localhost:5000/os/"+str(field['Numero_Os'])
+        qr = "https://peppertools.cf/os/"+str(field['Numero_Os'])
         field['nome'] = res['nome']
         field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')
         field['Data'] = checkDate(field['Data'])
@@ -283,5 +284,5 @@ def access(osid):
     session['osid'] = osid
     @login_required
     def goTo(osid):
-        return redirect('os/form/'+str(osid))
+        return redirect('form/'+str(osid))
     return goTo(osid)

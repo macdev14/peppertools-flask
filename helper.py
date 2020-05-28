@@ -60,7 +60,7 @@ def login_required(f):
     return decorated_function
 
 def login_user(user, password):
-    rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)
+    rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = :user', user=user)
     if len(rows) != 1 or not check_password_hash(rows[0]["ds_senha"], password):
             flash("Login Inválido")
             return redirect('/login')
@@ -107,7 +107,7 @@ def getOs(option = 'ALL'):
         rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
         rows = int(rows[0]['num_os']) + 1
     else:
-        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Numero_Os = :nos', nos=option)   
+        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Numero_Os = :noss', noss=option)   
     return rows
 
 def updateData(list, table, col, Id):
