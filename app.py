@@ -283,5 +283,5 @@ def access(osid):
     session['osid'] = osid
     @login_required
     def goTo(osid):
-        return redirect('os/form/'+osid)
+        return redirect('os/form/'+str(osid))
     return goTo(osid)
