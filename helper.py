@@ -66,10 +66,12 @@ def login_user(user, password):
             return redirect('/login')
     else:
         session["user_id"] = rows[0]["ID"]
-        try:
-            return redirect("os/form/"+str(session['osid']))
-        except:    
+        if session.get("osid") is None:
             return redirect("/")
+        else:
+            return redirect("os/form/"+str(session['osid']))
+            
+            
 
 def underdev():
     return render_template('manutencao.html',  title= "Inicio", active1="",active2="", active3="", active4="active")
