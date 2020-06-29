@@ -14,3 +14,11 @@ def getNumber(client = 0):
         return jsonify(row[0]['total'])
     except:
         return jsonify('Error')
+
+def getAll():
+    try:
+        stmt = "SELECT * FROM Cadastro_OS"
+        row = db.execute(stmt)
+        return jsonify(row[0])
+    except:
+        return jsonify("Nothing found")

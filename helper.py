@@ -101,7 +101,7 @@ def getClient( option='ALL'):
         rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
     else:
         rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Numero_Os = ?', option) 
-        rows = rows[0]['nome']   
+        rows = rows[0]
     return rows
 
 def getOs(option = 'ALL'):
@@ -109,7 +109,8 @@ def getOs(option = 'ALL'):
         rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
         rows = int(rows[0]['num_os']) + 1
     else:
-        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Numero_Os = ?', option)   
+        stmt = 'SELECT * FROM Cadastro_OS WHERE Numero_Os = '+ str(option)
+        rows = db.execute(stmt)   
     return rows
 
 def updateData(list, table, col, Id):
