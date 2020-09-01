@@ -11,7 +11,7 @@ from functools import wraps
 
 db = SQL("sqlite:///peppertools.db")
 
-def getData(pref1, cond1, table, cond3, column = ""):
+def getData(pref1, cond1, table, limit=False, column = ""):
     if not pref1 or not cond1 or not table:
         return None
     else:   
@@ -22,7 +22,7 @@ def getData(pref1, cond1, table, cond3, column = ""):
         db2 = conn2.cursor()
         cond2 = str(cond1)
         table2 = str(table)
-        if cond3 == "limit" and column !="":
+        if limit == True and column !="":
             db.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
             db2.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
         else:    
@@ -54,9 +54,10 @@ def login_required(f):
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if session.get("user_id") is None:
-            return redirect("/login")
-        return f(*args, **kwargs)
+        if session.get("user_id"):
+            return f(*args, **kwargs)
+        else:
+             return redirect("/login")
     return decorated_function
 
 def login_user(user, password):

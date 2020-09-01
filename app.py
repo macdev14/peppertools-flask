@@ -1,4 +1,3 @@
-
 from helper import *
 from api import *
 from flask_qrcode import QRcode 
@@ -70,9 +69,9 @@ def editar():
 
 @app.route("/os")
 @login_required
-def os():
-    os = getData("key","*", "Cadastro_Os","limit","Numero_os") 
-    os_val = getData("val","*", "Cadastro_Os", "limit", "Numero_os")
+def osAll():
+    os = getData("key","*", "Cadastro_Os",True,"Numero_os") 
+    os_val = getData("val","*", "Cadastro_Os", True, "Numero_os")
     os_len = len(os) 
     val_len = len(os_val)
     return render_template("os.html", os=os, os_val= os_val, os_len=os_len, val_len=val_len, active1="",active2="", active3="", active4="active")     

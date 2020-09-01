@@ -15,9 +15,13 @@ def getNumber(client = 0):
     except:
         return jsonify('Error')
 
-def getAll():
+def getAll(option = 'ALL'):
     try:
-        stmt = "SELECT * FROM Cadastro_OS"
+        if option == 'ALL': 
+            stmt = "SELECT * FROM Cadastro_OS"
+        else:
+            stmt = "SELECT * FROM Cadastro_OS WHERE Numero_Os = " + str(option)   
+        
         row = db.execute(stmt)
         return jsonify(row[0])
     except:
