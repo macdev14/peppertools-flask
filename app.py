@@ -1,7 +1,7 @@
 from helper import *
 from api import *
 from flask_qrcode import QRcode 
-from flask import Flask, redirect,render_template, request, session, flash
+from flask import Flask, redirect,render_template, request, session, flash, jsonify, make_response
 from flask_session.__init__ import Session
 from flask_session import Session
 from tempfile import mkdtemp
@@ -9,6 +9,7 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 import sys
+import jwt
 import json
 from jinja2 import Undefined
 from cs50 import SQL
@@ -18,12 +19,19 @@ from flask_ssl import *
 db = SQL("sqlite:///peppertools.db")
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app = Flask(__name__)
+
+app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 QRcode(app)
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    #response.headers["Access-Control-Allow-Origin"] = '*'
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
+    response.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
     return response
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
@@ -291,3 +299,79 @@ def access(osid):
 @app.route('/os/all')
 def all_api():
     return getAll()
+
+@app.route('/api/login', methods=['POST'])
+def log():
+     try:
+        obj = json.loads(request.data)
+     #print(obj['username'])
+        user = obj['username']
+        password = obj['password']
+        rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)
+        if len(rows) == 1 and check_password_hash(rows[0]["ds_senha"], password):
+            
+            token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
+        # request.headers['authorization'] = token.decode('UTF-8')
+            resp = make_response(jsonify({'token': token.decode('UTF-8')}))
+            resp.headers['authorization'] = token.decode('UTF-8')
+        # resp.headers["Access-Control-Allow-Origin"] = '*'
+        #  resp.headers["Access-Control-Allow-Credentials"] = "true"
+        #  resp.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
+        # resp.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
+        # resp.headers['Origin'] = 
+            return resp
+        return jsonify('Not found')
+     except:       
+            return jsonify('Not found')
+
+@app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
+@auth_required
+def osApi(osid):
+    try:
+        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))
+        if not rows:
+            return jsonify('Not found')
+        if request.method == 'POST':
+             obj = json.loads(request.data)
+             try:
+                  updateData(obj, 'Cadastro_OS', 'Id', osid)
+                  return jsonify('Updated')
+             except:
+                 return jsonify('Error')
+        return jsonify(rows)
+    except:
+        return jsonify('not-found')
+ 
+@app.route('/api/os/', methods=['GET', 'POST'])
+@auth_required
+def osApiall():
+  #  try:
+        if request.method == 'GET':
+            rows = db.execute('SELECT * FROM Cadastro_OS ORDER BY Id')
+            return jsonify(rows)
+        elif request.method == 'POST':
+          #  try:
+                obj = json.loads(request.data)
+                insertData(obj, 'Cadastro_OS')
+                return jsonify('Created-Successfully')
+            #except:
+              #  return jsonify('Create-Error')
+        
+ #   except:
+     #   return jsonify('Not found')
+
+@app.route('/api/os/new')
+@auth_required
+def osApiNum():
+    try:
+          os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
+          os_num = int(os_num[0]['num_os']) + 1
+          return jsonify(os_num)
+    except:
+        return jsonify('Error')
+
+
+
+
+if __name__ == "__main__" :
+     app.run(debug=True)

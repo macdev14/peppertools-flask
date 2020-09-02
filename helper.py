@@ -4,7 +4,7 @@ import requests
 import urllib.parse
 import datetime
 from cs50 import SQL
-from flask import flash, redirect, render_template, request, session, escape 
+from flask import flash, redirect, render_template, request, session, escape, Response 
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
@@ -79,7 +79,7 @@ def underdev():
 
 def insertData(list, table):
     final = "error"
-
+    
     stmt = "INSERT INTO "+table+" ("
     values = " VALUES ("
 
@@ -89,14 +89,14 @@ def insertData(list, table):
         else:
             stmt = stmt + str(val) + ","
             if not isinstance(list[val], str):
-                values = values + list[val] + ","
+                values = values + str(list[val]) + ","
             else:
                 values = values + "\'" + list[val] +  "\'" + ","
     values = values[:-1]
     stmt = stmt[:-1]
     final = stmt + ")" + values + ")"
     db.execute(final)
-    return final, redirect('os/form/', 200)
+    return print(final)
 def getClient( option='ALL'):
     if option == 'ALL':
         rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
@@ -156,3 +156,18 @@ def checkDate(str1):
     
          
     return str2
+
+def auth_required(f):
+    """
+    Decorate routes to require login.
+
+    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if request.headers.get('authorization'):
+            request.headers.get('authorization') 
+            return f(*args, **kwargs)
+        else:
+             return Response('{"unauthorized"}', status=401, mimetype='application/json')
+    return decorated_function
