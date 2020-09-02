@@ -314,11 +314,11 @@ def log():
         # request.headers['authorization'] = token.decode('UTF-8')
             resp = make_response(jsonify({'token': token.decode('UTF-8')}))
             resp.headers['authorization'] = token.decode('UTF-8')
-        # resp.headers["Access-Control-Allow-Origin"] = '*'
-        #  resp.headers["Access-Control-Allow-Credentials"] = "true"
-        #  resp.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
-        # resp.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
-        # resp.headers['Origin'] = 
+            resp.headers["Access-Control-Allow-Origin"] = '*'
+            resp.headers["Access-Control-Allow-Credentials"] = "true"
+            resp.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
+            resp.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
+          # resp.headers['Origin'] = 
             return resp
         return jsonify('Not found')
      except:       
