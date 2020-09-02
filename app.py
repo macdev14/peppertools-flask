@@ -308,7 +308,7 @@ def log():
         user = obj['username']
         password = obj['password']
         rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)
-        if len(rows) == 1 and check_password_hash(rows[0]["ds_senha"], password):
+        if len(rows) == 1 and rows[0]["ds_senha"] == password:
             
             token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
         # request.headers['authorization'] = token.decode('UTF-8')
