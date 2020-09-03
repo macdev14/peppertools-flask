@@ -302,7 +302,7 @@ def all_api():
 
 @app.route('/api/login', methods=['POST'])
 def log():
-    # try:
+     try:
         obj = json.loads(request.data)
      #print(obj['username'])
         user = obj['username']
@@ -315,16 +315,11 @@ def log():
             token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
         # request.headers['authorization'] = token.decode('UTF-8')
             resp = make_response(jsonify({'token': token.decode('UTF-8')}))
-            resp.headers['authorization'] = token.decode('UTF-8')
-            resp.headers["Access-Control-Allow-Origin"] = '*'
-            resp.headers["Access-Control-Allow-Credentials"] = "true"
-            resp.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
-            resp.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
           # resp.headers['Origin'] = 
             return resp
         return jsonify('Not found')
-   #  except:       
-   #         return jsonify('Not found')
+     except:       
+            return jsonify('Not found')
 
 @app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
 @auth_required
