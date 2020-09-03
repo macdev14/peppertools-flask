@@ -302,13 +302,15 @@ def all_api():
 
 @app.route('/api/login', methods=['POST'])
 def log():
-     try:
+    # try:
         obj = json.loads(request.data)
      #print(obj['username'])
         user = obj['username']
         password = obj['password']
+        print(obj['password'])
         rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)
-        if len(rows) == 1 and rows[0]["ds_senha"] == password:
+        #print(rows[0]["ds_senha"])
+        if len(rows) == 1 and check_password_hash(rows[0]["ds_senha"], password):
             
             token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
         # request.headers['authorization'] = token.decode('UTF-8')
@@ -321,8 +323,8 @@ def log():
           # resp.headers['Origin'] = 
             return resp
         return jsonify('Not found')
-     except:       
-            return jsonify('Not found')
+   #  except:       
+   #         return jsonify('Not found')
 
 @app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
 @auth_required
