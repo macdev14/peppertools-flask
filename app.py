@@ -142,9 +142,11 @@ def new_os():
         print(dict(request.form))
         data = dict(request.form)
        # data = json.loads(data)
-        print(insertData(data, 'Cadastro_Os'))
+        idos = insertData(data, 'Cadastro_Os')
+        print(idos)
         flash('O.S cadastrada com sucesso')
-        return redirect('/os/form/'+ str(data['Id']))
+        print(request.form)
+        return redirect('/os/form/'+ str(idos))
     elif request.method == 'POST':
         flash('Erro ao cadastrar O.S')
         return redirect('/os/form/')
@@ -155,10 +157,6 @@ def new_os():
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
 @login_required
 def os_edit(osid):
-    try:
-        osid2 = session['osid']
-    except:
-        osid2 =  osid    
     if request.method == 'POST':
         data = dict(request.form)
         try:
@@ -174,8 +172,8 @@ def os_edit(osid):
             pass
         updateData(data, 'Cadastro_OS', 'Numero_Os', osid)
         flash('O.S alterada com sucesso')
-        return redirect('/os/form/'+str(osid))
-        session['osid'].clear()
+        return redirect('/os/form/'+ str(osid)), session['osid'].clear()
+        
     try:
         clients = getClient()
         os_num = getOs()
@@ -203,7 +201,7 @@ def os_edit(osid):
 def os_del(osid):
     if request.method == 'GET':
         try:
-            deleteData('Cadastro_Os', 'Numero_Os', osid)
+            deleteData('Cadastro_Os', 'Id', osid)
             flash('O.S deletada com sucesso')
             return redirect('/os/form/')
         except:
@@ -275,6 +273,9 @@ def print_os(osid):
     print(osid)
     if request.method == 'GET':
         os = getOs(osid)
+        if not os:
+            flash("O.S não encontrada.")
+            return redirect("/")
         field = dict(os[0])
         res = getClient(osid)
         print(res)
@@ -295,6 +296,14 @@ def access(osid):
     def goTo(osid):
         return redirect('form/'+str(osid))
     return goTo(osid)
+
+
+
+"""
+
+*** API ROUTES ***
+
+"""
 
 @app.route('/os/all')
 def all_api():
@@ -322,7 +331,7 @@ def log():
             return jsonify('Not found')
 
 @app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
-@auth_required
+#@auth_required
 def osApi(osid):
     try:
         rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))
@@ -339,12 +348,15 @@ def osApi(osid):
     except:
         return jsonify('not-found')
  
-@app.route('/api/os/', methods=['GET', 'POST'])
-@auth_required
-def osApiall():
+@app.route('/api/os/limit=<int:limit>', methods=['GET', 'POST'])
+#@auth_required
+def osApiall(limit):
   #  try:
+        stmt = "SELECT c.id, c.nome, o.tipo, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT " + str(limit)
         if request.method == 'GET':
-            rows = db.execute('SELECT * FROM Cadastro_OS ORDER BY Id')
+            rows = db.execute(stmt)
+            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
+          
             return jsonify(rows)
         elif request.method == 'POST':
           #  try:
@@ -358,7 +370,7 @@ def osApiall():
      #   return jsonify('Not found')
 
 @app.route('/api/os/new')
-@auth_required
+#@auth_required
 def osApiNum():
     try:
           os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')

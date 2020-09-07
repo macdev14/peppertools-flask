@@ -96,12 +96,15 @@ def insertData(list, table):
     stmt = stmt[:-1]
     final = stmt + ")" + values + ")"
     db.execute(final)
-    return print(final)
+    find = 'SELECT Id FROM Cadastro_OS WHERE Numero_Os = '+ str(list['Numero_Os'])
+    rows = db.execute(find)
+    return rows[0]['Id']
+    
 def getClient( option='ALL'):
     if option == 'ALL':
         rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
     else:
-        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Numero_Os = ?', option) 
+        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) 
         rows = rows[0]
     return rows
 
@@ -110,7 +113,7 @@ def getOs(option = 'ALL'):
         rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
         rows = int(rows[0]['num_os']) + 1
     else:
-        stmt = 'SELECT * FROM Cadastro_OS WHERE Numero_Os = '+ str(option)
+        stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)
         rows = db.execute(stmt)   
     return rows
 

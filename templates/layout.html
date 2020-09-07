@@ -85,13 +85,13 @@
 
 
 
-
       {% block body %}
       {% endblock %}
 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -103,12 +103,34 @@
 
 <!-- DataTables JS -->
     <script src="{{ url_for('static', filename='js/addons/datatables2.min.js') }}" type="text/javascript"></script>
-
+    
 <!-- DataTables Select CSS -->
 
 <!-- DataTables Select JS -->
-<script src="{{ url_for('static', filename='js/addons/datatables-select2.min.js') }}" type="text/javascript"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+
+<script src="{{ url_for('static', filename='js/addons/datatables-select2.min.js') }}" type="text/javascript"></script>
+<div class="form-group">
+  <input class="form-control" type="number" min="10" max="7913" step="10" onchange="loadOs(this.value)">
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Numero O.S</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Data</th>
+        <th scope="col">Prazo</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Deletar</th>
+      </tr>
+    </thead>
+    <tbody id="all_os">
+
+    </tbody>
+</table>
+<script src="{{ url_for('static', filename='js/loadOs.js') }}" type="text/javascript"></script>
    <script type="text/javascript">
       $(document).ready(function(){
           $(".dropdown, .btn-group").hover(function(){
