@@ -14,6 +14,7 @@ import json
 from jinja2 import Undefined
 from cs50 import SQL
 import datetime
+import pytz
 from flask_ssl import *
 
 db = SQL("sqlite:///peppertools.db")
@@ -121,7 +122,8 @@ def login():
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code) """
-    x = datetime.datetime.now()
+    tz = pytz.timezone('America/Sao_Paulo')
+    x = datetime.datetime.now(tz=tz)
     date = x.strftime("%d/%m/%Y")
     if request.method == 'POST':
         user = request.form.get('user')
