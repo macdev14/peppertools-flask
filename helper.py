@@ -23,19 +23,27 @@ def getData(pref1, cond1, table, limit=False, column = ""):
         cond2 = str(cond1)
         table2 = str(table)
         if limit == True and column !="":
+           # print('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
             db.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
             db2.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
-        else:    
-            db.execute('SELECT {} FROM {}'.format(cond2, table2))
+        else:
+            print('SELECT {} FROM {}'.format(cond2, table2))
+            rowsEx = db.execute('SELECT {} FROM {}'.format(cond2, table2))
             db2.execute('SELECT {} FROM {}'.format(cond2,table2))
-        
+            rowsE = db.fetchone()
+            result = list()
+            for row in rowsE:
+                result.append(row)
+                print(row)
+            #return result
+           
         if pref1 == "key":
             result = list()
             rows = db.fetchone()
             for row in rows.keys():
                 result.append(row)
-        else:
-            result = db2.fetchall()
+        elif pref1 == 'val':
+          result = db2.fetchall()
             
         return result
 

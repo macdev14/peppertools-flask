@@ -1,44 +1,31 @@
-{% extends "layout.html"%}
+{% extends 'layout.html' %}
 {% block body %}
-<div class="table-responsive-md">
-    <table class="table">
-    <thead> <tr>
-    {% for col in clientes %}    
-        {% if col != 'ID' %}
-        <th class="{{ col }} header" scope="col">{{ col.capitalize() }}</th>
-        {% endif %}
-    {% endfor %}
-    <th class="editar" scope="col">Editar</th>
-    </tr>
-</thead>
-<tbody>
-    
-    {% for row_data in range(val_len) %} 
-       {% if row_data != 0 %}
-    <tr>   
-            {% for col_data in range(clientes_len) %} 
-            {% if col_data != 0 %}
-                <td>
-                    {% if not clientes_val[row_data][col_data] %}
-                     {{" "}}
-                     {% else %}
-                        {{ clientes_val[row_data][col_data] }}
-                    {% endif %}
-                </td>
-                {% endif %} 
-            {% endfor %}
-           
-            <td width="15%" float="left"><form action="clientes/editar" method="post">
-                <button type="submit" name="id" value="{{ clientes_val[row_data][0] }}" class="btn-link">Editar</button>
-            </form></td>
-    </tr> 
-    {% endif %}       
-    {% endfor %}
 
-</tbody>
-   
-    
-    </table>
-</div>
+<div class="form-group mb-3">
+    <label for="limit">Quantidade de O.S:</label>
+    <input class="form-control" id="limit" type="number" min="5" max="7913" step="5" onchange="loadOs(this.value)">
+    <label for="usr">Nome:</label>
+    <input class="form-control" type="text" id="query" onchange="filterOs(this.value)">
+  </div>
+  
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Codigo do cliente</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Cnpj</th>
+          <th scope="col">Endereco</th>
+          <th scope="col">Telefone</th>
+          <th scope="col"> Editar</th>
+          <th scope="col"> Deletar</th>
+        </tr>
+      </thead>
+      <tbody id="all_os">
+  
+      </tbody>
+  </table>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/loadClientes.js') }}" type="text/javascript"></script>
 
 {% endblock %}

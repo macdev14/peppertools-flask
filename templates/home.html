@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block body %}
+<!-- Grid container -->
+<div class="container">
+    <div class="row"> <div class="col-md-6"></div></div>
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center mt-3 ">
+  
+      <!--Grid column-->
+      <div class="col-md-6 mt-3">
+        <div class="card text-center" color="#000">
+            <div class="card-body">
+                <h5 class="card-title">Ordens de Serviços</h5>
+                <canvas id="lineChart"></canvas>
+            </div>
+          </div> 
+        </div>
+        <div class="col-md-6 mt-3">
+          <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Notas Fiscais</h5>
+                <canvas id="lineChart"></canvas>
+            </div>
+          </div>  
+        </div>
+       
+    
+      </div>
+      <!--Grid column-->
+  
+    </div>
+    <!--Grid row-->
+  
+  </div>
+  <!-- Grid container -->
+      <!-- JQuery -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <!-- Bootstrap tooltips -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+      <!-- DataTables CSS -->
+  <script src="{{ url_for('static', filename='js/graphics.js') }}" type="text/javascript"></script>
+{% endblock %}

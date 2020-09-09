@@ -43,7 +43,7 @@ Session(app)
 @app.route('/')
 @login_required
 def index():
-    return render_template("layout.html", title= "Inicio", active1="active",active2="", active3="", active4="")
+    return render_template("home.html", title= "Inicio", active1="active",active2="", active3="", active4="")
 
 
 @app.route('/clientes')
@@ -64,16 +64,31 @@ def search():
     return underdev()
 
 
-@app.route('/clientes/editar', methods=["GET", "POST"])
+@app.route('/clientes/form/', methods=["GET", "POST"])
 @login_required
-def editar():
+def cadCli():
     if request.method == 'GET':
-        return redirect("/clientes")
-    else:
         clientes = getData("key","*", "Clientes")
-        id = request.form.get("id")
-        return render_template("client_edit.html", clientes=clientes, id=id, active1="",active2="", active3="active", active4="")
+        print(clientes)
+        return render_template("client_edit.html", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1="",active2="", active3="active", active4="")
+    elif request.method == 'POST':   # clientes = getData(" ","*", "Clientes")
+        try:
+            data = dict(request.form)
+            idCli = insertData(data, 'Clientes')
+            flash('Cliente cadastrado com sucesso')
+            print(request.form)
+            return redirect('/clientes/form/'+ str(idCli))
+        except:
+            return redirect('/clientes/form/')
 
+@app.route('/clientes/form/<int:cliId>', methods = ['POST', 'GET'])
+def editCli(cliId):
+    if request.method == 'GET':
+        clientes = getData(" ", "*", "Clientes WHERE ID = "+ str(cliId))
+        clientesCol = getData("key","*", "Clientes")
+        cliLen = len(clientesCol)
+       # print(clientes)
+        return render_template("client_edit.html", clientes=clientes, cliLen=cliLen, clientesCol=clientesCol, id=cliId, edit=True, active1="",active2="", active3="active", active4="") 
 
 @app.route("/os")
 @login_required
@@ -352,7 +367,7 @@ def osApi(osid):
 #@auth_required
 def osApiall(limit):
   #  try:
-        stmt = "SELECT c.id, c.nome, o.tipo, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT " + str(limit)
+        stmt = "SELECT c.id, c.nome, o.tipo, o.Especificacao, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT " + str(limit)
         if request.method == 'GET':
             rows = db.execute(stmt)
             #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
@@ -369,6 +384,34 @@ def osApiall(limit):
  #   except:
      #   return jsonify('Not found')
 
+@app.route('/api/os/q=<string:query>', methods=['GET', 'POST'])
+#@auth_required
+def osApiSearch(query):
+  #  try:
+        
+        stmt = "SELECT c.id, c.nome, o.tipo, o.prazo, o.Especificacao, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente AND o.Especificacao LIKE '%" + str(query) + "%' ORDER BY o.numero_os DESC "
+        if len(query) < 2:
+            stmt = stmt+ "LIMIT 500"
+     #   if limit > 0:
+     #       stmt += " LIMIT " + str(limit)
+        if request.method == 'GET':
+            rows = db.execute(stmt)
+            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
+          
+            return jsonify(rows)
+        elif request.method == 'POST':
+          #  try:
+                obj = json.loads(request.data)
+                insertData(obj, 'Cadastro_OS')
+                return jsonify('Created-Successfully')
+            #except:
+              #  return jsonify('Create-Error')
+        
+ #   except:
+     #   return jsonify('Not found')
+
+
+
 @app.route('/api/os/new')
 #@auth_required
 def osApiNum():
@@ -379,8 +422,10 @@ def osApiNum():
     except:
         return jsonify('Error')
 
-
-
+@app.route('/api/clientes', methods=['GET', 'POST'])
+def allClientes():
+    stmt = "SELECT * FROM Clientes"
+    return jsonify(db.execute(stmt))
 
 if __name__ == "__main__" :
      app.run(debug=True)

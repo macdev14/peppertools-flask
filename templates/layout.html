@@ -12,12 +12,20 @@
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
     <link href="{{ url_for('static', filename='css/addons/datatables.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+2:400,500,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 
     <title>{{ title }}</title>
   
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="/">Pimentel Ferramentas</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -37,9 +45,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/clientes">Todos</a>
-                <a class="dropdown-item" href="/clientes/buscar">Buscar</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/clientes/cadastro">Cadastrar</a>
+                <a class="dropdown-item" href="/clientes/form">Cadastrar</a>
               </div>
             </li>
             <li class="nav-item dropdown {{ active4 }}">
@@ -47,7 +54,6 @@
                Ordem de Servi&ccedil;o
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/os/buscar">Buscar</a>
                 <a class="dropdown-item" href="/os">Todos</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/os/form">Cadastrar</a>
@@ -57,10 +63,10 @@
           <form class="form-inline my-2 my-lg-0" action="/logout">
             <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log out</button>
           </form>
-          <form class="form-inline my-2 my-lg-0">
+     <!---     <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          </form>--> 
         </div>
       </nav>
       
@@ -89,6 +95,8 @@
       {% endblock %}
 
 
+      
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
@@ -99,38 +107,17 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <!-- DataTables CSS -->
+    
 
 <!-- DataTables JS -->
     <script src="{{ url_for('static', filename='js/addons/datatables2.min.js') }}" type="text/javascript"></script>
-    
+     
 <!-- DataTables Select CSS -->
 
 <!-- DataTables Select JS -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
-
 <script src="{{ url_for('static', filename='js/addons/datatables-select2.min.js') }}" type="text/javascript"></script>
-<div class="form-group">
-  <input class="form-control" type="number" min="10" max="7913" step="10" onchange="loadOs(this.value)">
-</div>
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Numero O.S</th>
-        <th scope="col">Cliente</th>
-        <th scope="col">Data</th>
-        <th scope="col">Prazo</th>
-        <th scope="col">Editar</th>
-        <th scope="col">Deletar</th>
-      </tr>
-    </thead>
-    <tbody id="all_os">
-
-    </tbody>
-</table>
-<script src="{{ url_for('static', filename='js/loadOs.js') }}" type="text/javascript"></script>
    <script type="text/javascript">
       $(document).ready(function(){
           $(".dropdown, .btn-group").hover(function(){
