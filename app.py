@@ -8,9 +8,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
-import sys
-import jwt
-import json
+import sys, os, jwt, json
 from jinja2 import Undefined
 from cs50 import SQL
 import datetime
@@ -22,6 +20,7 @@ JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
+os.environ["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 QRcode(app)
 @app.after_request
 def after_request(response):
@@ -44,6 +43,7 @@ Session(app)
 @app.route('/')
 @login_required
 def index():
+    print(session.get('token'))
     return render_template("home.html", title= "Inicio", active1="active",active2="", active3="", active4="")
 
 
@@ -192,6 +192,8 @@ def os_edit(osid):
         return redirect('/os/form/'+ str(osid)), session['osid'].clear()
         
     try:
+        if session.get('osid'):
+            osid = session.get('osid')
         clients = getClient()
         os_num = getOs()
         os = getOs(osid)
@@ -208,6 +210,7 @@ def os_edit(osid):
         print(field['Numero_Os'])
         x = datetime.datetime.now()
         date = x.strftime("%d/%m/%Y")
+
         return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date)
     except:
         flash('O.S não encontrada!')

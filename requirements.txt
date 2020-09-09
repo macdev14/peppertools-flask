@@ -8,6 +8,7 @@ werkzeug==0.16.1
 PyJWT
 pytz
 pymongo==3.10.1
+py-jwt-validator
 cs50
 Flask
 Flask-QRcode

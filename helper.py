@@ -1,8 +1,5 @@
-import os
-import sqlite3
-import requests
-import urllib.parse
-import datetime
+import os, sqlite3, requests, urllib.parse, datetime, jwt
+from py_jwt_validator import PyJwtValidator, PyJwtException
 from cs50 import SQL
 from flask import flash, redirect, render_template, request, session, escape, Response 
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
@@ -27,14 +24,12 @@ def getData(pref1, cond1, table, limit=False, column = ""):
             db.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
             db2.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
         else:
-            print('SELECT {} FROM {}'.format(cond2, table2))
-            rowsEx = db.execute('SELECT {} FROM {}'.format(cond2, table2))
-            db2.execute('SELECT {} FROM {}'.format(cond2,table2))
+            db.execute('SELECT {} FROM {}'.format(cond2, table2))
+            #db2.execute('SELECT {} FROM {}'.format(cond2,table2))
             rowsE = db.fetchone()
             result = list()
             for row in rowsE:
                 result.append(row)
-                print(row)
             #return result
            
         if pref1 == "key":
@@ -62,10 +57,24 @@ def login_required(f):
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if session.get("user_id"):
-            return f(*args, **kwargs)
-        else:
-             return redirect("/login")
+        #try:
+        if session.get('_permanent') or session.get('osid'):
+            try:
+                jwt.decode(session.get('_permanent'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+                return f(*args, **kwargs)
+            except jwt.ExpiredSignature:
+                if session.get('osid'): 
+                    osid = session.get('osid')
+                    session.clear()
+                    session['osid'] = osid
+                    flash("Log in Expirado!")
+                    return redirect('/login')
+                else:
+                    session.clear()
+                    flash("Log in Expirado!")
+                    return redirect('/login')
+        return redirect("/login")
+        
     return decorated_function
 
 def login_user(user, password):
@@ -74,12 +83,17 @@ def login_user(user, password):
             flash("Login Inválido")
             return redirect('/login')
     else:
-        session["user_id"] = rows[0]["ID"]
-        if session.get("osid") is None:
-            return redirect("/")
-        else:
-            return redirect("os/form/"+str(session['osid']))
-            
+         #response = Response("log")
+         token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, os.environ["SECRET_KEY"])
+         #response.headers['authorization'] = token.decode('UTF-8')
+         #session["token"] = token.decode('UTF-8')
+         session['_permanent'] = token.decode('UTF-8')
+         if session.get("osid"):
+            if session.get("_permanent") or request.headers.get('authorization'):
+                return redirect("os/form/"+str(session['osid']))
+            else:
+                return redirect('/login')
+         return redirect('/')
             
 
 def underdev():
@@ -140,8 +154,7 @@ def updateData(list, table, col, Id):
     values = values[:-1]
     values = values + " WHERE "+col+" = "+ str(Id)
     final = stmt + values
-    db.execute(final)
-    return print(final)
+    return db.execute(final)
 
 def deleteData(table,col,Id):
     try:
