@@ -58,7 +58,7 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         #try:
-        if session.get('_permanent') or session.get('osid'):
+        if session.get('_permanent') or session.get('osid')  session.get('token'):
             try:
                 jwt.decode(session.get('_permanent'), os.environ['SECRET_KEY'], algorithms=['HS256'])
                 return f(*args, **kwargs)
@@ -86,7 +86,7 @@ def login_user(user, password):
          #response = Response("log")
          token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, os.environ["SECRET_KEY"])
          #response.headers['authorization'] = token.decode('UTF-8')
-         #session["token"] = token.decode('UTF-8')
+         session["token"] = token.decode('UTF-8')
          session['_permanent'] = token.decode('UTF-8')
          if session.get("osid"):
             if session.get("_permanent") or request.headers.get('authorization'):
