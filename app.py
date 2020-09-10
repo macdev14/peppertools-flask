@@ -14,11 +14,12 @@ from cs50 import SQL
 import datetime
 import pytz
 from flask_ssl import *
-app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
+
 db = SQL("sqlite:///peppertools.db")
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app = Flask(__name__)
-
+app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
+SESSION_COOKIE_DOMAIN = '127.0.0.1'
 app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 os.environ["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 QRcode(app)
