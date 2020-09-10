@@ -77,14 +77,14 @@ def login_required(f):
         
     return decorated_function
 
-def login_user(user, password):
+def login_user(user, password, jwtoken):
     rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)
     if len(rows) != 1 or not check_password_hash(rows[0]["ds_senha"], password):
             flash("Login Inválido")
             return redirect('/login')
     else:
          
-         token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, os.environ["SECRET_KEY"])
+         token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)
          session["token"] = token.decode('UTF-8')
          session['_permanent'] = token.decode('UTF-8')
          if session.get("osid"):

@@ -131,7 +131,7 @@ def login():
     if request.method == 'POST':
         user = request.form.get('user')
         password = request.form.get('password')
-        return login_user(user, password)
+        return login_user(user, password, app.secret_key)
     else:    
         return render_template('login.html', date = date)
 
