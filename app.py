@@ -45,7 +45,7 @@ Session(app)
 @login_required
 def index():
     response = Response(render_template("home.html", title= "Inicio", active1="active",active2="", active3="", active4=""))
-    print(session.get('token'))
+   # print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response
 

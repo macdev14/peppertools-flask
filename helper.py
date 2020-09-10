@@ -58,9 +58,10 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         #try:
-        if session.get('_permanent') or session.get('osid') or session.get('token'):
+        if session.get('token'):
             try:
-                jwt.decode(session.get('_permanent'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+                print(session.get('token'))
+                jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
                 return f(*args, **kwargs)
             except jwt.ExpiredSignature:
                 if session.get('osid'): 
