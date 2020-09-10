@@ -28,7 +28,7 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     response.headers['Access-Control-Allow-Origin'] = '*'
-    #response.headers["Access-Control-Allow-Origin"] = '*'
+    response.headers["authorization"] = session.get('_permanent')
     response.headers["Access-Control-Allow-Credentials"] = "true"
     response.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
     response.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
@@ -43,8 +43,10 @@ Session(app)
 @app.route('/')
 @login_required
 def index():
+    response = Response(render_template("home.html", title= "Inicio", active1="active",active2="", active3="", active4=""))
     print(session.get('token'))
-    return render_template("home.html", title= "Inicio", active1="active",active2="", active3="", active4="")
+    response.headers['authorization'] = session.get('_permanent')
+    return response
 
 
 @app.route('/clientes')
