@@ -1,11 +1,11 @@
 async function loadClientes() {
-  document.getElementById("all_os").innerHTML = "";
+  document.getElementById("all").innerHTML = "";
 
   const URL = `https://peppertools.cf/api/clientes`;
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
       // console.log(val)
-      document.getElementById("all_os").innerHTML += `<tr> 
+      document.getElementById("all").innerHTML += `<tr> 
       <th scope="row">${val["cod_cli"]}</th>
       <td>${val.nome.replace(/\s.*/, "")}</td>
       <td>${val.cnpj}</td>

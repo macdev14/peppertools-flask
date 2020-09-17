@@ -7,16 +7,11 @@
       shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link href="{{ url_for('static', filename='css/addons/datatables2.min.css')
-      }}" rel="stylesheet">
-    <link href="{{ url_for('static',
-      filename='css/addons/datatables-select2.min.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',
       filename='vendor/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{
       url_for('static',filename='css/style.css') }}">
-    <link href="{{ url_for('static', filename='css/addons/datatables.min.css')
-      }}" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css?family=Baloo+2:400,500,700&display=swap"
       rel="stylesheet">
@@ -149,33 +144,5 @@
       src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script
       src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <!-- DataTables JS -->
-    <script src="{{ url_for('static', filename='js/addons/datatables2.min.js')
-      }}" type="text/javascript"></script>
-
-    <!-- DataTables Select CSS -->
-
-    <!-- DataTables Select JS -->
-
-    <script src="{{ url_for('static',
-      filename='js/addons/datatables-select2.min.js') }}"
-      type="text/javascript"></script>
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-          $(".dropdown, .btn-group").hover(function(){
-              var dropdownMenu = $(this).children(".dropdown-menu");
-              if (dropdownMenu.is(":visible")){
-                  dropdownMenu.parent().toggleClass("open");
-              }
-          });
-          $('#dtBasicExample').DataTable({
-              "paging": true // false to disable pagination (or any other option)
-            });
-          $('.dataTables_length').addClass('bs-select');   
-        
-            
-      });     
-      </script>
   </body>
 </html>

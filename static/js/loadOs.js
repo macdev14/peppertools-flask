@@ -1,11 +1,11 @@
 async function loadOs(limit = 10) {
-  document.getElementById("all_os").innerHTML = "";
+  document.getElementById("all").innerHTML = "";
 
   const URL = `https://peppertools.cf/api/os/limit=${limit.toString()}`;
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
       console.log(val);
-      document.getElementById("all_os").innerHTML += `<tr> 
+      document.getElementById("all").innerHTML += `<tr> 
       <th scope="row"><a href='/os/form/print/${val.Id}' target='_blank'> ${
         val.Numero_Os
       } </a></th>
@@ -37,11 +37,11 @@ async function filterOs(q) {
     limit = 10;
   }
   const URL = `https://peppertools.cf/api/os/q=${q.toString()}`;
-  document.getElementById("all_os").innerHTML = "";
+  document.getElementById("all").innerHTML = "";
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
       console.log(val);
-      document.getElementById("all_os").innerHTML += `<tr> 
+      document.getElementById("all").innerHTML += `<tr> 
       <th scope="row"><a href='/os/form/print/${val.Id}' target='_blank'> ${val.Numero_Os} </a></th>
       <td>${val.nome}</td>
       <td>${val.Data}</td>

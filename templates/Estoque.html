@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<div class="form-group mb-3">
+    <label for="limit">Items:</label>
+    <input class="form-control" id="limit" type="number" min="5" max="7913"
+        step="5" onchange="loadOs(this.value)">
+    <label for="usr">Filtrar por:</label>
+    <select name="filter" id="filter" class="filter">
+
+
+        {% for col in range(col_len) %}
+
+
+        <option value="{{columns[col]}}">{{columns[col]}}</option>
+
+        {% endfor %}
+
+
+    </select> <br>
+    <input type="hidden" id="infilter" />
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Gaveta</th>
+            <th scope="col">Material</th>
+            <th scope="col">Ferramenta</th>
+            <th scope="col"> Editar</th>
+            <th scope="col"> Deletar</th>
+        </tr>
+    </thead>
+    <tbody id="all">
+
+    </tbody>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+    integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/loadEstoque.js') }}"
+    type="text/javascript"></script>
+
+{% endblock %}

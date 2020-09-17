@@ -6,6 +6,16 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
 import mysql.connector as sqlite3
+
+os.environ['SECRET_KEY'] =  "caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79"
+os.environ['DB'] =  "mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n"
+os.environ['HOST']= "nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+os.environ['USER'] =  "rkpmtiv6bbvm81e5"
+os.environ['PASSWORD'] = "yz1mq64u3h1sab93"
+os.environ['DATABASE'] = "ztqqdjf98kpnzn4n"
+
+
+
 db = SQL(os.environ['DB'])
 conn = sqlite3.connect(
             host=os.environ['HOST'],
@@ -78,6 +88,7 @@ def login_required(f):
                     return redirect('/login')
                 else:
                     session.clear()
+                    conn.close()
                     flash("Log in Expirado!")
                     return redirect('/login')
         return redirect("/login")
@@ -85,7 +96,7 @@ def login_required(f):
     return decorated_function
 
 def login_user(user, password, jwtoken):
-    rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)
+    rows = db.execute("SELECT * FROM usuarios WHERE ds_login = \'"+ user + "\'")
     if len(rows) != 1 or not check_password_hash(rows[0]["ds_senha"], password):
             flash("Login Inválido")
             return redirect('/login')
@@ -217,5 +228,6 @@ def auth_required(f):
 
 def logoutCommit():
     conn.commit()
+    conn.close()
     session.clear()
     return redirect('/login')

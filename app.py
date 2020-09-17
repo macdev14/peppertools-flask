@@ -14,6 +14,14 @@ from cs50 import SQL
 import datetime
 import pytz
 
+os.environ['SECRET_KEY'] =  "caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79"
+os.environ['DB'] =  "mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n"
+os.environ['HOST']= "nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+os.environ['USER'] =  "rkpmtiv6bbvm81e5"
+os.environ['PASSWORD'] = "yz1mq64u3h1sab93"
+os.environ['DATABASE'] = "ztqqdjf98kpnzn4n"
+
+
 db = SQL(os.environ['DB'])
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app = Flask(__name__)
@@ -44,6 +52,16 @@ Session(app)
 @login_required
 def index():
     response = Response(render_template("home.html", title= "Inicio", active1="active",active2="", active3="", active4=""))
+   # print(session.get('token'))
+    response.headers['authorization'] = session.get('_permanent')
+    return response
+
+@app.route('/estoque')
+@login_required
+def estoque():
+    columns = getData("key","*", "Estoque")
+
+    response = Response(render_template("Estoque.html", title= "Estoque", columns=columns, col_len=len(columns), active1="",active2="active", active3="", active4=""))
    # print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response
@@ -355,7 +373,7 @@ def osApi(osid):
 #@auth_required
 def osApiall(limit):
   #  try:
-        stmt = "SELECT c.id, c.nome, o.tipo, o.Especificacao, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, Cadastro_OS o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT " + str(limit)
+        stmt = "SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT " + str(limit)
         if request.method == 'GET':
             rows = db.execute(stmt)
             #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
@@ -377,7 +395,7 @@ def osApiall(limit):
 def osApiSearch(query):
   #  try:
         
-        stmt = "SELECT c.id, c.nome, o.tipo, o.prazo, o.Especificacao, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente AND o.Especificacao LIKE '%" + str(query) + "%' ORDER BY o.numero_os DESC "
+        stmt = "SELECT c.ID, c.nome, o.Tipo, o.Prazo, o.Especificacao, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente AND o.Especificacao LIKE '%" + str(query) + "%' ORDER BY o.Numero_Os DESC "
         if len(query) < 2:
             stmt = stmt+ "LIMIT 500"
      #   if limit > 0:
@@ -415,10 +433,32 @@ def allClientes():
     stmt = "SELECT * FROM Clientes"
     return jsonify(db.execute(stmt))
 
-@app.route('/api/estoque', methods=['GET'])
-def allEstoque():
-     stmt = "SELECT * FROM Estoque"
-     return jsonify(db.execute(stmt))
+@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])
+def allEstoque(limit):
+   
+    if request.method == 'GET':
+        stmt = "SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT "+ str(limit)
+        rows = db.execute(stmt)
+
+            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
+          
+        return jsonify(rows)
+    elif request.method == 'POST' and request.data:
+          #  try:
+        obj = json.loads(request.data)
+        insertData(obj, 'Estoque')
+        return jsonify('Item-criado')
+
+@app.route('/api/estoque/q=<string:query>&col=<string:col>', methods=['GET'])
+def queryEstoque(query, col):
+   
+    stmt = "SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND "+ col + "=" + query +" ORDER BY e.ID DESC"
+    print(stmt)
+    rows = db.execute(stmt)  
+    return jsonify(rows)
+    
+
+
 
 @app.route('/estoque/form/', methods = ['POST', 'GET'])
 def cadEstoque():
@@ -441,7 +481,7 @@ def cadEstoque():
 
 @app.route('/estoque/form/<int:estId>', methods = ['POST', 'GET'])
 def editEstoque(estId):
-    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
+    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')
     if request.method == 'GET':
         clientes = getData(" ", "*", "Estoque WHERE ID = "+ str(estId))
         #print(clientes[8])
