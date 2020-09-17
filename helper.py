@@ -5,18 +5,21 @@ from flask import flash, redirect, render_template, request, session, escape, Re
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
-
-db = SQL("sqlite:///peppertools.db")
-
+import mysql.connector as sqlite3
+db = SQL(os.environ['DB'])
+conn = sqlite3.connect(
+            host=os.environ['HOST'],
+            user=os.environ['USER'],
+            password=os.environ['PASSWORD'],
+            database=os.environ['DATABASE']
+        )
 def getData(pref1, cond1, table, limit=False, column = ""):
     if not pref1 or not cond1 or not table:
         return None
     else:   
-        conn = sqlite3.connect("peppertools.db")
-        conn2 = sqlite3.connect("peppertools.db")
-        conn.row_factory = sqlite3.Row
-        db = conn.cursor()
-        db2 = conn2.cursor()
+        #conn2 = sqlite3.connect("mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n")
+        db = conn.cursor(buffered=True)
+        db2 = db
         cond2 = str(cond1)
         table2 = str(table)
         if limit == True and column !="":
@@ -25,6 +28,7 @@ def getData(pref1, cond1, table, limit=False, column = ""):
             db2.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
         else:
             db.execute('SELECT {} FROM {}'.format(cond2, table2))
+            print('SELECT {} FROM {}'.format(cond2, table2))
             #db2.execute('SELECT {} FROM {}'.format(cond2,table2))
             rowsE = db.fetchone()
             result = list()
@@ -33,17 +37,18 @@ def getData(pref1, cond1, table, limit=False, column = ""):
             #return result
            
         if pref1 == "key":
+            #num_fields = len(db.description)
+            field_names = [i[0] for i in db.description]
             result = list()
-            rows = db.fetchone()
-            for row in rows.keys():
-                result.append(row)
+            #print(field_names)
+            result = field_names
         elif pref1 == 'val':
           result = db2.fetchall()
             
         return result
 
 def valClientes(id):
-    cn = sqlite3.connect("peppertools.db")
+    cn = sqlite3.connect("mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n")
     db = cn.cursor()
     db.execute("SELECT * FROM Clientes WHERE ID = ?", id)
     result = db.fetchall()
@@ -60,10 +65,11 @@ def login_required(f):
         #try:
         if session.get('token'):
             try:
-                print(session.get('token'))
+                #print(session.get('token'))
                 jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
                 return f(*args, **kwargs)
             except jwt.ExpiredSignature:
+                conn.commit()
                 if session.get('osid'): 
                     osid = session.get('osid')
                     session.clear()
@@ -84,7 +90,6 @@ def login_user(user, password, jwtoken):
             flash("Login Inválido")
             return redirect('/login')
     else:
-         
          token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)
          session["token"] = token.decode('UTF-8')
          session['_permanent'] = token.decode('UTF-8')
@@ -99,7 +104,7 @@ def login_user(user, password, jwtoken):
 def underdev():
     return render_template('manutencao.html',  title= "Inicio", active1="",active2="", active3="", active4="active")
 
-def insertData(list, table):
+def insertData(list, table, pref1=""):
     final = "error"
     
     stmt = "INSERT INTO "+table+" ("
@@ -117,10 +122,16 @@ def insertData(list, table):
     values = values[:-1]
     stmt = stmt[:-1]
     final = stmt + ")" + values + ")"
+    #print(final)
     db.execute(final)
-    find = 'SELECT Id FROM Cadastro_OS WHERE Numero_Os = '+ str(list['Numero_Os'])
+    if pref1 == "n_os":
+        find = 'SELECT Id FROM Cadastro_OS WHERE Numero_Os = '+ str(list['Numero_Os'])
+        rows = db.execute(find)
+        return rows[0]['Id']
+    find = 'SELECT ID FROM '+ table +' ORDER BY ID DESC LIMIT 1'
     rows = db.execute(find)
-    return rows[0]['Id']
+    return rows[0]['ID']
+   
     
 def getClient( option='ALL'):
     if option == 'ALL':
@@ -140,6 +151,8 @@ def getOs(option = 'ALL'):
     return rows
 
 def updateData(list, table, col, Id):
+    db = conn.cursor()
+  #  print(list)
     stmt = "UPDATE " + table + " SET "
     values = ""
     for item in list:
@@ -148,13 +161,19 @@ def updateData(list, table, col, Id):
         else:
             if not isinstance(list[item], str):
                 values = values + item + "=" + str(list[item]) + ","
+            elif item == 'Id' or item == 'ID':
+                pass
             else:
                 values = values + item + "= \'" + list[item] +  "\'" + ","
        
     values = values[:-1]
     values = values + " WHERE "+col+" = "+ str(Id)
     final = stmt + values
-    return db.execute(final)
+    #print(final)
+    db.execute(final)
+    return 
+    
+    
 
 def deleteData(table,col,Id):
     try:
@@ -195,3 +214,8 @@ def auth_required(f):
         else:
              return Response('{"unauthorized"}', status=401, mimetype='application/json')
     return decorated_function
+
+def logoutCommit():
+    conn.commit()
+    session.clear()
+    return redirect('/login')

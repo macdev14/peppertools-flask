@@ -1,27 +1,50 @@
-
-@media screen and (min-width: 768px)
-{
-  .dropdown:hover .dropdown-menu, .btn-group:hover .dropdown-menu{
-        display: block;
-    }
-    .dropdown-menu{
-        margin-top: 0;
-    }
-    .dropdown-toggle{
-        margin-bottom: 2px;
-    }
-    .navbar .dropdown-toggle, .nav-tabs .dropdown-toggle{
-        margin-bottom: 0;
-    }
+@media screen and (min-width: 768px) {
+  .dropdown:hover .dropdown-menu,
+  .btn-group:hover .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu {
+    margin-top: 0;
+  }
+  .dropdown-toggle {
+    margin-bottom: 2px;
+  }
+  .navbar .dropdown-toggle,
+  .nav-tabs .dropdown-toggle {
+    margin-bottom: 0;
+  }
 }
 
-body
-{
-    font:400 14px Roboto, sans-serif;
-    background: #f0f0f5;
-    -webkit-font-smoothing: antialiased;
+body {
+  font: 400 14px Roboto, sans-serif;
+  background: #f0f0f5;
+  -webkit-font-smoothing: antialiased;
 }
 
 .table-responsive {
-    display: table;
+  display: table;
+}
+
+.Id_Cliente {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  padding-left: 4;
+  border: 1px solid #e0e0e0;
+  font-weight: 200;
+}
+
+option {
+  font-weight: 200;
+  border: 0;
+}
+
+.Id_Cliente:focus {
+  border: 1px solid #e0e0e0;
+}
+
+select:focus,
+option:focus {
+  border: 1px solid #e0e0e0;
+  font-weight: 200;
 }

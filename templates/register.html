@@ -1,28 +1,36 @@
 {% extends "default.html" %}
 
 {% block title %}
-    Register
+Register
 {% endblock %}
 
 {% block main %}
 <form action="/register" method="post" class="form-signin">
-	
-	
+
+
     <h1 class="h4 mb-3 font-weight-normal"><b>PepperTools</b></h1>
     <h1 class="h4 mb-3 font-weight-normal"><br>{{date}}</h1>
     <br>
     <label for="inputUser" class="sr-only">Usuário</label>
-    <input type="text" id="username" name="username" class="form-control" placeholder="Usuário" required>
+    <input type="text" id="username" name="username" class="form-control"
+        placeholder="Usuário" required>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="Senha" required>
+    <input type="password" id="password" name="password" class="form-control"
+        placeholder="Senha" required>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="password-confirm" name="password-confirm" class="form-control" placeholder="Confirmar Senha" required>
+    <input type="password" id="password-confirm" name="password-confirm"
+        class="form-control" placeholder="Confirmar Senha" required>
+
+    <label for="inputNivel" class="sr-only">Nível</label>
+    <input type="number" id="nivel" name="nivel" class="form-control"
+        placeholder="Nível" required>
+
     <label for="inputKey" class="sr-only">Chave</label>
-    <input type="password" id="key" name="key" class="form-control" placeholder="Chave" required>
+    <input type="password" id="key" name="key" class="form-control"
+        placeholder="Chave" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastro</button>
     <p class="mt-5 mb-3 text-muted">&copy; Peppertools 1995-2020</p>
 
 
 </form>
 {% endblock %}
-

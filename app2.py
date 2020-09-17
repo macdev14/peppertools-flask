@@ -16,7 +16,7 @@ from cs50 import SQL
 import datetime
 from flask_ssl import *
 
-db = SQL("sqlite:///peppertools.db")
+db = SQL("mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n")
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app = Flask(__name__)
 QRcode(app)

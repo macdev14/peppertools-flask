@@ -1,0 +1,1719 @@
+[
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {
+            "value": "\n```python\nimport requests\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "urllib.parse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "detail": "urllib.parse",
+        "documentation": {
+            "value": "\n```python\nimport urllib.parse\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "make_response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "escape",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "SQL",
+        "importPath": "cs50",
+        "description": "cs50",
+        "isExtraImport": true,
+        "detail": "cs50",
+        "documentation": {
+            "value": "\n```python\nimport cs50\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "SQL",
+        "importPath": "cs50",
+        "description": "cs50",
+        "isExtraImport": true,
+        "detail": "cs50",
+        "documentation": {
+            "value": "\n```python\nimport cs50\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "SQL",
+        "importPath": "cs50",
+        "description": "cs50",
+        "isExtraImport": true,
+        "detail": "cs50",
+        "documentation": {
+            "value": "\n```python\nimport cs50\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "SQL",
+        "importPath": "cs50",
+        "description": "cs50",
+        "isExtraImport": true,
+        "detail": "cs50",
+        "documentation": {
+            "value": "\n```python\nimport cs50\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "helper",
+        "description": "helper",
+        "isExtraImport": true,
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nimport helper\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "helper",
+        "description": "helper",
+        "isExtraImport": true,
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nimport helper\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "api",
+        "description": "api",
+        "isExtraImport": true,
+        "detail": "api",
+        "documentation": {
+            "value": "\n```python\nimport api\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "api",
+        "description": "api",
+        "isExtraImport": true,
+        "detail": "api",
+        "documentation": {
+            "value": "\n```python\nimport api\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "QRcode",
+        "importPath": "flask_qrcode",
+        "description": "flask_qrcode",
+        "isExtraImport": true,
+        "detail": "flask_qrcode",
+        "documentation": {
+            "value": "\n```python\nimport flask_qrcode\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "QRcode",
+        "importPath": "flask_qrcode",
+        "description": "flask_qrcode",
+        "isExtraImport": true,
+        "detail": "flask_qrcode",
+        "documentation": {
+            "value": "\n```python\nimport flask_qrcode\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Session",
+        "importPath": "flask_session.__init__",
+        "description": "flask_session.__init__",
+        "isExtraImport": true,
+        "detail": "flask_session.__init__",
+        "documentation": {
+            "value": "\n```python\nimport flask_session.__init__\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Session",
+        "importPath": "flask_session.__init__",
+        "description": "flask_session.__init__",
+        "isExtraImport": true,
+        "detail": "flask_session.__init__",
+        "documentation": {
+            "value": "\n```python\nimport flask_session.__init__\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Session",
+        "importPath": "flask_session",
+        "description": "flask_session",
+        "isExtraImport": true,
+        "detail": "flask_session",
+        "documentation": {
+            "value": "\n```python\nimport flask_session\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Session",
+        "importPath": "flask_session",
+        "description": "flask_session",
+        "isExtraImport": true,
+        "detail": "flask_session",
+        "documentation": {
+            "value": "\n```python\nimport flask_session\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "mkdtemp",
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "isExtraImport": true,
+        "detail": "tempfile",
+        "documentation": {
+            "value": "\n```python\nimport tempfile\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "mkdtemp",
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "isExtraImport": true,
+        "detail": "tempfile",
+        "documentation": {
+            "value": "\n```python\nimport tempfile\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "default_exceptions",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "InternalServerError",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "default_exceptions",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "InternalServerError",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "default_exceptions",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "InternalServerError",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.exceptions\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "generate_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "generate_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "generate_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {
+            "value": "\n```python\nimport sqlite3\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sys,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys.",
+        "description": "sys.",
+        "detail": "sys.",
+        "documentation": {
+            "value": "\n```python\nimport sys.\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Undefined",
+        "importPath": "jinja2",
+        "description": "jinja2",
+        "isExtraImport": true,
+        "detail": "jinja2",
+        "documentation": {
+            "value": "\n```python\nimport jinja2\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Undefined",
+        "importPath": "jinja2",
+        "description": "jinja2",
+        "isExtraImport": true,
+        "detail": "jinja2",
+        "documentation": {
+            "value": "\n```python\nimport jinja2\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {
+            "value": "\n```python\nimport datetime\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "pytz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytz",
+        "description": "pytz",
+        "detail": "pytz",
+        "documentation": {
+            "value": "\n```python\nimport pytz\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {
+            "value": "\n```python\nimport sys\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {
+            "value": "\n```python\nimport json\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "flask_ssl",
+        "description": "flask_ssl",
+        "isExtraImport": true,
+        "detail": "flask_ssl",
+        "documentation": {
+            "value": "\n```python\nimport flask_ssl\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os.",
+        "description": "os.",
+        "detail": "os.",
+        "documentation": {
+            "value": "\n```python\nimport os.\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "PyJwtValidator",
+        "importPath": "py_jwt_validator",
+        "description": "py_jwt_validator",
+        "isExtraImport": true,
+        "detail": "py_jwt_validator",
+        "documentation": {
+            "value": "\n```python\nimport py_jwt_validator\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "PyJwtException",
+        "importPath": "py_jwt_validator",
+        "description": "py_jwt_validator",
+        "isExtraImport": true,
+        "detail": "py_jwt_validator",
+        "documentation": {
+            "value": "\n```python\nimport py_jwt_validator\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "wraps",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {
+            "value": "\n```python\nimport functools\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "mysql.connector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "detail": "mysql.connector",
+        "documentation": {
+            "value": "\n```python\nimport mysql.connector\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "getNumber",
+        "kind": 2,
+        "importPath": "api",
+        "description": "api",
+        "peekOfCode": "def getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')\ndef getAll(option = 'ALL'):",
+        "detail": "api",
+        "documentation": {
+            "value": "\n```python\nfrom api import getNumber\n```\n\n```python\n\n\n```\n\n```python\ndef getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')\ndef getAll(option = 'ALL'):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "getAll",
+        "kind": 2,
+        "importPath": "api",
+        "description": "api",
+        "peekOfCode": "def getAll(option = 'ALL'):\n    try:\n        if option == 'ALL': \n            stmt = \"SELECT * FROM Cadastro_OS\"\n        else:\n            stmt = \"SELECT * FROM Cadastro_OS WHERE Numero_Os = \" + str(option)   \n        row = db.execute(stmt)\n        return jsonify(row[0])\n    except:\n        return jsonify(\"Nothing found\")",
+        "detail": "api",
+        "documentation": {
+            "value": "\n```python\nfrom api import getAll\n```\n\n```python\n\n\n```\n\n```python\ndef getAll(option = 'ALL'):\n    try:\n        if option == 'ALL': \n            stmt = \"SELECT * FROM Cadastro_OS\"\n        else:\n            stmt = \"SELECT * FROM Cadastro_OS WHERE Numero_Os = \" + str(option)   \n        row = db.execute(stmt)\n        return jsonify(row[0])\n    except:\n        return jsonify(\"Nothing found\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "api",
+        "description": "api",
+        "peekOfCode": "db = SQL(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\ndef getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')",
+        "detail": "api",
+        "documentation": {
+            "value": "\n```python\nfrom api import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\ndef getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "after_request",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"\n    response.headers[\"Access-Control-Allow-Headers\"] = \"Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept\"\n    response.headers[\"Access-Control-Allow-Methods\"] = \"GET,HEAD,OPTIONS,POST,PUT\"\n    return response",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import after_request\n```\n\n```python\n\n\n```\n\n```python\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"\n    response.headers[\"Access-Control-Allow-Headers\"] = \"Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept\"\n    response.headers[\"Access-Control-Allow-Methods\"] = \"GET,HEAD,OPTIONS,POST,PUT\"\n    return response\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/clientes')\n@login_required\ndef clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", active1=\"\",active2=\"\", active3=\"active\", active4=\"\")",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import index\n```\n\n```python\n\n\n```\n\n```python\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/clientes')\n@login_required\ndef clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "clientes",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/clientes/buscar')\n@login_required\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import clientes\n```\n\n```python\n\n\n```\n\n```python\ndef clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/clientes/buscar')\n@login_required\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "search",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import search\n```\n\n```python\n\n\n```\n\n```python\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "cadCli",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)\n                idCli = insertData(data, 'Clientes')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import cadCli\n```\n\n```python\n\n\n```\n\n```python\ndef cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)\n                idCli = insertData(data, 'Clientes')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "editCli",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def editCli(cliId):\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Clientes WHERE ID = \"+ str(cliId))\n        clientesCol = getData(\"key\",\"*\", \"Clientes\")\n        cliLen = len(clientesCol)\n       # print(clientes)\n        return render_template(\"client_edit.html\", clientes=clientes, cliLen=cliLen, clientesCol=clientesCol, id=cliId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n    elif request.method == 'POST':\n        if request.form:\n            print(request.form)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import editCli\n```\n\n```python\n\n\n```\n\n```python\ndef editCli(cliId):\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Clientes WHERE ID = \"+ str(cliId))\n        clientesCol = getData(\"key\",\"*\", \"Clientes\")\n        cliLen = len(clientesCol)\n       # print(clientes)\n        return render_template(\"client_edit.html\", clientes=clientes, cliLen=cliLen, clientesCol=clientesCol, id=cliId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n    elif request.method == 'POST':\n        if request.form:\n            print(request.form)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osAll",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osAll():\n    return render_template(\"os.html\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osAll\n```\n\n```python\n\n\n```\n\n```python\ndef osAll():\n    return render_template(\"os.html\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "print1",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import print1\n```\n\n```python\n\n\n```\n\n```python\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "buscar",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import buscar\n```\n\n```python\n\n\n```\n\n```python\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"\n    tz = pytz.timezone('America/Sao_Paulo')\n    x = datetime.datetime.now(tz=tz)\n    date = x.strftime(\"%d/%m/%Y\")\n    if request.method == 'POST':",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import login\n```\n\n```python\n\n\n```\n\n```python\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"\n    tz = pytz.timezone('America/Sao_Paulo')\n    x = datetime.datetime.now(tz=tz)\n    date = x.strftime(\"%d/%m/%Y\")\n    if request.method == 'POST':\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import logout\n```\n\n```python\n\n\n```\n\n```python\ndef logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "all",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import all\n```\n\n```python\n\n\n```\n\n```python\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "new_os",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n        print(dict(request.form))\n        data = dict(request.form)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import new_os\n```\n\n```python\n\n\n```\n\n```python\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n        print(dict(request.form))\n        data = dict(request.form)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os_edit",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def os_edit(osid):\n    if request.method == 'POST':\n        data = dict(request.form)\n        try:\n            data['Numero_Os'] = int(data['Numero_Os'])\n            data['Id_Cliente'] = int(data['Id_Cliente'])\n            data['Numero_Nf'] = int(data['Numero_Nf'])\n            data['Numero_Pedido'] = int(data['Numero_Pedido'])\n            data['Quantidade'] = int(data['Quantidade'])\n            data['Id'] = int(data['Id'])",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import os_edit\n```\n\n```python\n\n\n```\n\n```python\ndef os_edit(osid):\n    if request.method == 'POST':\n        data = dict(request.form)\n        try:\n            data['Numero_Os'] = int(data['Numero_Os'])\n            data['Id_Cliente'] = int(data['Id_Cliente'])\n            data['Numero_Nf'] = int(data['Numero_Nf'])\n            data['Numero_Pedido'] = int(data['Numero_Pedido'])\n            data['Quantidade'] = int(data['Quantidade'])\n            data['Id'] = int(data['Id'])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os_del",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def os_del(osid):\n    if request.method == 'GET':\n        try:\n            deleteData('Cadastro_OS', 'Id', osid)\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import os_del\n```\n\n```python\n\n\n```\n\n```python\ndef os_del(osid):\n    if request.method == 'GET':\n        try:\n            deleteData('Cadastro_OS', 'Id', osid)\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def register():\n    db = conn.cursor(buffered=True)\n    if request.method == 'POST':\n        try:\n            rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\")) + \"\\'\"\n            rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n            if len(rows) == 1 or len(rowsPass) == 1:\n                flash(\"User or password already exists\")\n                return redirect(\"/register\")\n            if request.form.get(\"password\") != request.form.get(\"password-confirm\"):",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import register\n```\n\n```python\n\n\n```\n\n```python\ndef register():\n    db = conn.cursor(buffered=True)\n    if request.method == 'POST':\n        try:\n            rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\")) + \"\\'\"\n            rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n            if len(rows) == 1 or len(rowsPass) == 1:\n                flash(\"User or password already exists\")\n                return redirect(\"/register\")\n            if request.form.get(\"password\") != request.form.get(\"password-confirm\"):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "print_os",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        os = getOs(osid)\n        if not os:\n            flash(\"O.S não encontrada.\")\n            return redirect(\"/\")\n        field = dict(os[0])\n        res = getClient(osid)\n        print(res)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import print_os\n```\n\n```python\n\n\n```\n\n```python\ndef print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        os = getOs(osid)\n        if not os:\n            flash(\"O.S não encontrada.\")\n            return redirect(\"/\")\n        field = dict(os[0])\n        res = getClient(osid)\n        print(res)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "access",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def access(osid):\n    session['osid'] = osid\n    @login_required\n    def goTo(osid):\n        return redirect('form/'+str(osid))\n    return goTo(osid)\n\"\"\"\n*** API ROUTES ***\n\"\"\"\n@app.route('/os/all')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import access\n```\n\n```python\n\n\n```\n\n```python\ndef access(osid):\n    session['osid'] = osid\n    @login_required\n    def goTo(osid):\n        return redirect('form/'+str(osid))\n    return goTo(osid)\n\"\"\"\n*** API ROUTES ***\n\"\"\"\n@app.route('/os/all')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "all_api",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def all_api():\n    return getAll()\n@app.route('/api/login', methods=['POST'])\ndef log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import all_api\n```\n\n```python\n\n\n```\n\n```python\ndef all_api():\n    return getAll()\n@app.route('/api/login', methods=['POST'])\ndef log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "log",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])\n        rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)\n        #print(rows[0][\"ds_senha\"])\n        if len(rows) == 1 and check_password_hash(rows[0][\"ds_senha\"], password):",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import log\n```\n\n```python\n\n\n```\n\n```python\ndef log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])\n        rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)\n        #print(rows[0][\"ds_senha\"])\n        if len(rows) == 1 and check_password_hash(rows[0][\"ds_senha\"], password):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApi",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApi(osid):\n    try:\n        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))\n        if not rows:\n            return jsonify('Not found')\n        if request.method == 'POST':\n             obj = json.loads(request.data)\n             try:\n                  updateData(obj, 'Cadastro_OS', 'Id', osid)\n                  return jsonify('Updated')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApi\n```\n\n```python\n\n\n```\n\n```python\ndef osApi(osid):\n    try:\n        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))\n        if not rows:\n            return jsonify('Not found')\n        if request.method == 'POST':\n             obj = json.loads(request.data)\n             try:\n                  updateData(obj, 'Cadastro_OS', 'Id', osid)\n                  return jsonify('Updated')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApiall",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApiall(limit):\n  #  try:\n        stmt = \"SELECT c.id, c.nome, o.tipo, o.Especificacao, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, Cadastro_OS o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            return jsonify(rows)\n        elif request.method == 'POST':\n          #  try:\n                obj = json.loads(request.data)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApiall\n```\n\n```python\n\n\n```\n\n```python\ndef osApiall(limit):\n  #  try:\n        stmt = \"SELECT c.id, c.nome, o.tipo, o.Especificacao, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, Cadastro_OS o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            return jsonify(rows)\n        elif request.method == 'POST':\n          #  try:\n                obj = json.loads(request.data)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApiSearch",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApiSearch(query):\n  #  try:\n        stmt = \"SELECT c.id, c.nome, o.tipo, o.prazo, o.Especificacao, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente AND o.Especificacao LIKE '%\" + str(query) + \"%' ORDER BY o.numero_os DESC \"\n        if len(query) < 2:\n            stmt = stmt+ \"LIMIT 500\"\n     #   if limit > 0:\n     #       stmt += \" LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApiSearch\n```\n\n```python\n\n\n```\n\n```python\ndef osApiSearch(query):\n  #  try:\n        stmt = \"SELECT c.id, c.nome, o.tipo, o.prazo, o.Especificacao, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente AND o.Especificacao LIKE '%\" + str(query) + \"%' ORDER BY o.numero_os DESC \"\n        if len(query) < 2:\n            stmt = stmt+ \"LIMIT 500\"\n     #   if limit > 0:\n     #       stmt += \" LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApiNum",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApiNum():\n    try:\n          os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n          os_num = int(os_num[0]['num_os']) + 1\n          return jsonify(os_num)\n    except:\n        return jsonify('Error')\n@app.route('/api/clientes', methods=['GET', 'POST'])\ndef allClientes():\n    stmt = \"SELECT * FROM Clientes\"",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApiNum\n```\n\n```python\n\n\n```\n\n```python\ndef osApiNum():\n    try:\n          os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n          os_num = int(os_num[0]['num_os']) + 1\n          return jsonify(os_num)\n    except:\n        return jsonify('Error')\n@app.route('/api/clientes', methods=['GET', 'POST'])\ndef allClientes():\n    stmt = \"SELECT * FROM Clientes\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "allClientes",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def allClientes():\n    stmt = \"SELECT * FROM Clientes\"\n    return jsonify(db.execute(stmt))\n@app.route('/api/estoque', methods=['GET'])\ndef allEstoque():\n     stmt = \"SELECT * FROM Estoque\"\n     return jsonify(db.execute(stmt))\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\ndef cadEstoque():\n    if request.method == 'GET':",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import allClientes\n```\n\n```python\n\n\n```\n\n```python\ndef allClientes():\n    stmt = \"SELECT * FROM Clientes\"\n    return jsonify(db.execute(stmt))\n@app.route('/api/estoque', methods=['GET'])\ndef allEstoque():\n     stmt = \"SELECT * FROM Estoque\"\n     return jsonify(db.execute(stmt))\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\ndef cadEstoque():\n    if request.method == 'GET':\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "allEstoque",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def allEstoque():\n     stmt = \"SELECT * FROM Estoque\"\n     return jsonify(db.execute(stmt))\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\ndef cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")\n        print(clientes)\n    elif request.method == 'POST' and request.form: ",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import allEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef allEstoque():\n     stmt = \"SELECT * FROM Estoque\"\n     return jsonify(db.execute(stmt))\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\ndef cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")\n        print(clientes)\n    elif request.method == 'POST' and request.form: \n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "cadEstoque",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")\n        print(clientes)\n    elif request.method == 'POST' and request.form: \n        #3 try:      \n            data = dict(request.form)\n            idCli = insertData(data, 'Estoque')\n            flash('Item cadastrado com sucesso')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import cadEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")\n        print(clientes)\n    elif request.method == 'POST' and request.form: \n        #3 try:      \n            data = dict(request.form)\n            idCli = insertData(data, 'Estoque')\n            flash('Item cadastrado com sucesso')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "editEstoque",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def editEstoque(estId):\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n        #print(clientes[8])\n        clientes[8] = clientes[8].strftime('%Y-%m-%d')\n        clientesCol = getData(\"key\",\"*\", \"Estoque\")\n        cliLen = len(clientesCol)\n        # print(clientes)\n        return render_template(\"EstoqueForm.html\", clientes=clientes, cliLen=cliLen, clients = clients, clientesCol=clientesCol, clientes2=clientes, clients_len = len(clients), id=estId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") ",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import editEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef editEstoque(estId):\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n        #print(clientes[8])\n        clientes[8] = clientes[8].strftime('%Y-%m-%d')\n        clientesCol = getData(\"key\",\"*\", \"Estoque\")\n        cliLen = len(clientesCol)\n        # print(clientes)\n        return render_template(\"EstoqueForm.html\", clientes=clientes, cliLen=cliLen, clients = clients, clientesCol=clientesCol, clientes2=clientes, clients_len = len(clients), id=estId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "db = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "JINJA2_ENVIRONMENT_OPTIONS",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import JINJA2_ENVIRONMENT_OPTIONS\n```\n\n```python\n\n\n```\n\n```python\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "#app.secret_key",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import #app.secret_key\n```\n\n```python\n\n\n```\n\n```python\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "#SESSION_COOKIE_DOMAIN",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import #SESSION_COOKIE_DOMAIN\n```\n\n```python\n\n\n```\n\n```python\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os.environ['SECRET_KEY']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import os.environ['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "#app.config[\"SECRET_KEY\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import #app.config[\"SECRET_KEY\"]\n```\n\n```python\n\n\n```\n\n```python\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.config[\"SESSION_FILE_DIR\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = True\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import app.config[\"SESSION_FILE_DIR\"]\n```\n\n```python\n\n\n```\n\n```python\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = True\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.config[\"SESSION_PERMANENT\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = True\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import app.config[\"SESSION_PERMANENT\"]\n```\n\n```python\n\n\n```\n\n```python\napp.config[\"SESSION_PERMANENT\"] = True\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.config[\"SESSION_TYPE\"]",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/clientes')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import app.config[\"SESSION_TYPE\"]\n```\n\n```python\n\n\n```\n\n```python\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/clientes')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "after_request",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import after_request\n```\n\n```python\n\n\n```\n\n```python\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_val = getData(\"val\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_len = len(clientes)\n    val_len = len(clientes_val)\n    #return getClientes(\"key\",\"*\")",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import index\n```\n\n```python\n\n\n```\n\n```python\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_val = getData(\"val\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_len = len(clientes)\n    val_len = len(clientes_val)\n    #return getClientes(\"key\",\"*\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "clientes",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_val = getData(\"val\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_len = len(clientes)\n    val_len = len(clientes_val)\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", clientes=clientes, clientes_val = clientes_val, clientes_len = clientes_len, \n                            val_len = val_len, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/clientes/buscar')\n@login_required",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import clientes\n```\n\n```python\n\n\n```\n\n```python\ndef clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_val = getData(\"val\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_len = len(clientes)\n    val_len = len(clientes_val)\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", clientes=clientes, clientes_val = clientes_val, clientes_len = clientes_len, \n                            val_len = val_len, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/clientes/buscar')\n@login_required\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "search",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/editar', methods=[\"GET\", \"POST\"])\n@login_required\ndef editar():\n    if request.method == 'GET':\n        return redirect(\"/clientes\")\n    else:\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        id = request.form.get(\"id\")",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import search\n```\n\n```python\n\n\n```\n\n```python\ndef search():\n    return underdev()\n@app.route('/clientes/editar', methods=[\"GET\", \"POST\"])\n@login_required\ndef editar():\n    if request.method == 'GET':\n        return redirect(\"/clientes\")\n    else:\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        id = request.form.get(\"id\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "editar",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def editar():\n    if request.method == 'GET':\n        return redirect(\"/clientes\")\n    else:\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        id = request.form.get(\"id\")\n        return render_template(\"client_edit.html\", clientes=clientes, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route(\"/os\")\n@login_required\ndef os():",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import editar\n```\n\n```python\n\n\n```\n\n```python\ndef editar():\n    if request.method == 'GET':\n        return redirect(\"/clientes\")\n    else:\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        id = request.form.get(\"id\")\n        return render_template(\"client_edit.html\", clientes=clientes, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route(\"/os\")\n@login_required\ndef os():\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def os():\n    os = getData(\"key\",\"*\", \"Cadastro_Os\",\"limit\",\"Numero_os\") \n    os_val = getData(\"val\",\"*\", \"Cadastro_Os\", \"limit\", \"Numero_os\")\n    os_len = len(os) \n    val_len = len(os_val)\n    return render_template(\"os.html\", os=os, os_val= os_val, os_len=os_len, val_len=val_len, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import os\n```\n\n```python\n\n\n```\n\n```python\ndef os():\n    os = getData(\"key\",\"*\", \"Cadastro_Os\",\"limit\",\"Numero_os\") \n    os_val = getData(\"val\",\"*\", \"Cadastro_Os\", \"limit\", \"Numero_os\")\n    os_len = len(os) \n    val_len = len(os_val)\n    return render_template(\"os.html\", os=os, os_val= os_val, os_len=os_len, val_len=val_len, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "print1",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import print1\n```\n\n```python\n\n\n```\n\n```python\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "buscar",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)  \"\"\"",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import buscar\n```\n\n```python\n\n\n```\n\n```python\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)  \"\"\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)  \"\"\"\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    if request.method == 'POST':\n        user = request.form.get('user')",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import login\n```\n\n```python\n\n\n```\n\n```python\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)  \"\"\"\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    if request.method == 'POST':\n        user = request.form.get('user')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def logout():\n    session.clear()\n    return redirect('/login')\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import logout\n```\n\n```python\n\n\n```\n\n```python\ndef logout():\n    session.clear()\n    return redirect('/login')\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "all",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import all\n```\n\n```python\n\n\n```\n\n```python\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "new_os",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n        print(dict(request.form))\n        data = dict(request.form)",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import new_os\n```\n\n```python\n\n\n```\n\n```python\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n        print(dict(request.form))\n        data = dict(request.form)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os_edit",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def os_edit(osid):\n    osid2 = osid  \n    if request.method == 'POST':\n        data = dict(request.form)\n        try:\n            data['Numero_Os'] = int(data['Numero_Os'])\n            data['Id_Cliente'] = int(data['Id_Cliente'])\n            data['Numero_Nf'] = int(data['Numero_Nf'])\n            data['Numero_Pedido'] = int(data['Numero_Pedido'])\n            data['Quantidade'] = int(data['Quantidade'])",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import os_edit\n```\n\n```python\n\n\n```\n\n```python\ndef os_edit(osid):\n    osid2 = osid  \n    if request.method == 'POST':\n        data = dict(request.form)\n        try:\n            data['Numero_Os'] = int(data['Numero_Os'])\n            data['Id_Cliente'] = int(data['Id_Cliente'])\n            data['Numero_Nf'] = int(data['Numero_Nf'])\n            data['Numero_Pedido'] = int(data['Numero_Pedido'])\n            data['Quantidade'] = int(data['Quantidade'])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "os_del",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def os_del(osid):\n    if request.method == 'GET':\n        try:\n            deleteData('Cadastro_Os', 'Numero_Os', osid)\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import os_del\n```\n\n```python\n\n\n```\n\n```python\ndef os_del(osid):\n    if request.method == 'GET':\n        try:\n            deleteData('Cadastro_Os', 'Numero_Os', osid)\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def register():\n    \"\"\"Register user\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"\n    if request.method == 'POST':\n        # Ensure username was submitted\n        if not request.form.get(\"username\"):\n            flash(\"Usuário inválido.\")",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import register\n```\n\n```python\n\n\n```\n\n```python\ndef register():\n    \"\"\"Register user\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"\n    if request.method == 'POST':\n        # Ensure username was submitted\n        if not request.form.get(\"username\"):\n            flash(\"Usuário inválido.\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "print",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def print(osid):\n    if request.method == 'GET':\n        os = getOs(osid)\n        field = dict(os[0])\n        res = getClient(osid)\n       #print(res)\n        qr = \"https://peppertools.herokuapp.com/os/\"+str(field['Numero_Os'])\n        field['nome'] = res\n        field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')\n        field['Data'] = checkDate(field['Data'])",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import print\n```\n\n```python\n\n\n```\n\n```python\ndef print(osid):\n    if request.method == 'GET':\n        os = getOs(osid)\n        field = dict(os[0])\n        res = getClient(osid)\n       #print(res)\n        qr = \"https://peppertools.herokuapp.com/os/\"+str(field['Numero_Os'])\n        field['nome'] = res\n        field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')\n        field['Data'] = checkDate(field['Data'])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "access",
+        "kind": 2,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "def access(osid):\n    session['osid'] = osid\n    return redirect('/login')",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import access\n```\n\n```python\n\n\n```\n\n```python\ndef access(osid):\n    session['osid'] = osid\n    return redirect('/login')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "db = SQL(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "JINJA2_ENVIRONMENT_OPTIONS",
+        "kind": 5,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import JINJA2_ENVIRONMENT_OPTIONS\n```\n\n```python\n\n\n```\n\n```python\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "app = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.config[\"SESSION_FILE_DIR\"]",
+        "kind": 5,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import app.config[\"SESSION_FILE_DIR\"]\n```\n\n```python\n\n\n```\n\n```python\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.config[\"SESSION_PERMANENT\"]",
+        "kind": 5,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import app.config[\"SESSION_PERMANENT\"]\n```\n\n```python\n\n\n```\n\n```python\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.config[\"SESSION_TYPE\"]",
+        "kind": 5,
+        "importPath": "app2",
+        "description": "app2",
+        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")",
+        "detail": "app2",
+        "documentation": {
+            "value": "\n```python\nfrom app2 import app.config[\"SESSION_TYPE\"]\n```\n\n```python\n\n\n```\n\n```python\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "getData",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db = conn.cursor(buffered=True)\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import getData\n```\n\n```python\n\n\n```\n\n```python\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db = conn.cursor(buffered=True)\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "valClientes",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def valClientes(id):\n    cn = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n    db = cn.cursor()\n    db.execute(\"SELECT * FROM Clientes WHERE ID = ?\", id)\n    result = db.fetchall()\n    return result\ndef login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import valClientes\n```\n\n```python\n\n\n```\n\n```python\ndef valClientes(id):\n    cn = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n    db = cn.cursor()\n    db.execute(\"SELECT * FROM Clientes WHERE ID = ?\", id)\n    result = db.fetchall()\n    return result\ndef login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "login_required",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        #try:\n        if session.get('token'):\n            try:",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import login_required\n```\n\n```python\n\n\n```\n\n```python\ndef login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        #try:\n        if session.get('token'):\n            try:\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "login_user",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)\n    if len(rows) != 1 or not check_password_hash(rows[0][\"ds_senha\"], password):\n            flash(\"Login Inválido\")\n            return redirect('/login')\n    else:\n         token = jwt.encode({'user': user, 'level': rows[0][\"nivel\"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)\n         session[\"token\"] = token.decode('UTF-8')\n         session['_permanent'] = token.decode('UTF-8')\n         if session.get(\"osid\"):",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import login_user\n```\n\n```python\n\n\n```\n\n```python\ndef login_user(user, password, jwtoken):\n    rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)\n    if len(rows) != 1 or not check_password_hash(rows[0][\"ds_senha\"], password):\n            flash(\"Login Inválido\")\n            return redirect('/login')\n    else:\n         token = jwt.encode({'user': user, 'level': rows[0][\"nivel\"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)\n         session[\"token\"] = token.decode('UTF-8')\n         session['_permanent'] = token.decode('UTF-8')\n         if session.get(\"osid\"):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "underdev",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def underdev():\n    return render_template('manutencao.html',  title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\ndef insertData(list, table, pref1=\"\"):\n    final = \"error\"\n    stmt = \"INSERT INTO \"+table+\" (\"\n    values = \" VALUES (\"\n    for val in list:\n        if not list[val] or list[val] == val:\n            pass\n        else:",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import underdev\n```\n\n```python\n\n\n```\n\n```python\ndef underdev():\n    return render_template('manutencao.html',  title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\ndef insertData(list, table, pref1=\"\"):\n    final = \"error\"\n    stmt = \"INSERT INTO \"+table+\" (\"\n    values = \" VALUES (\"\n    for val in list:\n        if not list[val] or list[val] == val:\n            pass\n        else:\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "insertData",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def insertData(list, table, pref1=\"\"):\n    final = \"error\"\n    stmt = \"INSERT INTO \"+table+\" (\"\n    values = \" VALUES (\"\n    for val in list:\n        if not list[val] or list[val] == val:\n            pass\n        else:\n            stmt = stmt + str(val) + \",\"\n            if not isinstance(list[val], str):",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import insertData\n```\n\n```python\n\n\n```\n\n```python\ndef insertData(list, table, pref1=\"\"):\n    final = \"error\"\n    stmt = \"INSERT INTO \"+table+\" (\"\n    values = \" VALUES (\"\n    for val in list:\n        if not list[val] or list[val] == val:\n            pass\n        else:\n            stmt = stmt + str(val) + \",\"\n            if not isinstance(list[val], str):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "getClient",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def getClient( option='ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    else:\n        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) \n        rows = rows[0]\n    return rows\ndef getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import getClient\n```\n\n```python\n\n\n```\n\n```python\ndef getClient( option='ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    else:\n        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) \n        rows = rows[0]\n    return rows\ndef getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "getOs",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n        rows = int(rows[0]['num_os']) + 1\n    else:\n        stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)\n        rows = db.execute(stmt)   \n    return rows\ndef updateData(list, table, col, Id):\n    db = conn.cursor()",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import getOs\n```\n\n```python\n\n\n```\n\n```python\ndef getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n        rows = int(rows[0]['num_os']) + 1\n    else:\n        stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)\n        rows = db.execute(stmt)   \n    return rows\ndef updateData(list, table, col, Id):\n    db = conn.cursor()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "updateData",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def updateData(list, table, col, Id):\n    db = conn.cursor()\n  #  print(list)\n    stmt = \"UPDATE \" + table + \" SET \"\n    values = \"\"\n    for item in list:\n        if not list[item] or list[item] == item or item == 'id':\n            pass\n        else:\n            if not isinstance(list[item], str):",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import updateData\n```\n\n```python\n\n\n```\n\n```python\ndef updateData(list, table, col, Id):\n    db = conn.cursor()\n  #  print(list)\n    stmt = \"UPDATE \" + table + \" SET \"\n    values = \"\"\n    for item in list:\n        if not list[item] or list[item] == item or item == 'id':\n            pass\n        else:\n            if not isinstance(list[item], str):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "deleteData",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def deleteData(table,col,Id):\n    try:\n        db.execute('DELETE FROM ' + table + ' WHERE ' + col + ' = ' + str(Id))\n        return redirect('/os')\n    except:\n        return redirect('/os/form/' + str(Id))\ndef checkDate(str1):\n    str2 = str1\n    try:\n        print (len(str1))",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import deleteData\n```\n\n```python\n\n\n```\n\n```python\ndef deleteData(table,col,Id):\n    try:\n        db.execute('DELETE FROM ' + table + ' WHERE ' + col + ' = ' + str(Id))\n        return redirect('/os')\n    except:\n        return redirect('/os/form/' + str(Id))\ndef checkDate(str1):\n    str2 = str1\n    try:\n        print (len(str1))\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "checkDate",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def checkDate(str1):\n    str2 = str1\n    try:\n        print (len(str1))\n        if len(str1) != 10:\n            str2 = ''\n            str2 = '0' + str1\n            str2 = datetime.datetime.strptime(str2, '%m/%d/%y, %H:%M:%S %p').strftime('%d/%m/%Y')  \n        else:\n            str2 = ''",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import checkDate\n```\n\n```python\n\n\n```\n\n```python\ndef checkDate(str1):\n    str2 = str1\n    try:\n        print (len(str1))\n        if len(str1) != 10:\n            str2 = ''\n            str2 = '0' + str1\n            str2 = datetime.datetime.strptime(str2, '%m/%d/%y, %H:%M:%S %p').strftime('%d/%m/%Y')  \n        else:\n            str2 = ''\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "auth_required",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('authorization'):\n            request.headers.get('authorization') \n            return f(*args, **kwargs)",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import auth_required\n```\n\n```python\n\n\n```\n\n```python\ndef auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('authorization'):\n            request.headers.get('authorization') \n            return f(*args, **kwargs)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "logoutCommit",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def logoutCommit():\n    conn.commit()\n    session.clear()\n    return redirect('/login')",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import logoutCommit\n```\n\n```python\n\n\n```\n\n```python\ndef logoutCommit():\n    conn.commit()\n    session.clear()\n    return redirect('/login')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "db = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "conn",
+        "kind": 5,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "conn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   ",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import conn\n```\n\n```python\n\n\n```\n\n```python\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n```\n",
+            "supportThemeIcons": false
+        }
+    }
+]

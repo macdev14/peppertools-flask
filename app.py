@@ -13,15 +13,14 @@ from jinja2 import Undefined
 from cs50 import SQL
 import datetime
 import pytz
-from flask_ssl import *
 
-db = SQL("sqlite:///peppertools.db")
+db = SQL(os.environ['DB'])
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
 app = Flask(__name__)
-app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
-SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'
-app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
-os.environ["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
+#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
+#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'
+os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
+#app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 QRcode(app)
 @app.after_request
 def after_request(response):
@@ -53,13 +52,8 @@ def index():
 @app.route('/clientes')
 @login_required
 def clientes():
-    clientes = getData("key","*", "Clientes","","")
-    clientes_val = getData("val","*", "Clientes","","")
-    clientes_len = len(clientes)
-    val_len = len(clientes_val)
     #return getClientes("key","*")
-    return render_template("clientes.html", title="Clientes", clientes=clientes, clientes_val = clientes_val, clientes_len = clientes_len, 
-                            val_len = val_len, active1="",active2="", active3="active", active4="")
+    return render_template("clientes.html", title="Clientes", active1="",active2="", active3="active", active4="")
 
 
 @app.route('/clientes/buscar')
@@ -73,15 +67,18 @@ def search():
 def cadCli():
     if request.method == 'GET':
         clientes = getData("key","*", "Clientes")
-        print(clientes)
+        #print(clientes)
         return render_template("client_edit.html", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1="",active2="", active3="active", active4="")
     elif request.method == 'POST':   # clientes = getData(" ","*", "Clientes")
         try:
-            data = dict(request.form)
-            idCli = insertData(data, 'Clientes')
-            flash('Cliente cadastrado com sucesso')
-            print(request.form)
-            return redirect('/clientes/form/'+ str(idCli))
+            if request.form:
+                data = dict(request.form)
+                idCli = insertData(data, 'Clientes')
+                flash('Cliente cadastrado com sucesso')
+                #print(request.form)
+                return redirect('/clientes/form/'+ str(idCli))
+            else:
+                raise Exception("Empty")
         except:
             return redirect('/clientes/form/')
 
@@ -93,15 +90,17 @@ def editCli(cliId):
         cliLen = len(clientesCol)
        # print(clientes)
         return render_template("client_edit.html", clientes=clientes, cliLen=cliLen, clientesCol=clientesCol, id=cliId, edit=True, active1="",active2="", active3="active", active4="") 
-
+    elif request.method == 'POST':
+        if request.form:
+            print(request.form)
+            updateData(dict(request.form), 'Clientes', 'ID', cliId)
+            flash('Cliente alterado com sucesso')
+        return redirect('/clientes/form/'+ str(cliId))
+        
 @app.route("/os")
 @login_required
 def osAll():
-    os = getData("key","*", "Cadastro_Os",True,"Numero_os") 
-    os_val = getData("val","*", "Cadastro_Os", True, "Numero_os")
-    os_len = len(os) 
-    val_len = len(os_val)
-    return render_template("os.html", os=os, os_val= os_val, os_len=os_len, val_len=val_len, active1="",active2="", active3="", active4="active")     
+    return render_template("os.html", active1="",active2="", active3="", active4="active")     
 
 
 @app.route("/os/imprimir")
@@ -131,16 +130,14 @@ def login():
     if request.method == 'POST':
         user = request.form.get('user')
         password = request.form.get('password')
-        return login_user(user, password, app.secret_key)
+        return login_user(user, password, os.environ['SECRET_KEY'])
     else:    
         return render_template('login.html', date = date)
 
 
 @app.route('/logout')
 def logout():
-    session.clear()
-
-    return redirect('/login')
+    return logoutCommit()
 
 
 @app.route("/os/total")
@@ -162,7 +159,7 @@ def new_os():
         print(dict(request.form))
         data = dict(request.form)
        # data = json.loads(data)
-        idos = insertData(data, 'Cadastro_Os')
+        idos = insertData(data, 'Cadastro_OS')
         print(idos)
         flash('O.S cadastrada com sucesso')
         print(request.form)
@@ -190,41 +187,44 @@ def os_edit(osid):
             data['Data_Pedido'] = datetime.datetime.strptime(checkDate(data['Data']), '%m/%d/%y').strftime('%d/%m/%Y')
         except:
             pass
-        updateData(data, 'Cadastro_OS', 'Numero_Os', osid)
+        updateData(data, 'Cadastro_OS', 'Id', osid)
         flash('O.S alterada com sucesso')
-        return redirect('/os/form/'+ str(osid)), session['osid'].clear()
-        
-    try:
+        print(osid)
         if session.get('osid'):
-            osid = session.get('osid')
-        clients = getClient()
-        os_num = getOs()
-        os = getOs(osid)
-        print(dict(os[0]))
-        field = os[0]
-        if field['Data_Pedido']:
-            field['Data_Pedido'] = checkDate(field['Data_Pedido'])
-        field['Data'] = checkDate(field['Data'])
-        if field['Prazo']:
-            field['Prazo'] = checkDate(field['Prazo'])
-        if field['Data_Nf']:
-            field['Data_Nf'] = checkDate(field['Data_Nf'])
-        print(field['Data'])
-        print(field['Numero_Os'])
-        x = datetime.datetime.now()
-        date = x.strftime("%d/%m/%Y")
+           session.pop('osid')
+        return redirect('/os/form/'+ str(osid))
+    else:
+        try:
+            if session.get('osid'):
+                osid = session.get('osid')
+            clients = getClient()
+            os_num = getOs()
+            os = getOs(osid)
+            print(dict(os[0]))
+            field = os[0]
+            if field['Data_Pedido']:
+                field['Data_Pedido'] = checkDate(field['Data_Pedido'])
+            field['Data'] = checkDate(field['Data'])
+            if field['Prazo']:
+                field['Prazo'] = checkDate(field['Prazo'])
+            if field['Data_Nf']:
+                field['Data_Nf'] = checkDate(field['Data_Nf'])
+            print(field['Data'])
+            print(field['Numero_Os'])
+            x = datetime.datetime.now()
+            date = x.strftime("%d/%m/%Y")
 
-        return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date)
-    except:
-        flash('O.S não encontrada!')
-        return redirect('/os/form/')
+            return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date)
+        except:
+            flash('O.S não encontrada!')
+            return redirect('/os/form/', 404)
 
 @app.route('/os/form/delete/<int:osid>', methods = ['POST', 'GET'])
 @login_required
 def os_del(osid):
     if request.method == 'GET':
         try:
-            deleteData('Cadastro_Os', 'Id', osid)
+            deleteData('Cadastro_OS', 'Id', osid)
             flash('O.S deletada com sucesso')
             return redirect('/os/form/')
         except:
@@ -236,58 +236,38 @@ def os_del(osid):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
-
-    if not request.is_secure and app.env != "development":
-        url = request.url.replace("http://", "https://", 1)
-        code = 301
-        return redirect(url, code=code) 
+    db = conn.cursor(buffered=True)
     if request.method == 'POST':
-
-        # Ensure username was submitted
-        if not request.form.get("username"):
-            flash("Usuário inválido.")
-            return redirect("/register")
-
-        # Ensure password was submitted
-        elif not request.form.get("password"):
-            flash("Senha inválida")
-            return redirect("/register")
-
-        elif not request.form.get("key"):
-            flash("Chave inválida")
-            return redirect("/register")
-
-        if request.form.get("password") != request.form.get("password-confirm"):
-            flash("Senhas não coincidem")
-            return redirect("/register")
-
-        if request.form.get("key") != "12@Afiado#45":
-            flash("Chave inválida")
-            return redirect("/register")
-
-        # Query database for username
-        rows = db.execute("SELECT * FROM usuarios WHERE ds_login = :username",
-                          username=request.form.get("username"))
-
-        # Ensure username exists and password is correct
-        if len(rows) == 1:
-            if check_password_hash(rows[0]["ds_senha"], request.form.get("password")):
+        try:
+            rows = db.execute("SELECT * FROM usuarios WHERE ds_login = \'"+ request.form.get("username")) + "\'"
+            rowsPass = db.execute("SELECT * FROM usuarios WHERE ds_senha = "+ generate_password_hash(request.form.get("password")))
+            if len(rows) == 1 or len(rowsPass) == 1:
                 flash("User or password already exists")
                 return redirect("/register")
-            flash("User or password already exists")
-            return redirect("/register")
-        else:
-            try:
-                db.execute('INSERT INTO usuarios(ds_login, ds_senha, nivel) VALUES(:username, :hash, :nivel)', username=request.form.get("username"), hash=generate_password_hash(request.form.get("password")), nivel=3),
-                rows = db.execute("SELECT * FROM usuarios WHERE ds_login = :username",
-                              username=request.form.get("username"))
-                session["user_id"] = rows[0]["ID"]
-                session["level"] = rows[0]["nivel"]
-                return redirect("/")
-            except:
-                flash("Could not register user")
+            if request.form.get("password") != request.form.get("password-confirm"):
+                flash("Senhas não coincidem")
                 return redirect("/register")
+
+            if request.form.get("key") != "12@Afiado#45":
+                flash("Chave inválida")
+                return redirect("/register")
+            # Ensure username was submitted
+        except:
+            try: 
+                stmt = "INSERT INTO usuarios(ds_login, ds_senha, nivel) VALUES(\'" + request.form.get('username') + "\', \'" + generate_password_hash(request.form.get('password')) + "\', " + request.form.get('nivel') + ")"
+                print(stmt)
+                db.execute(stmt)
+                flash("Usuário cadastrado com sucesso. Faça seu login.")
+                return logoutCommit()
+                
+                
+
+            # Query database for username
+                
+            except:
+                flash("Favor verificar campos.")
+                return redirect("/register")
+        # Ensure username exists and password is correct
     return render_template("register.html")
   
 
@@ -375,7 +355,7 @@ def osApi(osid):
 #@auth_required
 def osApiall(limit):
   #  try:
-        stmt = "SELECT c.id, c.nome, o.tipo, o.Especificacao, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, cadastro_os o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT " + str(limit)
+        stmt = "SELECT c.id, c.nome, o.tipo, o.Especificacao, o.prazo, o.numero_os, o.id_cliente, o.id, o.data FROM clientes c, Cadastro_OS o WHERE c.id=o.id_cliente ORDER BY o.numero_os DESC LIMIT " + str(limit)
         if request.method == 'GET':
             rows = db.execute(stmt)
             #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
@@ -435,5 +415,53 @@ def allClientes():
     stmt = "SELECT * FROM Clientes"
     return jsonify(db.execute(stmt))
 
+@app.route('/api/estoque', methods=['GET'])
+def allEstoque():
+     stmt = "SELECT * FROM Estoque"
+     return jsonify(db.execute(stmt))
+
+@app.route('/estoque/form/', methods = ['POST', 'GET'])
+def cadEstoque():
+    if request.method == 'GET':
+        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
+        clientes = getData("key","*", "Estoque")
+        print(clientes)
+        
+    elif request.method == 'POST' and request.form: 
+        #3 try:      
+            data = dict(request.form)
+            idCli = insertData(data, 'Estoque')
+            flash('Item cadastrado com sucesso')
+            print(request.form)
+            return redirect('/estoque/form/'+ str(idCli))
+    return render_template("EstoqueForm.html", clientes2=clientes, clients = clients, clients_len = len(clients),  cliLen=len(clientes), edit=False, id=id, active1="",active2="", active3="active", active4="")
+         #except:
+                #flash("Erro ao cadastrar item!")
+                #return redirect('/estoque/form/')
+
+@app.route('/estoque/form/<int:estId>', methods = ['POST', 'GET'])
+def editEstoque(estId):
+    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
+    if request.method == 'GET':
+        clientes = getData(" ", "*", "Estoque WHERE ID = "+ str(estId))
+        #print(clientes[8])
+        clientes[8] = clientes[8].strftime('%Y-%m-%d')
+        clientesCol = getData("key","*", "Estoque")
+        cliLen = len(clientesCol)
+        # print(clientes)
+        return render_template("EstoqueForm.html", clientes=clientes, cliLen=cliLen, clients = clients, clientesCol=clientesCol, clientes2=clientes, clients_len = len(clients), id=estId, edit=True, active1="",active2="", active3="active", active4="") 
+       
+           
+    elif request.method == 'POST' and request.form:
+            #print(request.form)
+        data = dict(request.form)
+        data['id_cliente'] = int(data['id_cliente'])
+        data['qt'] = int(data['qt']) 
+        data['gaveta'] = int(data['gaveta'])
+        data['data'] = datetime.datetime.strptime(data['data'], "%Y-%m-%d").strftime('%Y-%m-%d')
+        updateData(data, 'Estoque', 'ID', estId)
+        flash('Item alterado.')
+        return redirect('/estoque/form/'+ str(estId))
+      
 if __name__ == "__main__" :
      app.run(debug=True)

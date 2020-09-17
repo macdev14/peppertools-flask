@@ -8,14 +8,14 @@
   <hr>
 <div class="container">
 
-<form action="/clientes/form/" method="post">
+<form action="/clientes/form/{{clientes[0]}}" method="post">
     {% for i in range(cliLen) %}
     {% if clientesCol[i] != 'ID'%}
     <div class="form-group">
-      {% if i % 2 == 0 %}
+      {% if clientesCol[i] == 'data' or clientesCol[i] == 'prazo' %}
       <div class="form-row">
         <label for="col">{{ clientesCol[i].capitalize() }}</label>
-        <input type="text" class="form-control"  id="{{ clientesCol[i] }}" aria-describedby="{{clientesCol[i]}}" placeholder="Insira {{ clientesCol[i].capitalize() }}" value="{{ clientes[i] }}">
+        <input type="text" class="form-control"  id="{{ clientesCol[i] }}" aria-describedby="{{clientesCol[i]}}" data-mask="00/00/0000" placeholder="Insira {{ clientesCol[i].capitalize() }}" value="{{ clientes[i] }}">
       </div>{% else %}
       <label for="col">{{ clientesCol[i].capitalize() }}</label>
       <input type="text" class="form-control"  id="{{ clientesCol[i] }}" aria-describedby="{{clientesCol[i]}}" placeholder="Insira {{ clientesCol[i].capitalize() }}" value="{{ clientes[i] }}">
@@ -52,16 +52,20 @@
   
   </h2><hr>
 <div class="container">
-  <form>
+  <form action="/clientes/form/" method="post">
       {% for i in range(cliLen) %}
       {% if clientes2[i] != 'ID'%}
       <div class="form-group">
-      
-   
+        
+        {% if clientes2[i] == 'data' or clientes2[i] == 'prazo' %}
 
         <label for="col" >{{ clientes2[i].capitalize() }}</label>
-        <input type="text" class="form-control"  id="clientes2[i]" aria-describedby="{{clientes2[i]}}" placeholder="Insira {{ clientes2[i].capitalize() }}">
-        </div>
+        <input type="text" class="form-control"  id="clientes2[i]" aria-describedby="{{clientes2[i]}}" data-mask="00/00/0000" placeholder="Insira {{ clientes2[i].capitalize() }}">
+        {% else %}
+        <label for="col" >{{ clientes2[i].capitalize() }}</label>
+        <input type="text" class="form-control"  id="{{clientes2[i]}}" aria-describedby="{{clientes2[i]}}" placeholder="Insira {{ clientes2[i].capitalize() }}">
+        {% endif %}  
+      </div>
      
      
        {% endif %}
@@ -81,6 +85,22 @@
     
   </div>
 
+
 {% endif %}
+
+
+
+fv`
+<script type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<script type="text/javascript">
+  $('#telefone').mask('(99) 9999-9999');
+  $('#fax').mask('(99) 9999-9999');
+  $('#cep').mask('00000-000');
+</script>
+
 
 {% endblock %}
