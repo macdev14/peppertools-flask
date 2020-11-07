@@ -1,13 +1,13 @@
 async function loadEstoque(limit = 10) {
   document.getElementById("all").innerHTML = "";
 
-  const URL = `http://127.0.0.1:5000/api/estoque/limit=` + limit.toString();
+  const URL = `https://peppertools.cf/api/estoque/limit=` + limit.toString();
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
-      // console.log(val)
+      console.log(val);
       document.getElementById("all").innerHTML += `<tr> 
-      <th scope="row">${val["cod_cli"]}</th>
-      <td>${val.nome.replace(/\s.*/, "")}</td>
+      <th scope="row">${val["cod_pc"]}</th>
+      <td>${val["nome"].replace(/\s.*/, "")}</td>
       <td>${val.gaveta}</td>
       <td>${val.material}</td>
       <td>${val.ferramenta}</td>
@@ -15,7 +15,7 @@ async function loadEstoque(limit = 10) {
          val.ID
        }" target='_blank'>
                 <button type="submit" class="btn-link">Editar</button>
-            </a>
+            </a>s
          </td>
           <td>
          <a href="estoque/form/delete/${val.ID}" target='_blank'>
@@ -29,15 +29,16 @@ async function loadEstoque(limit = 10) {
 }
 
 async function filterEstoque(q) {
-  let col = document.getElementById("filter").value;
   document.getElementById("all").innerHTML = "<p>Carregando..</p>";
+  let col = document.getElementById("filter").value;
+
   // let limit = document.getElementById("limit").value;
   //let q = document.getElementById("query").value;
   console.log(q);
   if (!limit) {
     limit = 10;
   }
-  const URL = `http://127.0.0.1:5000/api/estoque/q=${q.toString()}&col=${col.toString()}`;
+  const URL = `http://peppertools.cf/api/estoque/q=${q.toString()}&col=${col.toString()}`;
   console.log(URL);
   document.getElementById("all").innerHTML = "";
   await axios(URL).then((response) => {
@@ -65,13 +66,12 @@ async function filterEstoque(q) {
 }
 
 document.addEventListener("DOMContentLoaded", loadEstoque());
-document
-  .getElementById("filter")
-  .addEventListener(
-    "onchange",
-    return (document.getElementById("infilter").type = "text")
-  );
+document.getElementById("filter").addEventListener("onchange", function () {
+  document.getElementById("infilter").type = "text";
+});
 
-document
+/*
+  document
   .getElementById("infilter")
   .addEventListener("onchange", filterEstoque(this.value));
+*/

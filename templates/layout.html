@@ -24,10 +24,13 @@
     <!-- Bootstrap core CSS -->
     <script type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script type="text/javascript" src="{{ url_for('static',
       filename='js/jquery.mask.js')}}"></script>
     <script type="text/javascript" src="{{ url_for('static',
       filename='js/jquery.mask.min.js')}}"></script>
+
     <!-- Material Design Bootstrap -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
@@ -51,36 +54,50 @@
           <li class="nav-item {{ active1 }}">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item {{ active2 }}">
-            <a class="nav-link" href="#">Estoque</a>
+          <li class="nav-item dropdown {{ active2 }}">
+            <a class="nav-link dropdown-toggle" id="estoque" href="/estoque"
+              id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Inventário
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/estoque">Todos</a>
+              <a class="dropdown-item" href="/estoque">Estoque</a>
+              <a class="dropdown-item" href="/estoque/form">Cadastrar Estoque</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/estoque/form">Cadastrar</a>
+              <a class="dropdown-item" href="/fornecedor">Fornecedores</a>
+              <a class="dropdown-item" href="/fornecedor/form">Cadastrar
+                Fornecedor</a>
             </div>
           </li>
           <li class="nav-item dropdown {{ active3 }}">
             <a class="nav-link dropdown-toggle" id="clientes" href="/clientes"
               id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              Clientes
+              Contas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/clientes">Todos</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/clientes/form">Cadastrar</a>
+              <a class="dropdown-item" href="/contaspagar">Contas a Pagar</a>
+              <a class="dropdown-item" href="/contaspagar/form">Cadastrar</a>
             </div>
           </li>
           <li class="nav-item dropdown {{ active4 }}">
             <a class="nav-link dropdown-toggle" id="os" href="/os"
               id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              Ordem de Servi&ccedil;o
+              Vendas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/os">Todos</a>
+              <a class="dropdown-item" href="/clientes">Clientes</a>
+              <a class="dropdown-item" href="/clientes/form">Cadastrar</a>
               <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/os">Ordem de Servi&ccedil;o</a>
               <a class="dropdown-item" href="/os/form">Cadastrar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/notafiscal">Nota Fiscal</a>
+              <a class="dropdown-item" href="/notafiscal/form">Cadastrar</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/orcamento">Or&ccedil;amento</a>
+              <a class="dropdown-item" href="/orcamento/form">Cadastrar</a>
             </div>
           </li>
         </ul>
@@ -88,10 +105,7 @@
           <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log
             out</button>
         </form>
-        <!---     <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>-->
+
       </div>
     </nav>
 

@@ -1,0 +1,177 @@
+{% extends "layout.html"%}
+{% block body %}
+{% if edit == True %}
+<h2 class="text-center"> 
+  Alterar {{table.capitalize() }} <i class="fa fa-user-edit"></i>
+  
+  </h2>
+  <hr>
+<div class="container">
+
+<form action="/{{table}}/form/{{ content['ID'] }}" method="post">
+    {% for i in range(TableLen) %}
+    {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
+    <div class="form-group">
+        
+      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or   TableCol[i] == 'cod_func' %}
+
+     
+        {{TableCol[i]}}: <i class="fa fa-user"></i>
+          
+  
+        <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
+             
+              
+              {% for client in clients %}
+
+              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor']   %}
+              <option value="{{ client['ID'] if client['ID'] != None else client['id']   }}" selected>{{client['nome']}}</option>
+              {% else %}
+              <option value="{{ client['ID'] if client['ID'] != None else client['id']  }}">{{client['nome']}}</option>
+              {% endif %}
+
+              {% endfor %}    
+             
+         
+        </select> <br>
+  
+  
+  
+      
+      {% else %}
+  
+
+    
+
+    
+    <div class="form-group">
+      <label for="col"  id="{{ TableCol[i] }}-label">{{ TableCol[i].capitalize() }}</label>
+      <input type="text" type="text" class="form-control"  name="{{ TableCol[i] }}" id="{{ TableCol[i] }}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{ TableCol[i].capitalize() }}" value="{{ content[TableCol[i]] }}">
+    </div>
+  
+     {% endif %}
+     {% endif %}
+    {% endfor %}
+    <button class="btn btn-warning btn-lg">
+      Alterar {{table}} <i class=".glyphicon-glyphicon-pencil"></i></button>
+ 
+</form>
+</div>
+
+<br>
+<form action="/{{table}}/form/" method="get">
+  <button class="btn btn-warning btn-lg">
+   Novo Item <i class=".glyphicon-glyphicon-pencil"></i>
+  </button></form>
+
+<form action="/{{table}}" method="get">
+  <button class="btn btn-warning btn-lg">
+   Voltar <i class=".glyphicon-glyphicon-pencil"></i>
+  </button></form>
+</div>
+
+{% else %}
+<h2 class="text-center"> 
+  Cadastro de {{table.capitalize() }} <i class="fa fa-user-edit"></i>
+  
+  </h2><hr>
+<div class="container">
+  <form action="/{{table}}/form/" method="post">
+      {% for i in range(TableLen) %}
+      {% if TableCol[i] != 'ID' and TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
+      <div class="form-group">
+        
+        {% if TableCol[i] == 'id_cliente' or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' %}
+
+       
+          {{ TableCol[i].capitalize() }} : <i class="fa fa-user"></i>
+            
+    
+          <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+                <option value="0" selected disabled>SELECIONAR</option>
+                
+                {% for client in range(cliLen -1) %}
+                    <option value="{{ clients[client]['ID'] if clients[client]['ID'] != None else clients[client]['id'] }}">{{clients[client]['nome']}}</option>
+                {% endfor %}    
+               
+           
+          </select> <br>
+    
+    
+    
+        
+        {% else %}
+
+        {% if TableCol[i] == 'data' %}
+
+        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
+        <input type="text" class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
+        {% else %}
+        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
+        <input type="text" class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{ TableCol[i].capitalize() }}">
+        {% endif %}
+         {% endif %}
+      </div>
+     
+       {% endif %}
+      {% endfor %}
+      
+      <br>
+      <button class="btn btn-warning btn-lg">
+        Cadastrar {{table.capitalize() }} <i class=".glyphicon-glyphicon-pencil"></i></button>
+      </div>
+  </form>
+  
+  <br>
+  <a href="/{{table}}/form">
+    
+    <button class="btn btn-warning btn-lg">
+     Voltar <i class=".glyphicon-glyphicon-pencil"></i>
+    </button></a>
+    
+  </div>
+
+{% endif %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<script type="text/javascript">
+  //$('#fax').mask('(99) 9999-9999');
+  
+  $('#data').mask('00/00/0000');
+  $('#vencimento').mask('00/00/0000');
+  $('#data_pagamento').mask('00/00/0000');
+if (document.getElementById('qt-label') && typeof document.getElementById('qt-label').innerHTML != 'undefined' ) {
+  document.getElementById('qt-label').innerHTML = 'Quantidade';
+  document.getElementById('mm-label').innerHTML = 'Milimetros';
+  $('#cep').mask('00000-000');
+  
+  document.getElementById("data").attributes["required"] = "";  
+  document.getElementById('gaveta').type = 'number';
+  document.getElementById('qt').type = 'number';
+  document.getElementById('qt').placeholder = 'Insira Quantidade';
+}
+if ( document.getElementById('cod_pc') && typeof document.getElementById('cod_pc').innerHTML != 'undefined'){
+  document.getElementById('cod_pc-label').innerHTML = 'Código da Peça';
+  document.getElementById('cod_pc').placeholder = 'Insira o Código da Peça';
+  document.getElementById('mm').type = 'number';
+}
+if (document.getElementById('prazo_entrega-label') && typeof document.getElementById('prazo_entrega-label').innerHTML != 'undefined'){
+  document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
+  document.getElementById('prazo_entrega').placeholder = 'Prazo de Entrega';
+
+  document.getElementById('prazo_pagto-label').innerHTML = 'Prazo de Pagamento';
+  document.getElementById('prazo_pagto').placeholder = 'Prazo de Pagamento';
+
+  document.getElementById('cod_item-label').innerHTML = 'Código do Item';
+  document.getElementById('cod_item').placeholder = 'Código do Item';
+
+  //document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
+  
+
+}
+
+</script>
+
+
+{% endblock %}

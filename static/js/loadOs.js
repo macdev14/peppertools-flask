@@ -1,8 +1,16 @@
+document.addEventListener("DOMContentLoaded", function (event) {
+  if (parseInt(document.getElementById("Id_Cliente")) <= 0) {
+    getElementById("msg").innerHTML = "Selecione um cliente válido";
+    document.getElementById("cad").disabled = true;
+  }
+});
+
 async function loadOs(limit = 10) {
   document.getElementById("all").innerHTML = "";
 
   const URL = `https://peppertools.cf/api/os/limit=${limit.toString()}`;
   await axios(URL).then((response) => {
+    console.log(response);
     response.data.map((val, i) => {
       console.log(val);
       document.getElementById("all").innerHTML += `<tr> 
@@ -13,12 +21,12 @@ async function loadOs(limit = 10) {
       <td>${val.Data}</td>
       <td>${val.Prazo}</td>
       <td>${val.Especificacao}</td>
-       <td width="15%" float="left"><a href="os/form/${val.Id}" target='_blank'>
+       <td width="15%" float="left"><a href="os/form/${val.Id}">
                 <button type="submit" class="btn-link">Editar</button>
             </a>
          </td>
           <td>
-         <a href="os/form/delete/${val.Id}" target='_blank'>
+         <a href="os/form/delete/${val.Id}">
                 <button type="submit" class="btn-link">Deletar</button>
             </a>
             </td>
@@ -29,7 +37,7 @@ async function loadOs(limit = 10) {
 }
 
 async function filterOs(q) {
-  document.getElementById("all_os").innerHTML = "<p>Carregando..</p>";
+  document.getElementById("all").innerHTML = "<p>Carregando..</p>";
   let limit = document.getElementById("limit").value;
   //let q = document.getElementById("query").value;
   console.log(q);

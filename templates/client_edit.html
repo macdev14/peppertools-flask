@@ -8,43 +8,43 @@
   <hr>
 <div class="container">
 
-<form action="/clientes/form/{{clientes[0]}}" method="post">
+<form action="/clientes/form/{{clientes['ID']}}" method="post">
     {% for i in range(cliLen) %}
     {% if clientesCol[i] != 'ID'%}
-    <div class="form-group">
       {% if clientesCol[i] == 'data' or clientesCol[i] == 'prazo' %}
-      <div class="form-row">
+      <div class="form-group">
         <label for="col">{{ clientesCol[i].capitalize() }}</label>
-        <input type="text" class="form-control"  id="{{ clientesCol[i] }}" aria-describedby="{{clientesCol[i]}}" data-mask="00/00/0000" placeholder="Insira {{ clientesCol[i].capitalize() }}" value="{{ clientes[i] }}">
+        <input type="text" class="form-control"  id="{{ clientesCol[i] }}" aria-describedby="{{clientesCol[i]}}" data-mask="00/00/0000" placeholder="Insira {{ clientesCol[i].capitalize() }}" value="{{ clientes[clientesCol[i]] }}">
       </div>{% else %}
+      <div class="form-group">
       <label for="col">{{ clientesCol[i].capitalize() }}</label>
-      <input type="text" class="form-control"  id="{{ clientesCol[i] }}" aria-describedby="{{clientesCol[i]}}" placeholder="Insira {{ clientesCol[i].capitalize() }}" value="{{ clientes[i] }}">
+      <input type="text" class="form-control"  id="{{ clientesCol[i] }}" aria-describedby="{{clientesCol[i]}}" placeholder="Insira {{ clientesCol[i].capitalize() }}" value="{{ clientes[clientesCol[i]] }}">
     </div>
     {% endif %}  
      {% endif %}
     {% endfor %}
-    <button class="btn btn-warning btn-lg">
+    <div class="form-group">
+    <button class="btn btn-dark btn-lg">
       Alterar Cliente <i class=".glyphicon-glyphicon-pencil"></i></button>
- 
+    </div>
 </form>
-</div>
 
-<br>
+
+<div class="form-group">
 <a href="/">
-<button class="btn btn-warning btn-lg">
+<button class="btn btn-primary btn-lg">
   Novo Cliente <i class=".glyphicon-glyphicon-pencil"></i>
 </button></a>
 
 <a href="/">
-  <button class="btn btn-warning btn-lg">
+  <button class="btn btn-primary btn-lg">
+   Início <i class=".glyphicon-glyphicon-pencil"></i>
+  </button></a>
+<a href="/clientes">
+  <button class="btn btn-primary btn-lg">
    Voltar <i class=".glyphicon-glyphicon-pencil"></i>
   </button></a>
 </div>
-
-<a href="/clientes">
-  <button class="btn btn-warning btn-lg">
-   Voltar <i class=".glyphicon-glyphicon-pencil"></i>
-  </button></a>
 </div>
 {% else %}
 <h2 class="text-center"> 
@@ -53,17 +53,17 @@
   </h2><hr>
 <div class="container">
   <form action="/clientes/form/" method="post">
-      {% for i in range(cliLen) %}
-      {% if clientes2[i] != 'ID'%}
+      {% for client in clientes %}
+      {% if client != 'ID'%}
       <div class="form-group">
         
-        {% if clientes2[i] == 'data' or clientes2[i] == 'prazo' %}
+        {% if client == 'data' or client == 'prazo' %}
 
-        <label for="col" >{{ clientes2[i].capitalize() }}</label>
-        <input type="text" class="form-control"  id="clientes2[i]" aria-describedby="{{clientes2[i]}}" data-mask="00/00/0000" placeholder="Insira {{ clientes2[i].capitalize() }}">
+        <label for="col" >{{ client.capitalize() }}</label>
+        <input type="text" class="form-control"  id="client" aria-describedby="{{client}}" data-mask="00/00/0000" placeholder="Insira {{ clientes2[i].capitalize() }}">
         {% else %}
-        <label for="col" >{{ clientes2[i].capitalize() }}</label>
-        <input type="text" class="form-control"  id="{{clientes2[i]}}" aria-describedby="{{clientes2[i]}}" placeholder="Insira {{ clientes2[i].capitalize() }}">
+        <label for="col" >{{ client.capitalize() }}</label>
+        <input type="text" class="form-control"  id="{{client}}" aria-describedby="{{client}}" placeholder="Insira {{ client.capitalize() }}">
         {% endif %}  
       </div>
      
@@ -71,7 +71,7 @@
        {% endif %}
       {% endfor %}
       <br>
-      <button class="btn btn-warning btn-lg">
+      <button class="btn btn-dark btn-lg">
         Cadastrar Cliente <i class=".glyphicon-glyphicon-pencil"></i></button>
       </div>
   </form>
@@ -79,7 +79,7 @@
   <br>
   <a href="/clientes">
     
-    <button class="btn btn-warning btn-lg">
+    <button class="btn btn-primary btn-lg">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></a>
     
@@ -88,9 +88,6 @@
 
 {% endif %}
 
-
-
-fv`
 <script type="text/javascript"
 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 

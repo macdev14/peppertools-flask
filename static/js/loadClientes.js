@@ -1,10 +1,38 @@
 async function loadClientes() {
   document.getElementById("all").innerHTML = "";
-
   const URL = `https://peppertools.cf/api/clientes`;
+
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
       // console.log(val)
+      document.getElementById("all").innerHTML += `<tr> 
+      <th scope="row">${val["cod_cli"]}</th>
+      <td>${val.nome.replace(/\s.*/, "")}</td>
+      <td>${val.cnpj}</td>
+      <td>${val.endereco}</td>
+      <td>${val.telefone}</td>
+       <td width="15%" float="left"><a href="clientes/form/${
+         val.ID
+       }" target='_blank'>
+                <button type="submit" class="btn-link">Editar</button>
+            </a>
+         </td>
+          <td>
+         <a href="clientes/form/delete/${val.ID}" target='_blank'>
+                <button type="submit" class="btn-link">Deletar</button>
+            </a>
+            </td>
+    </tr>
+    `;
+    });
+  });
+}
+
+async function filterClient(q) {
+  const URL = `https://peppertools.cf/api/clientes/q=${q.toString()}`;
+  document.getElementById("all").innerHTML = "";
+  await axios(URL).then((response) => {
+    response.data.map((val, i) => {
       document.getElementById("all").innerHTML += `<tr> 
       <th scope="row">${val["cod_cli"]}</th>
       <td>${val.nome.replace(/\s.*/, "")}</td>

@@ -677,6 +677,95 @@
         }
     },
     {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {
+            "value": "\n```python\nimport re\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "model_to_dict",
+        "importPath": "playhouse.shortcuts",
+        "description": "playhouse.shortcuts",
+        "isExtraImport": true,
+        "detail": "playhouse.shortcuts",
+        "documentation": {
+            "value": "\n```python\nimport playhouse.shortcuts\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "dict_to_model",
+        "importPath": "playhouse.shortcuts",
+        "description": "playhouse.shortcuts",
+        "isExtraImport": true,
+        "detail": "playhouse.shortcuts",
+        "documentation": {
+            "value": "\n```python\nimport playhouse.shortcuts\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "model_to_dict",
+        "importPath": "playhouse.shortcuts",
+        "description": "playhouse.shortcuts",
+        "isExtraImport": true,
+        "detail": "playhouse.shortcuts",
+        "documentation": {
+            "value": "\n```python\nimport playhouse.shortcuts\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "dict_to_model",
+        "importPath": "playhouse.shortcuts",
+        "description": "playhouse.shortcuts",
+        "isExtraImport": true,
+        "detail": "playhouse.shortcuts",
+        "documentation": {
+            "value": "\n```python\nimport playhouse.shortcuts\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "model",
+        "description": "model",
+        "isExtraImport": true,
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nimport model\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "model",
+        "description": "model",
+        "isExtraImport": true,
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nimport model\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "model",
+        "description": "model",
+        "isExtraImport": true,
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nimport model\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -769,6 +858,17 @@
         }
     },
     {
+        "label": "*",
+        "importPath": "peewee",
+        "description": "peewee",
+        "isExtraImport": true,
+        "detail": "peewee",
+        "documentation": {
+            "value": "\n```python\nimport peewee\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "getNumber",
         "kind": 2,
         "importPath": "api",
@@ -797,10 +897,10 @@
         "kind": 5,
         "importPath": "api",
         "description": "api",
-        "peekOfCode": "db = SQL(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\ndef getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')",
+        "peekOfCode": "db = SQL(\"sqlite:///peppertools34.db\")\ndef getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')",
         "detail": "api",
         "documentation": {
-            "value": "\n```python\nfrom api import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\ndef getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')\n```\n",
+            "value": "\n```python\nfrom api import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getNumber(client = 0):\n    try:\n        if client != 0:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS WHERE id_cliente = ? \", client)\n        else:\n            row = db.execute(\"SELECT COUNT(*) AS total FROM Cadastro_OS\")\n        return jsonify(row[0]['total'])\n    except:\n        return jsonify('Error')\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -821,10 +921,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/estoque')\n@login_required\ndef estoque():\n    columns = getData(\"key\",\"*\", \"Estoque\")\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))",
+        "peekOfCode": "def index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/estoque')\n@login_required\ndef estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import index\n```\n\n```python\n\n\n```\n\n```python\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/estoque')\n@login_required\ndef estoque():\n    columns = getData(\"key\",\"*\", \"Estoque\")\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n```\n",
+            "value": "\n```python\nfrom app import index\n```\n\n```python\n\n\n```\n\n```python\ndef index():\n    response = Response(render_template(\"home.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/estoque')\n@login_required\ndef estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -833,10 +933,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def estoque():\n    columns = getData(\"key\",\"*\", \"Estoque\")\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/clientes')\n@login_required\ndef clientes():\n    #return getClientes(\"key\",\"*\")",
+        "peekOfCode": "def estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import estoque\n```\n\n```python\n\n\n```\n\n```python\ndef estoque():\n    columns = getData(\"key\",\"*\", \"Estoque\")\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/clientes')\n@login_required\ndef clientes():\n    #return getClientes(\"key\",\"*\")\n```\n",
+            "value": "\n```python\nfrom app import estoque\n```\n\n```python\n\n\n```\n\n```python\ndef estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -857,10 +957,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")",
+        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import search\n```\n\n```python\n\n\n```\n\n```python\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n```\n",
+            "value": "\n```python\nfrom app import search\n```\n\n```python\n\n\n```\n\n```python\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -869,10 +969,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)\n                idCli = insertData(data, 'Clientes')",
+        "peekOfCode": "def cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import cadCli\n```\n\n```python\n\n\n```\n\n```python\ndef cadCli():\n    if request.method == 'GET':\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        #print(clientes)\n        return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)\n                idCli = insertData(data, 'Clientes')\n```\n",
+            "value": "\n```python\nfrom app import cadCli\n```\n\n```python\n\n\n```\n\n```python\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -881,10 +981,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def editCli(cliId):\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Clientes WHERE ID = \"+ str(cliId))\n        clientesCol = getData(\"key\",\"*\", \"Clientes\")\n        cliLen = len(clientesCol)\n       # print(clientes)\n        return render_template(\"client_edit.html\", clientes=clientes, cliLen=cliLen, clientesCol=clientesCol, id=cliId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n    elif request.method == 'POST':\n        if request.form:\n            print(request.form)",
+        "peekOfCode": "def editCli(cliId):\n    if request.method == 'GET':\n        clientes = Clientes.select().where(Clientes.ID == cliId)\n        clientesCol = list(Clientes._meta.fields.keys())\n        print(clientesCol[0])\n        cliLen = len(clientesCol)\n       # print(clientes)\n        return render_template(\"Form.html\", table='clientes', content=clientes[0], TableLen=cliLen, TableCol=clientesCol, id=cliId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n    elif request.method == 'POST':\n        if request.form:",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import editCli\n```\n\n```python\n\n\n```\n\n```python\ndef editCli(cliId):\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Clientes WHERE ID = \"+ str(cliId))\n        clientesCol = getData(\"key\",\"*\", \"Clientes\")\n        cliLen = len(clientesCol)\n       # print(clientes)\n        return render_template(\"client_edit.html\", clientes=clientes, cliLen=cliLen, clientesCol=clientesCol, id=cliId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n    elif request.method == 'POST':\n        if request.form:\n            print(request.form)\n```\n",
+            "value": "\n```python\nfrom app import editCli\n```\n\n```python\n\n\n```\n\n```python\ndef editCli(cliId):\n    if request.method == 'GET':\n        clientes = Clientes.select().where(Clientes.ID == cliId)\n        clientesCol = list(Clientes._meta.fields.keys())\n        print(clientesCol[0])\n        cliLen = len(clientesCol)\n       # print(clientes)\n        return render_template(\"Form.html\", table='clientes', content=clientes[0], TableLen=cliLen, TableCol=clientesCol, id=cliId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n    elif request.method == 'POST':\n        if request.form:\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -893,10 +993,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def osAll():\n    return render_template(\"os.html\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():",
+        "peekOfCode": "def osAll():\n    try:\n        session.pop('osid')\n    except:\n        pass\n    return render_template(\"os.html\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import osAll\n```\n\n```python\n\n\n```\n\n```python\ndef osAll():\n    return render_template(\"os.html\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n```\n",
+            "value": "\n```python\nfrom app import osAll\n```\n\n```python\n\n\n```\n\n```python\ndef osAll():\n    try:\n        session.pop('osid')\n    except:\n        pass\n    return render_template(\"os.html\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -941,10 +1041,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')",
+        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import logout\n```\n\n```python\n\n\n```\n\n```python\ndef logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n```\n",
+            "value": "\n```python\nfrom app import logout\n```\n\n```python\n\n\n```\n\n```python\ndef logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -953,10 +1053,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1",
+        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n    print(clients)\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import all\n```\n\n```python\n\n\n```\n\n```python\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n```\n",
+            "value": "\n```python\nfrom app import all\n```\n\n```python\n\n\n```\n\n```python\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n    print(clients)\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -965,10 +1065,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n        print(dict(request.form))\n        data = dict(request.form)",
+        "peekOfCode": "def new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n    print(clients)\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    #os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import new_os\n```\n\n```python\n\n\n```\n\n```python\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n        print(dict(request.form))\n        data = dict(request.form)\n```\n",
+            "value": "\n```python\nfrom app import new_os\n```\n\n```python\n\n\n```\n\n```python\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n    print(clients)\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    #os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -989,10 +1089,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def os_del(osid):\n    if request.method == 'GET':\n        try:\n            deleteData('Cadastro_OS', 'Id', osid)\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')",
+        "peekOfCode": "def os_del(osid):\n    if request.method == 'GET':\n        try:\n            Cadastro_OS.delete().where(Cadastro_OS.Id == osid).execute()\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import os_del\n```\n\n```python\n\n\n```\n\n```python\ndef os_del(osid):\n    if request.method == 'GET':\n        try:\n            deleteData('Cadastro_OS', 'Id', osid)\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')\n```\n",
+            "value": "\n```python\nfrom app import os_del\n```\n\n```python\n\n\n```\n\n```python\ndef os_del(osid):\n    if request.method == 'GET':\n        try:\n            Cadastro_OS.delete().where(Cadastro_OS.Id == osid).execute()\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1001,10 +1101,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def register():\n    db = conn.cursor(buffered=True)\n    if request.method == 'POST':\n        try:\n            rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\")) + \"\\'\"\n            rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n            if len(rows) == 1 or len(rowsPass) == 1:\n                flash(\"User or password already exists\")\n                return redirect(\"/register\")\n            if request.form.get(\"password\") != request.form.get(\"password-confirm\"):",
+        "peekOfCode": "def register():\n    if request.method == 'POST':\n        try:\n            rows = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n            rows=[model_to_dict(row) for row in rows]\n            #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\") + \"\\'\")\n            rowsPass = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n            rowsPass=[model_to_dict(row) for row in rowsPass]\n            #rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n            if len(rows) == 1 or len(rowsPass) == 1:",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import register\n```\n\n```python\n\n\n```\n\n```python\ndef register():\n    db = conn.cursor(buffered=True)\n    if request.method == 'POST':\n        try:\n            rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\")) + \"\\'\"\n            rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n            if len(rows) == 1 or len(rowsPass) == 1:\n                flash(\"User or password already exists\")\n                return redirect(\"/register\")\n            if request.form.get(\"password\") != request.form.get(\"password-confirm\"):\n```\n",
+            "value": "\n```python\nfrom app import register\n```\n\n```python\n\n\n```\n\n```python\ndef register():\n    if request.method == 'POST':\n        try:\n            rows = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n            rows=[model_to_dict(row) for row in rows]\n            #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\") + \"\\'\")\n            rowsPass = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n            rowsPass=[model_to_dict(row) for row in rowsPass]\n            #rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n            if len(rows) == 1 or len(rowsPass) == 1:\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1013,10 +1113,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        os = getOs(osid)\n        if not os:\n            flash(\"O.S não encontrada.\")\n            return redirect(\"/\")\n        field = dict(os[0])\n        res = getClient(osid)\n        print(res)",
+        "peekOfCode": "def print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        #rows = [model_to_dict(row) for row in rows]\n        #os = getOs(osid)\n        if not os:\n            flash(\"O.S não encontrada.\")\n            return redirect(\"/\")\n        field = rows[0]",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import print_os\n```\n\n```python\n\n\n```\n\n```python\ndef print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        os = getOs(osid)\n        if not os:\n            flash(\"O.S não encontrada.\")\n            return redirect(\"/\")\n        field = dict(os[0])\n        res = getClient(osid)\n        print(res)\n```\n",
+            "value": "\n```python\nfrom app import print_os\n```\n\n```python\n\n\n```\n\n```python\ndef print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        #rows = [model_to_dict(row) for row in rows]\n        #os = getOs(osid)\n        if not os:\n            flash(\"O.S não encontrada.\")\n            return redirect(\"/\")\n        field = rows[0]\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1025,118 +1125,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def access(osid):\n    session['osid'] = osid\n    @login_required\n    def goTo(osid):\n        return redirect('form/'+str(osid))\n    return goTo(osid)\n\"\"\"\n*** API ROUTES ***\n\"\"\"\n@app.route('/os/all')",
+        "peekOfCode": "def access(osid):\n    session['osid'] = osid\n    @login_required\n    def goTo(osid):\n        return redirect('form/'+str(osid))\n    return goTo(osid)\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\n@login_required\ndef cadEstoque():\n    clients = Clientes.select(Clientes.nome, Clientes.ID)",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import access\n```\n\n```python\n\n\n```\n\n```python\ndef access(osid):\n    session['osid'] = osid\n    @login_required\n    def goTo(osid):\n        return redirect('form/'+str(osid))\n    return goTo(osid)\n\"\"\"\n*** API ROUTES ***\n\"\"\"\n@app.route('/os/all')\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "all_api",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def all_api():\n    return getAll()\n@app.route('/api/login', methods=['POST'])\ndef log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import all_api\n```\n\n```python\n\n\n```\n\n```python\ndef all_api():\n    return getAll()\n@app.route('/api/login', methods=['POST'])\ndef log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "log",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])\n        rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)\n        #print(rows[0][\"ds_senha\"])\n        if len(rows) == 1 and check_password_hash(rows[0][\"ds_senha\"], password):",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import log\n```\n\n```python\n\n\n```\n\n```python\ndef log():\n     try:\n        obj = json.loads(request.data)\n     #print(obj['username'])\n        user = obj['username']\n        password = obj['password']\n        print(obj['password'])\n        rows = db.execute('SELECT * FROM usuarios WHERE  ds_login = ?', user)\n        #print(rows[0][\"ds_senha\"])\n        if len(rows) == 1 and check_password_hash(rows[0][\"ds_senha\"], password):\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "osApi",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def osApi(osid):\n    try:\n        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))\n        if not rows:\n            return jsonify('Not found')\n        if request.method == 'POST':\n             obj = json.loads(request.data)\n             try:\n                  updateData(obj, 'Cadastro_OS', 'Id', osid)\n                  return jsonify('Updated')",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import osApi\n```\n\n```python\n\n\n```\n\n```python\ndef osApi(osid):\n    try:\n        rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))\n        if not rows:\n            return jsonify('Not found')\n        if request.method == 'POST':\n             obj = json.loads(request.data)\n             try:\n                  updateData(obj, 'Cadastro_OS', 'Id', osid)\n                  return jsonify('Updated')\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "osApiall",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def osApiall(limit):\n  #  try:\n        stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            return jsonify(rows)\n        elif request.method == 'POST':\n          #  try:\n                obj = json.loads(request.data)",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import osApiall\n```\n\n```python\n\n\n```\n\n```python\ndef osApiall(limit):\n  #  try:\n        stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            return jsonify(rows)\n        elif request.method == 'POST':\n          #  try:\n                obj = json.loads(request.data)\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "osApiSearch",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def osApiSearch(query):\n  #  try:\n        stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Prazo, o.Especificacao, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente AND o.Especificacao LIKE '%\" + str(query) + \"%' ORDER BY o.Numero_Os DESC \"\n        if len(query) < 2:\n            stmt = stmt+ \"LIMIT 500\"\n     #   if limit > 0:\n     #       stmt += \" LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import osApiSearch\n```\n\n```python\n\n\n```\n\n```python\ndef osApiSearch(query):\n  #  try:\n        stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Prazo, o.Especificacao, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente AND o.Especificacao LIKE '%\" + str(query) + \"%' ORDER BY o.Numero_Os DESC \"\n        if len(query) < 2:\n            stmt = stmt+ \"LIMIT 500\"\n     #   if limit > 0:\n     #       stmt += \" LIMIT \" + str(limit)\n        if request.method == 'GET':\n            rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "osApiNum",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def osApiNum():\n    try:\n          os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n          os_num = int(os_num[0]['num_os']) + 1\n          return jsonify(os_num)\n    except:\n        return jsonify('Error')\n@app.route('/api/clientes', methods=['GET', 'POST'])\ndef allClientes():\n    stmt = \"SELECT * FROM Clientes\"",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import osApiNum\n```\n\n```python\n\n\n```\n\n```python\ndef osApiNum():\n    try:\n          os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n          os_num = int(os_num[0]['num_os']) + 1\n          return jsonify(os_num)\n    except:\n        return jsonify('Error')\n@app.route('/api/clientes', methods=['GET', 'POST'])\ndef allClientes():\n    stmt = \"SELECT * FROM Clientes\"\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "allClientes",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def allClientes():\n    stmt = \"SELECT * FROM Clientes\"\n    return jsonify(db.execute(stmt))\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\ndef allEstoque(limit):\n    if request.method == 'GET':\n        stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)\n        rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n        return jsonify(rows)",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import allClientes\n```\n\n```python\n\n\n```\n\n```python\ndef allClientes():\n    stmt = \"SELECT * FROM Clientes\"\n    return jsonify(db.execute(stmt))\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\ndef allEstoque(limit):\n    if request.method == 'GET':\n        stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)\n        rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n        return jsonify(rows)\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "allEstoque",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def allEstoque(limit):\n    if request.method == 'GET':\n        stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)\n        rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n        return jsonify(rows)\n    elif request.method == 'POST' and request.data:\n          #  try:\n        obj = json.loads(request.data)\n        insertData(obj, 'Estoque')",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import allEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef allEstoque(limit):\n    if request.method == 'GET':\n        stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)\n        rows = db.execute(stmt)\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n        return jsonify(rows)\n    elif request.method == 'POST' and request.data:\n          #  try:\n        obj = json.loads(request.data)\n        insertData(obj, 'Estoque')\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "queryEstoque",
-        "kind": 2,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "def queryEstoque(query, col):\n    stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    print(stmt)\n    rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\ndef cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")",
-        "detail": "app",
-        "documentation": {
-            "value": "\n```python\nfrom app import queryEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef queryEstoque(query, col):\n    stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    print(stmt)\n    rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\ndef cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")\n```\n",
+            "value": "\n```python\nfrom app import access\n```\n\n```python\n\n\n```\n\n```python\ndef access(osid):\n    session['osid'] = osid\n    @login_required\n    def goTo(osid):\n        return redirect('form/'+str(osid))\n    return goTo(osid)\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\n@login_required\ndef cadEstoque():\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1145,10 +1137,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")\n        print(clientes)\n    elif request.method == 'POST' and request.form: \n        #3 try:      \n            data = dict(request.form)\n            idCli = insertData(data, 'Estoque')\n            flash('Item cadastrado com sucesso')",
+        "peekOfCode": "def cadEstoque():\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n        #clientes = list(Estoque._meta.fields.keys())\n    estKeys = list(Estoque._meta.fields.keys())\n        #clientes = clientes[0]\n    if request.method == 'POST' and request.form: \n        #3 try:      \n        data = dict(request.form)\n        if not data['data']:\n            data['data'] = datetime.datetime.now().strftime('%d/%m/%Y')",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import cadEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef cadEstoque():\n    if request.method == 'GET':\n        clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clientes = getData(\"key\",\"*\", \"Estoque\")\n        print(clientes)\n    elif request.method == 'POST' and request.form: \n        #3 try:      \n            data = dict(request.form)\n            idCli = insertData(data, 'Estoque')\n            flash('Item cadastrado com sucesso')\n```\n",
+            "value": "\n```python\nfrom app import cadEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef cadEstoque():\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n        #clientes = list(Estoque._meta.fields.keys())\n    estKeys = list(Estoque._meta.fields.keys())\n        #clientes = clientes[0]\n    if request.method == 'POST' and request.form: \n        #3 try:      \n        data = dict(request.form)\n        if not data['data']:\n            data['data'] = datetime.datetime.now().strftime('%d/%m/%Y')\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1157,22 +1149,250 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def editEstoque(estId):\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n        #print(clientes[8])\n        clientes[8] = clientes[8].strftime('%Y-%m-%d')\n        clientesCol = getData(\"key\",\"*\", \"Estoque\")\n        cliLen = len(clientesCol)\n        # print(clientes)\n        return render_template(\"EstoqueForm.html\", clientes=clientes, cliLen=cliLen, clients = clients, clientesCol=clientesCol, clientes2=clientes, clients_len = len(clients), id=estId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") ",
+        "peekOfCode": "def editEstoque(estId):\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')\n    if request.method == 'GET':\n        estoque = Estoque.select(Estoque, Clientes.ID, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque.ID == estId) #getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n        estoque = [model_to_dict(item) for item in estoque]\n        print(estoque)\n        try:\n            estoque[0]['data'] = estoque[0]['data'].strftime(\"%d/%m/%Y\")\n        except:",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import editEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef editEstoque(estId):\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')\n    if request.method == 'GET':\n        clientes = getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n        #print(clientes[8])\n        clientes[8] = clientes[8].strftime('%Y-%m-%d')\n        clientesCol = getData(\"key\",\"*\", \"Estoque\")\n        cliLen = len(clientesCol)\n        # print(clientes)\n        return render_template(\"EstoqueForm.html\", clientes=clientes, cliLen=cliLen, clients = clients, clientesCol=clientesCol, clientes2=clientes, clients_len = len(clients), id=estId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") \n```\n",
+            "value": "\n```python\nfrom app import editEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef editEstoque(estId):\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')\n    if request.method == 'GET':\n        estoque = Estoque.select(Estoque, Clientes.ID, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque.ID == estId) #getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n        estoque = [model_to_dict(item) for item in estoque]\n        print(estoque)\n        try:\n            estoque[0]['data'] = estoque[0]['data'].strftime(\"%d/%m/%Y\")\n        except:\n```\n",
             "supportThemeIcons": false
         }
     },
     {
-        "label": "os.environ['SECRET_KEY']",
+        "label": "invoice",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def invoice():\n    Keys = list(orcamento._meta.fields.keys())\n    data = datetime.datetime.now().strftime('%d/%m/%Y')\n    if request.method == 'POST':\n        orcamento.create(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], para = request.form['para'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms'])\n    return render_template(\"Form.html\", TableCol=Keys, data=data, TableLen = len(Keys), table='orcamento' , edit=False, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/orcamento/form/<int:inid>', methods=['POST', 'GET'])\n@login_required\ndef invoiceEdit(inid):\n    if request.method == 'POST':",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import invoice\n```\n\n```python\n\n\n```\n\n```python\ndef invoice():\n    Keys = list(orcamento._meta.fields.keys())\n    data = datetime.datetime.now().strftime('%d/%m/%Y')\n    if request.method == 'POST':\n        orcamento.create(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], para = request.form['para'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms'])\n    return render_template(\"Form.html\", TableCol=Keys, data=data, TableLen = len(Keys), table='orcamento' , edit=False, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/orcamento/form/<int:inid>', methods=['POST', 'GET'])\n@login_required\ndef invoiceEdit(inid):\n    if request.method == 'POST':\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "invoiceEdit",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def invoiceEdit(inid):\n    if request.method == 'POST':\n        orcamento.update(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], para = request.form['para'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()\n    Keys = list(orcamento._meta.fields.keys())\n    invoice = orcamento.select().where(orcamento.ID == inid)\n    return render_template(\"Form.html\", content=invoice[0], TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/contasapagar/form/', methods=['POST', 'GET'])\n@login_required\ndef contaspagar():\n    Keys = list(contasapagar._meta.fields.keys())",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import invoiceEdit\n```\n\n```python\n\n\n```\n\n```python\ndef invoiceEdit(inid):\n    if request.method == 'POST':\n        orcamento.update(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], para = request.form['para'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()\n    Keys = list(orcamento._meta.fields.keys())\n    invoice = orcamento.select().where(orcamento.ID == inid)\n    return render_template(\"Form.html\", content=invoice[0], TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/contasapagar/form/', methods=['POST', 'GET'])\n@login_required\ndef contaspagar():\n    Keys = list(contasapagar._meta.fields.keys())\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "contaspagar",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def contaspagar():\n    Keys = list(contasapagar._meta.fields.keys())\n    if request.method == 'POST':\n       # try:\n        contasapagar.create(vencimento=datetime.datetime.strptime(request.form['vencimento'], '%d/%m/%Y').strftime('%d/%m/%Y'), descricao= request.form['descricao'], valor=float(request.form['valor']), pago=int(request.form['pago']), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\"))\n        idconta = contasapagar.select(fn.MAX(contasapagar.ID)).scalar()\n        flash('Cadastrado com Sucesso')\n        return redirect('/contasapagar/form/'+ str(idconta))\n     #   except: \n        #flash('Erro ao Cadastrar')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import contaspagar\n```\n\n```python\n\n\n```\n\n```python\ndef contaspagar():\n    Keys = list(contasapagar._meta.fields.keys())\n    if request.method == 'POST':\n       # try:\n        contasapagar.create(vencimento=datetime.datetime.strptime(request.form['vencimento'], '%d/%m/%Y').strftime('%d/%m/%Y'), descricao= request.form['descricao'], valor=float(request.form['valor']), pago=int(request.form['pago']), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\"))\n        idconta = contasapagar.select(fn.MAX(contasapagar.ID)).scalar()\n        flash('Cadastrado com Sucesso')\n        return redirect('/contasapagar/form/'+ str(idconta))\n     #   except: \n        #flash('Erro ao Cadastrar')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "editarcontas",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def editarcontas(idconta):\n    Keys = list(contasapagar._meta.fields.keys())\n    conta = contasapagar.select().where(contasapagar.ID == idconta)\n    if request.method == 'POST':\n        try:  \n            contasapagar.update(vencimento=datetime.datetime.strptime(request.form['vencimento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\"), descricao= request.form['descricao'], valor=float(request.form['valor']), pago=int(request.form['pago']), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\")).execute()\n            flash('Alterado com Sucesso')\n            return redirect('/contasapagar/form/'+ str(idconta))\n        except:\n            flash('Erro ao alterar')",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import editarcontas\n```\n\n```python\n\n\n```\n\n```python\ndef editarcontas(idconta):\n    Keys = list(contasapagar._meta.fields.keys())\n    conta = contasapagar.select().where(contasapagar.ID == idconta)\n    if request.method == 'POST':\n        try:  \n            contasapagar.update(vencimento=datetime.datetime.strptime(request.form['vencimento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\"), descricao= request.form['descricao'], valor=float(request.form['valor']), pago=int(request.form['pago']), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\")).execute()\n            flash('Alterado com Sucesso')\n            return redirect('/contasapagar/form/'+ str(idconta))\n        except:\n            flash('Erro ao alterar')\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "fornecedor",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def fornecedor(idfor):\n    Keys = list(Fornecedores._meta.fields.keys())\n    if idfor != '':\n        if request.method == 'POST':\n            try:\n                Fornecedores.update(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], email=request.form['email'], obs=request.form['obs'], qntcompras=request.form['qntcompras']).where(Fornecedores.ID == idfor).execute()\n                flash('Alterado com sucesso')\n            except:\n                flash('Erro ao alterar Fornecedor')\n            return redirect('/fornecedor/form/'+str(idfor))",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import fornecedor\n```\n\n```python\n\n\n```\n\n```python\ndef fornecedor(idfor):\n    Keys = list(Fornecedores._meta.fields.keys())\n    if idfor != '':\n        if request.method == 'POST':\n            try:\n                Fornecedores.update(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], email=request.form['email'], obs=request.form['obs'], qntcompras=request.form['qntcompras']).where(Fornecedores.ID == idfor).execute()\n                flash('Alterado com sucesso')\n            except:\n                flash('Erro ao alterar Fornecedor')\n            return redirect('/fornecedor/form/'+str(idfor))\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "comprasform",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def comprasform(idcompra):\n    Keys = list(compras._meta.fields.keys())\n    fornecedores = Fornecedores.select(Fornecedores.ID, Fornecedores.nome)\n    fornecedores_len = len(fornecedores)\n    if idcompra != '':\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['qnt'] = int(data['qnt'])",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import comprasform\n```\n\n```python\n\n\n```\n\n```python\ndef comprasform(idcompra):\n    Keys = list(compras._meta.fields.keys())\n    fornecedores = Fornecedores.select(Fornecedores.ID, Fornecedores.nome)\n    fornecedores_len = len(fornecedores)\n    if idcompra != '':\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['qnt'] = int(data['qnt'])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "nfform",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def nfform(idnota):\n    Keys = list(notafiscal._meta.fields.keys())\n    if idnota != '':\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['numero_nf'] = int(data['numero_nf'])\n                except:\n                    data['numero_nf']=0  ",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import nfform\n```\n\n```python\n\n\n```\n\n```python\ndef nfform(idnota):\n    Keys = list(notafiscal._meta.fields.keys())\n    if idnota != '':\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['numero_nf'] = int(data['numero_nf'])\n                except:\n                    data['numero_nf']=0  \n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "pontocad",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def pontocad(idponto):\n    Keys = list(ponto._meta.fields.keys())\n    allcol = funcionarios.select(funcionarios.id, funcionarios.nome)\n    if idponto != '':\n        pontohora = ponto.select(ponto, funcionarios.id, funcionarios.nome).from_(ponto, funcionarios).where(ponto.cod_func == funcionarios.id, ponto.id == idponto)\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['data'] = datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%d/%m/%Y')    ",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import pontocad\n```\n\n```python\n\n\n```\n\n```python\ndef pontocad(idponto):\n    Keys = list(ponto._meta.fields.keys())\n    allcol = funcionarios.select(funcionarios.id, funcionarios.nome)\n    if idponto != '':\n        pontohora = ponto.select(ponto, funcionarios.id, funcionarios.nome).from_(ponto, funcionarios).where(ponto.cod_func == funcionarios.id, ponto.id == idponto)\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['data'] = datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%d/%m/%Y')    \n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "all_api",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def all_api():\n    rows = Cadastro_OS.select()\n    rows = [model_to_dict(row) for row in rows]\n    return rows\n@app.route('/api/login', methods=['POST'])\ndef log():\n     try:\n        obj = json.loads(request.data)\n        rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username']).get()\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import all_api\n```\n\n```python\n\n\n```\n\n```python\ndef all_api():\n    rows = Cadastro_OS.select()\n    rows = [model_to_dict(row) for row in rows]\n    return rows\n@app.route('/api/login', methods=['POST'])\ndef log():\n     try:\n        obj = json.loads(request.data)\n        rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username']).get()\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "log",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def log():\n     try:\n        obj = json.loads(request.data)\n        rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username']).get()\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])\n        #obj = json.loads(request.data)\n     #print(obj['username'])\n        password = obj['password']\n        print(obj['password'])\n        #print(rows[0][\"ds_senha\"])",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import log\n```\n\n```python\n\n\n```\n\n```python\ndef log():\n     try:\n        obj = json.loads(request.data)\n        rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username']).get()\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])\n        #obj = json.loads(request.data)\n     #print(obj['username'])\n        password = obj['password']\n        print(obj['password'])\n        #print(rows[0][\"ds_senha\"])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApi",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApi(osid):\n    try:\n        rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)\n        rows = [model_to_dict(row) for row in rows]\n        #rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))\n        if not rows:\n            return jsonify('Not found')\n        if request.method == 'POST':\n             obj = json.loads(request.data)\n             try:",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApi\n```\n\n```python\n\n\n```\n\n```python\ndef osApi(osid):\n    try:\n        rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)\n        rows = [model_to_dict(row) for row in rows]\n        #rows = db.execute('SELECT * FROM Cadastro_OS WHERE Id = '+ str(osid))\n        if not rows:\n            return jsonify('Not found')\n        if request.method == 'POST':\n             obj = json.loads(request.data)\n             try:\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApiall",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApiall(limit):\n  #  try:\n        rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())\n        #print()\n       # print(rows)\n        #rows = [model_to_dict(row) for row in rows]\n        #stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            print()",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApiall\n```\n\n```python\n\n\n```\n\n```python\ndef osApiall(limit):\n  #  try:\n        rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())\n        #print()\n       # print(rows)\n        #rows = [model_to_dict(row) for row in rows]\n        #stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            print()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApiSearch",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApiSearch(query):\n  #  try:\n        if len(query) < 2:\n            rows = Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(200)\n        else:\n            rows = Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc())\n        rows = [model_to_dict(row) for row in rows]\n        #stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Prazo, o.Especificacao, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente AND o.Especificacao LIKE '%\" + str(query) + \"%' ORDER BY o.Numero_Os DESC \"\n     #   if limit > 0:\n     #       stmt += \" LIMIT \" + str(limit)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApiSearch\n```\n\n```python\n\n\n```\n\n```python\ndef osApiSearch(query):\n  #  try:\n        if len(query) < 2:\n            rows = Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(200)\n        else:\n            rows = Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc())\n        rows = [model_to_dict(row) for row in rows]\n        #stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Prazo, o.Especificacao, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente AND o.Especificacao LIKE '%\" + str(query) + \"%' ORDER BY o.Numero_Os DESC \"\n     #   if limit > 0:\n     #       stmt += \" LIMIT \" + str(limit)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "osApiNum",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osApiNum():\n    try:\n          os_num = Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar()\n          os_num = int(os_num) + 1\n          return jsonify(os_num)\n    except:\n        return jsonify('Error')\n@app.route('/api/clientes', methods=['GET', 'POST'])\ndef allClientes():\n    clients = Clientes.select()",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import osApiNum\n```\n\n```python\n\n\n```\n\n```python\ndef osApiNum():\n    try:\n          os_num = Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar()\n          os_num = int(os_num) + 1\n          return jsonify(os_num)\n    except:\n        return jsonify('Error')\n@app.route('/api/clientes', methods=['GET', 'POST'])\ndef allClientes():\n    clients = Clientes.select()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "allClientes",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def allClientes():\n    clients = Clientes.select()\n    clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@app.route('/api/clientes/idname', methods=['GET', 'POST'])\ndef IdClientes():\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select(Clientes.ID, Clientes.nome).order_by(Clientes.ID.asc())\n    return jsonify(model_to_dict(res))\n@app.route('/api/clientes/q=<string:query>', methods=['GET', 'POST'])",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import allClientes\n```\n\n```python\n\n\n```\n\n```python\ndef allClientes():\n    clients = Clientes.select()\n    clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@app.route('/api/clientes/idname', methods=['GET', 'POST'])\ndef IdClientes():\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select(Clientes.ID, Clientes.nome).order_by(Clientes.ID.asc())\n    return jsonify(model_to_dict(res))\n@app.route('/api/clientes/q=<string:query>', methods=['GET', 'POST'])\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "IdClientes",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def IdClientes():\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select(Clientes.ID, Clientes.nome).order_by(Clientes.ID.asc())\n    return jsonify(model_to_dict(res))\n@app.route('/api/clientes/q=<string:query>', methods=['GET', 'POST'])\ndef nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())\n    res = [model_to_dict(row) for row in res]\n    return jsonify(res)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import IdClientes\n```\n\n```python\n\n\n```\n\n```python\ndef IdClientes():\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select(Clientes.ID, Clientes.nome).order_by(Clientes.ID.asc())\n    return jsonify(model_to_dict(res))\n@app.route('/api/clientes/q=<string:query>', methods=['GET', 'POST'])\ndef nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())\n    res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "nome",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())\n    res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\ndef allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        #stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import nome\n```\n\n```python\n\n\n```\n\n```python\ndef nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())\n    res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\ndef allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        #stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "allEstoque",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        #stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)\n        #rows = [model_to_dict(row) for row in rows]\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n        print()\n        print(rows)\n        return jsonify(rows)\n    elif request.method == 'POST' and request.data:",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import allEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        #stmt = \"SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT \"+ str(limit)\n        #rows = [model_to_dict(row) for row in rows]\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n        print()\n        print(rows)\n        return jsonify(rows)\n    elif request.method == 'POST' and request.data:\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "queryEstoque",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    #print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\nif __name__ == \"__main__\" :\n     app.run(debug=True)",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import queryEstoque\n```\n\n```python\n\n\n```\n\n```python\ndef queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    #print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\nif __name__ == \"__main__\" :\n     app.run(debug=True)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "\"\"\"os.environ['SECRET_KEY']",
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['SECRET_KEY'] =  \"caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79\"\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "\"\"\"os.environ['SECRET_KEY'] =  \"caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79\"\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import os.environ['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['SECRET_KEY'] =  \"caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79\"\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n```\n",
+            "value": "\n```python\nfrom app import \"\"\"os.environ['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\n\"\"\"os.environ['SECRET_KEY'] =  \"caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79\"\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1181,10 +1401,10 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'",
+        "peekOfCode": "os.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import os.environ['DB']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\n```\n",
+            "value": "\n```python\nfrom app import os.environ['DB']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1193,10 +1413,10 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import os.environ['USER']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n```\n",
+            "value": "\n```python\nfrom app import os.environ['USER']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1205,10 +1425,10 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)",
+        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import os.environ['PASSWORD']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n```\n",
+            "value": "\n```python\nfrom app import os.environ['PASSWORD']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1217,10 +1437,10 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request",
+        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import os.environ['DATABASE']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\n```\n",
+            "value": "\n```python\nfrom app import os.environ['DATABASE']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1229,10 +1449,22 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "db = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):",
+        "peekOfCode": "db = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(os.environ['DB'])\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n```\n",
+            "value": "\n```python\nfrom app import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(os.environ['DB'])\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "db = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(\"sqlite:///peppertools34.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\n#app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.after_request\ndef after_request(response):\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1625,10 +1857,10 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db = conn.cursor(buffered=True)\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":",
+        "peekOfCode": "def getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":\n            Cadastro_OS.select().from_(table).order_by(Cadastro_OS.column.desc())",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import getData\n```\n\n```python\n\n\n```\n\n```python\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db = conn.cursor(buffered=True)\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":\n```\n",
+            "value": "\n```python\nfrom helper import getData\n```\n\n```python\n\n\n```\n\n```python\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":\n            Cadastro_OS.select().from_(table).order_by(Cadastro_OS.column.desc())\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1637,10 +1869,10 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def valClientes(id):\n    cn = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n    db = cn.cursor()\n    db.execute(\"SELECT * FROM Clientes WHERE ID = ?\", id)\n    result = db.fetchall()\n    return result\ndef login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/",
+        "peekOfCode": "def valClientes(id):\n    rows = Clientes.select().where(Clientes.ID == id)\n    rows = [model_to_dict(row) for row in rows]\n    return rows\ndef login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import valClientes\n```\n\n```python\n\n\n```\n\n```python\ndef valClientes(id):\n    cn = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n    db = cn.cursor()\n    db.execute(\"SELECT * FROM Clientes WHERE ID = ?\", id)\n    result = db.fetchall()\n    return result\ndef login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n```\n",
+            "value": "\n```python\nfrom helper import valClientes\n```\n\n```python\n\n\n```\n\n```python\ndef valClientes(id):\n    rows = Clientes.select().where(Clientes.ID == id)\n    rows = [model_to_dict(row) for row in rows]\n    return rows\ndef login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1661,10 +1893,10 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    if len(rows) != 1 or not check_password_hash(rows[0][\"ds_senha\"], password):\n            flash(\"Login Inválido\")\n            return redirect('/login')\n    else:\n         token = jwt.encode({'user': user, 'level': rows[0][\"nivel\"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)\n         session[\"token\"] = token.decode('UTF-8')\n         session['_permanent'] = token.decode('UTF-8')\n         if session.get(\"osid\"):",
+        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    print(rows[0]['ds_senha'])\n    if not check_password_hash(rows[0]['ds_senha'], password):\n        if rows[0]['ds_senha'] != password:\n            flash(\"Login Inválido\")\n            return redirect('/login')\n        pass",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import login_user\n```\n\n```python\n\n\n```\n\n```python\ndef login_user(user, password, jwtoken):\n    rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    if len(rows) != 1 or not check_password_hash(rows[0][\"ds_senha\"], password):\n            flash(\"Login Inválido\")\n            return redirect('/login')\n    else:\n         token = jwt.encode({'user': user, 'level': rows[0][\"nivel\"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)\n         session[\"token\"] = token.decode('UTF-8')\n         session['_permanent'] = token.decode('UTF-8')\n         if session.get(\"osid\"):\n```\n",
+            "value": "\n```python\nfrom helper import login_user\n```\n\n```python\n\n\n```\n\n```python\ndef login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    print(rows[0]['ds_senha'])\n    if not check_password_hash(rows[0]['ds_senha'], password):\n        if rows[0]['ds_senha'] != password:\n            flash(\"Login Inválido\")\n            return redirect('/login')\n        pass\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1697,10 +1929,10 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def getClient( option='ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    else:\n        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) \n        rows = rows[0]\n    return rows\ndef getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')",
+        "peekOfCode": "def getClient( option='ALL'):\n    if option == 'ALL':\n        rows = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        rows = [model_to_dict(row) for row in rows]\n        #rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    else:\n        rows = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID, Cadastro_OS.Id == option)).distinct()\n        rows = [model_to_dict(row) for row in rows]\n        #rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) \n        rows = rows[0]",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import getClient\n```\n\n```python\n\n\n```\n\n```python\ndef getClient( option='ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    else:\n        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) \n        rows = rows[0]\n    return rows\ndef getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n```\n",
+            "value": "\n```python\nfrom helper import getClient\n```\n\n```python\n\n\n```\n\n```python\ndef getClient( option='ALL'):\n    if option == 'ALL':\n        rows = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        rows = [model_to_dict(row) for row in rows]\n        #rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    else:\n        rows = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID, Cadastro_OS.Id == option)).distinct()\n        rows = [model_to_dict(row) for row in rows]\n        #rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) \n        rows = rows[0]\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1709,10 +1941,10 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n        rows = int(rows[0]['num_os']) + 1\n    else:\n        stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)\n        rows = db.execute(stmt)   \n    return rows\ndef updateData(list, table, col, Id):\n    db = conn.cursor()",
+        "peekOfCode": "def getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1\n       # rows = int(rows[0]['num_os']) + 1\n    else:\n        stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)\n        rows = os = Cadastro_OS.select().where(Cadastro_OS == osid)\n    return rows\ndef updateData(list, table, col, Id):\n  #  print(list)",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import getOs\n```\n\n```python\n\n\n```\n\n```python\ndef getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n        rows = int(rows[0]['num_os']) + 1\n    else:\n        stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)\n        rows = db.execute(stmt)   \n    return rows\ndef updateData(list, table, col, Id):\n    db = conn.cursor()\n```\n",
+            "value": "\n```python\nfrom helper import getOs\n```\n\n```python\n\n\n```\n\n```python\ndef getOs(option = 'ALL'):\n    if option == 'ALL':\n        rows = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1\n       # rows = int(rows[0]['num_os']) + 1\n    else:\n        stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)\n        rows = os = Cadastro_OS.select().where(Cadastro_OS == osid)\n    return rows\ndef updateData(list, table, col, Id):\n  #  print(list)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1721,10 +1953,10 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def updateData(list, table, col, Id):\n    db = conn.cursor()\n  #  print(list)\n    stmt = \"UPDATE \" + table + \" SET \"\n    values = \"\"\n    for item in list:\n        if not list[item] or list[item] == item or item == 'id':\n            pass\n        else:\n            if not isinstance(list[item], str):",
+        "peekOfCode": "def updateData(list, table, col, Id):\n  #  print(list)\n    stmt = \"UPDATE \" + table + \" SET \"\n    values = \"\"\n    for item in list:\n        if not list[item] or list[item] == item or item == 'id':\n            pass\n        else:\n            if not isinstance(list[item], str):\n                values = values + item + \"=\" + str(list[item]) + \",\"",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import updateData\n```\n\n```python\n\n\n```\n\n```python\ndef updateData(list, table, col, Id):\n    db = conn.cursor()\n  #  print(list)\n    stmt = \"UPDATE \" + table + \" SET \"\n    values = \"\"\n    for item in list:\n        if not list[item] or list[item] == item or item == 'id':\n            pass\n        else:\n            if not isinstance(list[item], str):\n```\n",
+            "value": "\n```python\nfrom helper import updateData\n```\n\n```python\n\n\n```\n\n```python\ndef updateData(list, table, col, Id):\n  #  print(list)\n    stmt = \"UPDATE \" + table + \" SET \"\n    values = \"\"\n    for item in list:\n        if not list[item] or list[item] == item or item == 'id':\n            pass\n        else:\n            if not isinstance(list[item], str):\n                values = values + item + \"=\" + str(list[item]) + \",\"\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1769,10 +2001,10 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def logoutCommit():\n    conn.commit()\n    conn.close()\n    session.clear()\n    return redirect('/login')",
+        "peekOfCode": "def logoutCommit():\n    session.clear()\n    return redirect('/login')",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import logoutCommit\n```\n\n```python\n\n\n```\n\n```python\ndef logoutCommit():\n    conn.commit()\n    conn.close()\n    session.clear()\n    return redirect('/login')\n```\n",
+            "value": "\n```python\nfrom helper import logoutCommit\n```\n\n```python\n\n\n```\n\n```python\ndef logoutCommit():\n    session.clear()\n    return redirect('/login')\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1805,10 +2037,10 @@
         "kind": 5,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )",
+        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import os.environ['USER']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\n```\n",
+            "value": "\n```python\nfrom helper import os.environ['USER']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1817,10 +2049,10 @@
         "kind": 5,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):",
+        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import os.environ['PASSWORD']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n```\n",
+            "value": "\n```python\nfrom helper import os.environ['PASSWORD']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1829,10 +2061,10 @@
         "kind": 5,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:",
+        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import os.environ['DATABASE']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n```\n",
+            "value": "\n```python\nfrom helper import os.environ['DATABASE']\n```\n\n```python\n\n\n```\n\n```python\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1841,10 +2073,10 @@
         "kind": 5,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "db = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None",
+        "peekOfCode": "db = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n```\n",
+            "value": "\n```python\nfrom helper import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1853,10 +2085,238 @@
         "kind": 5,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "conn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   ",
+        "peekOfCode": "conn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None",
         "detail": "helper",
         "documentation": {
-            "value": "\n```python\nfrom helper import conn\n```\n\n```python\n\n\n```\n\n```python\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n```\n",
+            "value": "\n```python\nfrom helper import conn\n```\n\n```python\n\n\n```\n\n```python\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "db = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":",
+        "detail": "helper",
+        "documentation": {
+            "value": "\n```python\nfrom helper import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SQL(\"sqlite:///peppertools34.db\")\ndef getData(pref1, cond1, table, limit=False, column = \"\"):\n    if not pref1 or not cond1 or not table:\n        return None\n    else:   \n        #conn2 = sqlite3.connect(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\n        db2 = db\n        cond2 = str(cond1)\n        table2 = str(table)\n        if limit == True and column !=\"\":\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Clientes",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n    cep = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import Clientes\n```\n\n```python\n\n\n```\n\n```python\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n    cep = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Cadastro_OS",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class Cadastro_OS(Model):\n    Id = PrimaryKeyField()\n    Tipo = TextField()\n    Numero_Os = IntegerField()\n    Id_Cliente = IntegerField()\n    Data = DateTimeField(default=datetime.datetime.now)\n    Prazo = DateTimeField()\n    gravacao = TextField()\n    Ferramenta = TextField()\n    Material = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import Cadastro_OS\n```\n\n```python\n\n\n```\n\n```python\nclass Cadastro_OS(Model):\n    Id = PrimaryKeyField()\n    Tipo = TextField()\n    Numero_Os = IntegerField()\n    Id_Cliente = IntegerField()\n    Data = DateTimeField(default=datetime.datetime.now)\n    Prazo = DateTimeField()\n    gravacao = TextField()\n    Ferramenta = TextField()\n    Material = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Estoque",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class Estoque(Model):\n    ID = PrimaryKeyField()\n    id_cliente = IntegerField()\n    ferramenta = TextField()\n    material = TextField()\n    cod_pc = TextField()\n    mm = TextField()\n    qt = IntegerField()\n    gaveta = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import Estoque\n```\n\n```python\n\n\n```\n\n```python\nclass Estoque(Model):\n    ID = PrimaryKeyField()\n    id_cliente = IntegerField()\n    ferramenta = TextField()\n    material = TextField()\n    cod_pc = TextField()\n    mm = TextField()\n    qt = IntegerField()\n    gaveta = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "usuarios",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class usuarios(Model):\n    ID = PrimaryKeyField()\n    ds_senha = TextField()\n    ds_login = TextField()\n    nivel = IntegerField()\n    desc = TextField()\n    class Meta: \n        database = db\nclass contasapagar(Model):\n    ID = PrimaryKeyField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import usuarios\n```\n\n```python\n\n\n```\n\n```python\nclass usuarios(Model):\n    ID = PrimaryKeyField()\n    ds_senha = TextField()\n    ds_login = TextField()\n    nivel = IntegerField()\n    desc = TextField()\n    class Meta: \n        database = db\nclass contasapagar(Model):\n    ID = PrimaryKeyField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "contasapagar",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class contasapagar(Model):\n    ID = PrimaryKeyField()\n    vencimento = TextField()\n    descricao = TextField()\n    valor = FloatField()\n    pago = IntegerField()\n    data_pagamento = TextField()\n    class Meta: \n        database = db\nclass orcamento(Model):",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import contasapagar\n```\n\n```python\n\n\n```\n\n```python\nclass contasapagar(Model):\n    ID = PrimaryKeyField()\n    vencimento = TextField()\n    descricao = TextField()\n    valor = FloatField()\n    pago = IntegerField()\n    data_pagamento = TextField()\n    class Meta: \n        database = db\nclass orcamento(Model):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "orcamento",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class orcamento(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    ano = IntegerField()\n    cod_item = IntegerField()\n    data = TextField()\n    para = TextField()\n    attn = TextField()\n    refer = TextField()\n    de = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import orcamento\n```\n\n```python\n\n\n```\n\n```python\nclass orcamento(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    ano = IntegerField()\n    cod_item = IntegerField()\n    data = TextField()\n    para = TextField()\n    attn = TextField()\n    refer = TextField()\n    de = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "caixa",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class caixa(Model):\n    id = PrimaryKeyField()\n    tipo = TextField()\n    descricao = TextField()\n    valor = FloatField()\n    data = TextField()\n    mes  = TextField()\n    ano = IntegerField()\n    class Meta:\n        database = db",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import caixa\n```\n\n```python\n\n\n```\n\n```python\nclass caixa(Model):\n    id = PrimaryKeyField()\n    tipo = TextField()\n    descricao = TextField()\n    valor = FloatField()\n    data = TextField()\n    mes  = TextField()\n    ano = IntegerField()\n    class Meta:\n        database = db\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Fornecedores",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class Fornecedores(Model):\n    ID = PrimaryKeyField()\n    cod_for = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n    cep = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import Fornecedores\n```\n\n```python\n\n\n```\n\n```python\nclass Fornecedores(Model):\n    ID = PrimaryKeyField()\n    cod_for = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n    cep = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Ferramenta",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class Ferramenta(Model):\n    ID = PrimaryKeyField()\n    Ferramenta = TextField()\n    Cod_ferramenta = TextField()\n    cod_cli = IntegerField()\n    mm = IntegerField()\nclass compras(Model):\n    ID = PrimaryKeyField()\n    cod_fornecedor = IntegerField()\n    data = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import Ferramenta\n```\n\n```python\n\n\n```\n\n```python\nclass Ferramenta(Model):\n    ID = PrimaryKeyField()\n    Ferramenta = TextField()\n    Cod_ferramenta = TextField()\n    cod_cli = IntegerField()\n    mm = IntegerField()\nclass compras(Model):\n    ID = PrimaryKeyField()\n    cod_fornecedor = IntegerField()\n    data = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "compras",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class compras(Model):\n    ID = PrimaryKeyField()\n    cod_fornecedor = IntegerField()\n    data = TextField()\n    qnt = IntegerField()\n    preco = FloatField()\n    desc = TextField()\n    ipi = TextField()\n    prazo = TextField()\n    cond = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import compras\n```\n\n```python\n\n\n```\n\n```python\nclass compras(Model):\n    ID = PrimaryKeyField()\n    cod_fornecedor = IntegerField()\n    data = TextField()\n    qnt = IntegerField()\n    preco = FloatField()\n    desc = TextField()\n    ipi = TextField()\n    prazo = TextField()\n    cond = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "contas_desc",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class contas_desc(Model):\n    id = PrimaryKeyField()\n    descx = TextField()\nclass controle(Model):\n    id = PrimaryKeyField()\n    cod_item = IntegerField()\n    cod_cli = IntegerField()\n    gaveta = IntegerField()\n    quantidade = IntegerField()\n    data = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import contas_desc\n```\n\n```python\n\n\n```\n\n```python\nclass contas_desc(Model):\n    id = PrimaryKeyField()\n    descx = TextField()\nclass controle(Model):\n    id = PrimaryKeyField()\n    cod_item = IntegerField()\n    cod_cli = IntegerField()\n    gaveta = IntegerField()\n    quantidade = IntegerField()\n    data = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "controle",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class controle(Model):\n    id = PrimaryKeyField()\n    cod_item = IntegerField()\n    cod_cli = IntegerField()\n    gaveta = IntegerField()\n    quantidade = IntegerField()\n    data = TextField()\n    class Meta: \n        database = db\nclass Pedidos(Model):",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import controle\n```\n\n```python\n\n\n```\n\n```python\nclass controle(Model):\n    id = PrimaryKeyField()\n    cod_item = IntegerField()\n    cod_cli = IntegerField()\n    gaveta = IntegerField()\n    quantidade = IntegerField()\n    data = TextField()\n    class Meta: \n        database = db\nclass Pedidos(Model):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Pedidos",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class Pedidos(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    ano = IntegerField()\n    id_cliente = IntegerField()\n    id_ferramenta = IntegerField()\n    especificacao = TextField()\n    desenho = TextField()\n    unidade = TextField()\n    qnt = IntegerField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import Pedidos\n```\n\n```python\n\n\n```\n\n```python\nclass Pedidos(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    ano = IntegerField()\n    id_cliente = IntegerField()\n    id_ferramenta = IntegerField()\n    especificacao = TextField()\n    desenho = TextField()\n    unidade = TextField()\n    qnt = IntegerField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "funcionarios",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class funcionarios(Model):\n    id = PrimaryKeyField()\n    funcionario = TextField()\n    nome = TextField()\n    senha = TextField()\n    class Meta:\n        database = db\nclass ponto(Model):\n    id = PrimaryKeyField()\n    cod_func = IntegerField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import funcionarios\n```\n\n```python\n\n\n```\n\n```python\nclass funcionarios(Model):\n    id = PrimaryKeyField()\n    funcionario = TextField()\n    nome = TextField()\n    senha = TextField()\n    class Meta:\n        database = db\nclass ponto(Model):\n    id = PrimaryKeyField()\n    cod_func = IntegerField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "ponto",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class ponto(Model):\n    id = PrimaryKeyField()\n    cod_func = IntegerField()\n    data = TextField()\n    hora = TextField()\n    tipo = TextField()\n    class Meta:\n        database = db\nclass Material(Model):\n    ID = PrimaryKeyField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import ponto\n```\n\n```python\n\n\n```\n\n```python\nclass ponto(Model):\n    id = PrimaryKeyField()\n    cod_func = IntegerField()\n    data = TextField()\n    hora = TextField()\n    tipo = TextField()\n    class Meta:\n        database = db\nclass Material(Model):\n    ID = PrimaryKeyField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "Material",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class Material(Model):\n    ID = PrimaryKeyField()\n    material = TextField()\n    cod_material = TextField()\n    class Meta:\n        database = db\nclass notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()\n    data_nf= TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import Material\n```\n\n```python\n\n\n```\n\n```python\nclass Material(Model):\n    ID = PrimaryKeyField()\n    material = TextField()\n    cod_material = TextField()\n    class Meta:\n        database = db\nclass notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()\n    data_nf= TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "notafiscal",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()\n    data_nf= TextField()\n    valor_nf = TextField()\n    class Meta:\n        database = db",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import notafiscal\n```\n\n```python\n\n\n```\n\n```python\nclass notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()\n    data_nf= TextField()\n    valor_nf = TextField()\n    class Meta:\n        database = db\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "db = SqliteDatabase('peppertools34.sqlite')\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nfrom model import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SqliteDatabase('peppertools34.sqlite')\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n```\n",
             "supportThemeIcons": false
         }
     }

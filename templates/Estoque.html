@@ -4,26 +4,26 @@
 <div class="form-group mb-3">
     <label for="limit">Items:</label>
     <input class="form-control" id="limit" type="number" min="5" max="7913"
-        step="5" onchange="loadOs(this.value)">
+        step="5" onchange="loadEstoque(this.value)">
     <label for="usr">Filtrar por:</label>
     <select name="filter" id="filter" class="filter">
-
-
-        {% for col in range(col_len) %}
-
-
-        <option value="{{columns[col]}}">{{columns[col]}}</option>
-
+        <option value="" selected disabled>Selecione</option>
+        {% for column in columns %}
+        <option value="{{column}}">{{column.capitalize()}}</option>
         {% endfor %}
 
 
+
+
+
     </select> <br>
-    <input type="hidden" id="infilter" />
+    <input type="hidden" id="infilter" onchange="filterEstoque(this.value)" />
 </div>
 
 <table class="table">
     <thead>
         <tr>
+            <th scope="col">Código Peça</th>
             <th scope="col">Cliente</th>
             <th scope="col">Gaveta</th>
             <th scope="col">Material</th>

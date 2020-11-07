@@ -6,7 +6,9 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
 import mysql.connector as sqlite3
-
+from playhouse.shortcuts import model_to_dict, dict_to_model
+from model import *
+"""
 os.environ['SECRET_KEY'] =  "caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79"
 os.environ['DB'] =  "mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n"
 os.environ['HOST']= "nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
@@ -22,47 +24,47 @@ conn = sqlite3.connect(
             user=os.environ['USER'],
             password=os.environ['PASSWORD'],
             database=os.environ['DATABASE']
-        )
+        )"""
+db = SQL("sqlite:///peppertools34.db")
 def getData(pref1, cond1, table, limit=False, column = ""):
     if not pref1 or not cond1 or not table:
         return None
     else:   
         #conn2 = sqlite3.connect("mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n")
-        db = conn.cursor(buffered=True)
         db2 = db
         cond2 = str(cond1)
         table2 = str(table)
         if limit == True and column !="":
+            Cadastro_OS.select().from_(table).order_by(Cadastro_OS.column.desc())
            # print('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
             db.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
             db2.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
         else:
-            db.execute('SELECT {} FROM {}'.format(cond2, table2))
+            res = db.execute('SELECT {} FROM {}'.format(cond2, table2))
             print('SELECT {} FROM {}'.format(cond2, table2))
             #db2.execute('SELECT {} FROM {}'.format(cond2,table2))
-            rowsE = db.fetchone()
+            rowsE = res[0]
             result = list()
             for row in rowsE:
                 result.append(row)
             #return result
            
         if pref1 == "key":
-            #num_fields = len(db.description)
-            field_names = [i[0] for i in db.description]
+            rows = db.execute('SELECT {} FROM {} ORDER BY {} DESC'.format(cond2,table2, column))
+            #col = db.execute("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N{}".format(table) )
+            field_names = [i[0] for i in rows]
             result = list()
             #print(field_names)
             result = field_names
         elif pref1 == 'val':
-          result = db2.fetchall()
+          result = db
             
         return result
 
 def valClientes(id):
-    cn = sqlite3.connect("mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n")
-    db = cn.cursor()
-    db.execute("SELECT * FROM Clientes WHERE ID = ?", id)
-    result = db.fetchall()
-    return result
+    rows = Clientes.select().where(Clientes.ID == id)
+    rows = [model_to_dict(row) for row in rows]
+    return rows
 
 def login_required(f):
     """
@@ -79,7 +81,7 @@ def login_required(f):
                 jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
                 return f(*args, **kwargs)
             except jwt.ExpiredSignature:
-                conn.commit()
+               
                 if session.get('osid'): 
                     osid = session.get('osid')
                     session.clear()
@@ -88,7 +90,7 @@ def login_required(f):
                     return redirect('/login')
                 else:
                     session.clear()
-                    conn.close()
+                   
                     flash("Log in Expirado!")
                     return redirect('/login')
         return redirect("/login")
@@ -96,21 +98,25 @@ def login_required(f):
     return decorated_function
 
 def login_user(user, password, jwtoken):
-    rows = db.execute("SELECT * FROM usuarios WHERE ds_login = \'"+ user + "\'")
-    if len(rows) != 1 or not check_password_hash(rows[0]["ds_senha"], password):
+    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())
+    #rows=[model_to_dict(row) for row in rows]
+    #rows = db.execute("SELECT * FROM usuarios WHERE ds_login = \'"+ user + "\'")
+    print(rows[0]['ds_senha'])
+    if not check_password_hash(rows[0]['ds_senha'], password):
+        if rows[0]['ds_senha'] != password:
             flash("Login Inválido")
             return redirect('/login')
-    else:
-         token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)
-         session["token"] = token.decode('UTF-8')
-         session['_permanent'] = token.decode('UTF-8')
-         if session.get("osid"):
-            if session.get("_permanent") or request.headers.get('authorization'):
-                return redirect("os/form/"+str(session['osid']))
-            else:
-                return redirect('/login')
-         return redirect('/')
+        pass
+    
+    token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)
+    session["token"] = token.decode('UTF-8')
+    session['_permanent'] = token.decode('UTF-8')
+    if session.get("osid"):
+        return redirect("os/form/"+str(session['osid']))
+    return redirect('/')
             
+
+    
 
 def underdev():
     return render_template('manutencao.html',  title= "Inicio", active1="",active2="", active3="", active4="active")
@@ -141,28 +147,37 @@ def insertData(list, table, pref1=""):
         return rows[0]['Id']
     find = 'SELECT ID FROM '+ table +' ORDER BY ID DESC LIMIT 1'
     rows = db.execute(find)
-    return rows[0]['ID']
+    try:
+         return rows[0]['Id']
+    except:
+         return rows[0]['ID']
+    else:
+         return rows[0]['id']
+   
    
     
 def getClient( option='ALL'):
     if option == 'ALL':
-        rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
+        rows = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()
+        rows = [model_to_dict(row) for row in rows]
+        #rows = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
     else:
-        rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) 
+        rows = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID, Cadastro_OS.Id == option)).distinct()
+        rows = [model_to_dict(row) for row in rows]
+        #rows = db.execute('SELECT DISTINCT nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID AND Cadastro_OS.Id = ?', option) 
         rows = rows[0]
     return rows
 
 def getOs(option = 'ALL'):
     if option == 'ALL':
-        rows = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
-        rows = int(rows[0]['num_os']) + 1
+        rows = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1
+       # rows = int(rows[0]['num_os']) + 1
     else:
         stmt = 'SELECT * FROM Cadastro_OS WHERE Id = '+ str(option)
-        rows = db.execute(stmt)   
+        rows = os = Cadastro_OS.select().where(Cadastro_OS == osid)
     return rows
 
 def updateData(list, table, col, Id):
-    db = conn.cursor()
   #  print(list)
     stmt = "UPDATE " + table + " SET "
     values = ""
@@ -227,7 +242,5 @@ def auth_required(f):
     return decorated_function
 
 def logoutCommit():
-    conn.commit()
-    conn.close()
     session.clear()
     return redirect('/login')

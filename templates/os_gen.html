@@ -6,9 +6,9 @@
 	O.S <i class="fa fa-user-edit"></i>
 
 </h2>
-<h5 class="text-center">
+<!---<h5 class="text-center">
 	Datas serao alteradas para 'dd/mm/ano' <i class="fa fa-user-edit"></i>
-
+--->
 </h5>
 
 <hr>
@@ -35,25 +35,27 @@
 
 
 			<div class="col-md-6">
-				Cliente: <i class="fa fa-user"></i>
+				<div class="form-group">
+					Cliente: <i class="fa fa-user"></i>
 
 
-				<select name="Id_Cliente" class="Id_Cliente">
-					<option value="0" selected>SELECIONAR CLIENTE</option>
+					<select name="Id_Cliente" class="Id_Cliente form-control" id="Id_Cliente
+						form-id">
+						<option value="0" disabled selected>SELECIONAR CLIENTE</option>
 
-					{% for client in range(clients_len -1) %}
-					{%if field['Id_Cliente'] != nill and field['Id_Cliente'] ==
-					clients[client]['ID']%}
-					<option value="{{clients[client]['ID']}}" selected>{{clients[client]['nome']}}</option>
-					{% else %}
-					<option value="{{clients[client]['ID']}}">{{clients[client]['nome']}}</option>
-					{% endif %}
-					{%endfor%}
+						{% for client in clients %}
+						{%if field['Id_Cliente'] != nill and field['Id_Cliente'] == client['ID']%}
+						<option value="{{client['ID']}}" selected>{{ client['nome']}}</option>
+						{% else %}
+						<option value="{{client['ID']}}">{{ client['nome'] }}</option>
+						{% endif %}
+						{%endfor%}
 
-				</select> <br>
+					</select> <br>
+					<p id="msg"></p>
 
 
-
+				</div>
 			</div>
 
 			<div class="col-md-12">
@@ -68,10 +70,11 @@
 			</div>
 
 			<div class="col-md-6">
-				Ferramenta <i class="fa fa-envelope"></i>
-				<input class="form-control" type="text" name="Ferramenta" value="{{
-					field['Ferramenta'] if field['Ferramenta'] != 'None' }}"><br>
-
+				<div class="form-group" id="form-id">
+					Ferramenta <i class="fa fa-envelope"></i>
+					<input class="form-control" type="text" name="Ferramenta" value="{{
+						field['Ferramenta'] if field['Ferramenta'] != 'None' }}"><br>
+				</div>
 			</div>
 
 			<div class="col-md-4">
@@ -105,37 +108,38 @@
 			<div class="col-md-2">
 				Prazo: <i class="fa fa-calender"></i>
 				<input class="form-control da" type="text" name="Prazo"
-					data-mask="00/00/0000" value="{{ field['prazo'] if field['prazo'] != 'None'
-					else ' ' }}"> <br>
+					data-mask="00/00/0000" value="{{ field['Prazo'] if field['Prazo'] != 'None'
+					else '' }}"> <br>
 
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-6" id="form-id">
 				Especificacao: <i class="fa fa-map"></i>
-				<textarea name="Especificacao" class="form-control">
-					{{field['Especificacao'] if field['Especificacao'] != 'None' }} </textarea>
+				<textarea name="Especificacao" class="form-control">{{field['Especificacao']
+					if field['Especificacao'] != 'None'}}</textarea>
 				<br>
 
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-6" id="form-id">
 				Grava&ccedil;&atilde;o: <i class="fa fa-map"></i>
 				<input class="form-control" type="text" name="gravacao" value="{{
-					field['gravacao'] if field['gravacao'] != 'None' else ' ' }}"> <br>
+					field['gravacao'] if field['gravacao'] != 'None' else '' }}"> <br>
 
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-6" id="form-id">
 				Grava&ccedil;&atilde;o 2: <i class="fa fa-map"></i>
 				<input class="form-control" type="text" name="gravacao2"
-					value="{{field['gravacao2'] if field['gravacao2'] != 'None' else""}}"> <br>
+					value="{{field['gravacao2'] if field['gravacao2'] != 'None' else '' }}">
+				<br>
 			</div>
 
 
 			<div class="col-md-6">
 				Material: <i class="fa fa-map"></i>
 				<input class="form-control" type="text" name="Material" value="{{
-					field['Material'] if field['Material'] != 'None' else""}}"> <br>
+					field['Material'] if field['Material'] != 'None' else '' }}"> <br>
 
 			</div>
 
@@ -148,7 +152,9 @@
 
 					{% if field['unidade'] == 'jogo' %}
 					<option value='jogo' selected>Jogo</option>
+					<option value='peca'>Pe&ccedil;a</option>
 					{% else %}
+					<option value='jogo'>Jogo</option>
 					<option value='peca' selected>Pe&ccedil;a</option>
 					{%endif%}
 					{%else%}
@@ -170,16 +176,22 @@
 				<select name="Tipo">
 					{% if field['Tipo'] != nill %}
 					{% if field['Tipo'] == 'fabricacao' %}
+					<option value='afiacao'>Afia&ccedil;&atilde;o</option>
 					<option value='fabricacao' selected>Fabrica&ccedil;&atilde;o</option>
+					<option value='modificacao'>Modifica&ccedil;&atilde;o</option>
 					{%elif field['Tipo'] == 'modificacao'%}
+					<option value='afiacao'>Afia&ccedil;&atilde;o</option>
+					<option value='fabricacao'>Fabrica&ccedil;&atilde;o</option>
 					<option value='modificacao' selected>Modifica&ccedil;&atilde;o</option>
 					{% else %}
 					<option value='afiacao' selected>Afia&ccedil;&atilde;o</option>
-					{% endif %}
-					{% else %}
 					<option value='fabricacao'>Fabrica&ccedil;&atilde;o</option>
 					<option value='modificacao'>Modifica&ccedil;&atilde;o</option>
+					{% endif %}
+					{% else %}
 					<option value='afiacao' selected>Afia&ccedil;&atilde;o</option>
+					<option value='fabricacao'>Fabrica&ccedil;&atilde;o</option>
+					<option value='modificacao'>Modifica&ccedil;&atilde;o</option>
 					{% endif %}
 
 
@@ -192,7 +204,7 @@
 
 			<div class="col-md-2">
 				Quantidade: <i class="fa fa-map"></i>
-				<input class="form-control" type="text" name="Quantidade"
+				<input class="form-control" type="number" name="Quantidade" min="1"
 					value="{{field['Quantidade'] if field['Quantidade'] != 'None' else ' ' }}">
 				<br>
 
@@ -244,14 +256,14 @@
 
 				{% if field['Id'] != nill %}
 				<br>
-				<button class="btn btn-warning btn-lg">
+				<button class="btn btn-dark btn-lg">
 					Alterar O.S <i class=".glyphicon-glyphicon-pencil"></i>
 
 				</button>
 
 				{% else %}
 				<br>
-				<button class="btn btn-warning btn-lg">
+				<button class="btn btn-dark btn-lg" id="cad">
 					Cadastrar O.S <i class=".glyphicon-glyphicon-pencil"></i>
 
 				</button>
@@ -276,7 +288,7 @@
 			Deletar O.S <i class=".glyphicon-glyphicon-pencil"></i>
 		</button>
 	</a>
-	<a href="/os/form/print/{{field['Numero_Os']}}" target="blank">
+	<a href="/os/form/print/{{field['Id']}}" target="blank">
 		<button class="btn btn-success btn-md">
 			Imprimir O.S <i class=".glyphicon-glyphicon-pencil"></i>
 		</button>
@@ -304,8 +316,13 @@
 <script type="text/javascript" src="{{ url_for('static',
 	filename='js/jquery.mask.min.js')}}"></script>
 
-
-
+<script type="text/javascript" src="{{ url_for('static',
+	filename='js/sisyphus.min.js')}}">
+	  
+  $( function() {
+$( "#id-form" ).sisyphus()
+} );
+  </script>
 
 
 {% endblock%}

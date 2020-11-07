@@ -15,6 +15,11 @@
   }
 }
 
+.Id_Cliente {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 body {
   font: 400 14px Roboto, sans-serif;
   background: #f0f0f5;

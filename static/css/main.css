@@ -480,3 +480,8 @@ input.input100 {
     border-top-right-radius: 0px;
   }
 }
+
+select .Id_Cliente {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
