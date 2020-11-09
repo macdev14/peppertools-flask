@@ -266,6 +266,94 @@
         }
     },
     {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "make_response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "SQL",
         "importPath": "cs50",
         "description": "cs50",
@@ -766,6 +854,28 @@
         }
     },
     {
+        "label": "*",
+        "importPath": "model",
+        "description": "model",
+        "isExtraImport": true,
+        "detail": "model",
+        "documentation": {
+            "value": "\n```python\nimport model\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "*",
+        "importPath": "page",
+        "description": "page",
+        "isExtraImport": true,
+        "detail": "page",
+        "documentation": {
+            "value": "\n```python\nimport page\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -933,10 +1043,10 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response",
+        "peekOfCode": "def estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"list.html\", title= \"Estoque\", client = True, tableCol=columns, table=\"estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response",
         "detail": "app",
         "documentation": {
-            "value": "\n```python\nfrom app import estoque\n```\n\n```python\n\n\n```\n\n```python\ndef estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"Estoque.html\", title= \"Estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n```\n",
+            "value": "\n```python\nfrom app import estoque\n```\n\n```python\n\n\n```\n\n```python\ndef estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"list.html\", title= \"Estoque\", client = True, tableCol=columns, table=\"estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1249,6 +1359,18 @@
         "detail": "app",
         "documentation": {
             "value": "\n```python\nfrom app import pontocad\n```\n\n```python\n\n\n```\n\n```python\ndef pontocad(idponto):\n    Keys = list(ponto._meta.fields.keys())\n    allcol = funcionarios.select(funcionarios.id, funcionarios.nome)\n    if idponto != '':\n        pontohora = ponto.select(ponto, funcionarios.id, funcionarios.nome).from_(ponto, funcionarios).where(ponto.cod_func == funcionarios.id, ponto.id == idponto)\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['data'] = datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%d/%m/%Y')    \n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "func",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def func(idfunc):\n    if idfunc != '':\n        if request.method == 'GET':\n            content = funcionarios.select().where(funcionarios.id == idfunc)\n            pagefunc = page('funcionarios', content[0], edit=True)\n            return pagefunc.render()\n        elif request.method == 'POST':\n            funcionarios.update(funcionario = request.form['funcionario'], nome = request.form['nome'], senha=request.form['senha']).where(funcionarios.id == idfunc).execute()\n            flash(\"Alterado com Sucesso\")\n            return redirect('/funcionarios/form/'+ str(idfunc))",
+        "detail": "app",
+        "documentation": {
+            "value": "\n```python\nfrom app import func\n```\n\n```python\n\n\n```\n\n```python\ndef func(idfunc):\n    if idfunc != '':\n        if request.method == 'GET':\n            content = funcionarios.select().where(funcionarios.id == idfunc)\n            pagefunc = page('funcionarios', content[0], edit=True)\n            return pagefunc.render()\n        elif request.method == 'POST':\n            funcionarios.update(funcionario = request.form['funcionario'], nome = request.form['nome'], senha=request.form['senha']).where(funcionarios.id == idfunc).execute()\n            flash(\"Alterado com Sucesso\")\n            return redirect('/funcionarios/form/'+ str(idfunc))\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2317,6 +2439,18 @@
         "detail": "model",
         "documentation": {
             "value": "\n```python\nfrom model import db\n```\n\n```python\n\n\n```\n\n```python\ndb = SqliteDatabase('peppertools34.sqlite')\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "page",
+        "kind": 6,
+        "importPath": "page",
+        "description": "page",
+        "peekOfCode": "class page:\n    def __init__(self, table, content = None, edit=False, select = None,):\n        self.table = table\n        self.Keys = list(globals()[self.table]._meta.fields.keys())\n        self.edit = edit\n        self.content = content\n        self.select = select\n    def render(self):\n        if self.select:\n            self.selectlen= len(self.select)",
+        "detail": "page",
+        "documentation": {
+            "value": "\n```python\nfrom page import page\n```\n\n```python\n\n\n```\n\n```python\nclass page:\n    def __init__(self, table, content = None, edit=False, select = None,):\n        self.table = table\n        self.Keys = list(globals()[self.table]._meta.fields.keys())\n        self.edit = edit\n        self.content = content\n        self.select = select\n    def render(self):\n        if self.select:\n            self.selectlen= len(self.select)\n```\n",
             "supportThemeIcons": false
         }
     }

@@ -16,6 +16,7 @@ import pytz
 import re
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from model import *
+from page import *
 """os.environ['SECRET_KEY'] =  "caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79"
 os.environ['DB'] =  "mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn "
 os.environ['HOST']= "nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
@@ -68,7 +69,7 @@ def estoque():
     columns.remove('id_cliente')
     columns.remove('ID')
     columns.remove('data')
-    response = Response(render_template("Estoque.html", title= "Estoque", columns=columns, col_len=len(columns), active1="",active2="active", active3="", active4=""))
+    response = Response(render_template("list.html", title= "Estoque", client = True, tableCol=columns, table="estoque", columns=columns, col_len=len(columns), active1="",active2="active", active3="", active4=""))
    # print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response
@@ -736,6 +737,27 @@ def pontocad(idponto):
     return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=allcol, cliLen= len(allcol), data=datetime.datetime.now().strftime('%d/%m/%Y'), table='ponto', edit=False, active1="",active2="", active3="active", active4="")
 
 
+@app.route('/funcionarios/form/', defaults={'idfunc': ''}, methods=['POST', 'GET'])
+@app.route('/funcionarios/form/<int:idfunc>', methods=['POST', 'GET'])
+def func(idfunc):
+    if idfunc != '':
+        if request.method == 'GET':
+            content = funcionarios.select().where(funcionarios.id == idfunc)
+            pagefunc = page('funcionarios', content[0], edit=True)
+            return pagefunc.render()
+        elif request.method == 'POST':
+            funcionarios.update(funcionario = request.form['funcionario'], nome = request.form['nome'], senha=request.form['senha']).where(funcionarios.id == idfunc).execute()
+            flash("Alterado com Sucesso")
+            return redirect('/funcionarios/form/'+ str(idfunc))
+
+    if request.method == 'POST':
+          funcionarios.create(funcionario = request.form['funcionario'], nome = request.form['nome'], senha=request.form['senha'])
+          idfuncnew = funcionarios.select(fn.MAX(funcionarios.id)).scalar()
+          flash("Cadastrado com Sucesso")
+          return redirect('/funcionarios/form/'+ str(idfuncnew))
+    pagefunc = page('funcionarios')
+    return pagefunc.render()
+    
 
 
 

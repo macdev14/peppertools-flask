@@ -15,7 +15,7 @@ async function loadEstoque(limit = 10) {
          val.ID
        }" target='_blank'>
                 <button type="submit" class="btn-link">Editar</button>
-            </a>s
+            </a>
          </td>
           <td>
          <a href="estoque/form/delete/${val.ID}" target='_blank'>

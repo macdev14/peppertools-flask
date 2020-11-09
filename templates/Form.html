@@ -23,13 +23,20 @@
              
               
               {% for client in clients %}
-
-              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor']   %}
-              <option value="{{ client['ID'] if client['ID'] != None else client['id']   }}" selected>{{client['nome']}}</option>
+              {% if client.ID %}
+              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] %}
+              <option value="{{ client['ID'] or client['id']   }}" selected>{{client['nome']}}</option>
               {% else %}
-              <option value="{{ client['ID'] if client['ID'] != None else client['id']  }}">{{client['nome']}}</option>
+              <option value="{{ client['ID'] or client['id']  }}">{{client['nome']}}</option>
               {% endif %}
-
+        
+              {% elif client.id != None %}
+              {% if client.id | int == content['cod_func'] %}
+              <option value="{{ client['ID'] or client['id']   }}" selected>{{client['nome']}}</option>
+              {% else %}
+              <option value="{{ client['ID'] or client['id']  }}">{{client['nome']}}</option>
+              {% endif %}
+              {% endif %}
               {% endfor %}    
              
          
@@ -61,7 +68,7 @@
 <br>
 <form action="/{{table}}/form/" method="get">
   <button class="btn btn-warning btn-lg">
-   Novo Item <i class=".glyphicon-glyphicon-pencil"></i>
+   Cadastrar Novo <i class=".glyphicon-glyphicon-pencil"></i>
   </button></form>
 
 <form action="/{{table}}" method="get">
@@ -90,8 +97,8 @@
           <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
                 <option value="0" selected disabled>SELECIONAR</option>
                 
-                {% for client in range(cliLen -1) %}
-                    <option value="{{ clients[client]['ID'] if clients[client]['ID'] != None else clients[client]['id'] }}">{{clients[client]['nome']}}</option>
+                {% for client in range(cliLen) %}
+                    <option value="{{ clients[client]['ID'] or clients[client]['id'] }}">{{clients[client]['nome']}}</option>
                 {% endfor %}    
                
            
@@ -119,7 +126,7 @@
       <br>
       <button class="btn btn-warning btn-lg">
         Cadastrar {{table.capitalize() }} <i class=".glyphicon-glyphicon-pencil"></i></button>
-      </div>
+      
   </form>
   
   <br>
@@ -128,7 +135,7 @@
     <button class="btn btn-warning btn-lg">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></a>
-    
+  </div>
   </div>
 
 {% endif %}
@@ -137,7 +144,7 @@
 
 <script type="text/javascript">
   //$('#fax').mask('(99) 9999-9999');
-  
+
   $('#data').mask('00/00/0000');
   $('#vencimento').mask('00/00/0000');
   $('#data_pagamento').mask('00/00/0000');
