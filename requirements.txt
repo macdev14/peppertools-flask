@@ -9,7 +9,7 @@ mysql-connector-python
 mysqlclient
 parse
 peewee
-PyJWT
+PyJWT==1.7.1
 pytz
 pymongo==3.10.1
 py-jwt-validator
