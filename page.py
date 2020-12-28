@@ -2,7 +2,7 @@ from flask import Flask, redirect,render_template, request, session, flash, json
 from model import *
 class page:
     
-    def __init__(self, table, content = None, edit=False, select = None,):
+    def __init__(self, table, content = None, edit=False, select = None, ):
         self.table = table
         self.Keys = list(globals()[self.table]._meta.fields.keys())
         self.edit = edit

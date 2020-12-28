@@ -15,6 +15,9 @@ peppertools34.sqlite3
 peppertools45.db 
 cache.sqlite 
 /__pycache__
+__pycache__
+/.vscode
+.vscode
 app2.py
 /templates/os2.html
 /templates/clientes2.html

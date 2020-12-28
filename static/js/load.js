@@ -2,7 +2,7 @@ String.prototype.capitalize = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-async function load(table, limit = 10) {
+ async function load(table, limit = 10) {
   document.getElementById("all").innerHTML = "";
 
   const URL = `https://peppertools.cf/api/${table}/limit=${limit.toString()}`;
@@ -12,7 +12,7 @@ async function load(table, limit = 10) {
     keysId = Object.keys(response.data[0]);
     delete keys[0];
     console.log(keys);
-    document.getElementById("columns").innerHTML = `<tr>` 
+    document.getElementById("columns").innerHTML = `<tr>`;
     keys.map((val, i) => {
       if (
         keys[i] == "id_cliente" ||
@@ -22,10 +22,10 @@ async function load(table, limit = 10) {
       ) {
         keys[i] = "nome";
       }
-     
+
       document.getElementById("columns").innerHTML += `<td>${keys[i]}</td>`;
     });
-  
+
     response.data.map((val, i) => {
       keys.map((val2, i) => {
         document.getElementById("all").innerHTML = `<td>${val[val2]}</td>`;
@@ -90,3 +90,20 @@ function search(arr, s) {
 
   return matches;
 }
+
+async function loadcnpj(cnpj) {
+  const URL = `https://cors-anywhere.herokuapp.com/https://www.receitaws.com.br/v1/cnpj/${cnpj.toString()}`;
+  await axios(URL, { headers: { 'Origin': '*'} } ).then((response) => {
+    if (response.data.status != "ERROR") {
+      document.getElementById("nome").value = response.data.fantasia;
+      document.getElementById("endereco").value = response.data.endereco;
+      document.getElementById("cidade").value = response.data.municipio;
+      document.getElementById("estado").value = response.data.uf;
+      document.getElementById("cep").value = response.data.cep;
+      document.getElementById("email").value = response.data.email;
+    } else {
+      document.getElementById("nome").value = response.data.message;
+    }
+  });
+}
+

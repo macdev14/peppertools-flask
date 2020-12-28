@@ -1,0 +1,89 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <div id="app"></div>
+      <script type="text/babel">
+  
+      class App extends React.Component{
+  
+          cached = {};
+  
+          constructor(props)
+          {
+              super(props)
+        
+              this.state =  
+              {
+                 
+              }
+             
+          }
+          render(){
+            
+              return this.getItems()
+                  
+              
+          }
+          makeSelection = (event) =>
+          {
+              this.setState({
+                  [event.target.name] : event.target.value
+              }, this.recalculate);
+  
+          }
+  /*
+          changeValue = (event) =>
+          {
+              this.setState({
+                  value : event.target.value,
+                  converted: null
+              }, this.recalculate)
+          }
+          */
+          getItems = () =>
+          {   
+              
+             fetch(`https://peppertools.cf/api/estoque/limit=10`)
+              .then(response => response.json())
+              .then(data => {
+                 return (<table><thead>
+                    <tr>
+                    {Object.keys(data).map((key, i)=>{ return(<td>{key}</td>) })}
+                </tr>
+                 </thead>
+                 <tbody> 
+                 {Object.keys(data).map((key, i)=>{
+
+                        Object.values(data[key]).map((inkey, i)=>{
+                            return(<td>{inkey}</td>)
+                        })
+                       
+                    
+                        //return console.log(data[key])
+                  })}</tbody></table>)
+               
+                  /*
+                  this.cached[this.state.base] = {
+                      os : [...data.os],
+                      timestamp: Date.now()
+                  }
+                 this.setState(state =>({
+                    os : [...data.os],
+                  })); */
+              });
+          
+          }
+      }
+  
+      ReactDOM.render(<App/>, document.querySelector('#app') )
+      </script>
+  
+
+{% endblock %}

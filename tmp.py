@@ -3,7 +3,7 @@ import urllib.parse
 from flask import jsonify
 from cs50 import SQL
 
-db = SQL("sqlite:///peppertools34.db")
+db = SQL("sqlite:///peppertools.db")
 def getNumber(client = 0):
     try:
         if client != 0:

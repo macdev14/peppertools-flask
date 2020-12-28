@@ -8,29 +8,29 @@
   <hr>
 <div class="container">
 
-<form action="/{{table}}/form/{{ content['ID'] }}" method="post">
+<form action="/{{table}}/form/{{ content['ID'] or content['Id'] or content['id']}}" method="post">
     {% for i in range(TableLen) %}
     {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
     <div class="form-group">
         
-      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or   TableCol[i] == 'cod_func' %}
+      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or TableCol[i] == 'cod_item' %}
 
      
-        {{TableCol[i]}}: <i class="fa fa-user"></i>
+      <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>  
           
   
         <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
              
               
               {% for client in clients %}
-              {% if client.ID %}
+              {% if client.ID or client.id or client.Id %}
               {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] %}
-              <option value="{{ client['ID'] or client['id']   }}" selected>{{client['nome']}}</option>
+              <option value="{{ client['ID'] or client['id']   }}" selected> {{ client['nome'] or client['ferramenta'] }} </option>
               {% else %}
-              <option value="{{ client['ID'] or client['id']  }}">{{client['nome']}}</option>
+              <option value="{{ client['ID'] or client['id']  }}">{{ client['nome'] or client['ferramenta'] }}</option>
               {% endif %}
         
-              {% elif client.id != None %}
+              {% elif client.id %}
               {% if client.id | int == content['cod_func'] %}
               <option value="{{ client['ID'] or client['id']   }}" selected>{{client['nome']}}</option>
               {% else %}
@@ -41,7 +41,30 @@
              
          
         </select> <br>
-  
+          {% elif TableCol[i] == 'id_cliente'%}
+
+          <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
+             
+              
+            {% for client in selection2 %}
+            {% if client.ID or client.id or client.Id %}
+            {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] %}
+            <option value="{{ client['ID'] or client['id']   }}" selected> {{ client['nome'] or client['ferramenta'] }} </option>
+            {% else %}
+            <option value="{{ client['ID'] or client['id']  }}">{{ client['nome'] or client['ferramenta'] }}</option>
+            {% endif %}
+      
+            {% elif client.id %}
+            {% if client.id | int == content['cod_func'] %}
+            <option value="{{ client['ID'] or client['id']   }}" selected>{{client['nome']}}</option>
+            {% else %}
+            <option value="{{ client['ID'] or client['id']  }}">{{client['nome']}}</option>
+            {% endif %}
+            {% endif %}
+            {% endfor %}    
+           
+       
+      </select> <br>
   
   
       
@@ -60,26 +83,35 @@
      {% endif %}
     {% endfor %}
     <button class="btn btn-warning btn-lg">
-      Alterar {{table}} <i class=".glyphicon-glyphicon-pencil"></i></button>
+      Alterar {% if table == 'contasapagar' %} Conta {%else%} {{table.capitalize()}}{%endif%} <i class=".glyphicon-glyphicon-pencil"></i></button>
  
 </form>
-</div>
 
-<br>
+
+<!-- TEST-->
+
+
+
+  <form action="/delete/table={{table}}&id={{ content['ID'] or content['id'] or content['Id'] }}" method="post">
+    <button class="btn btn-danger btn-lg">
+     Deletar <i class=".glyphicon-glyphicon-pencil"></i>
+    </button></form>
+    <br>
 <form action="/{{table}}/form/" method="get">
-  <button class="btn btn-warning btn-lg">
+  <button class="btn btn-primary btn-lg">
    Cadastrar Novo <i class=".glyphicon-glyphicon-pencil"></i>
   </button></form>
 
-<form action="/{{table}}" method="get">
-  <button class="btn btn-warning btn-lg">
-   Voltar <i class=".glyphicon-glyphicon-pencil"></i>
-  </button></form>
+  <form action="/{{table}}" method="get">
+    <button class="btn btn-primary btn-lg">
+     Voltar <i class=".glyphicon-glyphicon-pencil"></i>
+    </button></form>
+
 </div>
 
 {% else %}
 <h2 class="text-center"> 
-  Cadastro de {{table.capitalize() }} <i class="fa fa-user-edit"></i>
+  Cadastro de {% if table == 'contasapagar' %} Contas a Pagar {%else%} {{table.capitalize()}} {%endif%} <i class="fa fa-user-edit"></i>
   
   </h2><hr>
 <div class="container">
@@ -88,22 +120,20 @@
       {% if TableCol[i] != 'ID' and TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
       <div class="form-group">
         
-        {% if TableCol[i] == 'id_cliente' or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' %}
-
-       
-          {{ TableCol[i].capitalize() }} : <i class="fa fa-user"></i>
-            
+        {% if TableCol[i] == 'id_cliente' or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or  TableCol[i] == 'cod_item' %}
+        {% if cliLen %}
+        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
     
           <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
                 <option value="0" selected disabled>SELECIONAR</option>
                 
                 {% for client in range(cliLen) %}
-                    <option value="{{ clients[client]['ID'] or clients[client]['id'] }}">{{clients[client]['nome']}}</option>
+                    <option value="{{ clients[client]['ID'] or clients[client]['id'] }}">{{clients[client]['nome'] or clients[client]['ferramenta']}}</option>
                 {% endfor %}    
                
            
           </select> <br>
-    
+          {%endif%}
     
     
         
@@ -114,8 +144,9 @@
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
         <input type="text" class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
         {% else %}
-        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
-        <input type="text" class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{ TableCol[i].capitalize() }}">
+        
+        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
+        <input class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
         {% endif %}
          {% endif %}
       </div>
@@ -124,35 +155,46 @@
       {% endfor %}
       
       <br>
-      <button class="btn btn-warning btn-lg">
-        Cadastrar {{table.capitalize() }} <i class=".glyphicon-glyphicon-pencil"></i></button>
+      <button class="btn btn-dark btn-lg">
+        Cadastrar {% if table == 'contasapagar' %} Conta {%else%} {{table.capitalize()}}{%endif%}<i class=".glyphicon-glyphicon-pencil"></i></button>
       
   </form>
   
   <br>
+
   <a href="/{{table}}/form">
     
-    <button class="btn btn-warning btn-lg">
+    <button class="btn btn-primary btn-lg">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></a>
   </div>
   </div>
 
 {% endif %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+    integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-
+<script type="text/javascript" src="{{ url_for('static',
+      filename='js/load.js')}}"></script>
 <script type="text/javascript">
   //$('#fax').mask('(99) 9999-9999');
 
   $('#data').mask('00/00/0000');
   $('#vencimento').mask('00/00/0000');
   $('#data_pagamento').mask('00/00/0000');
+
+
+if (document.getElementById('numero_nf-label') && typeof document.getElementById('numero_nf-label').innerHTML != 'undefined' ) {
+  document.getElementById('numero_nf-label').innerHTML = 'Número N.F';
+  document.getElementById('data_nf-label').innerHTML = 'Data da N.F';
+  document.getElementById('valor_nf-label').innerHTML = 'Valor da N.F';
+
+}
+
 if (document.getElementById('qt-label') && typeof document.getElementById('qt-label').innerHTML != 'undefined' ) {
   document.getElementById('qt-label').innerHTML = 'Quantidade';
   document.getElementById('mm-label').innerHTML = 'Milimetros';
   $('#cep').mask('00000-000');
-  
   document.getElementById("data").attributes["required"] = "";  
   document.getElementById('gaveta').type = 'number';
   document.getElementById('qt').type = 'number';
@@ -161,6 +203,7 @@ if (document.getElementById('qt-label') && typeof document.getElementById('qt-la
 if ( document.getElementById('cod_pc') && typeof document.getElementById('cod_pc').innerHTML != 'undefined'){
   document.getElementById('cod_pc-label').innerHTML = 'Código da Peça';
   document.getElementById('cod_pc').placeholder = 'Insira o Código da Peça';
+  document.getElementById('id_cliente-label').innerHTML = 'Cliente';
   document.getElementById('mm').type = 'number';
 }
 if (document.getElementById('prazo_entrega-label') && typeof document.getElementById('prazo_entrega-label').innerHTML != 'undefined'){
@@ -177,6 +220,23 @@ if (document.getElementById('prazo_entrega-label') && typeof document.getElement
   
 
 }
+
+if ( document.getElementById('cnpj') && typeof document.getElementById('cnpj').innerHTML != 'undefined'){
+  cnpj = document.getElementById('cnpj')
+  cnpj.addEventListener('change', loadcnpj(cnpj.value));
+}
+
+if ( document.getElementById('data_pagamento-label') && typeof document.getElementById('data_pagamento-label').innerHTML != 'undefined'){
+  document.getElementById('cod_fornecedor-label').innerHTML = 'Fornecedor';
+  document.getElementById('vencimento').placeholder = 'dd/mm/yyyy';
+  document.getElementById('data_pagamento-label').innerHTML = 'Data do Pagamento';
+  document.getElementById('data_pagamento').placeholder = 'dd/mm/yyyy';
+  $('#valor').mask("# ##0,00", {reverse: true});
+  $('#pago').mask("# ##0,00", {reverse: true});
+  $('#vencimento').mask("00/00/0000");
+  $('#data_pagamento').mask("00/00/0000");
+}
+
 
 </script>
 

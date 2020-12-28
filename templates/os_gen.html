@@ -2,10 +2,14 @@
 
 {% block body%}
 
-<h2 class="text-center">
+<h2 class="text-center" margin-top="50px">
 	O.S <i class="fa fa-user-edit"></i>
-
-</h2>
+	{% if procinfo %}
+	<br>
+	<br>
+	 STATUS: {{ procinfo['Nome']}} 
+	 {% endif%}
+	</h2>
 <!---<h5 class="text-center">
 	Datas serao alteradas para 'dd/mm/ano' <i class="fa fa-user-edit"></i>
 --->
@@ -30,9 +34,35 @@
 				{% endif %}
 			</div>
 
+			<div class="col-md-6">
+				<div class="form-group">
+				STATUS: <i class="fa fa-map"></i>
+
+				<select name="STATUS" id="STATUS form-id" width="100px">
+					{% for process in processes%}
+					{% if field['STATUS'] %}
+					{% if field['STATUS'] |int  == process.ID %}
+					<option value="{{process.ID}}" selected>{{process.Nome}}</option>
+					{%else%}
+					<option value="{{process.ID}}">{{process.Nome}}</option>
+					{% endif %}
+					{%else%}
+					<option value="{{process.ID}}">{{process.Nome}}</option>
+					{% endif %}
+					{% endfor %}
+
+				</select>
+				{% if field['Id'] != nill %}
+				<br>
+				<button class="btn btn-dark btn-sm">
+					Atualizar O.S <i class=".glyphicon-glyphicon-pencil"></i>
+
+				</button> {%endif%}
+			</div>
+			</div>
 
 
-
+			<br>
 
 			<div class="col-md-6">
 				<div class="form-group">
@@ -242,12 +272,7 @@
 
 			</div>
 
-			<div class="col-md-4">
-				STATUS: <i class="fa fa-map"></i>
-				<input class="form-control" type="text" name="STATUS"
-					value="{{field['STATUS'] if field['STATUS'] != 'None' else ' ' }}"> <br>
-			</div>
-
+			
 
 
 			<div class="col-md-4">

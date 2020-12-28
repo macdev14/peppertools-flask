@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 from helper import *
-from api import *
 from flask_qrcode import QRcode 
-from flask import Flask, redirect,render_template, request, session, flash, jsonify, make_response
+from flask import Flask, send_from_directory, redirect,render_template, request, session, flash, jsonify, make_response
+from flask_cors import  CORS, cross_origin
 from flask_session.__init__ import Session
 from flask_session import Session
 from tempfile import mkdtemp
@@ -10,10 +11,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 import sys, os, jwt, json
 from jinja2 import Undefined
-from cs50 import SQL
 import datetime
 import pytz
 import re
+import requests
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from model import *
 from page import *
@@ -27,16 +28,31 @@ os.environ['DATABASE'] = "ztqqdjf98kpnzn4n"
 
 db = SQL(os.environ['DB'])"""
 
-db = SQL("sqlite:///peppertools34.db")
+#db = SQL("sqlite:///peppertools.db")
+
+
 JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
+JINJA2_ENVIRONMENT_OPTIONS = { '' : None }
 app = Flask(__name__)
+
+
+cors = CORS(app, resources={r"/": {"origins": "http://localhost:5000"}})
 #app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 #SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'
 os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
-#app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
+app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 QRcode(app)
+
+
+
+@app.before_request
+def before_request():
+    """Connect to the database before each request"""
+    db.connect()
+
 @app.after_request
 def after_request(response):
+    db.close()
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
@@ -52,16 +68,27 @@ app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+    
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                          'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 @login_required
 def index():
-    response = Response(render_template("home.html", title= "Inicio", active1="active",active2="", active3="", active4=""))
+    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
+    #historico_os = Historico_os.select().dicts()
+    #print(os)
+    response = Response(render_template("home.html", title= "Inicio", historico_os=os,active1="active",active2="", active3="", active4=""))
    # print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response
 
-@app.route('/estoque')
+@app.route('/historico')
+def historico():
+    os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
+"""@app.route('/estoque')
 @login_required
 def estoque():
     keys = Estoque._meta.fields.keys()
@@ -72,7 +99,7 @@ def estoque():
     response = Response(render_template("list.html", title= "Estoque", client = True, tableCol=columns, table="estoque", columns=columns, col_len=len(columns), active1="",active2="active", active3="", active4=""))
    # print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
-    return response
+    return response"""
 
 
 @app.route('/clientes')
@@ -102,7 +129,7 @@ def cadCli():
                 data = dict(request.form)
                 
                 Clientes.create(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], obs=request.form['obs'])
-                idCli = insertData(data, 'Clientes')
+                idCli = Clientes.select(fn.MAX(Clientes.ID)).scalar()
                 flash('Cliente cadastrado com sucesso')
                 #print(request.form)
                 return redirect('/clientes/form/'+ str(idCli))
@@ -116,6 +143,9 @@ def cadCli():
 def editCli(cliId):
     if request.method == 'GET':
         clientes = Clientes.select().where(Clientes.ID == cliId)
+        if not clientes:
+            flash('Erro ao encontrar cliente.')
+            return redirect('/clientes/form/')
         clientesCol = list(Clientes._meta.fields.keys())
         print(clientesCol[0])
         cliLen = len(clientesCol)
@@ -138,7 +168,7 @@ def osAll():
     except:
         pass
         
-    return render_template("os.html", active1="",active2="", active3="", active4="active")     
+    return render_template("os.html", auth=session.get('token'), active1="",active2="", active3="", active4="active")     
 
 
 @app.route("/os/imprimir")
@@ -174,6 +204,7 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     return logoutCommit()
 
@@ -188,37 +219,46 @@ def all():
 @login_required
 def new_os():
     #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
-    clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()
-    print(clients)
-    x = datetime.datetime.now()
-    date = x.strftime("%d/%m/%Y")
-    #os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
-    os_num = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1
-    clients_len = len(clients)
-    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):
-        print(dict(request.form))
-        data = dict(request.form)
-       # data = json.loads(data)
-        Cadastro_OS.create(Tipo=request.form['Tipo'], Numero_Os = request.form['Numero_Os'],
-            Ferramenta = request.form['Ferramenta'], Desenho_Cliente= request.form['Desenho_Cliente'],
-            Desenho_Pimentel= request.form['Desenho_Pimentel'], gravacao2 = request.form['gravacao2'],
-            Id_Cliente = request.form['Id_Cliente'], Data = request.form['Data'], unidade = request.form['unidade'],
-            Prazo = request.form['Prazo'], Data_Pedido = request.form['Data_Pedido'], 
-            Data_Nf = request.form['Data_Nf'], Especificacao = request.form['Especificacao'], Quantidade = request.form['Quantidade'],
-            Numero_Nf = request.form['Numero_Nf'], Numero_Pedido = request.form['Numero_Pedido'], STATUS = request.form['STATUS'],
-            )
-           
+        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()
+    
 
-        idos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).scalar()
-        print(idos)
-        flash('O.S cadastrada com sucesso')
+        print(clients)
+        x = datetime.datetime.now()
+        date = x.strftime("%d/%m/%Y")
+        #os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
+        os_num = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1
+        clients_len = len(clients)
+        if request.method == 'POST':
+            try:
+                if request.form['Id_Cliente'] == 0 or request.form['Id_Cliente'] == '0':
+                    flash('Selecione um cliente')
+                    return redirect('/os/form/')
+                print(dict(request.form))
+                data = dict(request.form)
+            # data = json.loads(data)
+                Cadastro_OS.create(Tipo=request.form['Tipo'], Numero_Os = request.form['Numero_Os'],
+                    Ferramenta = request.form['Ferramenta'], Desenho_Cliente= request.form['Desenho_Cliente'],
+                    Desenho_Pimentel= request.form['Desenho_Pimentel'], gravacao2 = request.form['gravacao2'],
+                    Id_Cliente = request.form['Id_Cliente'], Data = request.form['Data'], unidade = request.form['unidade'],
+                    Prazo = request.form['Prazo'], Data_Pedido = request.form['Data_Pedido'], 
+                    Data_Nf = request.form['Data_Nf'], Especificacao = request.form['Especificacao'], Quantidade = request.form['Quantidade'],
+                    Numero_Nf = request.form['Numero_Nf'], Numero_Pedido = request.form['Numero_Pedido'], STATUS = int(request.form['STATUS']),
+                    )
+                
+
+                idos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).scalar()
+                idproc = request.form['STATUS']
+                registerprocess(idproc, idos, request.form['Data'], '')
+                print(idos)
+                flash('O.S cadastrada com sucesso')
+                print(request.form)
+                return redirect('/os/form/'+ str(idos))
+            except:
+                flash("Erro ao cadastrar")
+                return redirect('/os/form/')
         print(request.form)
-        return redirect('/os/form/'+ str(idos))
-    elif request.method == 'POST':
-        flash('Erro ao cadastrar O.S')
-        return redirect('/os/form/')
-    print(request.form)
-    return render_template('os_gen.html', clients = clients, clients_len = clients_len, os_num = os_num, field = '' , data = date)
+        processes = processos.select()
+        return render_template('os_gen.html', clients = clients, clients_len = clients_len, os_num = os_num, field = '' , data = date, processes= processes )
 
 
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
@@ -233,13 +273,19 @@ def os_edit(osid):
             data['Numero_Pedido'] = int(data['Numero_Pedido'])
             data['Quantidade'] = int(data['Quantidade'])
             data['Id'] = int(data['Id'])
-            data['Data'] = datetime.datetime.strptime(checkDate(data['Data']), '%d/%m/%y').strftime('%d/%m/%Y')
-            data['Data_Pedido'] = datetime.datetime.strptime(checkDate(data['Data_Pedido']), '%d/%m/%y').strftime('%d/%m/%Y')
-            data['Prazo'] = datetime.datetime.strptime(checkDate(data['Prazo']), '%d/%m/%y').strftime('%d/%m/%Y')
-            data['Data_Nf'] = datetime.datetime.strptime(checkDate(data['Data_Nf']), '%d/%m/%y').strftime('%d/%m/%Y')
+            data['STATUS'] = int(data['STATUS'])
+            data['Data'] = datetime.datetime.strptime(str(data['Data']), '%d/%m/%Y').strftime('%Y-%m-%d')
+            data['Data_Pedido'] = datetime.datetime.strptime(str(data['Data_Pedido']), '%m/%d/%Y').strftime('%Y-%m-%d')
+            data['Prazo'] = datetime.datetime.strptime(str(data['Prazo']), '%d/%m/%Y').strftime('%Y-%m-%d')
+            data['Data_Nf'] = datetime.datetime.strptime(str(data['Data_Nf']), '%d/%m/%Y').strftime('%Y-%m-%d')
         except:
             pass
         os = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
+        if not os.STATUS or int(data['STATUS']) != int(os.STATUS):
+            try:
+                registerprocess(int(data['STATUS']), os.Id, request.form['Data'], '')
+            except:
+                pass
         os.Numero_Os = data['Numero_Os']
         os.Id_Cliente =  data['Id_Cliente']
         os.Numero_Nf = data['Numero_Nf']
@@ -257,8 +303,10 @@ def os_edit(osid):
         os.gravacao = re.sub(r'\s', '',data['gravacao'])
         os.Desenho_Cliente = re.sub(r'\s', '',data['Desenho_Cliente'])
         os.Desenho_Pimentel = re.sub(r'\s', '', data['Desenho_Pimentel'])
-        os.STATUS = re.sub(r'\s', '',data['STATUS'])
+        os.STATUS = int(data['STATUS'])
         os.save()
+        
+
         flash('O.S alterada com sucesso')
         print(osid)
         if session.get('osid'):
@@ -272,21 +320,37 @@ def os_edit(osid):
         os_num = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1
         os = Cadastro_OS.select().where(Cadastro_OS.Id == osid)
         os = [model_to_dict(o) for o in os]
+        if not os:
+            return redirect('/os/form/')
         print(os)
         field = os[0]
         if field['Data_Pedido']:
-            field['Data_Pedido'] = checkDate(field['Data_Pedido'])
-        field['Data'] = checkDate(field['Data'])
+            field['Data_Pedido'] =datetime.datetime.strptime( str(field['Data_Pedido']), '%Y-%m-%d').strftime('%d/%m/%Y')
+        if not field['Data']:
+            field['Data'] = datetime.datetime.now().strftime('%d/%m/%Y')
+        else:
+            field['Data'] = datetime.datetime.strptime( str(field['Data']), '%Y-%m-%d').strftime('%d/%m/%Y')
         if field['Prazo']:
-            field['Prazo'] = checkDate(field['Prazo'])
+            field['Prazo'] = datetime.datetime.strptime( str(field['Prazo']), '%Y-%m-%d').strftime('%d/%m/%Y')
         if field['Data_Nf']:
-            field['Data_Nf'] = checkDate(field['Data_Nf'])
-        print(field['Data'])
-        print(field['Numero_Os'])
+            field['Data_Nf'] = datetime.datetime.strptime( str(field['Data_Nf']), '%Y-%m-%d').strftime('%d/%m/%Y')
+        print(str(field['Data']))
+        print(str(field['Numero_Os']))
         x = datetime.datetime.now()
         date = x.strftime("%d/%m/%Y")
-        
-        return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date)
+        idproc = Cadastro_OS.select(Cadastro_OS.STATUS).where(Cadastro_OS.Id == int(osid)).dicts()
+        if idproc:
+            print('before: ')
+            print(idproc)
+            print('After: ')
+        idproc = idproc[0]["STATUS"]
+        if idproc and int(idproc):
+            procinfo = processos.select().where(processos.ID == idproc).dicts()
+            procinfo = procinfo[0]
+        else:
+            procinfo = None
+        processes = processos.select()
+        return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date, processes=processes, procinfo=procinfo)
         
 
 @app.route('/os/form/delete/<int:osid>', methods = ['POST', 'GET'])
@@ -358,10 +422,10 @@ def print_os(osid):
             return redirect("/")
         field = rows[0]
         res = list(Clientes.select(Clientes.nome, Clientes.ID).from_(Clientes, Cadastro_OS).where(Cadastro_OS.Id_Cliente == Clientes.ID, Cadastro_OS.Id == osid).dicts())
-        print(res)
-        qr = "http://peppertools.cf/os/"+str(field['Numero_Os'])
+        #print(res)
+        qr = "http://peppertools.cf/os/"+str(osid)
         field['nome'] = res[0]['nome']
-        field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')
+        field['Data_digit'] = datetime.datetime.strptime(str(field['Data']), '%Y-%m-%d').strftime('%y')
         field['Data'] = checkDate(field['Data'])
         field['Data_Nf'] = checkDate(field['Data_Nf'])
         field['Data_Pedido'] = checkDate(field['Data_Nf'])
@@ -374,13 +438,10 @@ def print_os(osid):
       
 
 @app.route('/os/<int:osid>', methods = ['POST', 'GET'])
-@login_required
 def access(osid):
     session['osid'] = osid
-    @login_required
-    def goTo(osid):
-        return redirect('form/'+str(osid))
-    return goTo(osid)
+    return redirect('/login')
+   
 
 
 
@@ -404,12 +465,12 @@ def cadEstoque():
                 data['data'] = datetime.datetime.now().strftime('%d/%m/%Y')
                 flash('Erro ao cadastrar data')
                 pass
-        Estoque.create(id_cliente=data['Id_Cliente'], ferramenta=data['ferramenta'], material=data['material'], cod_pc=data['cod_pc'], mm=data['mm'], qt=data['qt'], gaveta=data['gaveta'], data=data['data'])
-        idCli = Estoque.select().order_by(Estoque.ID.desc()).get()
+        Estoque.create(id_cliente=data['id_cliente'], ferramenta=data['ferramenta'], material=data['material'], cod_pc=data['cod_pc'], mm=data['mm'], qt=data['qt'], gaveta=data['gaveta'], data=data['data'])
+        idEst = Estoque.select().order_by(Estoque.ID.desc()).get()
             #idCli = insertData(data, 'Estoque')
         
         print(request.form)
-        return redirect('/estoque/form/'+ str(idCli))
+        return redirect('/estoque/form/'+ str(idEst))
     data = datetime.datetime.now().strftime('%d/%m/%Y')
     return render_template("Form.html", TableCol=estKeys, data=data, clients = clients, TableLen = len(estKeys), cliLen = len(clients), table='estoque' , edit=False, id=id, active1="",active2="", active3="active", active4="")
          #except:
@@ -423,18 +484,24 @@ def editEstoque(estId):
 
     #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')
     if request.method == 'GET':
-        estoque = Estoque.select(Estoque, Clientes.ID, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque.ID == estId) #getData(" ", "*", "Estoque WHERE ID = "+ str(estId))
-        estoque = [model_to_dict(item) for item in estoque]
-        print(estoque)
         try:
-            estoque[0]['data'] = estoque[0]['data'].strftime("%d/%m/%Y")
-        except:
-            pass
-        estoqueCol = list(Estoque._meta.fields.keys())
-        estLen = len(estoqueCol)
+            estoque = Estoque.select(Estoque, Clientes.ID, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque.ID == estId) #getData(" ", "*", "Estoque WHERE ID = "+ str(estId))
+            estoque = [model_to_dict(item) for item in estoque]
+            print(estoque)
+            try:
+                estoque[0]['data'] = estoque[0]['data'].strftime("%d/%m/%Y")
+            except:
+                pass
+            estoqueCol = list(Estoque._meta.fields.keys())
+            estLen = len(estoqueCol)
         # print(clientes)
-        return render_template("Form.html", table='orcamento', content=estoque[0], cliLen = len(clients), clients = clients, TableCol=estoqueCol, TableLen = estLen, id=estId, edit=True, active1="",active2="", active3="active", active4="") 
+            return render_template("Form.html", table='estoque', content=estoque[0], cliLen = len(clients), clients = clients, TableCol=estoqueCol, TableLen = estLen, id=estId, edit=True, active1="",active2="", active3="active", active4="") 
        
+        except:
+            return redirect('/estoque/form/')
+        
+        
+        
            
     elif request.method == 'POST' and request.form:
             #print(request.form)
@@ -466,12 +533,23 @@ def editEstoque(estId):
 
 
 @app.route('/orcamento/form/', methods=['POST', 'GET'])
+@login_required
 def invoice():
     Keys = list(orcamento._meta.fields.keys())
     data = datetime.datetime.now().strftime('%d/%m/%Y')
-    if request.method == 'POST':
-        orcamento.create(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], para = request.form['para'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms'])
-    return render_template("Form.html", TableCol=Keys, data=data, TableLen = len(Keys), table='orcamento' , edit=False, active1="",active2="", active3="active", active4="")
+    if request.method == 'POST' and request.form:
+        #try:
+        orcamento.create(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms'])
+        idorcam = orcamento.select(fn.MAX(orcamento.ID)).scalar()
+        flash('Cadastrado com sucesso!')
+        return redirect('/orcamento/form/'+ str(idorcam))
+        #except:
+        #    flash('Erro ao cadastrar!')
+    elif request.method == 'GET':
+        items = Estoque.select(Estoque.ferramenta, Estoque.ID)
+        clients = Clientes.select(Clientes.nome, Clientes.ID)
+        num = orcamento.select(fn.MAX(orcamento.numero)).scalar()
+        return render_template("Form.html", TableCol=Keys, clients=items, cliLen= len(items) ,data=data, TableLen = len(Keys), table='orcamento' , edit=False, numfield=num ,active1="",active2="", active3="active", active4="")
 
 @app.route('/orcamento/form/<int:inid>', methods=['POST', 'GET'])
 @login_required
@@ -479,43 +557,48 @@ def invoiceEdit(inid):
     if request.method == 'POST':
         orcamento.update(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], para = request.form['para'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()
     Keys = list(orcamento._meta.fields.keys())
+    items = Estoque.select(Estoque.ferramenta, Estoque.ID)
     invoice = orcamento.select().where(orcamento.ID == inid)
-    return render_template("Form.html", content=invoice[0], TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", content=invoice[0], clients=items, cliLen= len(items),TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1="",active2="", active3="active", active4="")
 
-
+@app.route('/list')
+def listing():
+    return render_template('table.html')
 
 @app.route('/contasapagar/form/', methods=['POST', 'GET'])
 @login_required
 def contaspagar():
+    forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)
     Keys = list(contasapagar._meta.fields.keys())
     if request.method == 'POST':
        # try:
-        contasapagar.create(vencimento=datetime.datetime.strptime(request.form['vencimento'], '%d/%m/%Y').strftime('%d/%m/%Y'), descricao= request.form['descricao'], valor=float(request.form['valor']), pago=int(request.form['pago']), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], "%d/%m/%Y").strftime("%d/%m/%Y"))
+        contasapagar.create(vencimento=datetime.datetime.strptime(request.form['vencimento'], '%d/%m/%Y').strftime('%d/%m/%Y'), descricao= request.form['descricao'], valor=float(request.form['valor'].strip()), pago=float(request.form['pago'].strip()), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], "%d/%m/%Y").strftime("%d/%m/%Y"), cod_fornecedor=int(request.form['cod_fornecedor']))
         idconta = contasapagar.select(fn.MAX(contasapagar.ID)).scalar()
         flash('Cadastrado com Sucesso')
         return redirect('/contasapagar/form/'+ str(idconta))
      #   except: 
         #flash('Erro ao Cadastrar')
        # return redirect('/contasapagar/form/')
-    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), table='contasapagar' , edit=False, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=forn, cliLen= len(forn), table='contasapagar' , edit=False, active1="",active2="", active3="active", active4="")
 
 @app.route('/contasapagar/form/<int:idconta>', methods = ['POST', 'GET'])
 @login_required
 def editarcontas(idconta):
+    forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)
     Keys = list(contasapagar._meta.fields.keys())
     conta = contasapagar.select().where(contasapagar.ID == idconta)
     if request.method == 'POST':
         try:  
-            contasapagar.update(vencimento=datetime.datetime.strptime(request.form['vencimento'], "%d/%m/%Y").strftime("%d/%m/%Y"), descricao= request.form['descricao'], valor=float(request.form['valor']), pago=int(request.form['pago']), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], "%d/%m/%Y").strftime("%d/%m/%Y")).execute()
+            contasapagar.update(vencimento=datetime.datetime.strptime(request.form['vencimento'], "%d/%m/%Y").strftime("%d/%m/%Y"), descricao= request.form['descricao'], valor=float(request.form['valor'].strip()), pago=float(request.form['pago'].strip()), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], "%d/%m/%Y").strftime("%d/%m/%Y"), cod_fornecedor=int(request.form['cod_fornecedor'])).execute()
             flash('Alterado com Sucesso')
             return redirect('/contasapagar/form/'+ str(idconta))
         except:
             flash('Erro ao alterar')
             return redirect('/contasapagar/form/'+ str(idconta))
-    return render_template("Form.html", content=conta[0], TableCol=Keys, TableLen = len(Keys), table='contasapagar' , edit=True, id=idconta, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", content=conta[0], TableCol=Keys, TableLen = len(Keys), clients=forn, cliLen= len(forn),table='contasapagar' , edit=True, id=idconta, active1="",active2="", active3="active", active4="")
 
-@app.route("/fornecedor/form/", defaults={"idfor": ''}, methods = ['POST', 'GET'])
-@app.route('/fornecedor/form/<int:idfor>', methods = ['POST', 'GET'])
+@app.route("/fornecedores/form/", defaults={"idfor": ''}, methods = ['POST', 'GET'])
+@app.route('/fornecedores/form/<int:idfor>', methods = ['POST', 'GET'])
 @login_required
 def fornecedor(idfor):
     Keys = list(Fornecedores._meta.fields.keys())
@@ -739,6 +822,7 @@ def pontocad(idponto):
 
 @app.route('/funcionarios/form/', defaults={'idfunc': ''}, methods=['POST', 'GET'])
 @app.route('/funcionarios/form/<int:idfunc>', methods=['POST', 'GET'])
+@login_required
 def func(idfunc):
     if idfunc != '':
         if request.method == 'GET':
@@ -749,7 +833,7 @@ def func(idfunc):
             funcionarios.update(funcionario = request.form['funcionario'], nome = request.form['nome'], senha=request.form['senha']).where(funcionarios.id == idfunc).execute()
             flash("Alterado com Sucesso")
             return redirect('/funcionarios/form/'+ str(idfunc))
-
+        
     if request.method == 'POST':
           funcionarios.create(funcionario = request.form['funcionario'], nome = request.form['nome'], senha=request.form['senha'])
           idfuncnew = funcionarios.select(fn.MAX(funcionarios.id)).scalar()
@@ -757,9 +841,96 @@ def func(idfunc):
           return redirect('/funcionarios/form/'+ str(idfuncnew))
     pagefunc = page('funcionarios')
     return pagefunc.render()
-    
 
 
+@app.route('/processos/form/', defaults={'idproc': ''}, methods=['POST', 'GET'])
+@app.route('/processos/form/<int:idproc>', methods=['POST', 'GET'])
+@login_required
+def processosOs(idproc):
+    if idproc != '':
+        if request.method == 'GET':
+            content = processos.select().where(processos.ID == idproc)
+            if not content:
+                flash('Não Encontrada!')
+                return redirect('/processos/form/')
+            pagefunc = page('processos', content[0], edit=True)
+            return pagefunc.render()
+        elif request.method == 'POST':
+            processos.update(Nome = request.form['Nome'], Tempo_Objetivo = request.form['Tempo_Objetivo']).where(processos.ID == idproc).execute()
+            flash("Alterado com Sucesso")
+            return redirect('/processos/form/'+ str(idproc))
+
+    if request.method == 'POST':
+          processos.create(Nome = request.form['Nome'], Tempo_Objetivo = request.form['Tempo_Objetivo'])
+          idfuncnew = processos.select(fn.MAX(processos.ID)).scalar()
+          flash("Cadastrado com Sucesso")
+          return redirect('/processos/form/'+ str(idfuncnew))
+    pagefunc = page('processos')
+    return pagefunc.render()
+
+
+@app.route('/<string:table>', methods=['GET'])
+@login_required
+def renderTable(table):
+    return render_list(table)
+
+@app.route('/delete/table=<string:col>&id=<int:idtab>', methods=['GET','POST'])
+@login_required
+def deleterow(col, idtab):
+    if col != '' and idtab != 0:
+        try:
+            try:    
+                str_to_class(col).delete().where(str_to_class(col).id == idtab).execute()
+                flash('Deletado com sucesso!')
+                return redirect('/'+str(col.lower())+'/form/')
+            except:
+                pass
+            try:
+                str_to_class(col.capitalize()).delete().where(str_to_class(col.capitalize()).id == idtab).execute()
+                flash('Deletado com sucesso!')
+                return redirect('/'+str(col.lower())+'/form/')
+            except:
+                raise Exception
+        except:
+            pass
+        try:
+            try:    
+                str_to_class(col).delete().where(str_to_class(col).Id == idtab).execute()
+                flash('Deletado com sucesso!')
+                return redirect('/'+str(col.lower())+'/form/')
+            except:
+                pass
+            try:
+                str_to_class(col.capitalize()).delete().where(str_to_class(col.capitalize()).Id == idtab).execute()
+                flash('Deletado com sucesso!')
+                return redirect('/'+str(col.lower())+'/form/')
+            except:
+                raise Exception
+        except:
+            pass
+
+        try:
+            try:    
+                str_to_class(col).delete().where(str_to_class(col).ID == idtab).execute()
+                flash('Deletado com sucesso!')
+                return redirect('/'+str(col.lower())+'/form/')
+            except:
+                pass
+            try:
+                str_to_class(col.capitalize()).delete().where(str_to_class(col.capitalize()).ID == idtab).execute()
+                flash('Deletado com sucesso!')
+                return redirect('/'+str(col.lower())+'/form/')
+            except:
+                raise Exception
+        except:
+            flash('Erro ao deletar.')
+            return redirect('/'+str(col.lower())+'/form/'+ str(idtab))
+    print(idtab)
+
+
+@app.errorhandler(404) 
+def invalid_route(e): 
+    return underdev()
 
 
 
@@ -780,7 +951,63 @@ def func(idfunc):
 *** API ROUTES ***
 
 """
+@app.route('/app/api/login', methods=['POST'])
+def longlogin():
+    obj = json.loads(request.data)
+    rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])
+     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])
+    rows = [model_to_dict(row) for row in rows]
+        #obj = json.loads(request.data)
+     #print(obj['username'])
+       
+    password = obj['password']
+    print(obj['password'])
+    
+    if check_password_hash(rows[0]["ds_senha"], password) or rows[0]["ds_senha"] == password:
+                
+        token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=12)}, os.environ['SECRET_KEY'])
+            # request.headers['authorization'] = token.decode('UTF-8')
+        resp = make_response(jsonify({'token': token.decode('UTF-8')}))
+        print(jsonify(resp))
+            # resp.headers['Origin'] = 
+        return resp
+        
+    return jsonify('Not found')
+        
+    
 
+@app.route('/api/login', methods=['POST'])
+def log():
+   
+    obj = json.loads(request.data)
+    try:
+        obj = (obj['data'])
+    except:
+        pass
+        
+    print(obj)
+    print(obj['username'])
+    rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])
+     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])
+    rows = [model_to_dict(row) for row in rows]
+        #obj = json.loads(request.data)
+     #print(obj['username'])
+       
+    password = obj['password']
+    print(obj['password'])
+    print(rows[0]["ds_senha"])
+    
+    if check_password_hash(rows[0]["ds_senha"], password) or rows[0]["ds_senha"] == password:
+                
+        token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, os.environ['SECRET_KEY'])
+            # request.headers['authorization'] = token.decode('UTF-8')
+        resp = make_response(jsonify({'token': token.decode('UTF-8')}))
+            # resp.headers['Origin'] = 
+        return resp
+        
+    return jsonify('Not found')
+        
+  
 @app.route('/os/all')
 @login_required
 def all_api():
@@ -788,36 +1015,11 @@ def all_api():
     rows = [model_to_dict(row) for row in rows]
     return rows
 
-@app.route('/api/login', methods=['POST'])
-def log():
-     try:
-        obj = json.loads(request.data)
-        rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username']).get()
-     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])
-    
-        #obj = json.loads(request.data)
-     #print(obj['username'])
-       
-        password = obj['password']
-        print(obj['password'])
-       
-        #print(rows[0]["ds_senha"])
-        
-        if check_password_hash(rows, password):
-                
-            token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
-            # request.headers['authorization'] = token.decode('UTF-8')
-            resp = make_response(jsonify({'token': token.decode('UTF-8')}))
-            # resp.headers['Origin'] = 
-            return resp
-        
-        return jsonify('Not found')
-        
-     except:       
-            return jsonify('Not found')
+
 
 @app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
 @auth_required
+@cross_origin(origin='localhost',headers=['Content- Type','authorization'])
 def osApi(osid):
     try:
         rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)
@@ -837,7 +1039,7 @@ def osApi(osid):
         return jsonify('not-found')
  
 @app.route('/api/os/limit=<int:limit>', methods=['GET', 'POST'])
-#@auth_required
+@auth_required
 def osApiall(limit):
   #  try:
         rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())
@@ -847,8 +1049,8 @@ def osApiall(limit):
         #stmt = "SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT " + str(limit)
         if request.method == 'GET':
             #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
-            print()
-            print(rows[1])
+            
+
             return jsonify(list(rows))
         elif request.method == 'POST':
           #  try:
@@ -862,14 +1064,15 @@ def osApiall(limit):
      #   return jsonify('Not found')
 
 @app.route('/api/os/q=<string:query>', methods=['GET', 'POST'])
-#@auth_required
+@auth_required
 def osApiSearch(query):
   #  try:
         if len(query) < 2:
-            rows = Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(200)
+         #   rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())
+            rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(200).dicts())
         else:
-            rows = Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc())
-        rows = [model_to_dict(row) for row in rows]
+            rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Especificacao.contains(query), Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
+    
         #stmt = "SELECT c.ID, c.nome, o.Tipo, o.Prazo, o.Especificacao, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente AND o.Especificacao LIKE '%" + str(query) + "%' ORDER BY o.Numero_Os DESC "
         
      #   if limit > 0:
@@ -893,7 +1096,7 @@ def osApiSearch(query):
 
 
 @app.route('/api/os/new')
-#@auth_required
+@auth_required
 def osApiNum():
     try:
           os_num = Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar()
@@ -903,19 +1106,49 @@ def osApiNum():
         return jsonify('Error')
 
 @app.route('/api/clientes', methods=['GET', 'POST'])
+@auth_required
 def allClientes():
     clients = Clientes.select()
     clients = [model_to_dict(client) for client in clients]
     return jsonify(clients)
 
+@app.route('/api/processos/inicio', methods=['POST'])
+@auth_required
+def inicioProcesso():
+    obj = json.loads(request.data)
+    osid = obj['osid']
+    horario = obj['horario']
+    process = Cadastro_OS.select().where(processos.osid == osid).get()
+    
 
-@app.route('/api/clientes/idname', methods=['GET', 'POST'])
-def IdClientes():
+@app.route('/api/processos', methods=['GET'])
+@auth_required
+def allProcesso():
+    if request.method == 'GET':
+        process_list = processos.select()
+        process_list = [model_to_dict(processo) for processo in process_list]
+        return jsonify(process_list)
+
+@app.route('/api/processos/inicio', methods=['POST'])
+@auth_required
+def fimProcesso():
+    obj = json.loads(request.data)
+    id = obj['id']
+    horario = obj['horario']
+
+
+
+@app.route('/api/clientes/id=<int:id>', methods=['GET', 'POST'])
+@auth_required
+def IdClientes(id):
     #stmt = "SELECT ID, nome FROM Clientes ORDER BY nome ASC"
-    res = Clientes.select(Clientes.ID, Clientes.nome).order_by(Clientes.ID.asc())
+    res = Clientes.select(Clientes.ID, Clientes.nome).where(Clientes.ID == id).order_by(Clientes.ID.asc())
     return jsonify(model_to_dict(res))
 
-@app.route('/api/clientes/q=<string:query>', methods=['GET', 'POST'])
+
+@app.route('/api/clientes/', defaults={'query': 'none'}, methods=['POST', 'GET'])
+@app.route('/api/clientes/q=<string:query>', methods=['POST', 'GET'])
+@auth_required
 def nome(query):
     #stmt = "SELECT ID, nome FROM Clientes ORDER BY nome ASC"
     res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())
@@ -923,15 +1156,11 @@ def nome(query):
     return jsonify(res)
 
 @app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])
+@auth_required
 def allEstoque(limit):
    
     if request.method == 'GET':
         rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())
-        #stmt = "SELECT  e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente ORDER BY e.ID DESC LIMIT "+ str(limit)
-        #rows = [model_to_dict(row) for row in rows]
-
-            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))
-        print()
         print(rows)
         return jsonify(rows)
     elif request.method == 'POST' and request.data:
@@ -939,8 +1168,11 @@ def allEstoque(limit):
         obj = json.loads(request.data)
         insertData(obj, 'Estoque')
         return jsonify('Item-criado')
+    else:
+        return jsonify('UNAUTHORIZED')
 
 @app.route('/api/estoque/q=<string:query>&col=<string:col>', methods=['GET'])
+@auth_required
 def queryEstoque(query, col):
     rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())
     #stmt = "SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND "+ col + "=" + query +" ORDER BY e.ID DESC"

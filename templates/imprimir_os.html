@@ -140,12 +140,12 @@
      </tr>
      <tr>
        <td class="style6"><div align="right">DESENHO CLIENTE: &nbsp; </div></td>
-       <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Cliente']|default('', True) }}</em></div></td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Cliente'] or '' }}</em></div></td>
        <td rowspan="5">&nbsp;</td>
      </tr>
      <tr>
        <td class="style6"><div align="right">DESENHO PIMENTEL: &nbsp; </div></td>
-       <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Pimentel']|default('', True)  }}</em></div></td>
+       <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Pimentel'] or '' }}</em></div></td>
      </tr>
     <!--- <tr>
        <td class="style6"><div align="right">CODIGO DO PRODUTO: &nbsp; </div></td>
@@ -158,11 +158,11 @@
      </tr>
      <tr>
        <td valign="top" class="style6"><div align="right">GRAVA&Ccedil;&Atilde;O:</div></td>
-       <td colspan="2" class="style6"><em>{{ field['gravacao']|default('', true)  }}</em></td>
+       <td colspan="2" class="style6"><em>{{ field['gravacao'] or ''  }}</em></td>
      </tr>
      <tr>
        <td valign="top" class="style6"><div align="right">GRAVA&Ccedil;&Atilde;O C&Oacute;D: </div></td>
-       <td colspan="2" class="style6"><em>{{ field['gravacao2']|default('', true)  }}</em></td>
+       <td colspan="2" class="style6"><em>{{ field['gravacao2'] or '' }}</em></td>
      </tr>
      <tr>
        <td colspan="4">&nbsp;</td>
@@ -355,35 +355,30 @@
      <tr class="style13">
        <td class="LINHA">&nbsp;</td>
      </tr>
-     <tr class="style13">
-       <td class="LINHA">&nbsp;</td>
-     </tr>
-     <tr class="style13">
-       <td class="LINHA">&nbsp;</td>
-     </tr>
-     <tr class="style13">
-       <td class="LINHA">&nbsp;</td>
-     </tr>
-     <tr class="style13">
-       <td class="LINHA">&nbsp;</td>
-     </tr>
-     <tr class="style13">
-       <td class="LINHA">&nbsp;</td>
-     </tr>
     <tr class="style13">
        <td class="LINHA">&nbsp;</td>
      </tr>
     <tr class="style13">
        <td class="LINHA">&nbsp;</td>
      </tr>  
-    
+     <tr class="style13">
+      <td class="LINHA">&nbsp;</td>
+    </tr> 
+    <tr class="style13">
+      <td class="LINHA">&nbsp;</td>
+    </tr> 
+    <tr class="style13">
+      <td class="LINHA">&nbsp;</td>
+    </tr> 
+    <tr class="style13">
+      <td class="LINHA">&nbsp;</td>
+    </tr> 
    </table>
    
    
    
    <table style="float:left" width="100%"  border="0" align="center" cellpadding="0" cellspacing="1">
-      <tr> <td colspan="4">&nbsp;</td> </tr>
-      <tr> <td colspan="4">&nbsp;</td> </tr>
+     
          <tr> <td colspan="95" align="center">--------------------------------------------------------------------------------------------------------------------------------</td> </tr>
       <tr> <td colspan="4">&nbsp;</td> </tr>
       <tr>
@@ -403,14 +398,9 @@
      <tr>
        <td class="style6"><div align="right">DESENHO CLIENTE: &nbsp; </div></td>
        <td colspan="2" class="style6"><div align="left"><em>{{ field['Desenho_Cliente'] or ' '  }}</em></div></td>
-     </tr>
-     <tr>
-      <td class="style6"><div align="right"></div></td>
-      <td colspan="2" class="style6"><div align="left"></div></td><br>
-      <td colspan="4"  class="style6" marginLeft="150px"><div align="center" marginLeft="80px" class="style6"><img src="{{ qrcode(qr, box_size=3, border=2) }}"> </div></td>
-     </tr>
+       <td colspan="4"  class="style6"><div align="center" class="style6"><img src="{{ qrcode(qr, box_size=3, border=2) }}"> </div></td>
+      </tr>
     </table>
-   <p><span class="style13"><strong></strong></span></p>
    </body>
    </html>
    

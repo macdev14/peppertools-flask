@@ -30,7 +30,7 @@ body {
   display: table;
 }
 
-.Id_Cliente {
+.Id_Cliente, .STATUS {
   height: 100%;
   width: 100%;
   padding: 10px;
@@ -44,7 +44,7 @@ option {
   border: 0;
 }
 
-.Id_Cliente:focus {
+.Id_Cliente:focus, .STATUS:focus {
   border: 1px solid #e0e0e0;
 }
 

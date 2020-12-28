@@ -1,6 +1,6 @@
 from peewee import *
 import datetime
-db = SqliteDatabase('peppertools34.sqlite')
+db = MySQLDatabase('u569026416_pepperflask', user='u569026416_pepper', passwd='atJ?rky^G4', charset='utf8mb4',  host='31.170.166.103', port=3306,)
 
 class Clientes(Model):
     ID= PrimaryKeyField()
@@ -17,6 +17,7 @@ class Clientes(Model):
     email = TextField()
     obs = TextField()
     class Meta:
+        db_table = 'Clientes'
         database = db
 
 
@@ -42,7 +43,8 @@ class Cadastro_OS(Model):
     STATUS = TextField()
     gravacao2 = TextField()
     class Meta:
-        database = db 
+        db_table = 'Cadastro_OS'
+        database = db
 
 class Estoque(Model):
     ID = PrimaryKeyField()
@@ -55,6 +57,7 @@ class Estoque(Model):
     gaveta = IntegerField()
     data = DateTimeField(default=datetime.datetime.now)
     class Meta:
+        db_table = 'Estoque'
         database = db
 class usuarios(Model):
     ID = PrimaryKeyField()
@@ -63,16 +66,19 @@ class usuarios(Model):
     nivel = IntegerField()
     desc = TextField()
     class Meta: 
+        db_table = 'usuarios'
         database = db
 
 class contasapagar(Model):
     ID = PrimaryKeyField()
     vencimento = TextField()
     descricao = TextField()
+    cod_fornecedor = IntegerField()
     valor = FloatField()
     pago = IntegerField()
     data_pagamento = TextField()
     class Meta: 
+        db_table = 'contasapagar'
         database = db
 
 class orcamento(Model):
@@ -80,8 +86,7 @@ class orcamento(Model):
     numero = IntegerField()
     ano = IntegerField()
     cod_item = IntegerField()
-    data = TextField()
-    para = TextField()
+    data = DateTimeField(default=datetime.datetime.now)
     attn = TextField()
     refer = TextField()
     de = TextField()
@@ -91,7 +96,8 @@ class orcamento(Model):
     prazo_pagto = TextField()
     ipi = TextField()
     icms = TextField()
-    class Meta: 
+    class Meta:
+        db_table = 'orcamento' 
         database = db
 
 class caixa(Model):
@@ -103,6 +109,7 @@ class caixa(Model):
     mes  = TextField()
     ano = IntegerField()
     class Meta:
+        db_table = 'caixa'
         database = db
 
 class Fornecedores(Model):
@@ -121,6 +128,7 @@ class Fornecedores(Model):
     obs = TextField()
     qntcompras = IntegerField()
     class Meta:
+        db_table = 'Fornecedores'
         database = db
     
 class Ferramenta(Model):
@@ -133,7 +141,7 @@ class Ferramenta(Model):
 class compras(Model):
     ID = PrimaryKeyField()
     cod_fornecedor = IntegerField()
-    data = TextField()
+    data = DateTimeField(default=datetime.datetime.now)
     qnt = IntegerField()
     preco = FloatField()
     desc = TextField()
@@ -142,6 +150,7 @@ class compras(Model):
     cond = TextField()
     contato = TextField()
     class Meta:
+        db_table = 'compras'
         database = db
 
 class contas_desc(Model):
@@ -155,7 +164,8 @@ class controle(Model):
     gaveta = IntegerField()
     quantidade = IntegerField()
     data = TextField()
-    class Meta: 
+    class Meta:
+        db_table = 'controle'
         database = db
 
 class Pedidos(Model):
@@ -169,14 +179,15 @@ class Pedidos(Model):
     unidade = TextField()
     qnt = IntegerField()
     preco = FloatField()
-    data_entrada = TextField()
-    prazo = TextField()
+    data_entrada = DateTimeField(default=datetime.datetime.now)
+    prazo = DateTimeField()
     qnt_acabada = TextField()
-    data_acabamento = TextField()
+    data_acabamento = DateTimeField()
     pedido_cliente = TextField()
     numero_os = IntegerField()
     status = IntegerField()
     class Meta:
+        db_table = 'Pedidos'
         database = db
     
 class funcionarios(Model):
@@ -185,15 +196,17 @@ class funcionarios(Model):
     nome = TextField()
     senha = TextField()
     class Meta:
+        db_table = 'funcionarios'
         database = db
     
 class ponto(Model):
     id = PrimaryKeyField()
     cod_func = IntegerField()
-    data = TextField()
-    hora = TextField()
+    data = DateTimeField(default=datetime.datetime.now)
+    hora = TextField(default = str(datetime.datetime.now().hour)+':'+str(datetime.datetime.now().minute))
     tipo = TextField()
     class Meta:
+        db_table = 'ponto'
         database = db
 
 class Material(Model):
@@ -201,6 +214,7 @@ class Material(Model):
     material = TextField()
     cod_material = TextField()
     class Meta:
+        db_table = 'Material'
         database = db
 
 class notafiscal(Model):
@@ -209,5 +223,23 @@ class notafiscal(Model):
     data_nf= TextField()
     valor_nf = TextField()
     class Meta:
+        db_table = 'notafiscal'
         database = db
 
+class processos(Model):
+    ID = PrimaryKeyField()
+    Nome = TextField()
+    Tempo_Objetivo = TextField()
+    class Meta:
+        db_table = 'processos'
+        database = db
+
+class Historico_os(Model):
+    ID = PrimaryKeyField()
+    id_proc = IntegerField()
+    id_os = IntegerField()
+    inicio = TextField()
+    fim = TextField()
+    class Meta:
+        db_table = 'Historico_os'
+        database = db

@@ -1,6 +1,11 @@
-import os, sqlite3, requests, urllib.parse, datetime, jwt
+# -*- coding: utf-8 -*-
+import os, sqlite3, requests, datetime, jwt, sys
 from py_jwt_validator import PyJwtValidator, PyJwtException
-from cs50 import SQL
+#from cs50 import SQL
+try:
+    from urllib.parse import urlparse
+except ImportError:
+     from urlparse import urlparse
 from flask import flash, redirect, render_template, request, session, escape, Response 
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -25,8 +30,8 @@ conn = sqlite3.connect(
             password=os.environ['PASSWORD'],
             database=os.environ['DATABASE']
         )"""
-db = SQL("sqlite:///peppertools34.db")
-def getData(pref1, cond1, table, limit=False, column = ""):
+#db = SQL("sqlite:///peppertools34.db")
+'''def getData(pref1, cond1, table, limit=False, column = ""):
     if not pref1 or not cond1 or not table:
         return None
     else:   
@@ -59,12 +64,27 @@ def getData(pref1, cond1, table, limit=False, column = ""):
         elif pref1 == 'val':
           result = db
             
-        return result
+        return result'''
 
-def valClientes(id):
-    rows = Clientes.select().where(Clientes.ID == id)
-    rows = [model_to_dict(row) for row in rows]
-    return rows
+
+def auth_required(f):
+    """
+    Decorate routes to require login.
+
+    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if request.headers.get('authorization'):
+            try:
+                print(request.headers.get('authorization'))
+                jwt.decode(request.headers.get('authorization'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+                return f(*args, **kwargs)
+            except:
+                return Response('{"unauthorized"}', status=401, mimetype='application/json')
+        return Response('{"unauthorized"}', status=401, mimetype='application/json')
+    return decorated_function
+
 
 def login_required(f):
     """
@@ -93,6 +113,7 @@ def login_required(f):
                    
                     flash("Log in Expirado!")
                     return redirect('/login')
+        
         return redirect("/login")
         
     return decorated_function
@@ -101,8 +122,12 @@ def login_user(user, password, jwtoken):
     rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())
     #rows=[model_to_dict(row) for row in rows]
     #rows = db.execute("SELECT * FROM usuarios WHERE ds_login = \'"+ user + "\'")
-    print(rows[0]['ds_senha'])
-    if not check_password_hash(rows[0]['ds_senha'], password):
+    #print(rows[0]['ds_senha'])
+    #print(rows)
+    if not rows:
+        flash("Login Inválido")
+        return redirect('/login')
+    if not check_password_hash(rows[0]['ds_senha'], password) or not rows:
         if rows[0]['ds_senha'] != password:
             flash("Login Inválido")
             return redirect('/login')
@@ -111,10 +136,15 @@ def login_user(user, password, jwtoken):
     token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)
     session["token"] = token.decode('UTF-8')
     session['_permanent'] = token.decode('UTF-8')
+    #print(session.get("osid"))
     if session.get("osid"):
         return redirect("os/form/"+str(session['osid']))
     return redirect('/')
             
+def valClientes(id):
+    rows = Clientes.select().where(Clientes.ID == id)
+    rows = [model_to_dict(row) for row in rows]
+    return rows
 
     
 
@@ -123,7 +153,7 @@ def underdev():
 
 def insertData(list, table, pref1=""):
     final = "error"
-    
+    '''    
     stmt = "INSERT INTO "+table+" ("
     values = " VALUES ("
 
@@ -139,8 +169,8 @@ def insertData(list, table, pref1=""):
     values = values[:-1]
     stmt = stmt[:-1]
     final = stmt + ")" + values + ")"
-    #print(final)
-    db.execute(final)
+    #print(final)'''
+    #db.execute(final)
     if pref1 == "n_os":
         find = 'SELECT Id FROM Cadastro_OS WHERE Numero_Os = '+ str(list['Numero_Os'])
         rows = db.execute(find)
@@ -226,21 +256,77 @@ def checkDate(str1):
          
     return str2
 
-def auth_required(f):
-    """
-    Decorate routes to require login.
+def render_list(table):
+    print(table)
+    try:
+        tblist = str_to_class(table).select().distinct()
+        keys = list(str_to_class(table)._meta.fields.keys())
+    except:
+        try:
+            tblist = str_to_class(table.capitalize()).select().distinct()
+            keys = list(str_to_class(table.capitalize())._meta.fields.keys())
+        except:
+            flash('Erro ao encontrar!')
+            return redirect('/')    
+    
+    
+    tblist = [model_to_dict(row) for row in tblist]
+    
+    if 'Id_Cliente' in keys or 'id_cliente' in keys:
+        try:
+            i = keys.index('Id_Cliente')
+        except:
+            i = keys.index('id_cliente')
+        keys[i] = 'Nome'
+        for j in tblist:
+            try:
+                nome = list(Clientes.select(Clientes.nome).where(Clientes.ID == j.Id_Cliente).dicts())
+                print(nome)
+                #nome = nome[0]['nome']
+                j.Id_Cliente = nome
+                
+            except:
+                pass
+          #  try:
+            print('Loop:')
+            print(j)
+            nome = list(Clientes.select(Clientes.nome).where(Clientes.ID == j['id_cliente']).dicts())
+            nome = nome[0]['nome']
+            j['Nome'] = nome
+            print(nome)
+          #  except:
+          #      pass
+    '''
+    try:
+        tblist = str_to_class(table).select()
+        tblist = [model_to_dict(row) for row in tblist]
+        keys = str_to_class(table)._meta.fields.keys()
+    except Exception as e:
+        print(e)
+        flash('Erro ao carregar item(s)')
+        return redirect('/')'''
+    print(tblist)
+    return render_template('list.html', keys=keys, content=tblist, table=table)
 
-    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/
-    """
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if request.headers.get('authorization'):
-            request.headers.get('authorization') 
-            return f(*args, **kwargs)
-        else:
-             return Response('{"unauthorized"}', status=401, mimetype='application/json')
-    return decorated_function
+
 
 def logoutCommit():
     session.clear()
     return redirect('/login')
+
+def str_to_class(classname):
+    return getattr(sys.modules[__name__], classname)
+
+def registerprocess(id_proc, id_os, inicio=None, fim=None, ):
+    if inicio and not fim:
+       Historico_os.create(inicio=inicio, id_proc=id_proc, id_os=id_os)
+       return True
+    if fim and not inicio:
+       Historico_os.create(fim=fim, id_proc=id_proc, id_os=id_os)
+       return True
+    if not inicio and not fim:
+       Historico_os.create(id_proc=id_proc, id_os=id_os)
+       return True
+    else:
+       Historico_os.create(inicio=inicio, fim=fim, id_proc=id_proc, id_os=id_os)
+       return True

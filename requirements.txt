@@ -3,9 +3,11 @@ Click==7.0
 gunicorn==19.10.0
 itsdangerous==1.1.0
 Jinja2==2.11.1
+jwt
 MarkupSafe==1.1.1
 mysql-connector-python
 mysqlclient
+parse
 peewee
 PyJWT
 pytz
@@ -13,6 +15,7 @@ pymongo==3.10.1
 py-jwt-validator
 cs50
 Flask
+flask-cors
 Flask-QRcode
 Flask-Session
 flask-ssl
