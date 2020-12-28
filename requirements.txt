@@ -3,7 +3,7 @@ Click==7.0
 gunicorn==19.10.0
 itsdangerous==1.1.0
 Jinja2==2.11.1
-jwt
+jwt==1.7.1
 MarkupSafe==1.1.1
 mysql-connector-python
 mysqlclient
