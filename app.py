@@ -952,6 +952,7 @@ def invalid_route(e):
 
 """
 @app.route('/app/api/login', methods=['POST'])
+@cross_origin(origin='localhost',headers=['Content- Type'])
 def longlogin():
     obj = json.loads(request.data)
     rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])
@@ -967,10 +968,7 @@ def longlogin():
                 
         token = jwt.encode({'user': obj['username'], 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=12)}, os.environ['SECRET_KEY'])
             # request.headers['authorization'] = token.decode('UTF-8')
-        resp = make_response(jsonify({'token': token.decode('UTF-8')}))
-        print(jsonify(resp))
-            # resp.headers['Origin'] = 
-        return resp
+        return make_response(jsonify({'token': token.decode('UTF-8')}))
         
     return jsonify('Not found')
         
