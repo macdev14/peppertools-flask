@@ -6,7 +6,7 @@
 instance/*
 !instance/.gitignore
 .webassets-cache
-
+.DS_Store
 
 
 app.yaml
@@ -14,13 +14,11 @@ peppertools34.db
 peppertools34.sqlite3
 peppertools45.db 
 cache.sqlite 
-/__pycache__
-__pycache__
-/.vscode
-.vscode
+__pycache__/
+.vscode/
 app2.py
-/templates/os2.html
-/templates/clientes2.html
+templates/os2.html
+templates/clientes2.html
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
