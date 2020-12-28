@@ -36,7 +36,7 @@ JINJA2_ENVIRONMENT_OPTIONS = { '' : None }
 app = Flask(__name__)
 
 
-cors = CORS(app, resources={r"/": {"origins": "http://localhost:5000"}})
+cors = CORS(app, resources={r"/": {"origins": "https://peppertools.herokuapp.com"}})
 #app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 #SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'
 os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
@@ -952,7 +952,7 @@ def invalid_route(e):
 
 """
 @app.route('/app/api/login', methods=['POST'])
-@cross_origin(origin='localhost',headers=['Content- Type'])
+@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type'])
 def longlogin():
     obj = json.loads(request.data)
     rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])
@@ -1017,7 +1017,7 @@ def all_api():
 
 @app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
 @auth_required
-@cross_origin(origin='localhost',headers=['Content- Type','authorization'])
+@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type','authorization'])
 def osApi(osid):
     try:
         rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)
