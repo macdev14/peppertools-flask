@@ -1017,7 +1017,7 @@ def all_api():
 
 @app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
 @auth_required
-@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type','authorization'])
+@cross_origin(origin='peppertools.herokuapp.com',headers=['Content-Type','authorization'])
 def osApi(osid):
     try:
         rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)
@@ -1110,6 +1110,7 @@ def allClientes():
     clients = [model_to_dict(client) for client in clients]
     return jsonify(clients)
 
+@cross_origin(origin='peppertools.herokuapp.com',headers=['Content-Type','authorization'])
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required
 def inicioProcesso():
@@ -1118,7 +1119,7 @@ def inicioProcesso():
     horario = obj['horario']
     process = Cadastro_OS.select().where(processos.osid == osid).get()
     
-@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type','authorization'])
+@cross_origin(origin='peppertools.herokuapp.com',headers=['Content-Type','authorization'])
 @app.route('/api/processos', methods=['GET'])
 @auth_required
 def allProcesso():

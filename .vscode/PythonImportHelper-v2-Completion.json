@@ -1079,7 +1079,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def all_api():\n    rows = Cadastro_OS.select()\n    rows = [model_to_dict(row) for row in rows]\n    return rows\n@app.route('/api/os/<int:osid>', methods=['POST', 'GET'])\n@auth_required\n@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type','authorization'])\ndef osApi(osid):\n    try:\n        rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)",
+        "peekOfCode": "def all_api():\n    rows = Cadastro_OS.select()\n    rows = [model_to_dict(row) for row in rows]\n    return rows\n@app.route('/api/os/<int:osid>', methods=['POST', 'GET'])\n@auth_required\n@cross_origin(origin='peppertools.herokuapp.com',headers=['Content-Type','authorization'])\ndef osApi(osid):\n    try:\n        rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)",
         "detail": "app",
         "documentation": {}
     },
@@ -1124,7 +1124,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allClientes():\n    clients = Clientes.select()\n    clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']",
+        "peekOfCode": "def allClientes():\n    clients = Clientes.select()\n    clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='peppertools.herokuapp.com',headers=['Content-Type','authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']",
         "detail": "app",
         "documentation": {}
     },
@@ -1133,7 +1133,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    process = Cadastro_OS.select().where(processos.osid == osid).get()\n@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type','authorization'])\n@app.route('/api/processos', methods=['GET'])\n@auth_required\ndef allProcesso():\n    if request.method == 'GET':",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    process = Cadastro_OS.select().where(processos.osid == osid).get()\n@cross_origin(origin='peppertools.herokuapp.com',headers=['Content-Type','authorization'])\n@app.route('/api/processos', methods=['GET'])\n@auth_required\ndef allProcesso():\n    if request.method == 'GET':",
         "detail": "app",
         "documentation": {}
     },
