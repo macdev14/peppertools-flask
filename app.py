@@ -1118,7 +1118,7 @@ def inicioProcesso():
     horario = obj['horario']
     process = Cadastro_OS.select().where(processos.osid == osid).get()
     
-
+@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type','authorization'])
 @app.route('/api/processos', methods=['GET'])
 @auth_required
 def allProcesso():
