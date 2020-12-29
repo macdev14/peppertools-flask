@@ -54,15 +54,15 @@ def before_request():
 @app.after_request
 def after_request(response):
     db.close()
-    '''  response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     response.headers['Access-Control-Allow-Origin'] = '*'
    # response.headers["authorization"] = session.get('_permanent')
     response.headers["Access-Control-Allow-Credentials"] = "true"
-    response.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
+    response.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Authorization, Origin, X-Requested-With, Content-Type, Accept"
     response.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
-    return response'''
+    return response
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = True
@@ -1127,11 +1127,7 @@ def allProcesso():
     if request.method == 'GET':
         process_list = processos.select()
         process_list = [model_to_dict(processo) for processo in process_list]
-        resp = make_response(process_list) #here you could use make_response(render_template(...)) too
-        resp.headers['Access-Control-Allow-Origin'] = '*'
-        resp.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, PATCH'
-        resp.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-        return resp
+        return jsonify(process_list)
 
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required
