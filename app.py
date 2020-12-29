@@ -952,8 +952,9 @@ def invalid_route(e):
 *** API ROUTES ***
 
 """
+
 @app.route('/app/api/login', methods=['POST'])
-@cross_origin(origin='peppertools.herokuapp.com',headers=['Content- Type'])
+@cross_origin()
 def longlogin():
     obj = json.loads(request.data)
     rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])
