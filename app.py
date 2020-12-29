@@ -1120,7 +1120,7 @@ def inicioProcesso():
     horario = obj['horario']
     process = Cadastro_OS.select().where(processos.osid == osid).get()
     
-@cross_origin(headers=['Content-Type','authorization'])
+@cross_origin(headers=['Content-Type', 'authorization', 'Access-Control-Allow-Headers'])
 @app.route('/api/processos', methods=['GET'])
 @auth_required
 def allProcesso():
