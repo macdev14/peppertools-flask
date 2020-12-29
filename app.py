@@ -1125,9 +1125,9 @@ def inicioProcesso():
 @auth_required
 def allProcesso():
     if request.method == 'GET':
-        process_list = processos.select()
-        process_list = [model_to_dict(processo) for processo in process_list]
-        return jsonify(process_list)
+        resp = make_response(jsonify(process_list))
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        return resp
 
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required

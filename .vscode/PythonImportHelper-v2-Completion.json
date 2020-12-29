@@ -1142,7 +1142,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allProcesso():\n    if request.method == 'GET':\n        process_list = processos.select()\n        process_list = [model_to_dict(processo) for processo in process_list]\n        return jsonify(process_list)\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef fimProcesso():\n    obj = json.loads(request.data)\n    id = obj['id']",
+        "peekOfCode": "def allProcesso():\n    if request.method == 'GET':\n        resp = make_response(jsonify(process_list))\n        resp.headers['Access-Control-Allow-Origin'] = '*'\n        return resp\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef fimProcesso():\n    obj = json.loads(request.data)\n    id = obj['id']",
         "detail": "app",
         "documentation": {}
     },
