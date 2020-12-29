@@ -1127,7 +1127,11 @@ def allProcesso():
     if request.method == 'GET':
         process_list = processos.select()
         process_list = [model_to_dict(processo) for processo in process_list]
-        return jsonify(process_list)
+        resp = make_response(process_list) #here you could use make_response(render_template(...)) too
+        resp.headers['Access-Control-Allow-Origin'] = '*'
+        resp.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, PATCH'
+        resp.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+        return resp
 
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required
