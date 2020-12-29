@@ -1133,7 +1133,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    process = Cadastro_OS.select().where(processos.osid == osid).get()\n@cross_origin(origin='peppertools.herokuapp.com',headers=['Content-Type','authorization'])\n@app.route('/api/processos', methods=['GET'])\n@auth_required\ndef allProcesso():\n    if request.method == 'GET':",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    process = Cadastro_OS.select().where(processos.osid == osid).get()\n@cross_origin(headers=['Content-Type','authorization'])\n@app.route('/api/processos', methods=['GET'])\n@auth_required\ndef allProcesso():\n    if request.method == 'GET':",
         "detail": "app",
         "documentation": {}
     },
