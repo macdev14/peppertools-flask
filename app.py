@@ -37,7 +37,7 @@ app = Flask(__name__)
 
 
 cors = CORS(app)
-app.config['CORS_HEADERS'] = ['Content-Type', 'authorization']
+app.config['CORS_HEADERS'] = 'Content-Type'
 #app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 #SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'
 os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
@@ -1120,14 +1120,14 @@ def inicioProcesso():
     horario = obj['horario']
     process = Cadastro_OS.select().where(processos.osid == osid).get()
     
-@cross_origin()
+@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
 @app.route('/api/processos', methods=['GET'])
 @auth_required
 def allProcesso():
     if request.method == 'GET':
-        resp = make_response(jsonify(process_list))
-        resp.headers['Access-Control-Allow-Origin'] = '*'
-        return resp
+        process_list = processos.select()
+        process_list = [model_to_dict(processo) for processo in process_list]
+        return jsonify(process_list)
 
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required
