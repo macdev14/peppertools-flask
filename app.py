@@ -54,7 +54,7 @@ def before_request():
 @app.after_request
 def after_request(response):
     db.close()
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    '''  response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     response.headers['Access-Control-Allow-Origin'] = '*'
@@ -62,7 +62,7 @@ def after_request(response):
     response.headers["Access-Control-Allow-Credentials"] = "true"
     response.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept"
     response.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
-    return response
+    return response'''
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = True

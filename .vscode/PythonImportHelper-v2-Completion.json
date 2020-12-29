@@ -719,7 +719,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'",
+        "peekOfCode": "def before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    '''  response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'",
         "detail": "app",
         "documentation": {}
     },
@@ -728,7 +728,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"\n    response.headers[\"Access-Control-Allow-Headers\"] = \"Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept\"\n    response.headers[\"Access-Control-Allow-Methods\"] = \"GET,HEAD,OPTIONS,POST,PUT\"",
+        "peekOfCode": "def after_request(response):\n    db.close()\n    '''  response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"\n    response.headers[\"Access-Control-Allow-Headers\"] = \"Access-Control-Allow-Headers, Origin, X-Requested-With, Content-Type, Accept\"\n    response.headers[\"Access-Control-Allow-Methods\"] = \"GET,HEAD,OPTIONS,POST,PUT\"",
         "detail": "app",
         "documentation": {}
     },
@@ -1331,7 +1331,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"",
+        "peekOfCode": "app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    '''  response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"",
         "detail": "app",
         "documentation": {}
     },
