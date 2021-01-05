@@ -1112,14 +1112,20 @@ def allClientes():
     clients = [model_to_dict(client) for client in clients]
     return jsonify(clients)
 
-@cross_origin()
+@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required
 def inicioProcesso():
     obj = json.loads(request.data)
     osid = obj['osid']
     horario = obj['horario']
-    process = Cadastro_OS.select().where(processos.osid == osid).get()
+    idproc = obj['idProc']
+    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
+    altos.STATUS = idproc
+    altos.save()
+    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario)
+    return jsonify("Sucesso!")
+    
     
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
 @app.route('/api/processos', methods=['GET'])
@@ -1130,12 +1136,22 @@ def allProcesso():
         process_list = [model_to_dict(processo) for processo in process_list]
         return jsonify(process_list)
 
-@app.route('/api/processos/inicio', methods=['POST'])
+@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
+@app.route('/api/processos/fim', methods=['POST'])
 @auth_required
 def fimProcesso():
     obj = json.loads(request.data)
-    id = obj['id']
+    osid = obj['osid']
     horario = obj['horario']
+    idproc = obj['idProc']
+    althistos = Historico_os.select().where( 
+    (Historico_os.id_os == osid) &
+    (Historico_os.id_proc == idproc)).get()
+      
+    althistos.fim = horario
+    althistos.save()
+    return jsonify("Sucesso!")
+   
 
 
 

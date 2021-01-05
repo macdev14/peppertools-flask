@@ -38,7 +38,7 @@ async function filterEstoque(q) {
   if (!limit) {
     limit = 10;
   }
-  const URL = `http://peppertools.cf/api/estoque/q=${q.toString()}&col=${col.toString()}`;
+  const URL = `http://peppertools.herokuapp.com/api/estoque/q=${q.toString()}&col=${col.toString()}`;
   console.log(URL);
   document.getElementById("all").innerHTML = "";
   await axios(URL).then((response) => {

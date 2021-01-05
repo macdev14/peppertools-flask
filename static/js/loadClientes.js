@@ -1,6 +1,6 @@
 async function loadClientes() {
   document.getElementById("all").innerHTML = "";
-  const URL = `https://peppertools.cf/api/clientes`;
+  const URL = `https://peppertools.herokuapp.com/api/clientes`;
 
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
@@ -29,7 +29,7 @@ async function loadClientes() {
 }
 
 async function filterClient(q) {
-  const URL = `https://peppertools.cf/api/clientes/q=${q.toString()}`;
+  const URL = `https://peppertools.herokuapp.com/api/clientes/q=${q.toString()}`;
   document.getElementById("all").innerHTML = "";
   await axios(URL).then((response) => {
     response.data.map((val, i) => {

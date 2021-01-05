@@ -5,7 +5,7 @@ String.prototype.capitalize = function () {
  async function load(table, limit = 10) {
   document.getElementById("all").innerHTML = "";
 
-  const URL = `https://peppertools.cf/api/${table}/limit=${limit.toString()}`;
+  const URL = `https://peppertools.herokuapp.com/api/${table}/limit=${limit.toString()}`;
   let keys = [];
   await axios(URL).then((response) => {
     keys = Object.keys(response.data[0]);
@@ -51,7 +51,7 @@ String.prototype.capitalize = function () {
 }
 
 async function filter(q, table) {
-  const URL = `https://peppertools.cf/api/${table}/q=${q.toString()}`;
+  const URL = `https://peppertools.herokuapp.com/api/${table}/q=${q.toString()}`;
   document.getElementById("all").innerHTML = "";
   await axios(URL).then((response) => {
     response.data.map((val, i) => {

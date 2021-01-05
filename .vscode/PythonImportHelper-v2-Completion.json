@@ -1124,7 +1124,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allClientes():\n    clients = Clientes.select()\n    clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin()\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']",
+        "peekOfCode": "def allClientes():\n    clients = Clientes.select()\n    clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']",
         "detail": "app",
         "documentation": {}
     },
@@ -1133,7 +1133,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    process = Cadastro_OS.select().where(processos.osid == osid).get()\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos', methods=['GET'])\n@auth_required\ndef allProcesso():\n    if request.method == 'GET':",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario)\n    return jsonify(\"Sucesso!\")",
         "detail": "app",
         "documentation": {}
     },
@@ -1142,7 +1142,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allProcesso():\n    if request.method == 'GET':\n        process_list = processos.select()\n        process_list = [model_to_dict(processo) for processo in process_list]\n        return jsonify(process_list)\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef fimProcesso():\n    obj = json.loads(request.data)\n    id = obj['id']",
+        "peekOfCode": "def allProcesso():\n    if request.method == 'GET':\n        process_list = processos.select()\n        process_list = [model_to_dict(processo) for processo in process_list]\n        return jsonify(process_list)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/fim', methods=['POST'])\n@auth_required\ndef fimProcesso():\n    obj = json.loads(request.data)",
         "detail": "app",
         "documentation": {}
     },
@@ -1151,7 +1151,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    id = obj['id']\n    horario = obj['horario']\n@app.route('/api/clientes/id=<int:id>', methods=['GET', 'POST'])\n@auth_required\ndef IdClientes(id):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select(Clientes.ID, Clientes.nome).where(Clientes.ID == id).order_by(Clientes.ID.asc())\n    return jsonify(model_to_dict(res))",
+        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    althistos = Historico_os.select().where( \n    (Historico_os.id_os == osid) &\n    (Historico_os.id_proc == idproc)).get()\n    althistos.fim = horario\n    althistos.save()",
         "detail": "app",
         "documentation": {}
     },
