@@ -1123,8 +1123,12 @@ def inicioProcesso():
     altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
     altos.STATUS = idproc
     altos.save()
-    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario)
-    return jsonify("Sucesso!")
+    osproc = Historico_os.select().where((Historico_os.id_os == osid) &
+    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )
+    if (osproc):
+        return jsonify("Processo da O.S já iniciou!")
+    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario)    
+    return jsonify("Processo iniciado com Sucesso!")
     
     
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
