@@ -1151,10 +1151,11 @@ def fimProcesso():
     althistos = Historico_os.select().where( 
     (Historico_os.id_os == osid) &
     (Historico_os.id_proc == idproc)).get()
-      
-    althistos.fim = horario
-    althistos.save()
-    return jsonify("Sucesso!")
+    if (althistos):
+        althistos.fim = horario
+        althistos.save()
+        return jsonify("Sucesso!")
+    return jsonify("Processo não iniciado!")
    
 
 
