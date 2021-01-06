@@ -76,12 +76,11 @@ def auth_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if request.headers.get('Authorization'):
-            try:
-                print(request.headers.get('Authorization'))
-                jwt.decode(request.headers.get('Authorization'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-                return f(*args, **kwargs)
-            except:
-                return Response('{"unauthorized"}', status=401, mimetype='application/json')
+            
+            print(request.headers.get('Authorization'))
+            jwt.decode(request.headers.get('Authorization'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+            return f(*args, **kwargs)
+           
         return Response('{"unauthorized"}', status=401, mimetype='application/json')
     return decorated_function
 

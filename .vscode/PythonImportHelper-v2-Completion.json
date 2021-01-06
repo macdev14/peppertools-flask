@@ -1574,7 +1574,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('Authorization'):\n            try:\n                print(request.headers.get('Authorization'))",
+        "peekOfCode": "def auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('Authorization'):\n            print(request.headers.get('Authorization'))\n            jwt.decode(request.headers.get('Authorization'), os.environ['SECRET_KEY'], algorithms=['HS256'])",
         "detail": "helper",
         "documentation": {}
     },
