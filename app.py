@@ -1125,7 +1125,7 @@ def inicioProcesso():
     altos.STATUS = idproc
     altos.save()
     osproc = Historico_os.select().where((Historico_os.id_os == osid) &
-    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != '') ).get()
+    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != '') )
     if (osproc):
         periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.Fim != '')).scalar()
         if not periodo:
