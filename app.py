@@ -1126,7 +1126,10 @@ def inicioProcesso():
     osproc = Historico_os.select().where((Historico_os.id_os == osid) &
     (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )
     if (osproc):
-        return jsonify("Processo da O.S já iniciou!")
+        periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()
+        periodo = periodo+1
+        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=datetime.today().strftime('%Y-%m-%d'))
+        return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")
     Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario)    
     return jsonify("Processo iniciado com Sucesso!")
     
@@ -1148,13 +1151,16 @@ def fimProcesso():
     osid = obj['osid']
     horario = obj['horario']
     idproc = obj['idProc']
+    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
+    (Historico_os.id_proc == idproc)).scalar()
     althistos = Historico_os.select().where( 
     (Historico_os.id_os == osid) &
-    (Historico_os.id_proc == idproc)).get()
+    (Historico_os.id_proc == idproc) &
+    (Historico_os.periodo == periodo)).get()
     if (althistos):
         althistos.fim = horario
         althistos.save()
-        return jsonify("Sucesso!")
+        return jsonify("Período Finalizado!")
     return jsonify("Processo não iniciado!")
    
 

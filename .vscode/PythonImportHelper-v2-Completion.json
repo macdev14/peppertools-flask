@@ -1151,7 +1151,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    althistos = Historico_os.select().where( \n    (Historico_os.id_os == osid) &\n    (Historico_os.id_proc == idproc)).get()\n    if (althistos):\n        althistos.fim = horario",
+        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &\n    (Historico_os.id_proc == idproc)).scalar()\n    althistos = Historico_os.select().where( \n    (Historico_os.id_os == osid) &\n    (Historico_os.id_proc == idproc) &",
         "detail": "app",
         "documentation": {}
     },
