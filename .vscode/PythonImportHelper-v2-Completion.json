@@ -1943,7 +1943,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    class Meta:\n        db_table = 'Historico_os'\n        database = db",
+        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    periodo = IntegerField()\n    data = TextField()\n    class Meta:\n        db_table = 'Historico_os'",
         "detail": "model",
         "documentation": {}
     },

@@ -240,6 +240,8 @@ class Historico_os(Model):
     id_os = IntegerField()
     inicio = TextField()
     fim = TextField()
+    periodo = IntegerField()
+    data = TextField()
     class Meta:
         db_table = 'Historico_os'
         database = db
