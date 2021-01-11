@@ -1141,7 +1141,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    osproc = Historico_os.select().where((Historico_os.id_os == osid) &\n    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != None) )",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    osproc = Historico_os.select().where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )\n    if osproc:",
         "detail": "app",
         "documentation": {}
     },
@@ -1159,7 +1159,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &\n    (Historico_os.id_proc == idproc)).scalar()\n    althistos = Historico_os.select().where( \n    (Historico_os.id_os == osid) &\n    (Historico_os.id_proc == idproc) &",
+        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &\n    (Historico_os.id_proc == idproc)).scalar()\n    if not periodo:\n        periodo = 1\n    althistos = Historico_os.select().where( ",
         "detail": "app",
         "documentation": {}
     },
@@ -1582,7 +1582,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('Authorization'):\n            print(request.headers.get('Authorization'))\n            jwt.decode(request.headers.get('Authorization'), os.environ['SECRET_KEY'], algorithms=['HS256'])",
+        "peekOfCode": "def auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('Authorization'):\n            try: \n                print(request.headers.get('Authorization'))",
         "detail": "helper",
         "documentation": {}
     },

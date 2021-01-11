@@ -1124,22 +1124,28 @@ def inicioProcesso():
     altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
     altos.STATUS = idproc
     altos.save()
-    osproc = Historico_os.select().where((Historico_os.id_os == osid) &
-    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != None) )
-    if (osproc):
-        periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != '')).scalar()
-        if not periodo:
-            periodo = 1
-        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today())
-        return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")    
-    
+
     osproc = Historico_os.select().where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )
     if osproc:
         osproc = osproc.get()
         if osproc.fim == None or osproc.fim == '':
-            return jsonify("Processo já iniciou!")
-    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1)    
-    return jsonify("Processo iniciado com Sucesso!")
+            return jsonify("Período do processo não finalizado!")
+
+    osproc = Historico_os.select().where((Historico_os.id_os == osid) &
+    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != None) )
+    if (osproc):
+        periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc)).scalar()
+        print(periodo)
+        if not periodo:
+            periodo = 1
+        else:
+            periodo = periodo + 1
+        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today())
+        return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")    
+    
+   
+    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1, data=date.today())    
+    return jsonify("Período do processo iniciado com Sucesso!")
     
     
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
@@ -1161,15 +1167,18 @@ def fimProcesso():
     idproc = obj['idProc']
     periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
     (Historico_os.id_proc == idproc)).scalar()
+    if not periodo:
+        periodo = 1
     althistos = Historico_os.select().where( 
     (Historico_os.id_os == osid) &
     (Historico_os.id_proc == idproc) &
-    (Historico_os.periodo == periodo)).get()
+    (Historico_os.periodo == periodo))
     if (althistos):
+        althistos = althistos.get()
         althistos.fim = horario
         althistos.save()
-        return jsonify("Período Finalizado!")
-    return jsonify("Processo não iniciado!")
+        return jsonify("Período "+str(periodo)+" Finalizado!")
+    return jsonify("Periodo do processo não iniciado!")
    
 
 
