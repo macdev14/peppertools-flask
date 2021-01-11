@@ -1131,12 +1131,15 @@ def inicioProcesso():
         if not periodo:
             periodo = 1
         Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today())
-        return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")
-    osproc = Historico_os.select().where((Historico_os.id_os == osid) &
-    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') ).get()
-    if osproc.fim == None or osproc.fim == '':
-        return jsonify("Processo já iniciou!")
-    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario)    
+        return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")    
+    
+     osproc = Historico_os.select().where((Historico_os.id_os == osid) &
+     (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )
+     if osproc:
+         osproc = osproc.get()
+        if osproc.fim == None or osproc.fim == '':
+            return jsonify("Processo já iniciou!")
+    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1)    
     return jsonify("Processo iniciado com Sucesso!")
     
     
