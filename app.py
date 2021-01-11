@@ -12,6 +12,7 @@ import sqlite3
 import sys, os, jwt, json
 from jinja2 import Undefined
 import datetime
+from datetime import date
 import pytz
 import re
 import requests
@@ -1124,13 +1125,17 @@ def inicioProcesso():
     altos.STATUS = idproc
     altos.save()
     osproc = Historico_os.select().where((Historico_os.id_os == osid) &
-    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )
+    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.Fim != '') ).get()
     if (osproc):
-        periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '')).scalar()
+        periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.Fim != '')).scalar()
         if not periodo:
             periodo = 1
-        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=datetime.today().strftime('%Y-%m-%d'))
+        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today())
         return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")
+    osproc = Historico_os.select().where((Historico_os.id_os == osid) &
+    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') ).get()
+    if osproc.fim == '':
+        return jsonify("Processo já iniciou!")
     Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario)    
     return jsonify("Processo iniciado com Sucesso!")
     

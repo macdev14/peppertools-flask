@@ -507,6 +507,14 @@
         "documentation": {}
     },
     {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "pytz",
         "kind": 6,
         "isExtraImport": true,
@@ -1133,7 +1141,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    osproc = Historico_os.select().where((Historico_os.id_os == osid) &\n    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    osproc = Historico_os.select().where((Historico_os.id_os == osid) &\n    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.Fim != '') ).get()",
         "detail": "app",
         "documentation": {}
     },
