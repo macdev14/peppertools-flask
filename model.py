@@ -242,6 +242,7 @@ class Historico_os(Model):
     fim = TextField()
     periodo = IntegerField()
     data = TextField()
+    qtd = IntegerField() 
     class Meta:
         db_table = 'Historico_os'
         database = db

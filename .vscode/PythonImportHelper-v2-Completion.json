@@ -907,7 +907,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        #rows = [model_to_dict(row) for row in rows]\n        #os = getOs(osid)\n        if not os:\n            flash(\"O.S não encontrada.\")\n            return redirect(\"/\")\n        field = rows[0]",
+        "peekOfCode": "def print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()\n        print(rows[0])\n        allProcessos = list(processos.select(processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())\n        print(allProcessos)\n        #os = getOs(osid)\n        if not os:",
         "detail": "app",
         "documentation": {}
     },
@@ -1141,7 +1141,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    osproc = Historico_os.select().where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )\n    if osproc:",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    qtd = obj['qtd']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    osproc = Historico_os.select().where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )",
         "detail": "app",
         "documentation": {}
     },
@@ -1951,7 +1951,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    periodo = IntegerField()\n    data = TextField()\n    class Meta:\n        db_table = 'Historico_os'",
+        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    periodo = IntegerField()\n    data = TextField()\n    qtd = IntegerField() \n    class Meta:",
         "detail": "model",
         "documentation": {}
     },

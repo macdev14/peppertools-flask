@@ -412,12 +412,15 @@ def register():
   
 
 @app.route('/os/form/print/<int:osid>', methods = ['GET'])
-@login_required
+#@login_required
 def print_os(osid):
     print(osid)
     if request.method == 'GET':
         rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())
-        #rows = [model_to_dict(row) for row in rows]
+        maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()
+        print(rows[0])
+        allProcessos = list(processos.select(processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())
+        print(allProcessos)
         #os = getOs(osid)
         if not os:
             flash("O.S não encontrada.")
@@ -1121,6 +1124,7 @@ def inicioProcesso():
     osid = obj['osid']
     horario = obj['horario']
     idproc = obj['idProc']
+    qtd = obj['qtd']
     altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
     altos.STATUS = idproc
     altos.save()
@@ -1140,11 +1144,11 @@ def inicioProcesso():
             periodo = 1
         else:
             periodo = periodo + 1
-        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today())
+        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today(), qtd=qtd)
         return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")    
     
    
-    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1, data=date.today())    
+    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1, data=date.today(), qtd=qtd)    
     return jsonify("Período do processo iniciado com Sucesso!")
     
     

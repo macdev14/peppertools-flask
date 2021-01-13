@@ -183,16 +183,19 @@
      <tr class="style13">
        <td colspan="4" class="LINHA"><div align="left"></div>      <div align="center"></div></td>
      </tr>
+     {% for process in processes%}
      <tr>
        <td width="20%" class="LINHA">
       <div align="right" class="style15">
-         <div align="left"><span class="style13">Corte</span></div>
+         <div align="left"><span class="style13">process.Nome</span></div>
        </div>
       </td>
-       <td class="LINHA" width="20%" >&nbsp;</td>
-       <td class="LINHA" width="20%" >&nbsp;</td>
+       <td class="LINHA" width="20%" >process.inicio</td>
+       <td class="LINHA" width="20%" >process.fim</td>
        <td class="LINHA" width="22%" >&nbsp;</td>
      </tr>
+{%endfor%}
+
      <tr>
        <td class="LINHA"><div align="right" class="style15">
          <div align="left"><span class="style13"> Torno</span></div>
