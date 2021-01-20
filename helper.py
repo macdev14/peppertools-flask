@@ -291,9 +291,12 @@ def render_list(table):
             print('Loop:')
             print(j)
             nome = list(Clientes.select(Clientes.nome).where(Clientes.ID == j['id_cliente']).dicts())
-            nome = nome[0]['nome']
-            j['Nome'] = nome
-            print(nome)
+            if nome:
+                nome = nome[0]['nome']
+                j['Nome'] = nome
+            else: 
+                j['Nome'] = 'Inexistente'
+            
           #  except:
           #      pass
     '''
@@ -305,9 +308,30 @@ def render_list(table):
         print(e)
         flash('Erro ao carregar item(s)')
         return redirect('/')'''
+    
+    if 'cod_fornecedor' in keys:
+        i = keys.index('cod_fornecedor')
+        keys[i] = 'Fornecedor'
+        for j in tblist:
+            nome = list(Fornecedores.select(Fornecedores.nome).where(Fornecedores.ID == j['cod_fornecedor']))
+            if nome:
+                nome = nome[0]['nome']
+                j['Fornecedor'] = nome
+            else: 
+                j['Fornecedor'] = 'Inexistente'
+    
+    if 'data_pagamento' in keys:
+        for j in tblist:
+            if j['data_pagamento']:
+                pass
+            else:
+                j['data_pagamento'] = 'Não foi pago'
     print(tblist)
     return render_template('list.html', keys=keys, content=tblist, table=table)
 
+   
+            
+    
 
 
 def logoutCommit():

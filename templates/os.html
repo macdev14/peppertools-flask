@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% block body %}
+<h2 class="text-center font-weight-bold mb-5 mt-5">Ordem de Servi&ccedil;o</h2>
 
 <div class="form-group mb-3">
   <label for="limit">Quantidade de O.S:</label>
@@ -26,7 +27,7 @@
 
   </tbody>
 </table>
-
+<div id="alerts"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
   integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="crossorigin="anonymous"></script>
 <script type="text/javascript">
@@ -42,7 +43,7 @@ async function loadOs(limit = 10) {
      data = data.split(' ').slice(0, 4).join(' ');
      prazo = new Date(val.Prazo).toUTCString();
      prazo = prazo.split(' ').slice(0, 4).join(' ');
-      
+     deletar(val.Id)
       console.log(val);
       document.getElementById("all").innerHTML += `<tr> 
       <th scope="row"><a href='/os/form/print/${val.Id}' target='_blank'> ${
@@ -57,9 +58,7 @@ async function loadOs(limit = 10) {
             </a>
          </td>
           <td>
-         <a href="os/form/delete/${val.Id}">
-                <button type="submit" class="btn-link">Deletar</button>
-            </a>
+            <button type="submit" class="btn-link" data-toggle="modal" data-target='#confirmar${val.Id}'>Excluir</button>
             </td>
     </tr>
     `;
@@ -84,27 +83,53 @@ async function filterOs(q) {
      prazo = new Date(val.Prazo).toUTCString();
      prazo = prazo.split(' ').slice(0, 4).join(' ');
       console.log(val);
+      deletar(val.Id)
       document.getElementById("all").innerHTML += `<tr> 
       <th scope="row"><a href='/os/form/print/${val.Id}' target='_blank'> ${val.Numero_Os} </a></th>
       <td>${val.nome.replace(/\s.*/, "")}</td>
       <td>${data}</td>
       <td>${prazo}</td>
       <td>${val.Especificacao}</td>
+    
        <td width="15%" float="left"><a href="os/form/${val.Id}" target='_blank'>
                 <button type="submit" class="btn-link">Editar</button>
             </a>
          </td>
           <td>
-         <a href="os/form/delete/${val.Id}" target='_blank'>
-                <button type="submit" class="btn-link">Deletar</button>
-            </a>
+         
+                <button type="submit" class="btn-link" data-toggle="modal" data-target='#confirmar${val.Id}'>Excluir</button>
+           
             </td>
     </tr>
     `;
     });
   });
 }
-
+function deletar(id){
+    
+      return  document.getElementById('alerts').innerHTML += 
+        `
+     <div class="modal fade" id="confirmar${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar Exclusão</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       Confirme a exclusão da Ordem de Serviço
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <a href="os/form/delete/${id}">
+        <button type="button" class="btn btn-primary">Excluir</button></a>
+      </div>
+    </div>
+  </div>
+</div>`
+}
 
 
 document.addEventListener("DOMContentLoaded", loadOs(10));

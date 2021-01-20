@@ -979,7 +979,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def editarcontas(idconta):\n    forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)\n    Keys = list(contasapagar._meta.fields.keys())\n    conta = contasapagar.select().where(contasapagar.ID == idconta)\n    if request.method == 'POST':\n        try:  \n            contasapagar.update(vencimento=datetime.datetime.strptime(request.form['vencimento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\"), descricao= request.form['descricao'], valor=float(request.form['valor'].strip()), pago=float(request.form['pago'].strip()), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\"), cod_fornecedor=int(request.form['cod_fornecedor'])).execute()\n            flash('Alterado com Sucesso')\n            return redirect('/contasapagar/form/'+ str(idconta))\n        except:",
+        "peekOfCode": "def editarcontas(idconta):\n    forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)\n    Keys = list(contasapagar._meta.fields.keys())\n    conta = list(contasapagar.select().where(contasapagar.ID == idconta).dicts())\n    try:\n        conta[0]['vencimento'] = datetime.datetime.strptime(conta[0]['vencimento'] , '%Y-%m-%d').strftime('%d/%m/%Y')\n        conta[0]['data_pagamento'] = datetime.datetime.strptime(conta[0]['vencimento'] , '%Y-%m-%d').strftime('%d/%m/%Y')\n    except:\n        pass\n    if request.method == 'POST':",
         "detail": "app",
         "documentation": {}
     },

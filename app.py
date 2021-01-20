@@ -591,10 +591,15 @@ def contaspagar():
 def editarcontas(idconta):
     forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)
     Keys = list(contasapagar._meta.fields.keys())
-    conta = contasapagar.select().where(contasapagar.ID == idconta)
+    conta = list(contasapagar.select().where(contasapagar.ID == idconta).dicts())
+    try:
+        conta[0]['vencimento'] = datetime.datetime.strptime(conta[0]['vencimento'] , '%Y-%m-%d').strftime('%d/%m/%Y')
+        conta[0]['data_pagamento'] = datetime.datetime.strptime(conta[0]['vencimento'] , '%Y-%m-%d').strftime('%d/%m/%Y')
+    except:
+        pass
     if request.method == 'POST':
         try:  
-            contasapagar.update(vencimento=datetime.datetime.strptime(request.form['vencimento'], "%d/%m/%Y").strftime("%d/%m/%Y"), descricao= request.form['descricao'], valor=float(request.form['valor'].strip()), pago=float(request.form['pago'].strip()), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], "%d/%m/%Y").strftime("%d/%m/%Y"), cod_fornecedor=int(request.form['cod_fornecedor'])).execute()
+            contasapagar.update(vencimento=datetime.datetime.strptime(request.form['vencimento'], "%d/%m/%Y").strftime("%Y-%m-%d"), descricao= request.form['descricao'], valor=float(request.form['valor'].strip()), pago=float(request.form['pago'].strip()), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], "%d/%m/%Y").strftime("%d/%m/%Y"), cod_fornecedor=int(request.form['cod_fornecedor'])).execute()
             flash('Alterado com Sucesso')
             return redirect('/contasapagar/form/'+ str(idconta))
         except:
@@ -875,7 +880,7 @@ def processosOs(idproc):
 
 
 @app.route('/<string:table>', methods=['GET'])
-@login_required
+#@login_required
 def renderTable(table):
     return render_list(table)
 

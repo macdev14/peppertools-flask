@@ -1,30 +1,48 @@
 {% extends "layout.html"%}
 {% block body %}
 {% if edit == True %}
+
 <h2 class="text-center"> 
-  Alterar {{table.capitalize() }} <i class="fa fa-user-edit"></i>
+  Alterar {% if table == 'contasapagar' %} Contas a Pagar {%else%} {{table.capitalize()}} {%endif%} <i class="fa fa-user-edit"></i>
   
   </h2>
   <hr>
+  <div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Please Wait</h3>
+    </div>
+    <div class="modal-body">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    
+    </div>
+</div>
 <div class="container">
+  
 
 <form action="/{{table}}/form/{{ content['ID'] or content['Id'] or content['id']}}" method="post">
     {% for i in range(TableLen) %}
     {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
     <div class="form-group">
         
-      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or TableCol[i] == 'cod_item' %}
+      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or TableCol[i] == 'cod_item' or TableCol[i] == 'id_Tipo' %}
 
      
       <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>  
           
   
         <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
-             
+             {%if clients %}
               
               {% for client in clients %}
               {% if client.ID or client.id or client.Id %}
-              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] %}
+              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] or client.ID | int == content['id_bike'] %}
               <option value="{{ client['ID'] or client['id']   }}" selected> {{ client['nome'] or client['ferramenta'] }} </option>
               {% else %}
               <option value="{{ client['ID'] or client['id']  }}">{{ client['nome'] or client['ferramenta'] }}</option>
@@ -38,13 +56,15 @@
               {% endif %}
               {% endif %}
               {% endfor %}    
-             
+             {%else%}
+             <option value="" id="emptyoption" selected> Cadastre suas Opções </option>
+             {% endif %}
          
         </select> <br>
-          {% elif TableCol[i] == 'id_cliente'%}
+          {% elif selection2%}
 
           <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
-             
+           
               
             {% for client in selection2 %}
             {% if client.ID or client.id or client.Id %}
@@ -62,7 +82,9 @@
             {% endif %}
             {% endif %}
             {% endfor %}    
-           
+           {%elif sel2len == 0%}  
+            <option value="" id="emptyoption" selected> Cadastre suas Opções </option>
+          
        
       </select> <br>
   
@@ -71,7 +93,11 @@
       {% else %}
   
 
-    
+      {% if TableCol[i] == 'data' and data %}
+
+        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
+        <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
+        {% else %}
 
     
     <div class="form-group">
@@ -81,12 +107,19 @@
   
      {% endif %}
      {% endif %}
+     {% endif %}
     {% endfor %}
     <button class="btn btn-warning btn-lg">
       Alterar {% if table == 'contasapagar' %} Conta {%else%} {{table.capitalize()}}{%endif%} <i class=".glyphicon-glyphicon-pencil"></i></button>
  
 </form>
 
+{% if table == 'locacao' %}
+<form action='fim/{{content["ID"]}}'><button class="btn btn-warning btn-lg">
+  Finalizar Locacao <i class=".glyphicon-glyphicon-pencil"></i></button> </form> 
+
+
+{%endif%} 
 
 <!-- TEST-->
 
@@ -115,17 +148,19 @@
   
   </h2><hr>
 <div class="container">
+ 
+  
   <form action="/{{table}}/form/" method="post">
       {% for i in range(TableLen) %}
       {% if TableCol[i] != 'ID' and TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
       <div class="form-group">
         
-        {% if TableCol[i] == 'id_cliente' or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or  TableCol[i] == 'cod_item' %}
+        {% if TableCol[i] == 'id_cliente' or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or  TableCol[i] == 'cod_item' or TableCol[i] == 'id_Tipo' %}
         {% if cliLen %}
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
     
           <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
-                <option value="0" selected disabled>SELECIONAR</option>
+                <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
                 
                 {% for client in range(cliLen) %}
                     <option value="{{ clients[client]['ID'] or clients[client]['id'] }}">{{clients[client]['nome'] or clients[client]['ferramenta']}}</option>
@@ -134,35 +169,49 @@
            
           </select> <br>
           {%endif%}
+          {% elif selection2  and TableCol[i] == 'id_bike'%}
+          {% if sel2Len %}
+          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
+      
+            <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+                  <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
+                  
+                  {% for keysel2 in range(sel2Len) %}
+                      <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta']}}</option>
+                  {% endfor %}    
+                 
+             
+            </select> <br>
+
+          {%endif%}
     
     
         
         {% else %}
 
-        {% if TableCol[i] == 'data' %}
+        {% if TableCol[i] == 'data'  and data%}
 
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
-        <input type="text" class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
-        {% else %}
-        
+        <input type="text" class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
+        {% elif TableCol[i] != 'fim' %}
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
         <input class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
         {% endif %}
-         {% endif %}
+        
       </div>
-     
-       {% endif %}
+      {% endif %} 
+      {% endif %} 
       {% endfor %}
-      
+    
       <br>
-      <button class="btn btn-dark btn-lg">
+      <button class="btn btn-dark btn-lg" >
         Cadastrar {% if table == 'contasapagar' %} Conta {%else%} {{table.capitalize()}}{%endif%}<i class=".glyphicon-glyphicon-pencil"></i></button>
       
   </form>
   
   <br>
 
-  <a href="/{{table}}/form">
+  <a href="/{{table}}">
     
     <button class="btn btn-primary btn-lg">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
@@ -178,12 +227,16 @@
       filename='js/load.js')}}"></script>
 <script type="text/javascript">
   //$('#fax').mask('(99) 9999-9999');
+ 
+  /*$(window).on('load', function() {
+       $('#myModal').modal('show');
+       setTimeout(1500)
+       $('#myModal').modal('hide');
+  });*/
 
   $('#data').mask('00/00/0000');
   $('#vencimento').mask('00/00/0000');
   $('#data_pagamento').mask('00/00/0000');
-
-
 if (document.getElementById('numero_nf-label') && typeof document.getElementById('numero_nf-label').innerHTML != 'undefined' ) {
   document.getElementById('numero_nf-label').innerHTML = 'Número N.F';
   document.getElementById('data_nf-label').innerHTML = 'Data da N.F';
@@ -228,6 +281,7 @@ if ( document.getElementById('cnpj') && typeof document.getElementById('cnpj').i
 
 if ( document.getElementById('data_pagamento-label') && typeof document.getElementById('data_pagamento-label').innerHTML != 'undefined'){
   document.getElementById('cod_fornecedor-label').innerHTML = 'Fornecedor';
+  //document.getElementById('emptyoption').innerHTML = 'Fornecedor'
   document.getElementById('vencimento').placeholder = 'dd/mm/yyyy';
   document.getElementById('data_pagamento-label').innerHTML = 'Data do Pagamento';
   document.getElementById('data_pagamento').placeholder = 'dd/mm/yyyy';
