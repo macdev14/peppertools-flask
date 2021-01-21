@@ -29,7 +29,7 @@ async function loadClientes() {
 }
 
 async function filterClient(q) {
-  const URL = `https://peppertools.herokuapp.com/api/clientes/q=${q.toString()}`;
+  const URL = `https://peppertools.osc-fr1.scalingo.io/api/clientes/q=${q.toString()}`;
   document.getElementById("all").innerHTML = "";
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
