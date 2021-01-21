@@ -1968,7 +1968,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "home = expanduser(\"~\")\nperms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711 or 'peppertools.db')\nclass Clientes(Model):\n    ID= PrimaryKeyField()",
+        "peekOfCode": "home = expanduser(\"~\")\nperms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306 or 'peppertools.db')\nclass Clientes(Model):\n    ID= PrimaryKeyField()",
         "detail": "model",
         "documentation": {}
     },
@@ -1977,7 +1977,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "perms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711 or 'peppertools.db')\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()",
+        "peekOfCode": "perms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306 or 'peppertools.db')\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()",
         "detail": "model",
         "documentation": {}
     },
@@ -1986,7 +1986,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "db = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711 or 'peppertools.db')\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
+        "peekOfCode": "db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306 or 'peppertools.db')\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
         "detail": "model",
         "documentation": {}
     },

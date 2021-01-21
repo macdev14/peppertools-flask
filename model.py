@@ -10,7 +10,7 @@ perms = {'key': home+'/ssl/ca.pem',
         
          }
 
-db = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711 or 'peppertools.db')
+db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306 or 'peppertools.db')
 
 class Clientes(Model):
     ID= PrimaryKeyField()
