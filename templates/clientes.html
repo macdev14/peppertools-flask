@@ -58,7 +58,7 @@ async function loadCliente(limit = 10) {
     </tr>
     `;
     });
-  }).catch(err=>{  document.getElementById("all").innerHTML += `<tr> Erro ao carregar </tr>`});
+  }).catch(err=>{  console.log(err); document.getElementById("all").innerHTML += `<tr> Erro ao carregar </tr>`});
 }
 
 async function filterCliente(q) {
