@@ -1,6 +1,6 @@
 from peewee import *
 import datetime, os
-db = MySQLDatabase(os.getenv("DATABASE_URL"))
+db = MySQLDatabase(os.getenv("SCALINGO_MYSQL_URL"))
 
 class Clientes(Model):
     ID= PrimaryKeyField()

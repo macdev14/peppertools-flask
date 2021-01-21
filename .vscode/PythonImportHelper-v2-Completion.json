@@ -1969,7 +1969,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "db = MySQLDatabase(os.getenv(\"DATABASE_URL\"))\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
+        "peekOfCode": "db = MySQLDatabase(os.getenv(\"SCALINGO_MYSQL_URL\"))\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
         "detail": "model",
         "documentation": {}
     },
