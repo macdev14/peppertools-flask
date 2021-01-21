@@ -1,7 +1,7 @@
 from peewee import *
 import datetime, os
 from playhouse.db_url import connect
-db = connect(os.getenv("SCALINGO_MYSQL_URL"))
+db = connect(os.environ.get("SCALINGO_MYSQL_URL"))
 
 class Clientes(Model):
     ID= PrimaryKeyField()
