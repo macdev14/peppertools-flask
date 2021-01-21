@@ -1968,7 +1968,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "home = expanduser(\"~\")\nperms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n         'check_hostname': False}\ndb = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711, ssl=perms)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()",
+        "peekOfCode": "home = expanduser(\"~\")\nperms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711, ssl=perms)\nclass Clientes(Model):\n    ID= PrimaryKeyField()",
         "detail": "model",
         "documentation": {}
     },
@@ -1977,7 +1977,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "perms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n         'check_hostname': False}\ndb = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711, ssl=perms)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()",
+        "peekOfCode": "perms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711, ssl=perms)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()",
         "detail": "model",
         "documentation": {}
     },
