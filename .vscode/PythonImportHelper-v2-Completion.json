@@ -1977,7 +1977,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "db = connect(os.environ.get(\"SCALINGO_MYSQL_URL\"))\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
+        "peekOfCode": "db = connect(os.environ.get(\"DATABASE_URL\"))\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
         "detail": "model",
         "documentation": {}
     },
