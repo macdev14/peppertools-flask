@@ -108,7 +108,7 @@ def estoque():
 @login_required
 def clientes():
     #return getClientes("key","*")
-    return render_template("clientes.html", title="Clientes", active1="",active2="", active3="active", active4="")
+    return render_template("clientes.html", auth=session.get('token'), title="Clientes", active1="",active2="", active3="", active4="active")
 
 
 @app.route('/clientes/buscar')
@@ -123,7 +123,7 @@ def cadCli():
     if request.method == 'GET':
         clientes = list(Clientes._meta.fields.keys())
         print(clientes)
-        return render_template("Form.html", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1="",active2="", active3="active", active4="")
+        return render_template("Form.html", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1="",active2="", active3="", active4="active")
        # return render_template("client_edit.html", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1="",active2="", active3="active", active4="")
     elif request.method == 'POST':   # clientes = getData(" ","*", "Clientes")
         try:

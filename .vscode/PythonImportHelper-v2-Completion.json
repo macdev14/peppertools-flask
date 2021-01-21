@@ -781,7 +781,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/clientes/buscar')\n@login_required\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():",
+        "peekOfCode": "def clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", auth=session.get('token'), title=\"Clientes\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n@app.route('/clientes/buscar')\n@login_required\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():",
         "detail": "app",
         "documentation": {}
     },
@@ -790,7 +790,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")",
+        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")",
         "detail": "app",
         "documentation": {}
     },
@@ -799,7 +799,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)",
+        "peekOfCode": "def cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)",
         "detail": "app",
         "documentation": {}
     },

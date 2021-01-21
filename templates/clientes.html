@@ -69,7 +69,7 @@ async function filterCliente(q) {
   if (!limit) {
     limit = 10;
   }
-  const URL = `https://peppertools.osc-fr1.scalingo.io/api/os/q=${q.toString()}`;
+  const URL = `https://peppertools.osc-fr1.scalingo.io/api/clientes/q=${q.toString()}`;
   document.getElementById("all").innerHTML = "";
   await axios(URL,  { headers: {'authorization': '{{auth}}' } } ).then((response) => {
     response.data.map((val, i) => {
