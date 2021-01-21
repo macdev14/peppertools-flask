@@ -714,6 +714,15 @@
         "documentation": {}
     },
     {
+        "label": "datetime,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime.",
+        "description": "datetime.",
+        "detail": "datetime.",
+        "documentation": {}
+    },
+    {
         "label": "urllib.parse",
         "kind": 6,
         "isExtraImport": true,
@@ -1960,7 +1969,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "db = MySQLDatabase('u569026416_pepperflask', user='u569026416_pepper', passwd='atJ?rky^G4', charset='utf8mb4',  host='31.170.166.103', port=3306,)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
+        "peekOfCode": "db = MySQLDatabase(os.getenv(\"DATABASE_URL\"))\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
         "detail": "model",
         "documentation": {}
     },

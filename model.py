@@ -1,6 +1,6 @@
 from peewee import *
-import datetime
-db = MySQLDatabase('u569026416_pepperflask', user='u569026416_pepper', passwd='atJ?rky^G4', charset='utf8mb4',  host='31.170.166.103', port=3306,)
+import datetime, os
+db = MySQLDatabase(os.getenv("DATABASE_URL"))
 
 class Clientes(Model):
     ID= PrimaryKeyField()
