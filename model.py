@@ -1,8 +1,6 @@
 from peewee import *
-import datetime, os
-from playhouse.db_url import connect
-print(os.environ.get('SCALINGO_MYSQL_URL'))
-db = connect(os.environ.get('SCALINGO_MYSQL_URL'))
+import datetime
+db = MySQLDatabase('peppertools_8187', user='peppertools_8187', passwd='xI36ApTIlYcEk-h6gWfZ', charset='utf8mb4',  host='64531231-4dcd-423f-87d3-b7b0f86d4fc6.peppertools-8187.mysql.dbs.scalingo.com', port=34711,)
 
 class Clientes(Model):
     ID= PrimaryKeyField()
