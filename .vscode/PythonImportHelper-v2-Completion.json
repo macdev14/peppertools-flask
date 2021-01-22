@@ -1352,11 +1352,11 @@
         "documentation": {}
     },
     {
-        "label": "app.config[\"SESSION_FILE_DIR\"]",
+        "label": "#app.config[\"SESSION_FILE_DIR\"]",
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = True\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required",
+        "peekOfCode": "#app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -1365,7 +1365,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = True\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\ndef index():",
+        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\ndef index():",
         "detail": "app",
         "documentation": {}
     },
