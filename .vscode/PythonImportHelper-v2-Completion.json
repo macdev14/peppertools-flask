@@ -969,7 +969,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def listing():\n    return render_template('table.html')\n@app.route('/contasapagar/form/', methods=['POST', 'GET'])\n@login_required\ndef contaspagar():\n    forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)\n    Keys = list(contasapagar._meta.fields.keys())\n    if request.method == 'POST':\n       # try:\n        contasapagar.create(vencimento=datetime.datetime.strptime(request.form['vencimento'], '%d/%m/%Y').strftime('%d/%m/%Y'), descricao= request.form['descricao'], valor=float(request.form['valor'].strip()), pago=float(request.form['pago'].strip()), data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'], \"%d/%m/%Y\").strftime(\"%d/%m/%Y\"), cod_fornecedor=int(request.form['cod_fornecedor']))",
+        "peekOfCode": "def listing():\n    return render_template('table.html')\n@app.route('/contasapagar/form/', methods=['POST', 'GET'])\n@login_required\n@financialLevel\ndef contaspagar():\n    forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)\n    Keys = list(contasapagar._meta.fields.keys())\n    if request.method == 'POST':\n       # try:",
         "detail": "app",
         "documentation": {}
     },
@@ -1050,7 +1050,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def renderTable(table):\n    return render_list(table)\n@app.route('/delete/table=<string:col>&id=<int:idtab>', methods=['GET','POST'])\n@login_required\ndef deleterow(col, idtab):\n    if col != '' and idtab != 0:\n        try:\n            try:    \n                str_to_class(col).delete().where(str_to_class(col).id == idtab).execute()\n                flash('Deletado com sucesso!')",
+        "peekOfCode": "def renderTable(table):\n    tablefinan = ['caixa', 'numero_pedidos', 'fornecedores', 'constasapagar', 'constasareceber', 'compras']\n    tablefunc = ['ponto']\n    tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n    if tok['level'] == 1:\n       return render_list(table)\n    if tok['level'] == 2 and table.lower() in tablefinan :\n       return render_list(table)\n    elif tok['level'] == 3 and table.lower() in tablefunc:\n       return render_list(table)",
         "detail": "app",
         "documentation": {}
     },
@@ -1600,6 +1600,33 @@
         "importPath": "helper",
         "description": "helper",
         "peekOfCode": "def login_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        #try:\n        if session.get('token'):\n            try:",
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
+        "label": "adminLevel",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def adminLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 1:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef financialLevel(f):",
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
+        "label": "financialLevel",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def financialLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 2 or tok['level'] == 1:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef employeeLevel(f):",
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
+        "label": "employeeLevel",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def employeeLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 3 or tok['level'] == 1:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef login_user(user, password, jwtoken):",
         "detail": "helper",
         "documentation": {}
     },

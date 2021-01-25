@@ -504,7 +504,9 @@ def editEstoque(estId):
             estoqueCol = list(Estoque._meta.fields.keys())
             estLen = len(estoqueCol)
         # print(clientes)
-            return render_template("Form.html", table='estoque', content=estoque[0], cliLen = len(clients), clients = clients, cliCol = 'id_cliente',TableCol=estoqueCol, TableLen = estLen, id=estId, edit=True, active1="",active2="", active3="active", active4="") 
+            pagefunc = page('Estoque', select=clients, select2=select2, edit=True)
+            return pagefunc.render()
+            #return render_template("Form.html", table='estoque', content=estoque[0], cliLen = len(clients), clients = clients, cliCol = 'id_cliente',TableCol=estoqueCol, TableLen = estLen, id=estId, edit=True, active1="",active2="", active3="active", active4="") 
        
         except:
             return redirect('/estoque/form/')
@@ -576,6 +578,7 @@ def listing():
 
 @app.route('/contasapagar/form/', methods=['POST', 'GET'])
 @login_required
+@financialLevel
 def contaspagar():
     forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)
     Keys = list(contasapagar._meta.fields.keys())
@@ -592,6 +595,7 @@ def contaspagar():
 
 @app.route('/contasapagar/form/<int:idconta>', methods = ['POST', 'GET'])
 @login_required
+@financialLevel
 def editarcontas(idconta):
     forn = Fornecedores.select(Fornecedores.nome, Fornecedores.ID)
     Keys = list(contasapagar._meta.fields.keys())
@@ -614,6 +618,7 @@ def editarcontas(idconta):
 @app.route("/fornecedores/form/", defaults={"idfor": ''}, methods = ['POST', 'GET'])
 @app.route('/fornecedores/form/<int:idfor>', methods = ['POST', 'GET'])
 @login_required
+@financialLevel
 def fornecedor(idfor):
     Keys = list(Fornecedores._meta.fields.keys())
     if idfor != '':
@@ -644,6 +649,7 @@ def fornecedor(idfor):
 @app.route('/compras/form/', defaults={'idcompra': ''}, methods=['POST', 'GET'])
 @app.route('/compras/form/<int:idcompra>', methods=['POST', 'GET'])
 @login_required
+@financialLevel
 def comprasform(idcompra):
     Keys = list(compras._meta.fields.keys())
     fornecedores = Fornecedores.select(Fornecedores.ID, Fornecedores.nome)
@@ -703,6 +709,7 @@ def comprasform(idcompra):
 @app.route('/notafiscal/form/', defaults={'idnota': ''}, methods=['POST', 'GET'])
 @app.route('/notafiscal/form/<int:idnota>', methods=['POST', 'GET'])
 @login_required
+@financialLevel
 def nfform(idnota):
     Keys = list(notafiscal._meta.fields.keys())
     if idnota != '':
@@ -765,6 +772,7 @@ def nfform(idnota):
 @app.route('/ponto/form/', defaults={'idponto': ''}, methods=['POST', 'GET'])
 @app.route('/ponto/form/<int:idponto>', methods=['POST', 'GET'])
 @login_required
+@employeeLevel
 def pontocad(idponto):
     Keys = list(ponto._meta.fields.keys())
     allcol = funcionarios.select(funcionarios.id, funcionarios.nome)
@@ -837,6 +845,7 @@ def pontocad(idponto):
 @app.route('/funcionarios/form/', defaults={'idfunc': ''}, methods=['POST', 'GET'])
 @app.route('/funcionarios/form/<int:idfunc>', methods=['POST', 'GET'])
 @login_required
+@adminLevel
 def func(idfunc):
     if idfunc != '':
         if request.method == 'GET':
@@ -860,6 +869,7 @@ def func(idfunc):
 @app.route('/processos/form/', defaults={'idproc': ''}, methods=['POST', 'GET'])
 @app.route('/processos/form/<int:idproc>', methods=['POST', 'GET'])
 @login_required
+@adminLevel
 def processosOs(idproc):
     if idproc != '':
         if request.method == 'GET':
@@ -884,9 +894,20 @@ def processosOs(idproc):
 
 
 @app.route('/<string:table>', methods=['GET'])
-#@login_required
+@login_required
 def renderTable(table):
-    return render_list(table)
+    tablefinan = ['caixa', 'numero_pedidos', 'fornecedores', 'constasapagar', 'constasareceber', 'compras']
+    tablefunc = ['ponto']
+    tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+    if tok['level'] == 1:
+       return render_list(table)
+    if tok['level'] == 2 and table.lower() in tablefinan :
+       return render_list(table)
+    elif tok['level'] == 3 and table.lower() in tablefunc:
+       return render_list(table)
+    else:
+        return redirect('/')
+   
 
 @app.route('/delete/table=<string:col>&id=<int:idtab>', methods=['GET','POST'])
 @login_required

@@ -118,6 +118,36 @@ def login_required(f):
         
     return decorated_function
 
+def adminLevel(f):
+    @wraps(f)
+    def checklevel(*args, **kwargs):
+       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+       if tok['level'] == 1:
+           return f(*args, **kwargs)
+       else:
+           return redirect('/')
+    return checklevel
+
+def financialLevel(f):
+    @wraps(f)
+    def checklevel(*args, **kwargs):
+       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+       if tok['level'] == 2 or tok['level'] == 1:
+           return f(*args, **kwargs)
+       else:
+           return redirect('/')
+    return checklevel
+
+def employeeLevel(f):
+    @wraps(f)
+    def checklevel(*args, **kwargs):
+       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+       if tok['level'] == 3 or tok['level'] == 1:
+           return f(*args, **kwargs)
+       else:
+           return redirect('/')
+    return checklevel
+
 def login_user(user, password, jwtoken):
     rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())
     #rows=[model_to_dict(row) for row in rows]
