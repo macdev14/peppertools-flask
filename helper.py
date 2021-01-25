@@ -122,7 +122,7 @@ def adminLevel(f):
     @wraps(f)
     def checklevel(*args, **kwargs):
        tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-       if tok['level'] == 1:
+       if tok['level'] == 4:
            return f(*args, **kwargs)
        else:
            return redirect('/')
@@ -132,7 +132,7 @@ def financialLevel(f):
     @wraps(f)
     def checklevel(*args, **kwargs):
        tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-       if tok['level'] == 2 or tok['level'] == 1:
+       if tok['level'] == 3 or tok['level'] == 4:
            return f(*args, **kwargs)
        else:
            return redirect('/')
@@ -142,11 +142,22 @@ def employeeLevel(f):
     @wraps(f)
     def checklevel(*args, **kwargs):
        tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-       if tok['level'] == 3 or tok['level'] == 1:
+       if tok['level'] == 1 or tok['level'] == 4:
            return f(*args, **kwargs)
        else:
            return redirect('/')
     return checklevel
+
+def managerLevel(f):
+    @wraps(f)
+    def checklevel(*args, **kwargs):
+       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+       if tok['level'] == 2 or tok['level'] == 4:
+           return f(*args, **kwargs)
+       else:
+           return redirect('/')
+    return checklevel
+
 
 def login_user(user, password, jwtoken):
     rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())
@@ -157,11 +168,10 @@ def login_user(user, password, jwtoken):
     if not rows:
         flash("Login Inválido")
         return redirect('/login')
-    if not check_password_hash(rows[0]['ds_senha'], password) or not rows:
-        if rows[0]['ds_senha'] != password:
-            flash("Login Inválido")
-            return redirect('/login')
-        pass
+    if not check_password_hash(rows[0]['ds_senha'], password):
+        flash("Login Inválido")
+        return redirect('/login')
+        
     
     token = jwt.encode({'user': user, 'level': rows[0]["nivel"], 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, jwtoken)
     session["token"] = token.decode('UTF-8')

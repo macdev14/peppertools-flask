@@ -898,13 +898,16 @@ def processosOs(idproc):
 def renderTable(table):
     tablefinan = ['caixa', 'numero_pedidos', 'fornecedores', 'constasapagar', 'constasareceber', 'compras']
     tablefunc = ['ponto']
+    tablegeren = ['cadastro_os', 'fornecedores', 'numero_pedidos', 'compras', 'material', 'estoque']
     tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-    if tok['level'] == 1:
-       return render_list(table)
-    if tok['level'] == 2 and table.lower() in tablefinan :
-       return render_list(table)
-    elif tok['level'] == 3 and table.lower() in tablefunc:
-       return render_list(table)
+    if tok['level'] == 4:
+        return render_list(table)
+    if tok['level'] == 3 and table.lower() in tablefinan :
+        return render_list(table)
+    elif tok['level'] == 2 and table.lower() in tablegeren:
+        return render_list(table)
+    elif tok['level'] == 1 and table.lower() in tablefunc:
+        return render_list(table)
     else:
         return redirect('/')
    

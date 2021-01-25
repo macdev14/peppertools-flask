@@ -1050,7 +1050,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def renderTable(table):\n    tablefinan = ['caixa', 'numero_pedidos', 'fornecedores', 'constasapagar', 'constasareceber', 'compras']\n    tablefunc = ['ponto']\n    tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n    if tok['level'] == 1:\n       return render_list(table)\n    if tok['level'] == 2 and table.lower() in tablefinan :\n       return render_list(table)\n    elif tok['level'] == 3 and table.lower() in tablefunc:\n       return render_list(table)",
+        "peekOfCode": "def renderTable(table):\n    tablefinan = ['caixa', 'numero_pedidos', 'fornecedores', 'constasapagar', 'constasareceber', 'compras']\n    tablefunc = ['ponto']\n    tablegeren = ['cadastro_os', 'fornecedores', 'numero_pedidos', 'compras', 'material', 'estoque']\n    tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n    if tok['level'] == 4:\n        return render_list(table)\n    if tok['level'] == 3 and table.lower() in tablefinan :\n        return render_list(table)\n    elif tok['level'] == 2 and table.lower() in tablegeren:",
         "detail": "app",
         "documentation": {}
     },
@@ -1608,7 +1608,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def adminLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 1:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef financialLevel(f):",
+        "peekOfCode": "def adminLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef financialLevel(f):",
         "detail": "helper",
         "documentation": {}
     },
@@ -1617,7 +1617,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def financialLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 2 or tok['level'] == 1:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef employeeLevel(f):",
+        "peekOfCode": "def financialLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 3 or tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef employeeLevel(f):",
         "detail": "helper",
         "documentation": {}
     },
@@ -1626,7 +1626,16 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def employeeLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 3 or tok['level'] == 1:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef login_user(user, password, jwtoken):",
+        "peekOfCode": "def employeeLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 1 or tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef managerLevel(f):",
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
+        "label": "managerLevel",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def managerLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 2 or tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef login_user(user, password, jwtoken):",
         "detail": "helper",
         "documentation": {}
     },
@@ -1635,7 +1644,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    #print(rows[0]['ds_senha'])\n    #print(rows)\n    if not rows:\n        flash(\"Login Inválido\")\n        return redirect('/login')\n    if not check_password_hash(rows[0]['ds_senha'], password) or not rows:",
+        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    #print(rows[0]['ds_senha'])\n    #print(rows)\n    if not rows:\n        flash(\"Login Inválido\")\n        return redirect('/login')\n    if not check_password_hash(rows[0]['ds_senha'], password):",
         "detail": "helper",
         "documentation": {}
     },
