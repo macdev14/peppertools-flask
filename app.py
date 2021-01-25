@@ -374,40 +374,38 @@ def os_del(osid):
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == 'POST':
-        try:
-            rows = usuarios.select().where(usuarios.ds_login == request.form.get("username"))
-            rows=[model_to_dict(row) for row in rows]
+       
+        rows = usuarios.select().where(usuarios.ds_login == request.form.get("username"))
+        rows=[model_to_dict(row) for row in rows]
             #rows = db.execute("SELECT * FROM usuarios WHERE ds_login = \'"+ request.form.get("username") + "\'")
-            rowsPass = usuarios.select().where(usuarios.ds_login == request.form.get("username"))
-            rowsPass=[model_to_dict(row) for row in rowsPass]
+        rowsPass = usuarios.select().where(usuarios.ds_login == request.form.get("username"))
+        rowsPass=[model_to_dict(row) for row in rowsPass]
             #rowsPass = db.execute("SELECT * FROM usuarios WHERE ds_senha = "+ generate_password_hash(request.form.get("password")))
-            if len(rows) == 1 or len(rowsPass) == 1:
-                flash("User or password already exists")
-                return redirect("/register")
-            if request.form.get("password") != request.form.get("password-confirm"):
-                flash("Senhas não coincidem")
-                return redirect("/register")
+        if len(rows) == 1 or len(rowsPass) == 1:
+            flash("User or password already exists")
+            return redirect("/register")
+        if request.form.get("password") != request.form.get("password-confirm"):
+            flash("Senhas não coincidem")
+            return redirect("/register")
 
-            if request.form.get("key") != "12@Afiado#45":
-                flash("Chave inválida")
-                return redirect("/register")
+        if request.form.get("key") != "12@Afiado#45":
+            flash("Chave inválida")
+            return redirect("/register")
             # Ensure username was submitted
        
        
-            usuarios.create(ds_login=request.form.get('username'), ds_senha=generate_password_hash(request.form.get('password')), nivel=request.form.get('nivel'))
+        usuarios.create(ds_login=request.form.get('username'), ds_senha=generate_password_hash(request.form.get('password')), nivel=request.form.get('nivel'))
                 #stmt = "INSERT INTO usuarios(ds_login, ds_senha, nivel) VALUES(\'" + request.form.get('username') + "\', \'" + generate_password_hash(request.form.get('password')) + "\', " + request.form.get('nivel') + ")"
                 #print(stmt)
                 #db.execute(stmt)
-            flash("Usuário cadastrado com sucesso. Faça seu login.")
-            return logoutCommit()
+        flash("Usuário cadastrado com sucesso. Faça seu login.")
+        return logoutCommit()
                 
                 
 
             # Query database for username
                 
-        except:
-            flash("Favor verificar campos.")
-            return redirect("/register")
+        
         # Ensure username exists and password is correct
     return render_template("register.html")
   

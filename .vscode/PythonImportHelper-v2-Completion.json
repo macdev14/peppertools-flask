@@ -906,7 +906,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def register():\n    if request.method == 'POST':\n        try:\n            rows = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n            rows=[model_to_dict(row) for row in rows]\n            #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\") + \"\\'\")\n            rowsPass = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n            rowsPass=[model_to_dict(row) for row in rowsPass]\n            #rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n            if len(rows) == 1 or len(rowsPass) == 1:",
+        "peekOfCode": "def register():\n    if request.method == 'POST':\n        rows = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n        rows=[model_to_dict(row) for row in rows]\n            #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ request.form.get(\"username\") + \"\\'\")\n        rowsPass = usuarios.select().where(usuarios.ds_login == request.form.get(\"username\"))\n        rowsPass=[model_to_dict(row) for row in rowsPass]\n            #rowsPass = db.execute(\"SELECT * FROM usuarios WHERE ds_senha = \"+ generate_password_hash(request.form.get(\"password\")))\n        if len(rows) == 1 or len(rowsPass) == 1:\n            flash(\"User or password already exists\")",
         "detail": "app",
         "documentation": {}
     },
