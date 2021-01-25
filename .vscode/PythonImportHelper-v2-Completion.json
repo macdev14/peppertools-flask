@@ -1968,7 +1968,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class itens(Model):\n    id= PrimaryKeyField()\n    descricao= TextField()\n    codigo=TextField()\n    material= TextField()\n    esp1= TextField()\n    esp2= TextField()\n    esp3= TextField()",
+        "peekOfCode": "class itens(Model):\n    id= PrimaryKeyField()\n    descricao= TextField()\n    codigo=TextField()\n    material= TextField()\n    esp1= TextField()\n    esp2= TextField()\n    esp3= TextField()\n    class Meta:\n        db_table = 'itens'",
         "detail": "model",
         "documentation": {}
     },

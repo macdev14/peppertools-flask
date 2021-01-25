@@ -265,3 +265,6 @@ class itens(Model):
     esp1= TextField()
     esp2= TextField()
     esp3= TextField()
+    class Meta:
+        db_table = 'itens'
+        database = db
