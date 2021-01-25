@@ -1644,7 +1644,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    #print(rows[0]['ds_senha'])\n    #print(rows)\n    if not rows:\n        flash(\"Usuario/senha Inválida\")\n        return redirect('/login')\n    if not check_password_hash(rows[0]['ds_senha'], password):",
+        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    #print(rows[0]['ds_senha'])\n    #print(rows)\n    if not rows:\n        flash(\"Usuario/senha Inválida\")\n        return redirect('/login')\n    print(rows[0]['ds_senha'])",
         "detail": "helper",
         "documentation": {}
     },

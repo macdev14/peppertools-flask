@@ -168,6 +168,9 @@ def login_user(user, password, jwtoken):
     if not rows:
         flash("Usuario/senha Inválida")
         return redirect('/login')
+    print(rows[0]['ds_senha'])
+    print()
+    print(password)
     if not check_password_hash(rows[0]['ds_senha'], password):
         flash("Login Inválido")
         return redirect('/login')
