@@ -478,7 +478,10 @@ def cadEstoque():
         print(request.form)
         return redirect('/estoque/form/'+ str(idEst))
     data = datetime.datetime.now().strftime('%d/%m/%Y')
-    return render_template("Form.html", TableCol=estKeys, data=data, clients = clients, TableLen = len(estKeys), cliLen = len(clients), table='estoque' , edit=False, id=id, active1="",active2="", active3="active", active4="")
+    select2 = list(itens.select().dicts())
+    pagefunc = page('estoque', select=clients, select2=select2, edit=False)
+    return pagefunc.render()
+    #return render_template("Form.html", TableCol=estKeys, data=data, clients = clients, TableLen = len(estKeys), cliLen = len(clients), cliCol = 'id_cliente', table='estoque' , edit=False, id=id, active1="",active2="", active3="active", active4="")
          #except:
                 #flash("Erro ao cadastrar item!")
                 #return redirect('/estoque/form/')
@@ -501,7 +504,7 @@ def editEstoque(estId):
             estoqueCol = list(Estoque._meta.fields.keys())
             estLen = len(estoqueCol)
         # print(clientes)
-            return render_template("Form.html", table='estoque', content=estoque[0], cliLen = len(clients), clients = clients, TableCol=estoqueCol, TableLen = estLen, id=estId, edit=True, active1="",active2="", active3="active", active4="") 
+            return render_template("Form.html", table='estoque', content=estoque[0], cliLen = len(clients), clients = clients, cliCol = 'id_cliente',TableCol=estoqueCol, TableLen = estLen, id=estId, edit=True, active1="",active2="", active3="active", active4="") 
        
         except:
             return redirect('/estoque/form/')
@@ -555,7 +558,7 @@ def invoice():
         items = Estoque.select(Estoque.ferramenta, Estoque.ID)
         clients = Clientes.select(Clientes.nome, Clientes.ID)
         num = orcamento.select(fn.MAX(orcamento.numero)).scalar()
-        return render_template("Form.html", TableCol=Keys, clients=items, cliLen= len(items) ,data=data, TableLen = len(Keys), table='orcamento' , edit=False, numfield=num ,active1="",active2="", active3="active", active4="")
+        return render_template("Form.html", TableCol=Keys, clients=items, cliLen= len(items), cliCol = 'id_cliente' ,data=data, TableLen = len(Keys), table='orcamento' , edit=False, numfield=num ,active1="",active2="", active3="active", active4="")
 
 @app.route('/orcamento/form/<int:inid>', methods=['POST', 'GET'])
 @login_required
@@ -565,7 +568,7 @@ def invoiceEdit(inid):
     Keys = list(orcamento._meta.fields.keys())
     items = Estoque.select(Estoque.ferramenta, Estoque.ID)
     invoice = orcamento.select().where(orcamento.ID == inid)
-    return render_template("Form.html", content=invoice[0], clients=items, cliLen= len(items),TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", content=invoice[0], clients=items, cliLen= len(items), cliCol = 'id_cliente', TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1="",active2="", active3="active", active4="")
 
 @app.route('/list')
 def listing():
@@ -585,7 +588,7 @@ def contaspagar():
      #   except: 
         #flash('Erro ao Cadastrar')
        # return redirect('/contasapagar/form/')
-    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=forn, cliLen= len(forn), table='contasapagar' , edit=False, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=forn, cliCol = 'id_cliente', cliLen= len(forn), table='contasapagar' , edit=False, active1="",active2="", active3="active", active4="")
 
 @app.route('/contasapagar/form/<int:idconta>', methods = ['POST', 'GET'])
 @login_required
@@ -606,7 +609,7 @@ def editarcontas(idconta):
         except:
             flash('Erro ao alterar')
             return redirect('/contasapagar/form/'+ str(idconta))
-    return render_template("Form.html", content=conta[0], TableCol=Keys, TableLen = len(Keys), clients=forn, cliLen= len(forn),table='contasapagar' , edit=True, id=idconta, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", content=conta[0], TableCol=Keys, TableLen = len(Keys), clients=forn, cliCol = 'cod_fornecedor',cliLen= len(forn),table='contasapagar' , edit=True, id=idconta, active1="",active2="", active3="active", active4="")
 
 @app.route("/fornecedores/form/", defaults={"idfor": ''}, methods = ['POST', 'GET'])
 @app.route('/fornecedores/form/<int:idfor>', methods = ['POST', 'GET'])
@@ -672,7 +675,7 @@ def comprasform(idcompra):
                 flash('Erro ao alterar Compra')
             return redirect('/compras/form/'+str(idcompra))
         compra = compras.select().where(compras.ID == idcompra)
-        return render_template("Form.html", content=compra[0], clients=fornecedores, cliLen= fornecedores_len, TableCol=Keys, TableLen = len(Keys), table='compras' , edit=True, id=idcompra, active1="",active2="", active3="active", active4="")
+        return render_template("Form.html", content=compra[0], clients=fornecedores, cliLen= fornecedores_len, cliCol='cod_fornecedor',TableCol=Keys, TableLen = len(Keys), table='compras' , edit=True, id=idcompra, active1="",active2="", active3="active", active4="")
     if request.method == 'POST':
       #  try:
             data = dict(request.form)
@@ -796,7 +799,7 @@ def pontocad(idponto):
                 flash('Erro ao alterar Compra')
             return redirect('/compras/form/'+str(idponto))
         
-        return render_template("Form.html", content=pontohora[0], clients = allcol, cliLen= len(allcol), TableCol=Keys, TableLen = len(Keys), table='ponto' , edit=True, id=idponto, active1="",active2="", active3="active", active4="")
+        return render_template("Form.html", content=pontohora[0], clients = allcol, cliLen= len(allcol), cliCol='cod_func', TableCol=Keys, TableLen = len(Keys), table='ponto' , edit=True, id=idponto, active1="",active2="", active3="active", active4="")
     if request.method == 'POST':
       #  try:
             data = dict(request.form)
@@ -828,7 +831,7 @@ def pontocad(idponto):
             return redirect('/ponto/form/'+str(idpontonew))
      #   except:
      #       flash('Erro ao cadastrar campo(s)')
-    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=allcol, cliLen= len(allcol), data=datetime.datetime.now().strftime('%d/%m/%Y'), table='ponto', edit=False, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=allcol, cliLen= len(allcol), cliCol='cod_func', data=datetime.datetime.now().strftime('%d/%m/%Y'), table='ponto', edit=False, active1="",active2="", active3="active", active4="")
 
 
 @app.route('/funcionarios/form/', defaults={'idfunc': ''}, methods=['POST', 'GET'])

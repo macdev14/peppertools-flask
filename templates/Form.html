@@ -154,28 +154,33 @@
       {% for i in range(TableLen) %}
       {% if TableCol[i] != 'ID' and TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
       <div class="form-group">
-        
-        {% if TableCol[i] == 'id_cliente' or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or  TableCol[i] == 'cod_item' or TableCol[i] == 'id_Tipo' %}
-        {% if cliLen %}
+      
+        {% if cliCol and TableCol[i] == cliCol %}
+      
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
     
           <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+            {% if not cliLen %}
                 <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
-                
+                {% elif cliLen %}   
+                <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
                 {% for client in range(cliLen) %}
                     <option value="{{ clients[client]['ID'] or clients[client]['id'] }}">{{clients[client]['nome'] or clients[client]['ferramenta']}}</option>
                 {% endfor %}    
                
            
           </select> <br>
-          {%endif%}
-          {% elif selection2  and TableCol[i] == 'id_bike'%}
-          {% if sel2Len %}
+         
+          {% endif %}
+          {% elif selection2 and sel2Col and TableCol[i] == sel2Col %}
+          
           <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
       
             <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+              {% if not sel2Len %}
                   <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
-                  
+              {%elif sel2Len%}
+                  <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
                   {% for keysel2 in range(sel2Len) %}
                       <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta']}}</option>
                   {% endfor %}    

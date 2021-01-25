@@ -256,3 +256,12 @@ class Historico_os(Model):
     class Meta:
         db_table = 'Historico_os'
         database = db
+
+class itens(Model):
+    id= PrimaryKeyField()
+    descricao= TextField()
+    codigo=TextField()
+    material= TextField()
+    esp1= TextField()
+    esp2= TextField()
+    esp3= TextField()
