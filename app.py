@@ -479,7 +479,7 @@ def cadEstoque():
         return redirect('/estoque/form/'+ str(idEst))
     data = datetime.datetime.now().strftime('%d/%m/%Y')
     select2 = list(itens.select().dicts())
-    pagefunc = page('estoque', select=clients, select2=select2, edit=False)
+    pagefunc = page('Estoque', select=clients, select2=select2, edit=False)
     return pagefunc.render()
     #return render_template("Form.html", TableCol=estKeys, data=data, clients = clients, TableLen = len(estKeys), cliLen = len(clients), cliCol = 'id_cliente', table='estoque' , edit=False, id=id, active1="",active2="", active3="active", active4="")
          #except:
