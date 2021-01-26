@@ -213,8 +213,9 @@ class ponto(Model):
     id = PrimaryKeyField()
     cod_func = IntegerField()
     data = DateTimeField(default=datetime.datetime.now)
-    hora = TextField(default = str(datetime.datetime.now().hour)+':'+str(datetime.datetime.now().minute))
-    tipo = TextField()
+    inicio = TextField(default = str(datetime.datetime.now().hour)+':'+str(datetime.datetime.now().minute))
+    fim =  TextField(default = str(datetime.datetime.now().hour)+':'+str(datetime.datetime.now().minute))
+    desc = TextField()
     class Meta:
         db_table = 'ponto'
         database = db

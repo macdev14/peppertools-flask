@@ -699,6 +699,8 @@ def comprasform(idcompra):
                 flash('Erro ao alterar Compra')
             return redirect('/compras/form/'+str(idcompra))
         compra = compras.select().where(compras.ID == idcompra)
+        if not compra:
+            return redirect('/compras/form/')
         return render_template("Form.html", content=compra[0], clients=fornecedores, cliLen= fornecedores_len, cliCol='cod_fornecedor',TableCol=Keys, TableLen = len(Keys), table='compras' , edit=True, id=idcompra, active1="",active2="", active3="active", active4="")
     if request.method == 'POST':
       #  try:
@@ -785,6 +787,35 @@ def nfform(idnota):
      #       flash('Erro ao cadastrar campo(s)')
     return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), table='notafiscal', edit=False, active1="",active2="", active3="active", active4="")
 
+@app.route('/ponto/form/fim/<int:idponto>', methods=['POST', 'GET'])
+@login_required
+def fim(idponto):
+    if not idponto:
+        flash('Ponto não encontrada!')
+        return redirect('/ponto/form/')
+    ponto.update(fim=datetime.datetime.now().strftime('%H:%M:%S')).where(ponto.id == idponto).execute()
+    flash('finalizado com successo')
+    return redirect('/ponto/form/'+str(idponto))
+
+@app.route('/ponto/form/inicio/', methods=['POST', 'GET'])
+@login_required
+@employeeLevel
+def inicio():
+    if request.method == 'POST':
+        try:
+            data = dict(request.form)
+            if not request.form['cod_func'] or request.form['cod_func'] == 0:
+                flash('Selecione colaborador')
+                return redirect('/ponto/form/')
+            desc = data['desc']
+            ponto.create(inicio=datetime.datetime.now().strftime('%H:%M:%S') ,desc=desc ,data=datetime.datetime.now().strftime('%Y-%m-%d'), cod_func=data['cod_func'])
+        
+            idpontonew = ponto.select(fn.MAX(ponto.id)).scalar()
+            flash('Ponto Iniciado com successo')
+            return redirect('/ponto/form/'+str(idpontonew))
+        except:
+            return redirect('/ponto/form/')
+    return redirect('/ponto/form/')
 
 
 @app.route('/ponto/form/', defaults={'idponto': ''}, methods=['POST', 'GET'])
@@ -795,12 +826,15 @@ def pontocad(idponto):
     Keys = list(ponto._meta.fields.keys())
     allcol = funcionarios.select(funcionarios.id, funcionarios.nome)
     if idponto != '':
-        pontohora = ponto.select(ponto, funcionarios.id, funcionarios.nome).from_(ponto, funcionarios).where(ponto.cod_func == funcionarios.id, ponto.id == idponto)
+        pontohora = list(ponto.select(ponto, funcionarios.id, funcionarios.nome).from_(ponto, funcionarios).where(ponto.id == idponto).dicts())
+        if not pontohora:
+            flash('Ponto Não Encontrado')
+            return redirect('/ponto/form/')
         if request.method == 'POST':
             data = dict(request.form)
             try:
-                try:
-                    data['data'] = datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%d/%m/%Y')    
+                try:   
+                    data['data'] = datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%Y-%m-%d')    
                 except:
                     data['data'] = datetime.datetime.now().strftime('%d/%m/%Y')
                     flash('Data atual cadastrada')
@@ -810,22 +844,32 @@ def pontocad(idponto):
                     data['cod_func'] = 0
                     flash('Erro ao alterar Colaborador')
                 try:
-                    data['hora'] = datetime.datetime.strptime(data['hora'], '%H').strftime('%H')
+                    data['hora'] = datetime.datetime.strptime(data['hora'], '%H:%M').strftime('%H')
                 except:
-                    data['hora'] = datetime.datetime.now().strftime('%H')
+                    data['hora'] = datetime.datetime.now().strftime('%H:%M')
+                print()
+                print(data['data'])
+                print()
+                print(data['hora'])
                 ponto.update(
                     cod_func=request.form['cod_func'], 
                     data=data['data'], hora=data['hora'],  
-                    desc= request.form['desc']).where(ponto.ID == idponto).execute()
+                    desc= data['desc']).where(ponto.id == idponto).execute()
 
                 #nf = notafiscal.select().where(notafiscal.ID == idnota)    
                 flash('Alterado com sucesso')
         
             except:
-                flash('Erro ao alterar Compra')
-            return redirect('/compras/form/'+str(idponto))
+                flash('Erro ao alterar Ponto')
+            return redirect('/ponto/form/'+str(idponto))
+
+        try:
+            pontohora[0]['data'] = pontohora[0]['data'].strftime('%d/%m/%Y')
+        except:
+            pass
+        #pontohora[0]['hora'] = datetime.datetime.strptime(pontohora[0]['hora'] , '%Y-%m-%d').strftime('%d/%m/%Y')
         
-        return render_template("Form.html", content=pontohora[0], clients = allcol, cliLen= len(allcol), cliCol='cod_func', TableCol=Keys, TableLen = len(Keys), table='ponto' , edit=True, id=idponto, active1="",active2="", active3="active", active4="")
+        return render_template("Form.html", content=pontohora[0], clients = allcol, cliLen= len(allcol), cliCol='cod_func', TableCol=Keys, TableLen = len(Keys), table='ponto' , edit=True, id=idponto,active1="",active2="", active3="active", active4="")
     if request.method == 'POST':
       #  try:
             data = dict(request.form)
@@ -842,14 +886,14 @@ def pontocad(idponto):
                 data['cod_func'] = 0
                 flash('Erro ao alterar Colaborador')
             try:
-                data['hora'] = datetime.datetime.strptime(data['hora'], '%H').strftime('%H')
+                data['hora'] = datetime.datetime.strptime(data['hora'], '%H:%M').strftime('%H:%M:%S')
             except:
                 data['hora'] = datetime.datetime.now().strftime('%H')
 
             ponto.create(
                 cod_func=request.form['cod_func'], 
                 data=data['data'], hora=data['hora'],  
-                desc= request.form['tipo'])
+                desc= request.form['desc'])
 
 
             idpontonew = ponto.select(fn.MAX(ponto.id)).scalar()

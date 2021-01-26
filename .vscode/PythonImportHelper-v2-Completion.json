@@ -1019,11 +1019,29 @@
         "documentation": {}
     },
     {
+        "label": "fim",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def fim(idponto):\n    if not idponto:\n        flash('Ponto não encontrada!')\n        return redirect('/ponto/form/')\n    ponto.update(fim=datetime.datetime.now().strftime('%H:%M:%S')).where(ponto.id == idponto).execute()\n    flash('finalizado com successo')\n    return redirect('/ponto/form/'+str(idponto))\n@app.route('/ponto/form/inicio/', methods=['POST', 'GET'])\n@login_required\n@employeeLevel",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "inicio",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def inicio():\n    if request.method == 'POST':\n        try:\n            data = dict(request.form)\n            if not request.form['cod_func'] or request.form['cod_func'] == 0:\n                flash('Selecione colaborador')\n                return redirect('/ponto/form/')\n            desc = data['desc']\n            ponto.create(inicio=datetime.datetime.now().strftime('%H:%M:%S') ,desc=desc ,data=datetime.datetime.now().strftime('%Y-%m-%d'), cod_func=data['cod_func'])\n            idpontonew = ponto.select(fn.MAX(ponto.id)).scalar()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
         "label": "pontocad",
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def pontocad(idponto):\n    Keys = list(ponto._meta.fields.keys())\n    allcol = funcionarios.select(funcionarios.id, funcionarios.nome)\n    if idponto != '':\n        pontohora = ponto.select(ponto, funcionarios.id, funcionarios.nome).from_(ponto, funcionarios).where(ponto.cod_func == funcionarios.id, ponto.id == idponto)\n        if request.method == 'POST':\n            data = dict(request.form)\n            try:\n                try:\n                    data['data'] = datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%d/%m/%Y')    ",
+        "peekOfCode": "def pontocad(idponto):\n    Keys = list(ponto._meta.fields.keys())\n    allcol = funcionarios.select(funcionarios.id, funcionarios.nome)\n    if idponto != '':\n        pontohora = list(ponto.select(ponto, funcionarios.id, funcionarios.nome).from_(ponto, funcionarios).where(ponto.id == idponto).dicts())\n        if not pontohora:\n            flash('Ponto Não Encontrado')\n            return redirect('/ponto/form/')\n        if request.method == 'POST':\n            data = dict(request.form)",
         "detail": "app",
         "documentation": {}
     },
@@ -1977,7 +1995,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class ponto(Model):\n    id = PrimaryKeyField()\n    cod_func = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)\n    hora = TextField(default = str(datetime.datetime.now().hour)+':'+str(datetime.datetime.now().minute))\n    tipo = TextField()\n    class Meta:\n        db_table = 'ponto'\n        database = db\nclass Material(Model):",
+        "peekOfCode": "class ponto(Model):\n    id = PrimaryKeyField()\n    cod_func = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)\n    inicio = TextField(default = str(datetime.datetime.now().hour)+':'+str(datetime.datetime.now().minute))\n    fim =  TextField(default = str(datetime.datetime.now().hour)+':'+str(datetime.datetime.now().minute))\n    desc = TextField()\n    class Meta:\n        db_table = 'ponto'\n        database = db",
         "detail": "model",
         "documentation": {}
     },
