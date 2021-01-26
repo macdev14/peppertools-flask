@@ -753,7 +753,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\ndef index():\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    #print(os)\n    response = Response(render_template(\"home.html\", title= \"Inicio\", historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))",
+        "peekOfCode": "def favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():\n    if not session.get('token'):\n        return redirect('/login')\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()",
         "detail": "app",
         "documentation": {}
     },
@@ -762,7 +762,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def index():\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    #print(os)\n    response = Response(render_template(\"home.html\", title= \"Inicio\", historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/historico')\ndef historico():",
+        "peekOfCode": "def index():\n    if not session.get('token'):\n        return redirect('/login')\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    #print(os)\n    response = Response(render_template(\"home.html\", title= \"Inicio\", historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response",
         "detail": "app",
         "documentation": {}
     },
@@ -789,7 +789,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", auth=session.get('token'), title=\"Clientes\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n@app.route('/clientes/buscar')\n@login_required\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():",
+        "peekOfCode": "def clientes():\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", auth=session.get('token'), title=\"Clientes\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n@app.route('/clientes/buscar')\n@login_required\n@managerLevel\ndef search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -798,7 +798,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")",
+        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\n@managerLevel\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")",
         "detail": "app",
         "documentation": {}
     },
@@ -825,7 +825,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def osAll():\n    try:\n        session.pop('osid')\n    except:\n        pass\n    return render_template(\"os.html\", auth=session.get('token'), active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")",
+        "peekOfCode": "def osAll():\n    try:\n        session.pop('osid')\n    except:\n        pass\n    return render_template(\"os.html\", auth=session.get('token'), active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\n@managerLevel\ndef print1():",
         "detail": "app",
         "documentation": {}
     },
@@ -834,7 +834,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():",
+        "peekOfCode": "def print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\n@adminLevel\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])",
         "detail": "app",
         "documentation": {}
     },
@@ -861,7 +861,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')",
+        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel\ndef new_os():",
         "detail": "app",
         "documentation": {}
     },
@@ -870,7 +870,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        print(clients)\n        x = datetime.datetime.now()\n        date = x.strftime(\"%d/%m/%Y\")",
+        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        print(clients)\n        x = datetime.datetime.now()",
         "detail": "app",
         "documentation": {}
     },
@@ -1212,7 +1212,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "\"\"\"os.environ['SECRET_KEY'] =  \"caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79\"\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }",
+        "peekOfCode": "\"\"\"os.environ['SECRET_KEY'] =  \"caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79\"\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')",
         "detail": "app",
         "documentation": {}
     },
@@ -1221,7 +1221,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)",
+        "peekOfCode": "os.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn \"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}",
         "detail": "app",
         "documentation": {}
     },
@@ -1230,7 +1230,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'",
+        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'",
         "detail": "app",
         "documentation": {}
     },
@@ -1239,7 +1239,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -1248,7 +1248,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'",
+        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'",
         "detail": "app",
         "documentation": {}
     },
@@ -1257,7 +1257,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "db = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "db = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -1266,25 +1266,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "#db = SQL(\"sqlite:///peppertools.db\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
-        "detail": "app",
-        "documentation": {}
-    },
-    {
-        "label": "JINJA2_ENVIRONMENT_OPTIONS",
-        "kind": 5,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\nJINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)",
-        "detail": "app",
-        "documentation": {}
-    },
-    {
-        "label": "JINJA2_ENVIRONMENT_OPTIONS",
-        "kind": 5,
-        "importPath": "app",
-        "description": "app",
-        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { '' : None }\napp = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request",
+        "peekOfCode": "#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -1293,7 +1275,16 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():",
+        "peekOfCode": "app = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "JINJA2_ENVIRONMENT_OPTIONS",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'",
         "detail": "app",
         "documentation": {}
     },
@@ -1302,7 +1293,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "cors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"",
+        "peekOfCode": "cors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)",
         "detail": "app",
         "documentation": {}
     },
@@ -1311,7 +1302,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()",
+        "peekOfCode": "app.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)\n@app.before_request",
         "detail": "app",
         "documentation": {}
     },
@@ -1320,7 +1311,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request",
+        "peekOfCode": "app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)\n@app.before_request\ndef before_request():",
         "detail": "app",
         "documentation": {}
     },
@@ -1329,7 +1320,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):",
+        "peekOfCode": "#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"",
         "detail": "app",
         "documentation": {}
     },
@@ -1338,7 +1329,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()",
+        "peekOfCode": "os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()",
         "detail": "app",
         "documentation": {}
     },
@@ -1347,7 +1338,25 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"",
+        "peekOfCode": "app.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATE_FOLDER",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "TEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "HTML_FILE",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "HTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)\n@app.before_request\ndef before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"",
         "detail": "app",
         "documentation": {}
     },
@@ -1365,7 +1374,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\ndef index():",
+        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel",
         "detail": "app",
         "documentation": {}
     },
@@ -1374,7 +1383,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\ndef index():\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()",
+        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():",
         "detail": "app",
         "documentation": {}
     },
@@ -1604,11 +1613,20 @@
         "documentation": {}
     },
     {
+        "label": "get_level",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def get_level():\n    try:\n        if session.get('token'):\n            tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n            print(tok['level'] )\n            return tok['level'] \n    except:\n        pass\ndef adminLevel(f):\n    @wraps(f)",
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
         "label": "adminLevel",
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def adminLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef financialLevel(f):",
+        "peekOfCode": "def adminLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = get_level()\n       if tok == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef financialLevel(f):",
         "detail": "helper",
         "documentation": {}
     },
@@ -1617,7 +1635,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def financialLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 3 or tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef employeeLevel(f):",
+        "peekOfCode": "def financialLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = get_level()\n       if tok == 3 or tok== 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef employeeLevel(f):",
         "detail": "helper",
         "documentation": {}
     },
@@ -1626,7 +1644,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def employeeLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 1 or tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef managerLevel(f):",
+        "peekOfCode": "def employeeLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = get_level()\n       if tok == 1 or tok == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef managerLevel(f):",
         "detail": "helper",
         "documentation": {}
     },
@@ -1635,7 +1653,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def managerLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n       if tok['level'] == 2 or tok['level'] == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef login_user(user, password, jwtoken):",
+        "peekOfCode": "def managerLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):\n       tok = get_level()\n       if tok == 2 or tok == 4:\n           return f(*args, **kwargs)\n       else:\n           return redirect('/')\n    return checklevel\ndef login_user(user, password, jwtoken):",
         "detail": "helper",
         "documentation": {}
     },

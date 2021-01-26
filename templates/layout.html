@@ -53,11 +53,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css"
       rel="stylesheet">
 
-    <title>{{ title }}</title>
+    <title>{{title}}</title>
 
   </head>
   <body>
+    {% with level = get_level() %}
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      
       <a class="navbar-brand" href="/">Pimentel Ferramentas</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -65,12 +68,15 @@
         aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      {% if level == 1 or level == 2 or level == 3 or level == 4%}
+      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item {{ active1 }}">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/ponto">Ponto <span class="sr-only">(current)</span></a>
           </li>
+          {%endif%}
+          {%if level == 2 or level == 3 or level == 4%}
           <li class="nav-item dropdown {{ active2 }}">
             <a class="nav-link dropdown-toggle" id="estoque" href="/estoque"
               id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -86,7 +92,8 @@
                 Fornecedor</a>
             </div>
           </li>
-
+          {%endif%}
+         {% if level == 2  or level == 4%}
 
           <li class="nav-item dropdown {{ active2 }}">
             <a class="nav-link dropdown-toggle" id="estoque" href="/estoque"
@@ -103,7 +110,9 @@
                 Processo</a>
             </div>
           </li>
+      {%endif%}
 
+          {% if level == 3 or level == 4%}
 
 
           <li class="nav-item dropdown {{ active3 }}">
@@ -117,6 +126,8 @@
               <a class="dropdown-item" href="/contasapagar/form">Cadastrar</a>
             </div>
           </li>
+          {%endif%}
+          {% if level == 2 or level == 4%}
           <li class="nav-item dropdown {{ active4 }}">
             <a class="nav-link dropdown-toggle" id="os" href="/os"
               id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -137,13 +148,16 @@
               <a class="dropdown-item" href="/orcamento/form">Cadastrar</a>
             </div>
           </li>
-        </ul>
+          {%endif%}
+        </ul> 
         <form class="form-inline my-2 my-lg-0" action="/logout">
           <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Log
             out</button>
         </form>
 
       </div>
+     
+      {% endwith %}
     </nav>
 
     <!-- before-->

@@ -118,11 +118,20 @@ def login_required(f):
         
     return decorated_function
 
+def get_level():
+    try:
+        if session.get('token'):
+            tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
+            print(tok['level'] )
+            return tok['level'] 
+    except:
+        pass
+
 def adminLevel(f):
     @wraps(f)
     def checklevel(*args, **kwargs):
-       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-       if tok['level'] == 4:
+       tok = get_level()
+       if tok == 4:
            return f(*args, **kwargs)
        else:
            return redirect('/')
@@ -131,8 +140,8 @@ def adminLevel(f):
 def financialLevel(f):
     @wraps(f)
     def checklevel(*args, **kwargs):
-       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-       if tok['level'] == 3 or tok['level'] == 4:
+       tok = get_level()
+       if tok == 3 or tok== 4:
            return f(*args, **kwargs)
        else:
            return redirect('/')
@@ -141,8 +150,8 @@ def financialLevel(f):
 def employeeLevel(f):
     @wraps(f)
     def checklevel(*args, **kwargs):
-       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-       if tok['level'] == 1 or tok['level'] == 4:
+       tok = get_level()
+       if tok == 1 or tok == 4:
            return f(*args, **kwargs)
        else:
            return redirect('/')
@@ -151,8 +160,8 @@ def employeeLevel(f):
 def managerLevel(f):
     @wraps(f)
     def checklevel(*args, **kwargs):
-       tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-       if tok['level'] == 2 or tok['level'] == 4:
+       tok = get_level()
+       if tok == 2 or tok == 4:
            return f(*args, **kwargs)
        else:
            return redirect('/')

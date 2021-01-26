@@ -32,10 +32,11 @@ db = SQL(os.environ['DB'])"""
 
 #db = SQL("sqlite:///peppertools.db")
 
-
-JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }
-JINJA2_ENVIRONMENT_OPTIONS = { '' : None }
 app = Flask(__name__)
+app.add_template_global(get_level,name='get_level')
+JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}
+
+
 
 
 cors = CORS(app)
@@ -45,6 +46,10 @@ app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aea
 os.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 app.config["SECRET_KEY"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 QRcode(app)
+TEMPLATE_FOLDER = '/templates/'
+HTML_FILE = 'layout.html'
+#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)
+
 
 
 
@@ -79,7 +84,10 @@ def favicon():
 
 @app.route('/')
 @login_required
+@managerLevel
 def index():
+    if not session.get('token'):
+        return redirect('/login')
     #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
     #historico_os = Historico_os.select().dicts()
     #print(os)
@@ -89,6 +97,7 @@ def index():
     return response
 
 @app.route('/historico')
+@managerLevel
 def historico():
     os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
 """@app.route('/estoque')
@@ -107,6 +116,7 @@ def estoque():
 
 @app.route('/clientes')
 @login_required
+@managerLevel
 def clientes():
     #return getClientes("key","*")
     return render_template("clientes.html", auth=session.get('token'), title="Clientes", active1="",active2="", active3="", active4="active")
@@ -114,12 +124,14 @@ def clientes():
 
 @app.route('/clientes/buscar')
 @login_required
+@managerLevel
 def search():
     return underdev()
 
 
 @app.route('/clientes/form/', methods=["GET", "POST"])
 @login_required
+@managerLevel
 def cadCli():
     if request.method == 'GET':
         clientes = list(Clientes._meta.fields.keys())
@@ -143,6 +155,7 @@ def cadCli():
 
 @app.route('/clientes/form/<int:cliId>', methods = ['POST', 'GET'])
 @login_required
+@managerLevel
 def editCli(cliId):
     if request.method == 'GET':
         clientes = Clientes.select().where(Clientes.ID == cliId)
@@ -165,6 +178,7 @@ def editCli(cliId):
         
 @app.route("/os")
 @login_required
+@managerLevel
 def osAll():
     try:
         session.pop('osid')
@@ -176,6 +190,7 @@ def osAll():
 
 @app.route("/os/imprimir")
 @login_required
+@managerLevel
 def print1():
     #return render_template("imprimir_os.html", title= "Inicio", active1="active",active2="", active3="", active4="active")
     return underdev()
@@ -183,6 +198,7 @@ def print1():
 
 @app.route("/os/buscar")
 @login_required
+@adminLevel
 def buscar():
     #return render_template("buscar_os.html", title= "Inicio", active1="",active2="", active3="", active4="active")
     return underdev()
@@ -220,6 +236,7 @@ def all():
 
 @app.route('/os/form/', methods=["POST", "GET"])
 @login_required
+@managerLevel
 def new_os():
     #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
         clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()
@@ -266,6 +283,7 @@ def new_os():
 
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
 @login_required
+@managerLevel
 def os_edit(osid):
     if request.method == 'POST':
         data = dict(request.form)
@@ -358,6 +376,7 @@ def os_edit(osid):
 
 @app.route('/os/form/delete/<int:osid>', methods = ['POST', 'GET'])
 @login_required
+@managerLevel
 def os_del(osid):
     if request.method == 'GET':
         try:
@@ -372,6 +391,7 @@ def os_del(osid):
 
 
 @app.route("/register", methods=["GET", "POST"])
+@adminLevel
 def register():
     if request.method == 'POST':
        
