@@ -814,6 +814,7 @@ def inicio():
             flash('Ponto Iniciado com successo')
             return redirect('/ponto/form/'+str(idpontonew))
         except:
+            flash('Erro ao iniciar ponto. Verifique os campos.')
             return redirect('/ponto/form/')
     return redirect('/ponto/form/')
 
