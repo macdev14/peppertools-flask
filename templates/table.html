@@ -50,7 +50,7 @@
           getItems = () =>
           {   
               
-             fetch(`https://peppertools.cf/api/estoque/limit=10`)
+             fetch(`https://peppertools-test.herokuapp.com/api/estoque/limit=10`)
               .then(response => response.json())
               .then(data => {
                  return (<table><thead>

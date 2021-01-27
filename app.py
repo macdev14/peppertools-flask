@@ -86,12 +86,11 @@ def favicon():
 @login_required
 @managerLevel
 def index():
-    if not session.get('token'):
-        return redirect('/login')
+    os = os_em_andamento()
     #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
     #historico_os = Historico_os.select().dicts()
     #print(os)
-    response = Response(render_template("home.html", title= "Inicio", historico_os=os,active1="active",active2="", active3="", active4=""))
+    response = Response(render_template("home.html", title= "Inicio", list=os, historico_os=os,active1="active",active2="", active3="", active4=""))
    # print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response
@@ -1326,7 +1325,9 @@ def queryEstoque(query, col):
     return jsonify(rows)
     
 
-
+@app.route('/api/progress', methods=['GET'])
+def progress():
+    return jsonify('testing')
 
       
 if __name__ == "__main__" :

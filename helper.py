@@ -6,7 +6,7 @@ try:
     from urllib.parse import urlparse
 except ImportError:
      from urlparse import urlparse
-from flask import flash, redirect, render_template, request, session, escape, Response 
+from flask import flash, redirect, render_template, request, session, escape, Response, Markup
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
@@ -377,8 +377,40 @@ def render_list(table):
             if j['data_pagamento']:
                 pass
             else:
-                j['data_pagamento'] = 'Não foi pago'
+                j['data_pagamento'] = 'Não houve pagamento'
     print(tblist)
+
+    if 'id_proc' in keys:
+        i = keys.index('id_proc')
+        keys[i] = 'Processo'
+        for j in tblist:
+            if j['id_proc']:
+                nome = list(processos.select(processos.Nome).where(processos.ID==j['id_proc']).dicts())
+                nome = nome[0]['Nome']
+            if nome:
+                j['Processo'] = nome
+            else:
+                 j['Processo'] = 'Processo inexistente'
+    
+
+    if 'id_os' in keys:
+        i = keys.index('id_os')
+        keys[i] = 'Numero OS'
+        for j in tblist:
+            if j['id_os']:
+                numero_os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os).where(Cadastro_OS.Id == j['id_os']).dicts())
+                numero_os = numero_os[0]['Numero_Os']
+            if numero_os:
+                print(numero_os)
+                #j['Numero OS'] = numero_os
+                html = str("<a target='_blank' style='font-weight:300px' href='/os/form/"+ str(j['id_os'])+ "'>"+str(numero_os)+"</a>")
+                j['Numero OS'] = Markup(html)
+            else:
+                j['Numero OS'] = 'O.S inexistente'
+                
+            
+
+
     return render_template('list.html', keys=keys, content=tblist, table=table)
 
    
@@ -406,3 +438,9 @@ def registerprocess(id_proc, id_os, inicio=None, fim=None, ):
     else:
        Historico_os.create(inicio=inicio, fim=fim, id_proc=id_proc, id_os=id_os)
        return True
+
+def os_em_andamento():
+    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()
+    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id).order_by(Historico_os.periodo.desc()).dicts())
+    print(os)
+    return os

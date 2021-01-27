@@ -21,7 +21,7 @@
         />
 </div> -->
 
-<h2 class="text-center font-weight-bold mb-5 mt-5">{% if table == 'locacao' %} Locação {%elif table == 'contasapagar' %} Contas a Pagar {%else%} {{ table.capitalize() }}{%endif%}</h2>
+<h2 class="text-center font-weight-bold mb-5 mt-5">{% if table == 'locacao' %} Locação {%elif table == 'contasapagar' %} Contas a Pagar {%elif table == 'historico_os' or  table == 'Historico_os' %} Histórico de Processos {%else%} {{ table.capitalize() }}{%endif%}</h2>
 <h5>
   <a href="/{{table}}/form/" >
    <button class="btn btn-secondary">Adicionar</button> 
