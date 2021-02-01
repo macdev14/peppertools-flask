@@ -31,7 +31,7 @@
     {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
     <div class="form-group">
         
-      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or TableCol[i] == 'cod_item' or TableCol[i] == 'id_Tipo' %}
+      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or TableCol[i] == 'cod_item' or TableCol[i] == 'id_Tipo' or  TableCol[i] == 'id_proc' or  TableCol[i] == cliCol %}
 
      
       <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>  
@@ -43,33 +43,34 @@
               {% for client in clients %}
               {% if client.ID %}
             
-              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] or client.ID | int == content['id_bike'] or client.ID | int == content['cod_func'] %}
-              <option value="{{ client['ID'] or client['id']  or client['Id'] }}" selected> {{ client['nome'] or client['ferramenta'] }} </option>
+              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] or client.ID | int == content['id_bike'] or client.ID | int == content['cod_func'] or client.ID | int == content['id_os'] or client.ID | int == content['id_proc'] %}
+              <option value="{{ client['ID'] or client['id']  or client['Id'] }}" selected> {{ client['nome'] or client['ferramenta'] or client['Nome'] or client['Numero_Os'] }} </option>
               {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] }}</option>
+              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome'] }}</option>
               {% endif %}
         
               {% elif client.id %}
-                {% if client.id | int == content['id_cliente'] or client.id | int == content['cod_fornecedor'] or client.id | int == content['id_bike'] or client.id | int == content['cod_func'] %}
-                  <option value="{{ client['ID'] or client['id']  or client['Id'] }}" selected>{{client['nome']}}</option>
+                {% if client.id | int == content['id_cliente'] or client.id | int == content['cod_fornecedor'] or client.id | int == content['id_bike'] or client.id | int == content['cod_func'] or client.id | int == content['id_os'] or client.ID | int == content['id_proc']  %}
+                  <option value="{{ client['ID'] or client['id']  or client['Id'] }}" selected>{{client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome']  }}</option>
                 {% else %}
-                  <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{client['nome']}}</option>
+                  <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome'] }}</option>
                 {% endif %}
               {% elif client.Id %}
-                {% if client.Id | int == content['id_cliente'] or client.Id | int == content['cod_fornecedor'] or client.Id | int == content['id_bike'] or client.Id | int == content['cod_func'] %}
-                  <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{client['nome']}}</option>
+                {% if client.Id | int == content['id_cliente'] or client.Id | int == content['cod_fornecedor'] or client.Id | int == content['id_bike'] or client.Id | int == content['cod_func'] or client.Id | int == content['id_os'] or client.ID | int == content['id_proc'] %}
+                  <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{client['nome'] or client['ferramenta'] or client['Nome'] or client['Numero_Os'] }}</option>
                 {% else %}
-                  <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{client['nome']}}</option>
+                  <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{client['nome'] or client['ferramenta'] or client['Nome'] or client['Numero_Os'] }}</option>
                 {% endif %}
 
               {% endif %}
+             
               {% endfor %}    
              {%else%}
              <option value="" id="emptyoption" selected> Cadastre suas Opções </option>
              {% endif %}
          
         </select> <br>
-       {%elif selection2 %}
+       {%elif selection2 and TableCol[i] == sel2Col%}
 
           <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
             {%if sel2len == 0%}  
@@ -78,36 +79,36 @@
             {% elif selection2 and sel2len != 0 %}
             {% for client in selection2 %}
             {% if client.ID %}
-              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor']  %}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected> {{ client['nome'] or client['ferramenta'] }} </option>
+              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor']  or client.ID | int == content['id_os'] or client.ID | int == content['id_proc']%}
+              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected> {{ client['nome'] or client['ferramenta'] or client[keysel2]['Numero_Os'] }} </option>
               {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] }}</option>
+              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] }}</option>
               {% endif %}
             
             {% elif client.id %}
-              {% if client.id | int == content['cod_func'] or client.id | int == content['id_cliente'] or client.id | int == content['cod_fornecedor']  %}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{client['nome']}}</option>
+              {% if client.id | int == content['cod_func'] or client.id | int == content['id_cliente'] or client.id | int == content['cod_fornecedor'] or client.id | int == content['id_os'] or client.id | int == content['id_proc']%}
+              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] }}</option>
               {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{client['nome']}}</option>
+              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome'] }}</option>
               {% endif %}
             
 
           {% elif client.Id %}
-              {% if client.Id | int == content['cod_func'] or client.Id  | int == content['id_cliente'] or client.Id | int == content['cod_fornecedor']  %}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{client['nome']}}</option>
+              {% if client.Id | int == content['cod_func'] or client.Id  | int == content['id_cliente'] or client.Id | int == content['cod_fornecedor'] or client.Id | int == content['id_os'] or client.Id | int == content['id_proc'] %}
+              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or  client['Nome']  }}</option>
               {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}">{{client['nome']}}</option>
+              <option value="{{ client['ID'] or client['id'] or client['Id']  }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or  client['Nome'] }}</option>
               {% endif %}
           {% endif %}
           
 
           {% endfor %}    
           
-          {% endif %}
+          
        
       </select> <br>
   
-  
+      {% endif %}
       
       {% else %}
   
@@ -188,7 +189,7 @@
                 {% elif cliLen %}   
                 <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
                 {% for client in range(cliLen) %}
-                    <option value="{{ clients[client]['ID'] or clients[client]['id']  or clients[client]['Id'] }}">{{clients[client]['nome'] or clients[client]['ferramenta']}}</option>
+                    <option value="{{ clients[client]['ID'] or clients[client]['id']  or clients[client]['Id'] }}">{{clients[client]['nome'] or clients[client]['ferramenta'] or clients[client]['Numero_Os'] or clients[client]['Nome'] }}</option>
                 {% endfor %}    
                
            
@@ -205,7 +206,7 @@
               {%elif sel2Len%}
                   <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
                   {% for keysel2 in range(sel2Len) %}
-                      <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] or selection2[keysel2]['Id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta']}}</option>
+                      <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] or selection2[keysel2]['Id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta'] or selection2[keysel2]['Numero_Os'] or selection2[keysel2]['Nome'] }}</option>
                   {% endfor %}    
                  
              

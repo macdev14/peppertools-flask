@@ -974,6 +974,21 @@ def renderTable(table):
     else:
         return redirect('/')
    
+@app.route('/historico_os/form/', defaults={'idhist': ''}, methods=['POST', 'GET'])
+@app.route('/historico_os/form/<int:idhist>', methods=['POST', 'GET'])
+@login_required
+def histform(idhist):
+    Keys = list(Historico_os._meta.fields.keys())
+    allcol = processos.select(processos.ID, processos.Nome)
+    allos = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os)
+    if idhist != '':
+       hist_os =  list(Historico_os.select().where(Historico_os.ID == idhist).dicts())
+       pageedit = page('Historico_os', content=hist_os[0], edit=True, select=allcol, select2=allos)
+       return pageedit.render()
+       #return render_template('Form.html', clients = allcol, cliLen= len(allcol), content=)
+    pagenew = page('Historico_os', edit=False, select=allcol, select2=allos)
+    return pagenew.render()
+
 
 @app.route('/delete/table=<string:col>&id=<int:idtab>', methods=['GET','POST'])
 @login_required
