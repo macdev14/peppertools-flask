@@ -1029,7 +1029,7 @@ def deleterow(col, idtab):
     print(idtab)
 
 @app.route('/redirect/<int:n_os>', methods=['GET'])
-def redirect(n_os):
+def redirect_num(n_os):
     try:
         idos = Cadastro_Os.select(Cadastro_Os.Id).where(Cadastro_Os.Numero_Os == n_os).get()
         print(idos)
