@@ -992,7 +992,7 @@ def histform(idhist):
        hist_os =  list(Historico_os.select().where(Historico_os.ID == idhist).dicts())
        try:
           if request.form['data'] != '':
-             hist_os[0]['data'] = hist_os[0]['data'].strftime('%d/%m-%Y')
+             hist_os[0]['data'] = hist_os[0]['data'].strftime('%d/%m/%Y')
        except:
             pass
        pageedit = page('Historico_os', content=hist_os[0], edit=True, select=allcol, select2=allos)
