@@ -83,7 +83,8 @@ def favicon():
                           'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
-
+@login_required
+@managerLevel
 def index():
     os = os_em_historico()
     #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
@@ -95,6 +96,7 @@ def index():
     return response
 
 @app.route('/historico')
+@login_required
 @managerLevel
 def historico():
     os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
