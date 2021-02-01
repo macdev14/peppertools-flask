@@ -1031,9 +1031,9 @@ def deleterow(col, idtab):
 @app.route('/redirect/<int:n_os>', methods=['GET'])
 def redirect_num(n_os):
     try:
-        idos = Cadastro_Os.select(Cadastro_Os.Id).where(Cadastro_Os.Numero_Os == n_os).get()
-        print(idos)
-        return redirect('/os/form/'+ str(idos))
+        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())
+        print(idos[0]['Id'])
+        return redirect('/os/form/'+ str(idos[0]['Id']))
     except:
         return redirect('#')
 

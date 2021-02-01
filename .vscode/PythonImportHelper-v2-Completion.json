@@ -1094,7 +1094,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = Cadastro_Os.select(Cadastro_Os.Id).where(Cadastro_Os.Numero_Os == n_os).get()\n        print(idos)\n        return redirect('/os/form/'+ str(idos))\n    except:\n        return redirect('#')\n@app.errorhandler(404) \ndef invalid_route(e): \n    return underdev()",
+        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())\n        print(idos[0]['Id'])\n        return redirect('/os/form/'+ str(idos[0]['Id']))\n    except:\n        return redirect('#')\n@app.errorhandler(404) \ndef invalid_route(e): \n    return underdev()",
         "detail": "app",
         "documentation": {}
     },
