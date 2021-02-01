@@ -1,19 +1,27 @@
 {% extends 'layout.html' %}
 {% block body %}
+
+
+<div id="app">
+  {{ message }}
+</div>
+<script type="text/javascript">
+  var app = new Vue({
+el: '#app',
+data: {
+message: 'Hello Vue!'
+}
+})
+  </script>
 <!-- Grid container -->
 <div class="container">
     <div class="row"> <div class="col-md-6"></div></div>
     <!--Grid row-->
     <div class="row d-flex justify-content-center mt-3 ">
-  
+     
       <!--Grid column-->
       <div class="col-md-6 mt-3">
-        <div class="card text-center" color="#000">
-            <div class="card-body">
-                <h5 class="card-title">Ordens de Serviços</h5>
-                <canvas id="lineChart"></canvas>
-            </div>
-          </div> 
+       
         </div>
         <div class="col-md-6 mt-3">
           
@@ -26,20 +34,26 @@
     </div>
     <!--Grid row-->
     
-      <div class="card text-center" color="#000">
-        <div class="card-body">
-          <h5 class="card-title">Ordens de Serviços</h5>
-            <div class="progress"> 
-              <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-              <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-              <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+      <div class="card text-center" color="#000" id="progress">
+      {% for n_os in historico_os %}
+        <h5 class="card-title"><a href="/redirect/{{n_os}}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color:black"> N. OS {{n_os}}</a></h5>
+          
+        <div class="progress" id="progress-{{n_os}}" style="height: 30px">
+          
+          <script>progress(`{{n_os}}`)</script>
+         
         </div>
-     
+        {%endfor%}
+
+      
+       
+          
+      
     </div> 
   </div>
   <!-- Grid container -->
       <!-- JQuery -->
+ 
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <!-- Bootstrap tooltips -->
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
@@ -48,5 +62,6 @@
       <!-- MDB core JavaScript -->
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
       <!-- DataTables CSS -->
-  <script src="{{ url_for('static', filename='js/graphics.js') }}" type="text/javascript"></script>
+  
+  <!--     <script src="{{ url_for('static', filename='js/graphics.js') }}" type="text/javascript"></script>-->
 {% endblock %}

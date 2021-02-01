@@ -1,6 +1,5 @@
 
 from helper import *
-from api import *
 from flask_qrcode import QRcode 
 from flask import Flask, redirect,render_template, request, session, flash
 from flask_session.__init__ import Session

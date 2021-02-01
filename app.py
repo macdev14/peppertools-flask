@@ -83,14 +83,13 @@ def favicon():
                           'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
-@login_required
-@managerLevel
+
 def index():
-    os = os_em_andamento()
+    os = os_em_historico()
     #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
     #historico_os = Historico_os.select().dicts()
-    #print(os)
-    response = Response(render_template("home.html", title= "Inicio", list=os, historico_os=os,active1="active",active2="", active3="", active4=""))
+    
+    response = Response(render_template("home.html", title= "Inicio" ,historico_os=os,active1="active",active2="", active3="", active4=""))
    # print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response
@@ -1027,6 +1026,16 @@ def deleterow(col, idtab):
             return redirect('/'+str(col.lower())+'/form/'+ str(idtab))
     print(idtab)
 
+@app.route('/redirect/<int:n_os>', methods=['GET'])
+def redirect(n_os):
+    try:
+        idos = Cadastro_Os.select(Cadastro_Os.Id).where(Cadastro_Os.Numero_Os == n_os).get()
+        print(idos)
+        return redirect('/os/form/'+ str(idos))
+    except:
+        return redirect('#')
+
+
 
 @app.errorhandler(404) 
 def invalid_route(e): 
@@ -1325,9 +1334,9 @@ def queryEstoque(query, col):
     return jsonify(rows)
     
 
-@app.route('/api/progress', methods=['GET'])
-def progress():
-    return jsonify('testing')
+@app.route('/api/progress/<int:n_os>', methods=['GET'])
+def progress(n_os):
+    return os_em_andamento(n_os)
 
       
 if __name__ == "__main__" :

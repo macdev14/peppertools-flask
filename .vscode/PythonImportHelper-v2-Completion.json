@@ -216,6 +216,14 @@
         "documentation": {}
     },
     {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -622,14 +630,6 @@
         "documentation": {}
     },
     {
-        "label": "*",
-        "importPath": "api",
-        "description": "api",
-        "isExtraImport": true,
-        "detail": "api",
-        "documentation": {}
-    },
-    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -761,7 +761,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():\n    os = os_em_andamento()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()",
+        "peekOfCode": "def favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\ndef index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    response = Response(render_template(\"home.html\", title= \"Inicio\" ,historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))",
         "detail": "app",
         "documentation": {}
     },
@@ -770,7 +770,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def index():\n    os = os_em_andamento()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    #print(os)\n    response = Response(render_template(\"home.html\", title= \"Inicio\", list=os, historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/historico')",
+        "peekOfCode": "def index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    response = Response(render_template(\"home.html\", title= \"Inicio\" ,historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/historico')\n@managerLevel",
         "detail": "app",
         "documentation": {}
     },
@@ -1090,6 +1090,15 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def redirect(n_os):\n    try:\n        idos = Cadastro_Os.select(Cadastro_Os.Id).where(Cadastro_Os.Numero_Os == n_os).get()\n        print(idos)\n        return redirect('/os/form/'+ str(idos))\n    except:\n        return redirect('#')\n@app.errorhandler(404) \ndef invalid_route(e): \n    return underdev()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
         "label": "invalid_route",
         "kind": 2,
         "importPath": "app",
@@ -1229,7 +1238,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    #print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/progress', methods=['GET'])\ndef progress():\n    return jsonify('testing')\nif __name__ == \"__main__\" :",
+        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    #print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\ndef progress(n_os):\n    return os_em_andamento(n_os)\nif __name__ == \"__main__\" :",
         "detail": "app",
         "documentation": {}
     },
@@ -1238,7 +1247,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def progress():\n    return jsonify('testing')\nif __name__ == \"__main__\" :\n     app.run(debug=True)",
+        "peekOfCode": "def progress(n_os):\n    return os_em_andamento(n_os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)",
         "detail": "app",
         "documentation": {}
     },
@@ -1400,7 +1409,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "#app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required",
+        "peekOfCode": "#app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\ndef index():",
         "detail": "app",
         "documentation": {}
     },
@@ -1409,7 +1418,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel",
+        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\ndef index():\n    os = os_em_historico()",
         "detail": "app",
         "documentation": {}
     },
@@ -1418,7 +1427,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():",
+        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\ndef index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()",
         "detail": "app",
         "documentation": {}
     },
@@ -1814,7 +1823,16 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def os_em_andamento():\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id).order_by(Historico_os.periodo.desc()).dicts())\n    print(os)\n    return os",
+        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    print(jsonify(os))\n    return jsonify(os)\ndef os_em_historico():\n    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())",
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
+        "label": "os_em_historico",
+        "kind": 2,
+        "importPath": "helper",
+        "description": "helper",
+        "peekOfCode": "def os_em_historico():\n    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    n_os = []\n    for row in os:\n        for col in row:\n           # print(col)\n            if col == 'Numero_Os':\n                #print(row[col])\n                n_os.append(row[col])\n    n_os = set(n_os)",
         "detail": "helper",
         "documentation": {}
     },

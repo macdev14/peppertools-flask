@@ -6,7 +6,7 @@ try:
     from urllib.parse import urlparse
 except ImportError:
      from urlparse import urlparse
-from flask import flash, redirect, render_template, request, session, escape, Response, Markup
+from flask import flash, redirect, render_template, request, session, escape, Response, Markup, jsonify
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
@@ -439,8 +439,25 @@ def registerprocess(id_proc, id_os, inicio=None, fim=None, ):
        Historico_os.create(inicio=inicio, fim=fim, id_proc=id_proc, id_os=id_os)
        return True
 
-def os_em_andamento():
+def os_em_andamento(n_os=None):
+    if n_os:
+        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
     #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()
-    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id).order_by(Historico_os.periodo.desc()).dicts())
-    print(os)
-    return os
+    else:
+        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
+    print(jsonify(os))
+    return jsonify(os)
+
+def os_em_historico():
+    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
+    n_os = []
+    for row in os:
+        for col in row:
+           # print(col)
+            if col == 'Numero_Os':
+                #print(row[col])
+                n_os.append(row[col])
+    n_os = set(n_os)
+    n_os = list(n_os)
+    print(n_os.reverse())
+    return n_os
