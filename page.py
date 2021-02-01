@@ -22,8 +22,8 @@ class page:
         else:
             self.selectlen = None 
         if len(self.col) == 2:
-            return render_template("Form.html", content=self.content, clients = self.select, cliLen= self.selectlen, cliCol=self.col[0] , selection2=self.select2, sel2Col = self.col[1], sel2Len=len(self.select2), TableCol=self.Keys, TableLen = len(self.Keys), table= self.table , edit=self.edit, active1="",active2="", active3="active", active4="")
+            return render_template("Form.html", content=self.content, clients = self.select, cliLen= self.selectlen, cliCol=self.col[0] , selection2=self.select2, sel2Col = self.col[1], sel2Len=len(self.select2), TableCol=self.Keys, TableLen = len(self.Keys), table= self.table.lower() , edit=self.edit, active1="",active2="", active3="active", active4="")
         elif len(self.col) == 1:
-            return render_template("Form.html", content=self.content, clients = self.select, cliCol=self.col[0], cliLen= self.selectlen, TableCol=self.Keys, TableLen = len(self.Keys), table= self.table , edit=self.edit, active1="",active2="", active3="active", active4="")
+            return render_template("Form.html", content=self.content, clients = self.select, cliCol=self.col[0], cliLen= self.selectlen, TableCol=self.Keys, TableLen = len(self.Keys), table= self.table.lower() , edit=self.edit, active1="",active2="", active3="active", active4="")
         else:
-            return render_template("Form.html", content=self.content, TableCol=self.Keys, TableLen = len(self.Keys), table= self.table , edit=self.edit, active1="",active2="", active3="active", active4="")
+            return render_template("Form.html", content=self.content, TableCol=self.Keys, TableLen = len(self.Keys), table= self.table.lower() , edit=self.edit, active1="",active2="", active3="active", active4="")

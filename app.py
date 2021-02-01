@@ -978,15 +978,39 @@ def renderTable(table):
 @app.route('/historico_os/form/<int:idhist>', methods=['POST', 'GET'])
 @login_required
 def histform(idhist):
-    Keys = list(Historico_os._meta.fields.keys())
     allcol = processos.select(processos.ID, processos.Nome)
     allos = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os)
     if idhist != '':
+       if request.method == 'POST':
+           try:
+              if request.form['data'] != '':
+                 data  = datetime.datetime.strptime(str(request.form['data']), '%d/%m/%Y').strftime('%Y-%m-%d')
+           except:
+                pass
+           Historico_os.update(id_proc = request.form['id_proc'], id_os = request.form['id_os'], inicio = request.form['inicio'], fim= request.form['fim'], periodo=request.form['periodo'], data=data, qtd=request.form['qtd']).where(Historico_os.ID == idhist).execute()  
+       
        hist_os =  list(Historico_os.select().where(Historico_os.ID == idhist).dicts())
+       try:
+          if request.form['data'] != '':
+             hist_os[0]['data'] = hist_os[0]['data'].strftime('%d/%m-%Y')
+       except:
+            pass
        pageedit = page('Historico_os', content=hist_os[0], edit=True, select=allcol, select2=allos)
        return pageedit.render()
        #return render_template('Form.html', clients = allcol, cliLen= len(allcol), content=)
-    pagenew = page('historico_os', edit=False, select=allcol, select2=allos)
+    
+    if request.method == 'POST':
+       try:
+          if request.form['data'] != '':
+            data  = datetime.datetime.strptime(str(request.form['data']), '%d/%m/%Y').strftime('%Y-%m-%d')
+       except:
+          pass
+          Historico_os.create(id_proc = request.form['id_proc'], id_os = request.form['id_os'], inicio = request.form['inicio'], fim= request.form['fim'], periodo=request.form['periodo'], data=data, qtd=request.form['qtd'])
+          idfuncnew = Historico_os.select(fn.MAX(Historico_os.ID)).scalar()
+          flash("Cadastrado com Sucesso")
+          return redirect('/processos/form/'+ str(idfuncnew))
+
+    pagenew = page('Historico_os', edit=False, select=allcol, select2=allos)
     return pagenew.render()
 
 
