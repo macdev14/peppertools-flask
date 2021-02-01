@@ -10,7 +10,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
   let el = `progress-${number}`;
   document.getElementById(el).innerHTML = "Carregando.."
   
-  const URL_API = `http://localhost:5000/api/progress/${number}`
+  const URL_API = `https://peppertools-test.herokuapp.com/api/progress/${number}`
   await axios(URL_API).then((response) => {
        document.getElementById(`progress-${number}`).innerHTML = ""
        console.log(response['data'])
