@@ -986,7 +986,7 @@ def histform(idhist):
        pageedit = page('Historico_os', content=hist_os[0], edit=True, select=allcol, select2=allos)
        return pageedit.render()
        #return render_template('Form.html', clients = allcol, cliLen= len(allcol), content=)
-    pagenew = page('Historico_os', edit=False, select=allcol, select2=allos)
+    pagenew = page('historico_os', edit=False, select=allcol, select2=allos)
     return pagenew.render()
 
 

@@ -1085,7 +1085,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def histform(idhist):\n    Keys = list(Historico_os._meta.fields.keys())\n    allcol = processos.select(processos.ID, processos.Nome)\n    allos = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os)\n    if idhist != '':\n       hist_os =  list(Historico_os.select().where(Historico_os.ID == idhist).dicts())\n       pageedit = page('Historico_os', content=hist_os[0], edit=True, select=allcol, select2=allos)\n       return pageedit.render()\n       #return render_template('Form.html', clients = allcol, cliLen= len(allcol), content=)\n    pagenew = page('Historico_os', edit=False, select=allcol, select2=allos)",
+        "peekOfCode": "def histform(idhist):\n    Keys = list(Historico_os._meta.fields.keys())\n    allcol = processos.select(processos.ID, processos.Nome)\n    allos = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os)\n    if idhist != '':\n       hist_os =  list(Historico_os.select().where(Historico_os.ID == idhist).dicts())\n       pageedit = page('Historico_os', content=hist_os[0], edit=True, select=allcol, select2=allos)\n       return pageedit.render()\n       #return render_template('Form.html', clients = allcol, cliLen= len(allcol), content=)\n    pagenew = page('historico_os', edit=False, select=allcol, select2=allos)",
         "detail": "app",
         "documentation": {}
     },
