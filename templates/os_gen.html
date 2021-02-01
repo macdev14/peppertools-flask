@@ -24,7 +24,7 @@
 
 
 			<div class="col-md-4">
-				Numero OS: <i class="fa fa-user"></i>
+				Numero OS: 
 				{% if field['Numero_Os'] != nill %}
 				<input class="form-control" type="text" name="Numero_Os" readonly required
 					autofocus value="{{field['Numero_Os']}}"> <br>
@@ -152,14 +152,14 @@
 			</div>
 
 			<div class="col-md-6" id="form-id">
-				Grava&ccedil;&atilde;o: <i class="fa fa-map"></i>
+				Grava&ccedil;&atilde;o: 
 				<input class="form-control" type="text" name="gravacao" value="{{
 					field['gravacao'] if field['gravacao'] != 'None' else '' }}"> <br>
 
 			</div>
 
 			<div class="col-md-6" id="form-id">
-				Grava&ccedil;&atilde;o 2: <i class="fa fa-map"></i>
+				Grava&ccedil;&atilde;o 2: 
 				<input class="form-control" type="text" name="gravacao2"
 					value="{{field['gravacao2'] if field['gravacao2'] != 'None' else '' }}">
 				<br>
@@ -167,14 +167,14 @@
 
 
 			<div class="col-md-6">
-				Material: <i class="fa fa-map"></i>
+				Material: 
 				<input class="form-control" type="text" name="Material" value="{{
 					field['Material'] if field['Material'] != 'None' else '' }}"> <br>
 
 			</div>
 
 			<div class="col-md-2">
-				Unidade: <i class="fa fa-user"></i>
+				Unidade: 
 
 
 				<select name="unidade" class="">
@@ -200,7 +200,7 @@
 
 
 			<div class="col-md-2">
-				Tipo: <i class="fa fa-user"></i>
+				Tipo: 
 
 
 				<select name="Tipo">
@@ -233,7 +233,7 @@
 
 
 			<div class="col-md-2">
-				Quantidade: <i class="fa fa-map"></i>
+				Quantidade: 
 				<input class="form-control" type="number" name="Quantidade" min="1"
 					value="{{field['Quantidade'] if field['Quantidade'] != 'None' else ' ' }}">
 				<br>
@@ -241,7 +241,7 @@
 			</div>
 
 			<div class="col-md-4">
-				Nota Fiscal: <i class="fa fa-map"></i>
+				Nota Fiscal: 
 				<input class="form-control" type="text" name="Numero_Nf"
 					value="{{field['Numero_Nf'] if field['Numero_Nf'] != 'None' else ' ' }}">
 				<br>
@@ -249,7 +249,7 @@
 			</div>
 
 			<div class="col-md-4">
-				Numero do Pedido: <i class="fa fa-map"></i>
+				Numero do Pedido: 
 				<input class="form-control" type="text" name="Numero_Pedido"
 					value="{{field['Numero_Pedido'] if field['Numero_Pedido'] != 'None' else '
 					' }}"> <br>
@@ -257,7 +257,7 @@
 			</div>
 
 			<div class="col-md-2">
-				Data da Nota Fiscal: <i class="fa fa-map"></i>
+				Data da Nota Fiscal: 
 				<input class="form-control da" type="text" name="Data_Nf"
 					data-mask="00/00/0000" value="{{field['Data_Nf'] if field['Data_Nf'] !=
 					'None' else ' ' }}"> <br>
@@ -265,7 +265,7 @@
 			</div>
 
 			<div class="col-md-2">
-				Data do Pedido: <i class="fa fa-map"></i>
+				Data do Pedido: 
 				<input class="form-control da" type="text" name="Data_Pedido"
 					data-mask="00/00/0000" value="{{field['Data_Pedido'] if
 					field['Data_Pedido'] != 'None' else ' ' }}"> <br>
