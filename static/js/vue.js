@@ -11,7 +11,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
   document.getElementById(el).innerHTML = "Carregando.."
   
   const URL_API = `http://localhost:5000/api/progress/${number}`
-  await axios(URL_API).then((response) => {
+  await axios(URL_API,  { headers: {'authorization': localStorage.getItem('auth') } } ).then((response) => {
        document.getElementById(`progress-${number}`).innerHTML = ""
        console.log(response['data'])
        

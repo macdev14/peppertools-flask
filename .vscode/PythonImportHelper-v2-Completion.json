@@ -778,7 +778,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    response = Response(render_template(\"home.html\", title= \"Inicio\" ,historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/historico')\n@login_required",
+        "peekOfCode": "def index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    response = Response(render_template(\"home.html\", title= \"Inicio\", auth=session.get('token'), historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/historico')\n@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -1255,7 +1255,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    #print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\ndef progress(n_os):\n    return os_em_andamento(n_os)\nif __name__ == \"__main__\" :",
+        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    #print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\n@auth_required\ndef progress(n_os):\n    return os_em_andamento(n_os)",
         "detail": "app",
         "documentation": {}
     },
@@ -1975,7 +1975,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class orcamento(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    ano = IntegerField()\n    cod_item = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)\n    attn = TextField()\n    refer = TextField()\n    de = TextField()\n    nref = TextField()",
+        "peekOfCode": "class orcamento(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    ano = IntegerField()\n    cod_item = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)\n    prazo_entrega = TextField()\n    prazo_pagto = TextField()\n    ipi = TextField()\n    icms = TextField()",
         "detail": "model",
         "documentation": {}
     },
