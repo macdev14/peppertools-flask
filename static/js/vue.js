@@ -50,10 +50,12 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
                   </button>
                 </div>
                 <div class="modal-body">
-                Duracao :  ${response['data'][dict]['duration']}<br>
-                Cliente : ${response['data'][dict]['nome']}<br>
-                Quantidade :  ${response['data'][dict]['qtd'] ? response['data'][dict]['qtd'] : 'Nenhuma'}<br>
-                Processo: ${response['data'][dict]['Nome']} <br> Início:  ${response['data'][dict]['inicio']} <br> Fim: ${(response['data'][dict]['fim']) ? response['data'][dict]['fim'] : 'Não Finalizado' }<br> Data: ${response['data'][dict]['data']}
+              ${response['data'][dict]['duration'] ? 'Duracao: '+ response['data'][dict]['duration'] : ''}
+               ${response['data'][dict]['nome'] ?   '<br>Cliente: ' + response['data'][dict]['nome'] : ''}
+               ${response['data'][dict]['qtd'] ?   '<br>Quantidade: ' + response['data'][dict]['qtd'] : ''}<br>
+                Processo: ${response['data'][dict]['Nome']} <br> Início:  ${response['data'][dict]['inicio']} <br> 
+                ${(response['data'][dict]['fim']) ? 'Fim:' + response['data'][dict]['fim'] : 'Em andamento' }
+                <br> Data: ${response['data'][dict]['data']}
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
