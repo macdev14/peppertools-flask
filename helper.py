@@ -123,7 +123,6 @@ def get_level():
     try:
         if session.get('token'):
             tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])
-            print(tok['level'] )
             return tok['level'] 
     except:
         pass

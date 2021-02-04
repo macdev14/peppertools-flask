@@ -114,5 +114,21 @@ option:focus {
     color:#e0e0e0}
 
   .progress-bar {
-    text-align: center;
+    font-size: medium;
+    padding-top:15px;
+    border-radius: 0px;
+
+  }
+
+  .progress{
+    height: 50px;
+    border-radius: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  #os-progress-card{
+    padding-top:28px;
+    padding-bottom:25px
   }

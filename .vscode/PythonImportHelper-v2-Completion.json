@@ -1678,7 +1678,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def get_level():\n    try:\n        if session.get('token'):\n            tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n            print(tok['level'] )\n            return tok['level'] \n    except:\n        pass\ndef adminLevel(f):\n    @wraps(f)",
+        "peekOfCode": "def get_level():\n    try:\n        if session.get('token'):\n            tok = jwt.decode(session.get('token'), os.environ['SECRET_KEY'], algorithms=['HS256'])\n            return tok['level'] \n    except:\n        pass\ndef adminLevel(f):\n    @wraps(f)\n    def checklevel(*args, **kwargs):",
         "detail": "helper",
         "documentation": {}
     },
