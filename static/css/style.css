@@ -109,3 +109,10 @@ option:focus {
   a, a:link, a:visited{
     color: white;
   }
+
+  a:hover{
+    color:#e0e0e0}
+
+  .progress-bar {
+    text-align: center;
+  }
