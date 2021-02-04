@@ -483,10 +483,10 @@ def cadEstoque():
             data['data'] = datetime.datetime.now().strftime('%d/%m/%Y')
         else:    
             try:
-                data['data'] =  datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%d/%m/%Y')
+                data['data'] =  datetime.datetime.strptime(data['data'], '%d/%m/%Y').strftime('%Y-%m-%d')
                 flash('Item cadastrado com sucesso')
             except:
-                data['data'] = datetime.datetime.now().strftime('%d/%m/%Y')
+                data['data'] = datetime.datetime.now().strftime('%Y-%m-%d')
                 flash('Erro ao cadastrar data')
                 pass
         Estoque.create(id_cliente=data['id_cliente'], ferramenta=data['ferramenta'], material=data['material'], cod_pc=data['cod_pc'], mm=data['mm'], qt=data['qt'], gaveta=data['gaveta'], data=data['data'])
@@ -990,11 +990,11 @@ def histform(idhist):
            Historico_os.update(id_proc = request.form['id_proc'], id_os = request.form['id_os'], inicio = request.form['inicio'], fim= request.form['fim'], periodo=request.form['periodo'], data=data, qtd=request.form['qtd']).where(Historico_os.ID == idhist).execute()  
        
        hist_os =  list(Historico_os.select().where(Historico_os.ID == idhist).dicts())
-       try:
-          if request.form['data'] != '':
-             hist_os[0]['data'] = hist_os[0]['data'].strftime('%d/%m/%Y')
-       except:
-            pass
+       
+       if hist_os[0]['data'] != '':
+           
+          hist_os[0]['data'] = hist_os[0]['data'].strftime('%d/%m/%Y')
+          
        pageedit = page('Historico_os', content=hist_os[0], edit=True, select=allcol, select2=allos)
        return pageedit.render()
        #return render_template('Form.html', clients = allcol, cliLen= len(allcol), content=)

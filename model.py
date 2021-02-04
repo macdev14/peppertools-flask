@@ -9,8 +9,9 @@ perms = {'key': home+'/ssl/ca.pem',
          'verifyServerCertificate': False,
         
          }
-
-db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)
+db = None
+while not db:
+    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)
 
 class Clientes(Model):
     ID= PrimaryKeyField()

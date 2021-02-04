@@ -10,7 +10,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
   let el = `progress-${number}`;
   document.getElementById(el).innerHTML = "Carregando.."
   
-  const URL_API = `https://peppertools-test.herokuapp.com/api/progress/${number}`
+  const URL_API = `http://localhost:5000/api/progress/${number}`
   await axios(URL_API).then((response) => {
        document.getElementById(`progress-${number}`).innerHTML = ""
        console.log(response['data'])
@@ -34,10 +34,42 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
             
           }
         else{
-              n =100;
+              n = 100;
            }
            // n = m/(arr.length*4);
-           document.getElementById(el).innerHTML += `<div class="progress-bar ${color}" role="progressbar" style="height:100% ;width: ${n.toString()}%" aria-valuenow="${n.toString()}" aria-valuemin="0" aria-valuemax="100"><span style="  margin: 0px auto; text-align: center;">${response['data'][dict]['inicio']} - ${response['data'][dict]['Nome']} - ${response['data'][dict]['fim']}</span></div>`
+        //   if (response['data'][dict]['fim']){
+             document.getElementById('modals-to-open').innerHTML += `
+             
+              <div class="modal fade" id="info${response['data'][dict]['ID']}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  Informações
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                Duracao :  ${response['data'][dict]['duration']}<br>
+                Cliente : ${response['data'][dict]['nome']}<br>
+                Quantidade :  ${response['data'][dict]['qtd'] ? response['data'][dict]['qtd'] : 'Nenhuma'}<br>
+                Processo: ${response['data'][dict]['Nome']} <br> Início:  ${response['data'][dict]['inicio']} <br> Fim: ${(response['data'][dict]['fim']) ? response['data'][dict]['fim'] : 'Não Finalizado' }<br> Data: ${response['data'][dict]['data']}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                  <a href="delete/table=Historico_os&id=${response['data'][dict]['ID']}">
+                  <button type="button" class="btn btn-primary">Deletar</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+             
+             `
+             document.getElementById(el).innerHTML += `<div class="progress-bar ${color}" data-toggle="modal" data-target="#info${response['data'][dict]['ID']}" role="progressbar" style="height:100% ;width: ${n.toString()}%" aria-valuenow="${n.toString()}" aria-valuemin="0" aria-valuemax="100"><a href="#" data-toggle="modal" data-target="#info${response['data'][dict]['ID']}"> ${response['data'][dict]['Nome']} </a> </div>`
+         //  }else{
+       //      document.getElementById(el).innerHTML += `<div class="progress-bar ${color}" role="progressbar" style="height:100% ;width: ${n.toString()}%" aria-valuenow="${n.toString()}" aria-valuemin="0" aria-valuemax="100"><a data-toggle="tooltip"> ${response['data'][dict]['Nome']} <span class="tooltiptext"> Início:  ${response['data'][dict]['inicio']} <br>Data: ${response['data'][dict]['data']} </span> </div> </div>`
+    //       }
+           
          }
          
          

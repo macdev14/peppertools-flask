@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os, sqlite3, requests, datetime, jwt, sys
 from py_jwt_validator import PyJwtValidator, PyJwtException
+from datetime import date
 #from cs50 import SQL
 try:
     from urllib.parse import urlparse
@@ -440,12 +441,30 @@ def registerprocess(id_proc, id_os, inicio=None, fim=None, ):
        return True
 
 def os_em_andamento(n_os=None):
+    
     if n_os:
-        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
+        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
     #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()
     else:
-        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
-    print(jsonify(os))
+        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())
+    #print(os)
+  
+        
+    for item in os:
+        print(item)
+            #datetime.datetime.strptime(os[item]['fim'], '%H:%M:%S').time()
+        if item['fim']:
+            #if item['fim'] == '':
+
+            end = datetime.datetime.strptime(item['fim'], '%H:%M:%S').time()
+       
+        #end = datetime.time(end)
+            beginning = datetime.datetime.strptime(item['inicio'], '%H:%M:%S').time() 
+        #print(beginning)
+        #beginning = datetime.time(beginning)
+            duration = datetime.datetime.combine(date.min, end) - datetime.datetime.combine(date.min, beginning)
+            item['duration'] = str(duration)
+    
     return jsonify(os)
 
 def os_em_historico():

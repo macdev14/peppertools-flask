@@ -1,9 +1,9 @@
 async function loadClientes() {
   document.getElementById("all").innerHTML = "";
-  const URL = `https://peppertools.herokuapp.com/api/clientes`;
+  const URL = `https://peppertools-test.herokuapp.com/api/clientes`;
 
   await axios(URL).then((response) => {
-    response.data.map((val, i) => {
+    response['data'].map((val, i) => {
       // console.log(val)
       document.getElementById("all").innerHTML += `<tr> 
       <th scope="row">${val["cod_cli"]}</th>
@@ -29,10 +29,10 @@ async function loadClientes() {
 }
 
 async function filterClient(q) {
-  const URL = `https://peppertools.osc-fr1.scalingo.io/api/clientes/q=${q.toString()}`;
+  const URL = `https://peppertools-test.herokuapp.com/api/clientes/q=${q.toString()}`;
   document.getElementById("all").innerHTML = "";
   await axios(URL).then((response) => {
-    response.data.map((val, i) => {
+    response['data']map((val, i) => {
       document.getElementById("all").innerHTML += `<tr> 
       <th scope="row">${val["cod_cli"]}</th>
       <td>${val.nome.replace(/\s.*/, "")}</td>

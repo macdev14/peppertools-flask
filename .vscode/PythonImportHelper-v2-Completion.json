@@ -531,6 +531,14 @@
         "documentation": {}
     },
     {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "pytz",
         "kind": 6,
         "isExtraImport": true,
@@ -1832,7 +1840,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    print(jsonify(os))\n    return jsonify(os)\ndef os_em_historico():\n    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())",
+        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #print(os)\n    for item in os:\n        print(item)\n            #datetime.datetime.strptime(os[item]['fim'], '%H:%M:%S').time()",
         "detail": "helper",
         "documentation": {}
     },
@@ -2102,7 +2110,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "home = expanduser(\"~\")\nperms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField()",
+        "peekOfCode": "home = expanduser(\"~\")\nperms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = None\nwhile not db:\n    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)",
         "detail": "model",
         "documentation": {}
     },
@@ -2111,7 +2119,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "perms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()",
+        "peekOfCode": "perms = {'key': home+'/ssl/ca.pem', \n         'cert': home+'/ssl/ca.pem', \n         'ca': home+'/ssl/ca.pem',\n          'useSSL':True,\n         'verifyServerCertificate': False,\n         }\ndb = None\nwhile not db:\n    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):",
         "detail": "model",
         "documentation": {}
     },
@@ -2120,7 +2128,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()",
+        "peekOfCode": "db = None\nwhile not db:\n    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()",
         "detail": "model",
         "documentation": {}
     },
