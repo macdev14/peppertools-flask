@@ -92,10 +92,11 @@
           <li class="nav-item dropdown {{ active2 }}">
             <a class="nav-link dropdown-toggle" id="estoque" href="/estoque"
               id="navbarDropdown" role="button" data-toggle="dropdown"
+              data-target="#estoque-dropdown"
               aria-haspopup="true" aria-expanded="false">
               Inventário
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="estoque-dropdown">
               <a class="dropdown-item" href="/estoque">Estoque</a>
               <a class="dropdown-item" href="/estoque/form">Cadastrar Estoque</a>
               <div class="dropdown-divider"></div>
@@ -109,11 +110,11 @@
 
           <li class="nav-item dropdown {{ active2 }}">
             <a class="nav-link dropdown-toggle" id="estoque" href="/estoque"
-              id="navbarDropdown" role="button" data-toggle="dropdown"
+              id="navbarDropdown" role="button" data-target="#funcionarios-dropdown" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Produção
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="funcionarios-dropdown">
               <a class="dropdown-item" href="/funcionarios">Funcionario</a>
               <a class="dropdown-item" href="/funcionarios/form">Cadastrar Funcionario</a>
               <div class="dropdown-divider"></div>
@@ -130,10 +131,11 @@
           <li class="nav-item dropdown {{ active3 }}">
             <a class="nav-link dropdown-toggle" id="clientes" href="/clientes"
               id="navbarDropdown" role="button" data-toggle="dropdown"
+              data-target="#contasapagar-dropdown"
               aria-haspopup="true" aria-expanded="false">
               Contas
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id ="contasapagar-dropdown">
               <a class="dropdown-item" href="/contasapagar">Contas a Pagar</a>
               <a class="dropdown-item" href="/contasapagar/form">Cadastrar</a>
             </div>
@@ -143,10 +145,11 @@
           <li class="nav-item dropdown {{ active4 }}">
             <a class="nav-link dropdown-toggle" id="os" href="/os"
               id="navbarDropdown" role="button" data-toggle="dropdown"
+              data-target="#os-dropdown"
               aria-haspopup="true" aria-expanded="false">
               Vendas
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="os-dropdown">
               <a class="dropdown-item" href="/clientes">Clientes</a>
               <a class="dropdown-item" href="/clientes/form">Cadastrar</a>
               <div class="dropdown-divider"></div>
