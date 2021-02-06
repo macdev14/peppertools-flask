@@ -95,6 +95,7 @@ class contasapagar(Model):
 class orcamento(Model):
     ID = PrimaryKeyField()
     numero = IntegerField()
+    id_cliente = IntegerField()
     ano = IntegerField()
     cod_item = IntegerField()
     data = DateTimeField(default=datetime.datetime.now)

@@ -160,10 +160,22 @@
           </li>
           {%endif%}
         </ul> 
-        <form class="d-flex flex-row-reverse input-group w-auto" action="/logout">
+        <div class="d-flex flex-row-reverse input-group w-auto">
+         
+          <form  action="/logout">
           <button class="btn btn-outline-danger" type="submit">Log
             out</button>
+            
         </form>
+
+        {% if level == 2 or level == 4%}
+        <a  href="{{ url_for('static',filename='assets/pepper-app.apk')}}" download>
+          <button class="btn btn-outline-info" type="submit">Baixar App</button>
+      </a>
+          {%endif%}
+
+        </div>
+        
 
       </div>
      

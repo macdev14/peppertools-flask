@@ -568,7 +568,7 @@ def invoice():
     data = datetime.datetime.now().strftime('%d/%m/%Y')
     if request.method == 'POST' and request.form:
         #try:
-        orcamento.create(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms'])
+        orcamento.create(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], cod_func=request.form['cod_func'], id_cliente=request.form['id_cliente'],prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms'])
         idorcam = orcamento.select(fn.MAX(orcamento.ID)).scalar()
         flash('Cadastrado com sucesso!')
         return redirect('/orcamento/form/'+ str(idorcam))
@@ -578,17 +578,23 @@ def invoice():
         items = Estoque.select(Estoque.ferramenta, Estoque.ID)
         clients = Clientes.select(Clientes.nome, Clientes.ID)
         num = orcamento.select(fn.MAX(orcamento.numero)).scalar()
-        return render_template("Form.html", TableCol=Keys, clients=items, cliLen= len(items), cliCol = 'id_cliente' ,data=data, TableLen = len(Keys), table='orcamento' , edit=False, numfield=num ,active1="",active2="", active3="active", active4="")
+        pager = page(table='orcamento', edit=False, select = clients , select2 = items)
+        return pager.render()
+        #return render_template("Form.html", TableCol=Keys, clients=items, cliLen= len(items), selection2=clients, sel2Col='id_cliente', sel2Len=len(clients), cliCol = 'cod_item' ,data=data, TableLen = len(Keys), table='orcamento' , edit=False, numfield=num ,active1="",active2="", active3="active", active4="")
+ 
 
 @app.route('/orcamento/form/<int:inid>', methods=['POST', 'GET'])
 @login_required
 def invoiceEdit(inid):
     if request.method == 'POST':
-        orcamento.update(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], para = request.form['para'], attn=request.form['attn'], refer=request.form['refer'], de=request.form['de'], nref=request.form['nref'], fax=request.form['fax'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()
+        orcamento.update(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], id_cliente = request.form['id_cliente'], cod_func=request.form['cod_func'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()
     Keys = list(orcamento._meta.fields.keys())
-    items = Estoque.select(Estoque.ferramenta, Estoque.ID)
+    clients = list(Clientes.select(Clientes.nome, Clientes.ID).dicts())
+    items = list(Estoque.select(Estoque.ferramenta, Estoque.ID).dicts())
     invoice = orcamento.select().where(orcamento.ID == inid)
-    return render_template("Form.html", content=invoice[0], clients=items, cliLen= len(items), cliCol = 'id_cliente', TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1="",active2="", active3="active", active4="")
+    pager = page(table = 'orcamento', content = invoice[0], edit=True, select = clients , select2 = items)
+    return pager.render()
+    #return render_template("Form.html", content=invoice[0], clients=items, cliLen= len(items), cliCol = 'cod_item', selection2=clients, sel2Col='id_cliente', sel2Len=len(clients), TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1="",active2="", active3="active", active4="")
 
 @app.route('/list')
 def listing():

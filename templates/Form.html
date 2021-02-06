@@ -31,15 +31,14 @@
     {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
     <div class="form-group">
         
-      {% if TableCol[i] == 'id_cliente'  or  TableCol[i] == 'cod_fornecedor' or  TableCol[i] == 'cod_func' or TableCol[i] == 'cod_item' or TableCol[i] == 'id_Tipo' or  TableCol[i] == 'id_proc' or  TableCol[i] == cliCol %}
+      {% if TableCol[i] == cliCol %}
 
      
       <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>  
      
   
         <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
-          {% if clients and cliLen !=0 %}
-              
+          {% if clients and cliLen > 0%}
               {% for client in clients %}
               {% if client.ID %}
             
@@ -67,13 +66,13 @@
               {% endfor %}    
              {%else%}
              <option value="" id="emptyoption" selected> Cadastre suas Opções </option>
-             {% endif %}
+        {% endif %}
          
         </select> <br>
-       {%elif selection2 and TableCol[i] == sel2Col%}
+       {%elif TableCol[i] == sel2Col%}
 
           <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
-            {%if sel2len == 0%}  
+            {%if sel2Len == 0%}  
               <option value="" id="emptyoption" selected> Cadastre suas Opções </option>
           
             {% elif selection2 and sel2len != 0 %}

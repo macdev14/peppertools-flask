@@ -19,6 +19,8 @@ class page:
     def render(self): 
         if self.select:
             self.selectlen= len(self.select)
+            print(self.select2)
+            print(self.select)
         else:
             self.selectlen = None 
         if len(self.col) == 2:
