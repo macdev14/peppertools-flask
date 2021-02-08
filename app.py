@@ -231,7 +231,9 @@ def logout():
 @app.route("/os/total")
 @login_required
 def all():
-    return getNumber()
+    nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()
+    print(nos)
+    return jsonify(nos)
 
 
 @app.route('/os/form/', methods=["POST", "GET"])

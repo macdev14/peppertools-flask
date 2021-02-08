@@ -26,13 +26,13 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
          string = dict['Nome']
          }
          if (!arr.includes(response['data'][dict]['Nome'])){
-           arr.push(response['data'][dict]['Nome'])
-            if (isMobile){m = (100 / 2);}else{m = (100 / 4)}
-         if (response['data'][dict]['Nome'] != 'Finalizado')
-          {
+              arr.push(response['data'][dict]['Nome'])
+              if (isMobile){m = (100 / 2);}else{m = (100 / 4)}
+            if (response['data'][dict]['Nome'] != 'Finalizado')
+            {
             if (isMobile){ n = n + m;}else{ n = n + (m/2);}
             
-          }
+            }
         else{
               n = 100;
            }

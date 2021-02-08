@@ -877,7 +877,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel\ndef new_os():",
+        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n    print(nos)\n    return jsonify(nos)\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -886,7 +886,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        print(clients)\n        x = datetime.datetime.now()",
+        "peekOfCode": "def all():\n    nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n    print(nos)\n    return jsonify(nos)\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()",
         "detail": "app",
         "documentation": {}
     },
@@ -1840,7 +1840,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #print(os)\n    for item in os:\n        print(item)\n            #datetime.datetime.strptime(os[item]['fim'], '%H:%M:%S').time()",
+        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #print(os)\n    for item in os:\n        print(item)\n            #datetime.datetime.strptime(os[item]['fim'], '%H:%M:%S').time()",
         "detail": "helper",
         "documentation": {}
     },
