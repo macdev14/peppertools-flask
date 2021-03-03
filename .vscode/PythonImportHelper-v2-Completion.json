@@ -360,6 +360,14 @@
         "documentation": {}
     },
     {
+        "label": "SocketIO",
+        "importPath": "flask_socketio",
+        "description": "flask_socketio",
+        "isExtraImport": true,
+        "detail": "flask_socketio",
+        "documentation": {}
+    },
+    {
         "label": "default_exceptions",
         "importPath": "werkzeug.exceptions",
         "description": "werkzeug.exceptions",
@@ -904,7 +912,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def os_edit(osid):\n    if request.method == 'POST':\n        data = dict(request.form)\n        try:\n            data['Numero_Os'] = int(data['Numero_Os'])\n            data['Id_Cliente'] = int(data['Id_Cliente'])\n            data['Numero_Nf'] = int(data['Numero_Nf'])\n            data['Numero_Pedido'] = int(data['Numero_Pedido'])\n            data['Quantidade'] = int(data['Quantidade'])\n            data['Id'] = int(data['Id'])",
+        "peekOfCode": "def os_edit(osid):\n    if request.method == 'POST':\n        if not 'id_Linha' in request.form:\n            flash('Selecione uma Linha de Produto')\n            return redirect('/os/form/'+str(osid))\n        elif not 'Id_Cliente' in request.form:\n            flash('Selecione um Cliente')\n            return redirect('/os/form/'+str(osid))\n        data = dict(request.form)\n        try:",
         "detail": "app",
         "documentation": {}
     },
@@ -1111,7 +1119,16 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())\n        print(idos[0]['Id'])\n        return redirect('/os/form/'+ str(idos[0]['Id']))\n    except:\n        return redirect('#')\n@app.errorhandler(404) \ndef invalid_route(e): \n    return underdev()",
+        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())\n        print(idos[0]['Id'])\n        return redirect('/os/form/'+ str(idos[0]['Id']))\n    except:\n        return redirect('#')\n@app.route('/linha/form/', defaults={'idlinha': ''}, methods=['POST', 'GET'])\n@app.route('/linha/form/<int:idlinha>', methods=['POST', 'GET'])\n@login_required",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "linha_os",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def linha_os(idlinha):\n    if idlinha!='':\n        content = linha.select().where(linha.id==idlinha)\n        if request.method == 'POST':\n            try:\n                num = int(request.form['numero_inicial'])\n            except:\n                num = 0\n            content.update(nome= request.form['nome'], numero_inicial = num).execute()\n        pageLinha = page('linha', content=content[0])",
         "detail": "app",
         "documentation": {}
     },
@@ -1264,7 +1281,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def progress(n_os):\n    return os_em_andamento(n_os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)",
+        "peekOfCode": "def progress(n_os):\n    return os_em_andamento(n_os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)\n     socketio.run(app, debug=True)",
         "detail": "app",
         "documentation": {}
     },
@@ -1291,7 +1308,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'",
+        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)",
         "detail": "app",
         "documentation": {}
     },
@@ -1300,7 +1317,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'",
         "detail": "app",
         "documentation": {}
     },
@@ -1309,7 +1326,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'",
+        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -1318,7 +1335,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "db = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "db = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'",
         "detail": "app",
         "documentation": {}
     },
@@ -1327,7 +1344,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -1336,7 +1353,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)",
+        "peekOfCode": "app = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -1345,7 +1362,16 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'",
+        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "socketio",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "socketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'",
         "detail": "app",
         "documentation": {}
     },
@@ -1840,7 +1866,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #print(os)\n    for item in os:\n        print(item)\n            #datetime.datetime.strptime(os[item]['fim'], '%H:%M:%S').time()",
+        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #print(os)\n    #os = os.reverse()\n    for item in os:\n        print(item)",
         "detail": "helper",
         "documentation": {}
     },
@@ -1939,7 +1965,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Cadastro_OS(Model):\n    Id = PrimaryKeyField()\n    Tipo = TextField()\n    Numero_Os = IntegerField()\n    Id_Cliente = IntegerField()\n    Data = DateTimeField(default=datetime.datetime.now)\n    Prazo = DateTimeField()\n    gravacao = TextField()\n    Ferramenta = TextField()\n    Material = TextField()",
+        "peekOfCode": "class Cadastro_OS(Model):\n    Id = PrimaryKeyField()\n    Tipo = TextField()\n    Numero_Os = IntegerField()\n    Id_Cliente = IntegerField()\n    Data = DateTimeField(default=datetime.datetime.now)\n    Prazo = DateTimeField()\n    gravacao = TextField()\n    gravacao2 = TextField()\n    Ferramenta = TextField()",
         "detail": "model",
         "documentation": {}
     },
@@ -2102,6 +2128,15 @@
         "importPath": "model",
         "description": "model",
         "peekOfCode": "class itens(Model):\n    id= PrimaryKeyField()\n    descricao= TextField()\n    codigo=TextField()\n    material= TextField()\n    esp1= TextField()\n    esp2= TextField()\n    esp3= TextField()\n    class Meta:\n        db_table = 'itens'",
+        "detail": "model",
+        "documentation": {}
+    },
+    {
+        "label": "linha",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class linha(Model):\n    id= PrimaryKeyField()\n    nome= TextField()\n    numero_inicial = IntegerField()\n    class Meta:\n        db_table = 'linha'\n        database = db",
         "detail": "model",
         "documentation": {}
     },

@@ -309,7 +309,7 @@ if (document.getElementById('prazo_entrega-label') && typeof document.getElement
 
 if ( document.getElementById('cnpj') && typeof document.getElementById('cnpj').innerHTML != 'undefined'){
   cnpj = document.getElementById('cnpj')
-  cnpj.addEventListener('change', loadcnpj(cnpj.value));
+  cnpj.addEventListener('input', function(evt){loadcnpj(this.value)});
 }
 
 if ( document.getElementById('data_pagamento-label') && typeof document.getElementById('data_pagamento-label').innerHTML != 'undefined'){

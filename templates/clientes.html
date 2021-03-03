@@ -34,7 +34,7 @@
 async function loadCliente(limit = 10) {
   document.getElementById("all").innerHTML = "";
 
-  const URL = `https://peppertools.osc-fr1.scalingo.io/api/clientes/limit=${limit.toString()}`;
+  const URL = `https://peppertools-test.herokuapp.com/api/clientes/limit=${limit.toString()}`;
   await axios(URL,  { headers: {'authorization': '{{auth}}' } }).then((response) => {
     console.log(response);
     response.data.map((val, i) => {
@@ -69,7 +69,7 @@ async function filterCliente(q) {
   if (!limit) {
     limit = 10;
   }
-  const URL = `https://peppertools.osc-fr1.scalingo.io/api/clientes/q=${q.toString()}`;
+  const URL = `https://peppertools-test.herokuapp.com/api/clientes/q=${q.toString()}`;
   document.getElementById("all").innerHTML = "";
   await axios(URL,  { headers: {'authorization': '{{auth}}' } } ).then((response) => {
     response.data.map((val, i) => {

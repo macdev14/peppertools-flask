@@ -6,6 +6,7 @@ from flask_cors import  CORS, cross_origin
 from flask_session.__init__ import Session
 from flask_session import Session
 from tempfile import mkdtemp
+from flask_socketio import SocketIO
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
@@ -38,7 +39,7 @@ JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level':
 
 
 
-
+socketio = SocketIO(app)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
@@ -85,6 +86,7 @@ def favicon():
 @app.route('/')
 @login_required
 @managerLevel
+
 def index():
     os = os_em_historico()
     #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()
@@ -264,7 +266,7 @@ def new_os():
                     Id_Cliente = request.form['Id_Cliente'], Data = request.form['Data'], unidade = request.form['unidade'],
                     Prazo = request.form['Prazo'], Data_Pedido = request.form['Data_Pedido'], 
                     Data_Nf = request.form['Data_Nf'], Especificacao = request.form['Especificacao'], Quantidade = request.form['Quantidade'],
-                    Numero_Nf = request.form['Numero_Nf'], Numero_Pedido = request.form['Numero_Pedido'], STATUS = int(request.form['STATUS']),
+                    Numero_Nf = request.form['Numero_Nf'], Numero_Pedido = request.form['Numero_Pedido'], STATUS = int(request.form['STATUS'], id_Linha=request.form['id_Linha']),
                     )
                 
 
@@ -280,7 +282,8 @@ def new_os():
                 return redirect('/os/form/')
         print(request.form)
         processes = processos.select()
-        return render_template('os_gen.html', clients = clients, clients_len = clients_len, os_num = os_num, field = '' , data = date, processes= processes )
+        linha_os = linha.select(linha.id, linha.nome)
+        return render_template('os_gen.html', clients = clients, clients_len = clients_len, os_num = os_num, field = '' , data = date, processes= processes, linha= linha_os)
 
 
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
@@ -288,6 +291,12 @@ def new_os():
 @managerLevel
 def os_edit(osid):
     if request.method == 'POST':
+        if not 'id_Linha' in request.form:
+            flash('Selecione uma Linha de Produto')
+            return redirect('/os/form/'+str(osid))
+        elif not 'Id_Cliente' in request.form:
+            flash('Selecione um Cliente')
+            return redirect('/os/form/'+str(osid))
         data = dict(request.form)
         try:
             data['Numero_Os'] = int(data['Numero_Os'])
@@ -309,6 +318,7 @@ def os_edit(osid):
                 registerprocess(int(data['STATUS']), os.Id, request.form['Data'], '')
             except:
                 pass
+       
         os.Numero_Os = data['Numero_Os']
         os.Id_Cliente =  data['Id_Cliente']
         os.Numero_Nf = data['Numero_Nf']
@@ -322,11 +332,11 @@ def os_edit(osid):
         os.Prazo = data['Prazo']
         os.unidade = data['unidade']
         os.Data_Nf = data['Data_Nf']
-        os.gravacao2 = re.sub(r'\s', '',data['gravacao2'])
         os.gravacao = re.sub(r'\s', '',data['gravacao'])
         os.Desenho_Cliente = re.sub(r'\s', '',data['Desenho_Cliente'])
         os.Desenho_Pimentel = re.sub(r'\s', '', data['Desenho_Pimentel'])
         os.STATUS = int(data['STATUS'])
+        os.id_Linha = int(data['id_Linha'])
         os.save()
         
 
@@ -373,7 +383,8 @@ def os_edit(osid):
         else:
             procinfo = None
         processes = processos.select()
-        return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date, processes=processes, procinfo=procinfo)
+        linha_os = linha.select(linha.id, linha.nome)
+        return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date, processes=processes, procinfo=procinfo, linha=linha_os)
         
 
 @app.route('/os/form/delete/<int:osid>', methods = ['POST', 'GET'])
@@ -1084,7 +1095,28 @@ def redirect_num(n_os):
     except:
         return redirect('#')
 
-
+@app.route('/linha/form/', defaults={'idlinha': ''}, methods=['POST', 'GET'])
+@app.route('/linha/form/<int:idlinha>', methods=['POST', 'GET'])
+@login_required
+def linha_os(idlinha):
+    if idlinha!='':
+        content = linha.select().where(linha.id==idlinha)
+        if request.method == 'POST':
+            try:
+                num = int(request.form['numero_inicial'])
+            except:
+                num = 0
+            content.update(nome= request.form['nome'], numero_inicial = num).execute()
+        pageLinha = page('linha', content=content[0])
+        pageLinha.render()
+    if request.method == 'POST' and request.form:
+        try:
+            num = int(request.form['numero_inicial'])
+        except:
+            num = 0
+        linha.create(nome= request.form['nome'], numero_inicial = num).execute()
+    pageLinha = page('linha')
+    return pageLinha.render()
 
 @app.errorhandler(404) 
 def invalid_route(e): 
@@ -1391,3 +1423,4 @@ def progress(n_os):
       
 if __name__ == "__main__" :
      app.run(debug=True)
+     socketio.run(app, debug=True)

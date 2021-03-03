@@ -81,8 +81,33 @@
 						{% endif %}
 						{%endfor%}
 
-					</select> <br>
-					<p id="msg"></p>
+					</select> 
+					<p id="msg">
+
+						<form action="/clientes/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Cliente</button></form>
+					</p>
+
+
+				</div>
+
+				<div class="form-group">
+					Linha: <i class="fa fa-user"></i>
+
+
+					<select name="id_Linha" class="Id_Cliente form-control" id="id_Linha
+						form-id">
+						<option value="0" disabled selected>SELECIONAR LINHA</option>
+
+						{% for client in linha %}
+						{%if field['id_Linha'] != nill and field['id_Linha'] == client['id']%}
+						<option value="{{client['id']}}" selected>{{ client['nome']}}</option>
+						{% else %}
+						<option value="{{client['id']}}">{{ client['nome'] }}</option>
+						{% endif %}
+						{%endfor%}
+
+					</select> 
+					<p id="msg"><form action="/linha/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Linha</button></form></p>
 
 
 				</div>
@@ -231,6 +256,7 @@
 
 			</div>
 
+			
 
 			<div class="col-md-2">
 				Quantidade: 

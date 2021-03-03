@@ -40,6 +40,7 @@ class Cadastro_OS(Model):
     Data = DateTimeField(default=datetime.datetime.now)
     Prazo = DateTimeField()
     gravacao = TextField()
+    gravacao2 = TextField()
     Ferramenta = TextField()
     Material = TextField()
     Especificacao = TextField()
@@ -52,7 +53,7 @@ class Cadastro_OS(Model):
     Data_Nf = DateTimeField()
     Data_Pedido = DateTimeField()
     STATUS = TextField()
-    gravacao2 = TextField()
+    id_Linha = IntegerField()
     class Meta:
         db_table = 'Cadastro_OS'
         database = db
@@ -265,4 +266,12 @@ class itens(Model):
     esp3= TextField()
     class Meta:
         db_table = 'itens'
+        database = db
+
+class linha(Model):
+    id= PrimaryKeyField()
+    nome= TextField()
+    numero_inicial = IntegerField()
+    class Meta:
+        db_table = 'linha'
         database = db

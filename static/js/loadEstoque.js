@@ -1,7 +1,7 @@
 async function loadEstoque(limit = 10) {
   document.getElementById("all").innerHTML = "";
 
-  const URL = `https://peppertools.cf/api/estoque/limit=` + limit.toString();
+  const URL = `https://peppertools-test.herokuapp.com/api/estoque/limit=` + limit.toString();
   await axios(URL).then((response) => {
     response.data.map((val, i) => {
       console.log(val);

@@ -21,6 +21,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
         let m = 0 ;
        let = n = 0;
        for (dict in response['data']){
+        
          console.log(dict)
          if (string === '' || dict['Nome'] != string){
          string = dict['Nome']
