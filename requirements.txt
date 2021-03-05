@@ -19,5 +19,6 @@ Flask-QRcode
 Flask-Session
 flask-ssl
 requests
+flask_socketio
 werkzeug==0.16.1
 
