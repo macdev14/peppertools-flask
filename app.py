@@ -924,6 +924,21 @@ def pontocad(idponto):
     return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=allcol, cliLen= len(allcol), cliCol='cod_func', data=datetime.datetime.now().strftime('%d/%m/%Y'), table='ponto', edit=False, active1="",active2="", active3="active", active4="")
 
 
+@app.route('/pedido/form/', defaults={'idpedido': ''}, methods=['POST', 'GET'])
+@app.route('/pedido/form/<int:idpedido>', methods=['POST', 'GET'])
+@login_required
+@managerLevel
+def pedido(idpedido):
+    if idpedido != '':
+        if request.method == 'GET':
+            content = Pedidos.select().where(Pedidos.id == idpedido)
+            pagePedido = page('pedidos', content[0], edit=True)
+            return pagePedido.render()
+        elif request.method == 'POST':
+            Pedidos.update(numero = request.form['numero'], ano = request.form['ano'], id_cliente=request.form['id_cliente'], id_ferramenta= request.form['id_ferramenta'], especificacao= request.form['especificacao'], desenho=request.form['desenho'], unidade=request.form['unidade'], qnt= request.form['qnt'], preco=request.form['preco'],  data_entrada=datetime.datetime.strptime(request.form['data_entrada'], '%Y-%m-%d'), prazo=datetime.datetime.strptime(request.form['prazo'], '%Y-%m-%d'), qnt_acabada=request.form['qnt_acabada'], data_acabamento=request.form['data_acabamento'], pedido_cliente=request.form['pedido_cliente'], numero_os=request.form['numero_os'] ).where(pedidos.ID == idpedido).execute()
+            flash("Alterado com Sucesso")
+            return redirect('/funcionarios/form/'+ str(idpedido))
+
 @app.route('/funcionarios/form/', defaults={'idfunc': ''}, methods=['POST', 'GET'])
 @app.route('/funcionarios/form/<int:idfunc>', methods=['POST', 'GET'])
 @login_required

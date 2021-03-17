@@ -1070,6 +1070,15 @@
         "documentation": {}
     },
     {
+        "label": "pedido",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def pedido(idpedido):\n    if idpedido != '':\n        if request.method == 'GET':\n            content = Pedidos.select().where(Pedidos.id == idpedido)\n            pagePedido = page('pedidos', content[0], edit=True)\n            return pagePedido.render()\n        elif request.method == 'POST':\n            Pedidos.update(numero = request.form['numero'], ano = request.form['ano'], id_cliente=request.form['id_cliente'], id_ferramenta= request.form['id_ferramenta'], especificacao= request.form['especificacao'], desenho=request.form['desenho'], unidade=request.form['unidade'], qnt= request.form['qnt'], preco=request.form['preco'],  data_entrada=datetime.datetime.strptime(request.form['data_entrada'], '%Y-%m-%d'), prazo=datetime.datetime.strptime(request.form['prazo'], '%Y-%m-%d'), qnt_acabada=request.form['qnt_acabada'], data_acabamento=request.form['data_acabamento'], pedido_cliente=request.form['pedido_cliente'], numero_os=request.form['numero_os'] ).where(pedidos.ID == idpedido).execute()\n            flash(\"Alterado com Sucesso\")\n            return redirect('/funcionarios/form/'+ str(idpedido))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
         "label": "func",
         "kind": 2,
         "importPath": "app",
