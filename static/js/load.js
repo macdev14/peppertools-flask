@@ -93,13 +93,15 @@ function search(arr, s) {
 
 async function loadcnpj(cnpj) {
   const URL = `https://cors-anywhere.herokuapp.com/https://www.receitaws.com.br/v1/cnpj/${cnpj.toString()}`;
-  await axios(URL, { headers: { 'Origin': '*'} } ).then((response) => {
-    if (response.data.status != "ERROR") {
-      document.getElementById("nome").value = response.data.fantasia;
-      document.getElementById("endereco").value = response.data.endereco;
+  await axios(URL).then((response) => {
+    console.log(response)
+     
+    if (response.status == 200 && response.statusText == "OK") {
+      document.getElementById("nome").value = response.data.nome;
+      document.getElementById("endereco").value = response.data.logradouro;
       document.getElementById("cidade").value = response.data.municipio;
       document.getElementById("estado").value = response.data.uf;
-      document.getElementById("cep").value = response.data.cep;
+      document.getElementById("cep").value = response.data.cep.replace(/\D/g, "");
       document.getElementById("email").value = response.data.email;
     } else {
       document.getElementById("nome").value = response.data.message;

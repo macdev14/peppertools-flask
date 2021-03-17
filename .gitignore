@@ -8,7 +8,7 @@ instance/*
 .webassets-cache
 .DS_Store
 
-
+flask_session/
 app.yaml
 peppertools34.db
 peppertools34.sqlite3

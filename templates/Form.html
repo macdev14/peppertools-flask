@@ -112,12 +112,19 @@
       {% else %}
   
 
-      {% if TableCol[i] == 'data' and data %}
+        {% if TableCol[i] == 'data' and data %}
 
-        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
-        <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
-        {% else %}
-
+          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
+          <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
+          {% elif TableCol[i] == 'cnpj' %}
+          <div class="input-group mb-1">
+            <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>       
+            <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
+            <div class="input-group-append">
+              <button class="btn btn-primary btn-outline-secondary" id="cnpj-search">Buscar</button>
+            </div>
+          </div>
+          {%else%}
     
     <div class="form-group">
       <label for="col"  id="{{ TableCol[i] }}-label">{{ TableCol[i].capitalize() }}</label>
@@ -224,6 +231,14 @@
         {% elif table == 'ponto'%}    
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
         <input class="form-control"  id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
+       {% elif TableCol[i] == 'cnpj' %}
+        <div class="input-group mb-1">
+          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>           
+          <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
+          <div class="input-group-append">
+        <!--     <button class="btn btn-primary btn-outline-secondary" id="cnpj-search">Buscar</button>-->
+          </div>
+        </div>
         {%else%}
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
         <input class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
@@ -259,6 +274,13 @@
 <script type="text/javascript" src="{{ url_for('static',
       filename='js/load.js')}}"></script>
 <script type="text/javascript">
+/*if ( document.getElementById('cnpj-search') && typeof document.getElementById('cnpj-search').innerHTML != 'undefined'){
+  
+  document.getElementById("cnpj-search").addEventListener("click", async function (){
+    
+    let cnpj = document.getElementById("cnpj").value;
+    await loadcnpj(cnpj)});
+}*/
   //$('#fax').mask('(99) 9999-9999');
  
   /*$(window).on('load', function() {
@@ -308,8 +330,22 @@ if (document.getElementById('prazo_entrega-label') && typeof document.getElement
 }
 
 if ( document.getElementById('cnpj') && typeof document.getElementById('cnpj').innerHTML != 'undefined'){
+  
   cnpj = document.getElementById('cnpj')
-  cnpj.addEventListener('input', function(evt){loadcnpj(this.value)});
+  cnpj.addEventListener('input', async function(evt){
+    document.getElementById("nome").value = 'Carregando...';
+    document.getElementById("endereco").value = 'Carregando...';
+    document.getElementById("cidade").value = 'Carregando...';
+    document.getElementById("estado").value = 'Carregando...';
+    document.getElementById("cep").value = 'Carregando...';
+    document.getElementById("email").value = 'Carregando...';
+    await loadcnpj(this.value)});
+    document.getElementById("nome").value.replace('Carregando...', '')
+    document.getElementById("endereco").value.replace('Carregando...', '')
+    document.getElementById("cidade").value.replace('Carregando...', '')
+    document.getElementById("estado").value.replace('Carregando...', '')
+    document.getElementById("cep").value.replace('Carregando...', '')
+    document.getElementById("email").value.replace('Carregando...', '')
 }
 
 if ( document.getElementById('data_pagamento-label') && typeof document.getElementById('data_pagamento-label').innerHTML != 'undefined'){
