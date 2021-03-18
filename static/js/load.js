@@ -92,7 +92,7 @@ function search(arr, s) {
 }
 
 async function loadcnpj(cnpj) {
-  const URL = `https://thingproxy.freeboard.io/fetch/https://www.receitaws.com.br/v1/cnpj/${cnpj.toString().replace(/[\. ,:-]+/g, "")}`;
+  const URL = `http://www.whateverorigin.org/get?url=https://www.receitaws.com.br/v1/cnpj/${cnpj.toString().replace(/[\. ,:-]+/g, "")}`;
   await axios(URL, { headers : {
     "Access-Control-Allow-Origin" : "*",
     "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
