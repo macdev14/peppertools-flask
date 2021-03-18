@@ -1218,7 +1218,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allClientes():\n    clients = Clientes.select()\n    clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']",
+        "peekOfCode": "def allClientes():\n    clients = list(Clientes.select().dicts())\n    #clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']",
         "detail": "app",
         "documentation": {}
     },
@@ -1254,7 +1254,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def IdClientes(id):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select(Clientes.ID, Clientes.nome).where(Clientes.ID == id).order_by(Clientes.ID.asc())\n    return jsonify(model_to_dict(res))\n@app.route('/api/clientes/', defaults={'query': 'none'}, methods=['POST', 'GET'])\n@app.route('/api/clientes/q=<string:query>', methods=['POST', 'GET'])\n@auth_required\ndef nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())",
+        "peekOfCode": "def IdClientes(id):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select(Clientes.ID, Clientes.nome).where(Clientes.ID == id).order_by(Clientes.ID.asc())\n    return jsonify(model_to_dict(res))\n@app.route('/api/clientes/', defaults={'query': 'none'}, methods=['POST', 'GET'])\n@app.route('/api/clientes/q=<string:query>', methods=['POST', 'GET'])\n@auth_required\ndef nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = list(Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc()).dicts())",
         "detail": "app",
         "documentation": {}
     },
@@ -1263,7 +1263,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())\n    res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/clientes/limit=<int:limit>', methods=['GET','POST'])\n@auth_required\ndef cliLimit(limit):\n    res = Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit))\n    res = [model_to_dict(row) for row in res]",
+        "peekOfCode": "def nome(query):\n    #stmt = \"SELECT ID, nome FROM Clientes ORDER BY nome ASC\"\n    res = list(Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc()).dicts())\n    #res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/clientes/limit=<int:limit>', methods=['GET','POST'])\n@auth_required\ndef cliLimit(limit):\n    res = list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())\n    #res = [model_to_dict(row) for row in res]",
         "detail": "app",
         "documentation": {}
     },
@@ -1272,7 +1272,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def cliLimit(limit):\n    res = Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit))\n    res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\n@auth_required\ndef allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        print(rows)",
+        "peekOfCode": "def cliLimit(limit):\n    res = list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())\n    #res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\n@auth_required\ndef allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        print(rows)",
         "detail": "app",
         "documentation": {}
     },

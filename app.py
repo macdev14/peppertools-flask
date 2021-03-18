@@ -1312,8 +1312,8 @@ def osApiNum():
 @app.route('/api/clientes', methods=['GET', 'POST'])
 @auth_required
 def allClientes():
-    clients = Clientes.select()
-    clients = [model_to_dict(client) for client in clients]
+    clients = list(Clientes.select().dicts())
+    #clients = [model_to_dict(client) for client in clients]
     return jsonify(clients)
 
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
@@ -1400,15 +1400,15 @@ def IdClientes(id):
 @auth_required
 def nome(query):
     #stmt = "SELECT ID, nome FROM Clientes ORDER BY nome ASC"
-    res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())
-    res = [model_to_dict(row) for row in res]
+    res = list(Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc()).dicts())
+    #res = [model_to_dict(row) for row in res]
     return jsonify(res)
 
 @app.route('/api/clientes/limit=<int:limit>', methods=['GET','POST'])
 @auth_required
 def cliLimit(limit):
-    res = Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit))
-    res = [model_to_dict(row) for row in res]
+    res = list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())
+    #res = [model_to_dict(row) for row in res]
     return jsonify(res)
 
 
