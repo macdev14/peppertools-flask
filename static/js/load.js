@@ -7,7 +7,7 @@ String.prototype.capitalize = function () {
 
   const URL = `https://peppertools.herokuapp.com/api/${table}/limit=${limit.toString()}`;
   let keys = [];
-  await axios(URL).then((response) => {
+  await axios(URL,  { headers: {'authorization': localStorage.getItem('auth') } } ).then((response) => {
     keys = Object.keys(response.data[0]);
     keysId = Object.keys(response.data[0]);
     delete keys[0];
@@ -92,8 +92,12 @@ function search(arr, s) {
 }
 
 async function loadcnpj(cnpj) {
-  const URL = `https://cors-anywhere.herokuapp.com/https://www.receitaws.com.br/v1/cnpj/${cnpj.toString()}`;
-  await axios(URL).then((response) => {
+  const URL = `https://www.receitaws.com.br/v1/cnpj/${cnpj.toString().replace(/[\. ,:-]+/g, "")}`;
+  await axios(URL, { headers : {
+    "Access-Control-Allow-Origin" : "*",
+    "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+   
+  }}).then((response) => {
     console.log(response)
      
     if (response.status == 200 && response.statusText == "OK") {

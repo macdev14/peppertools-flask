@@ -187,7 +187,7 @@ def osAll():
     except:
         pass
         
-    return render_template("os.html", auth=session.get('token'), active1="",active2="", active3="", active4="active")     
+    return render_template("os.html", auth=session.get('token'), active1="",active2="", active3="", active4="active", title="Ordem de Serviço")     
 
 
 @app.route("/os/imprimir")
@@ -1403,6 +1403,14 @@ def nome(query):
     res = Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc())
     res = [model_to_dict(row) for row in res]
     return jsonify(res)
+
+@app.route('/api/clientes/limit=<int:limit>', methods=['GET','POST'])
+@auth_required
+def cliLimit(limit):
+    res = Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit))
+    res = [model_to_dict(row) for row in res]
+    return jsonify(res)
+
 
 @app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])
 @auth_required
