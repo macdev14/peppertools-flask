@@ -98,34 +98,46 @@ async function loadcnpj(cnpj) {
    
   }}).then((response) => { 
     if (response.status == 200) {
-
-      document.getElementById("nome").value = response.data.name;
-      document.getElementById("endereco").value = response.data.address.street + " ";
-      document.getElementById("cidade").value = response.data.address.city;
-      document.getElementById("estado").value = response.data.address.state;
-      document.getElementById("cep").value = response.data.address.zip.replace(/\D/g, "");
-      if (typeof response.data.email !== 'undefined'){
-        document.getElementById("email").value = response.data.email;
-      }else{document.getElementById("email").value ="";}
+      if (document.getElementById("nome").value == '' || document.getElementById("nome").value=='None')
+      {
+          document.getElementById("nome").value = response.data.name;
+      }
+      if (document.getElementById("cidade").value == '' || document.getElementById("cidade").value=='None'){
+        document.getElementById("cidade").value = response.data.address.city;
+      }
+      if (document.getElementById("estado").value == '' || document.getElementById("estado").value=='None'){
+         document.getElementById("estado").value = response.data.address.state;
+      }
+     if (document.getElementById("cep").value == '' || document.getElementById("cep").value=='None'){
+      document.getElementById("cep").value = response.data.address.zip.replace(/\D/g, "").replace(".","").replace("-","");
+     }
+     if (document.getElementById("email").value == '' || document.getElementById("email").value=='None'){
+        if (typeof response.data.email !== 'undefined'){
+          document.getElementById("email").value = response.data.email;
+        }else{document.getElementById("email").value ="";}
+     }
+    if (document.getElementById("endereco").value == '' || document.getElementById("endereco").value=='None'){
       if (typeof response.data.address.number !== 'undefined'){
          document.getElementById("endereco").value = response.data.address.street + " " + response.data.address.number;
       }else{
          document.getElementById("endereco").value = response.data.address.street;
       }
+    }
       //var counter = 0
       /*response.data.name.replace(/(\b+)/g,function (a) {
       // for each word found increase the counter value by 1
       counter++;
       })*/
-      var word = '';
-      var words = response.data.name.split(" ");
-      for(var i = 0; i< words.length-1; i++)
-      {
-          word += words[i][0]
+      if (document.getElementById("cod_cli").value == '' || document.getElementById("cod_cli").value=='None'){
+        var word = '';
+        var words = response.data.name.split(" ");
+        for(var i = 0; i< words.length-1; i++)
+        {
+            word += words[i][0]
+        }
+        console.log(word)
+        document.getElementById("cod_cli").value = word + '01'
       }
-      console.log(word)
-      document.getElementById("cod_cli").value = word + '01'
-     
 
     } else {
       document.getElementById("nome").value = response.data.message;

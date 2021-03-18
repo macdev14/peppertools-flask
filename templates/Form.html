@@ -316,19 +316,9 @@ if ( document.getElementById('cnpj') && typeof document.getElementById('cnpj').i
   
   cnpj = document.getElementById('cnpj')
   cnpj.addEventListener('input', async function(evt){
-    document.getElementById("nome").value = 'Carregando...';
-    document.getElementById("endereco").value = 'Carregando...';
-    document.getElementById("cidade").value = 'Carregando...';
-    document.getElementById("estado").value = 'Carregando...';
-    document.getElementById("cep").value = 'Carregando...';
-    document.getElementById("email").value = 'Carregando...';
+    
     await loadcnpj(this.value)});
-    document.getElementById("nome").value.replace('Carregando...', '')
-    document.getElementById("endereco").value.replace('Carregando...', '')
-    document.getElementById("cidade").value.replace('Carregando...', '')
-    document.getElementById("estado").value.replace('Carregando...', '')
-    document.getElementById("cep").value.replace('Carregando...', '')
-    document.getElementById("email").value.replace('Carregando...', '')
+  
 }
 
 if ( document.getElementById('data_pagamento-label') && typeof document.getElementById('data_pagamento-label').innerHTML != 'undefined'){

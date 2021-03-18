@@ -103,13 +103,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   
   cnpj = document.getElementById('cnpj')
   cnpj.addEventListener('input', async function(evt){
-    document.getElementById("nome").value = 'Carregando...';
-    document.getElementById("endereco").value = 'Carregando..';
-    document.getElementById("cidade").value = 'Carregando...';
-    document.getElementById("estado").value = 'Carregando...';
-    document.getElementById("cep").value = 'Carregando...';
-    document.getElementById("email").value = 'Carregando...';
     await loadcnpj(this.value)});
+    
 }
   
   

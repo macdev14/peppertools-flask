@@ -1119,7 +1119,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def deleterow(col, idtab):\n    if col != '' and idtab != 0:\n        try:\n            try:    \n                str_to_class(col).delete().where(str_to_class(col).id == idtab).execute()\n                flash('Deletado com sucesso!')\n                return redirect('/'+str(col.lower())+'/form/')\n            except:\n                pass\n            try:",
+        "peekOfCode": "def deleterow(col, idtab):\n    if col != '' and idtab >= 0:\n        try:\n            try:    \n                str_to_class(col).delete().where(str_to_class(col).id == idtab).execute()\n                flash('Deletado com sucesso!')\n                return redirect('/'+str(col.lower())+'/form/')\n            except:\n                pass\n            try:",
         "detail": "app",
         "documentation": {}
     },

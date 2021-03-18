@@ -1051,7 +1051,7 @@ def histform(idhist):
 @app.route('/delete/table=<string:col>&id=<int:idtab>', methods=['GET','POST'])
 @login_required
 def deleterow(col, idtab):
-    if col != '' and idtab != 0:
+    if col != '' and idtab >= 0:
         try:
             try:    
                 str_to_class(col).delete().where(str_to_class(col).id == idtab).execute()
