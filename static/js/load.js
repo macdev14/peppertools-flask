@@ -92,7 +92,7 @@ function search(arr, s) {
 }
 
 async function loadcnpj(cnpj) {
-  const URL = `https://api.cnpja.com.br/companies/${cnpj.toString().replace(/[\. ,:-]+/g, "")}`;
+  const URL = `https://api.cnpja.com.br/companies/${cnpj.toString().replace(/[\. ,:-]+/g, "").replace('/', "")}`;
   await axios(URL, { headers : {
     "authorization" : "481d9c30-5b4e-4eaf-a654-5eb36712c539-d259ade5-2992-4b43-a97d-ac2ccc4b481d"
    

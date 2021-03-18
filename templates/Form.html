@@ -113,17 +113,8 @@
   
 
         {% if TableCol[i] == 'data' and data %}
-
           <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
           <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
-          {% elif TableCol[i] == 'cnpj' %}
-          <div class="input-group mb-1">
-            <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>       
-            <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
-            <div class="input-group-append">
-              <button class="btn btn-primary btn-outline-secondary" id="cnpj-search">Buscar</button>
-            </div>
-          </div>
           {%else%}
     
     <div class="form-group">
@@ -231,14 +222,6 @@
         {% elif table == 'ponto'%}    
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
         <input class="form-control"  id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
-       {% elif TableCol[i] == 'cnpj' %}
-        <div class="input-group mb-1">
-          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>           
-          <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
-          <div class="input-group-append">
-        <!--     <button class="btn btn-primary btn-outline-secondary" id="cnpj-search">Buscar</button>-->
-          </div>
-        </div>
         {%else%}
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
         <input class="form-control" required id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
