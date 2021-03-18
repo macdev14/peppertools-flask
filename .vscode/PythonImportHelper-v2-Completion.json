@@ -1974,7 +1974,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Clientes(Model):\n    ID= PrimaryKeyField() \n    cod_cli = TextField()\n    cnpj = TextField()\n    telefone = TextField()\n    celular = TextField()\n    email = TextField()\n    ie = TextField()\n    nome = TextField()\n    endereco = TextField()",
+        "peekOfCode": "class Clientes(Model):\n    ID= PrimaryKeyField()\n    cnpj = TextField()\n    email = TextField()  \n    telefone = TextField() \n    celular = TextField()\n    obs = TextField()\n    cod_cli = TextField()\n    ie = TextField()\n    nome = TextField()",
         "detail": "model",
         "documentation": {}
     },
@@ -2181,7 +2181,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "db = None\nwhile not db:\n    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField() \n    cod_cli = TextField()\n    cnpj = TextField()\n    telefone = TextField()\n    celular = TextField()\n    email = TextField()",
+        "peekOfCode": "db = None\nwhile not db:\n    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cnpj = TextField()\n    email = TextField()  \n    telefone = TextField() \n    celular = TextField()\n    obs = TextField()",
         "detail": "model",
         "documentation": {}
     },

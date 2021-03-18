@@ -283,7 +283,7 @@ def new_os():
         print(request.form)
         processes = processos.select()
         linha_os = linha.select(linha.id, linha.nome)
-        return render_template('os_gen.html', clients = clients, clients_len = clients_len, os_num = os_num, field = '' , data = date, processes= processes, linha= linha_os)
+        return render_template('os_gen.html', clients = clients, clients_len = clients_len, os_num = os_num, field = '' , data = date, processes= processes, linha= linha_os, title="Ordem de Serviço")
 
 
 @app.route('/os/form/<int:osid>', methods = ['POST', 'GET'])
@@ -384,7 +384,7 @@ def os_edit(osid):
             procinfo = None
         processes = processos.select()
         linha_os = linha.select(linha.id, linha.nome)
-        return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date, processes=processes, procinfo=procinfo, linha=linha_os)
+        return render_template('os_gen.html', clients = clients, clients_len = len(clients), os_num = int(os_num), field = field , data = date, processes=processes, procinfo=procinfo, linha=linha_os, title="Ordem de Serviço")
         
 
 @app.route('/os/form/delete/<int:osid>', methods = ['POST', 'GET'])

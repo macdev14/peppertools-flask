@@ -144,3 +144,7 @@ option:focus {
   .dropdown-menu{
     border-radius: 0;
   }
+
+  .container-fluid .shortcut-btn{
+    float: left;
+  }

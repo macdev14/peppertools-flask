@@ -172,6 +172,7 @@
     {%else%}
     <form action="/{{table}}/form/" method="post">
       {%endif%}
+      <button class="btn btn-primary btn-sm float-right">Cadastrar</button>
       {% for i in range(TableLen) %}
       {% if TableCol[i] != 'ID' and TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
       <div class="form-group">
@@ -241,13 +242,12 @@
   
   <br>
 
-  
-  </div>
   <a href="/{{table}}">
-    
     <button class="btn btn-primary btn-lg">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></a>
+  </div>
+ 
   </div>
 
 {% endif %}

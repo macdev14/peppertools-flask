@@ -47,7 +47,7 @@ async function loadCliente(limit = 10) {
       <td>${val.cnpj}</td>
       <td>${val.endereco}</td>
       <td>${val.telefone}</td>
-       <td width="15%" float="left"><a href="os/form/${val.ID}">
+       <td width="15%" float="left"><a href="clientes/form/${val.ID}">
                 <button type="submit" class="btn-link">Editar</button>
             </a>
          </td>
@@ -112,7 +112,7 @@ function deletar(id){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <a href="os/form/delete/${id}">
+        <a href="clientes/form/delete/${id}">
         <button type="button" class="btn btn-primary">Excluir</button></a>
       </div>
     </div>
