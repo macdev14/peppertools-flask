@@ -112,8 +112,21 @@ async function loadcnpj(cnpj) {
       }else{
          document.getElementById("endereco").value = response.data.address.street;
       }
-    
-    
+      //var counter = 0
+      /*response.data.name.replace(/(\b+)/g,function (a) {
+      // for each word found increase the counter value by 1
+      counter++;
+      })*/
+      var word = '';
+      var words = response.data.name.split(" ");
+      for(var i = 0; i< words.length-1; i++)
+      {
+          word += words[i][0]
+      }
+      console.log(word)
+      document.getElementById("cod_cli").value = word + '01'
+     
+
     } else {
       document.getElementById("nome").value = response.data.message;
     }

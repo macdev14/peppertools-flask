@@ -14,18 +14,18 @@ while not db:
     db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)
 
 class Clientes(Model):
-    ID= PrimaryKeyField()
+    ID= PrimaryKeyField() 
     cod_cli = TextField()
-    nome = TextField()
     cnpj = TextField()
+    telefone = TextField()
+    celular = TextField()
+    email = TextField()
     ie = TextField()
+    nome = TextField()
     endereco = TextField()
     cidade = TextField()
     estado = TextField()
     cep = TextField()
-    telefone = TextField()
-    fax = TextField()
-    email = TextField()
     obs = TextField()
     class Meta:
         db_table = 'Clientes'

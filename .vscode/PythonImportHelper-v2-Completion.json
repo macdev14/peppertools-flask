@@ -1020,7 +1020,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def fornecedor(idfor):\n    Keys = list(Fornecedores._meta.fields.keys())\n    if idfor != '':\n        if request.method == 'POST':\n            try:\n                Fornecedores.update(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], email=request.form['email'], obs=request.form['obs'], qntcompras=request.form['qntcompras']).where(Fornecedores.ID == idfor).execute()\n                flash('Alterado com sucesso')\n            except:\n                flash('Erro ao alterar Fornecedor')\n            return redirect('/fornecedor/form/'+str(idfor))",
+        "peekOfCode": "def fornecedor(idfor):\n    Keys = list(Fornecedores._meta.fields.keys())\n    if idfor != '':\n        if request.method == 'POST':\n            try:\n                Fornecedores.update(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], email=request.form['email'], obs=request.form['obs'], qntcompras=request.form['qntcompras']).where(Fornecedores.ID == idfor).execute()\n                flash('Alterado com sucesso')\n            except:\n                flash('Erro ao alterar Fornecedor')\n            return redirect('/fornecedor/form/'+str(idfor))",
         "detail": "app",
         "documentation": {}
     },
@@ -1974,7 +1974,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n    cep = TextField()",
+        "peekOfCode": "class Clientes(Model):\n    ID= PrimaryKeyField() \n    cod_cli = TextField()\n    cnpj = TextField()\n    telefone = TextField()\n    celular = TextField()\n    email = TextField()\n    ie = TextField()\n    nome = TextField()\n    endereco = TextField()",
         "detail": "model",
         "documentation": {}
     },
@@ -2181,7 +2181,7 @@
         "kind": 5,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "db = None\nwhile not db:\n    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField()\n    cod_cli = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()",
+        "peekOfCode": "db = None\nwhile not db:\n    db = MySQLDatabase('no5k31nx620ibo35', user='yky1691ysl6jmyiv', passwd='p9roi4nf30ztb4xh', charset='utf8mb4',  host='cis9cbtgerlk68wl.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', port=3306)\nclass Clientes(Model):\n    ID= PrimaryKeyField() \n    cod_cli = TextField()\n    cnpj = TextField()\n    telefone = TextField()\n    celular = TextField()\n    email = TextField()",
         "detail": "model",
         "documentation": {}
     },

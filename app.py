@@ -145,7 +145,7 @@ def cadCli():
             if request.form:
                 data = dict(request.form)
                 
-                Clientes.create(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], obs=request.form['obs'])
+                Clientes.create(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], obs=request.form['obs'])
                 idCli = Clientes.select(fn.MAX(Clientes.ID)).scalar()
                 flash('Cliente cadastrado com sucesso')
                 #print(request.form)
@@ -173,7 +173,7 @@ def editCli(cliId):
         if request.form:
             print(request.form)
             #Clientes.update()
-            Clientes.update(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], obs=request.form['obs']).where(Clientes.ID == cliId).execute()
+            Clientes.update(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], obs=request.form['obs']).where(Clientes.ID == cliId).execute()
             #updateData(dict(request.form), 'Clientes', 'ID', cliId)
             flash('Cliente alterado com sucesso')
         return redirect('/clientes/form/'+ str(cliId))
@@ -661,7 +661,7 @@ def fornecedor(idfor):
     if idfor != '':
         if request.method == 'POST':
             try:
-                Fornecedores.update(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], email=request.form['email'], obs=request.form['obs'], qntcompras=request.form['qntcompras']).where(Fornecedores.ID == idfor).execute()
+                Fornecedores.update(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], email=request.form['email'], obs=request.form['obs'], qntcompras=request.form['qntcompras']).where(Fornecedores.ID == idfor).execute()
                 flash('Alterado com sucesso')
             except:
                 flash('Erro ao alterar Fornecedor')
@@ -674,7 +674,7 @@ def fornecedor(idfor):
             if not isinstance(data['qntcompras'], int):
                 data['qntcompras'] = 0
                 flash('Erro ao cadastrar campo(s)')
-            Fornecedores.create(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], fax=request.form['fax'], email=request.form['email'], obs=request.form['obs'], qntcompras=int(data['qntcompras']))
+            Fornecedores.create(cod_for=request.form['cod_for'], nome= request.form['nome'], cnpj=request.form['cnpj'], ie= request.form['ie'], endereco= request.form['endereco'], cidade=request.form['cidade'], estado=request.form['estado'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], email=request.form['email'], obs=request.form['obs'], qntcompras=int(data['qntcompras']))
             idforn = Fornecedores.select(fn.MAX(Fornecedores.ID)).scalar()
             flash('Cadastrado com sucesso')
             return redirect('/fornecedor/form/'+str(idforn))
