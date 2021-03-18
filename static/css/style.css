@@ -132,3 +132,15 @@ option:focus {
     padding-top:28px;
     padding-bottom:25px
   }
+
+  .dropdown-toggle::after{
+    border: 0;
+  }
+
+  .dropdown-toggle:hover{
+     color: #fff
+  }
+
+  .dropdown-menu{
+    border-radius: 0;
+  }
