@@ -92,21 +92,28 @@ function search(arr, s) {
 }
 
 async function loadcnpj(cnpj) {
-  const URL = `http://www.whateverorigin.org/get?url=https://www.receitaws.com.br/v1/cnpj/${cnpj.toString().replace(/[\. ,:-]+/g, "")}`;
+  const URL = `https://api.cnpja.com.br/companies/${cnpj.toString().replace(/[\. ,:-]+/g, "")}`;
   await axios(URL, { headers : {
-    "Access-Control-Allow-Origin" : "*",
-    "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+    "authorization" : "481d9c30-5b4e-4eaf-a654-5eb36712c539-d259ade5-2992-4b43-a97d-ac2ccc4b481d"
    
-  }}).then((response) => {
-    console.log(response)
-     
-    if (response.status == 200 && response.statusText == "OK") {
-      document.getElementById("nome").value = response.data.nome;
-      document.getElementById("endereco").value = response.data.logradouro;
-      document.getElementById("cidade").value = response.data.municipio;
-      document.getElementById("estado").value = response.data.uf;
-      document.getElementById("cep").value = response.data.cep.replace(/\D/g, "");
-      document.getElementById("email").value = response.data.email;
+  }}).then((response) => { 
+    if (response.status == 200) {
+
+      document.getElementById("nome").value = response.data.name;
+      document.getElementById("endereco").value = response.data.address.street + " ";
+      document.getElementById("cidade").value = response.data.address.city;
+      document.getElementById("estado").value = response.data.address.state;
+      document.getElementById("cep").value = response.data.address.zip.replace(/\D/g, "");
+      if (typeof response.data.email !== 'undefined'){
+        document.getElementById("email").value = response.data.email;
+      }else{document.getElementById("email").value ="";}
+      if (typeof response.data.address.number !== 'undefined'){
+         document.getElementById("endereco").value = response.data.address.street + " " + response.data.address.number;
+      }else{
+         document.getElementById("endereco").value = response.data.address.street;
+      }
+    
+    
     } else {
       document.getElementById("nome").value = response.data.message;
     }
