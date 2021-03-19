@@ -123,9 +123,11 @@ class caixa(Model):
 
 class Fornecedores(Model):
     ID = PrimaryKeyField()
+    cnpj = TextField()
+    email = TextField() 
+    qntcompras = IntegerField()
     cod_for = TextField()
     nome = TextField()
-    cnpj = TextField()
     ie = TextField()
     endereco = TextField()
     cidade = TextField()
@@ -133,9 +135,9 @@ class Fornecedores(Model):
     cep = TextField()
     telefone = TextField()
     fax = TextField()
-    email = TextField()
+    
     obs = TextField()
-    qntcompras = IntegerField()
+   
     class Meta:
         db_table = 'Fornecedores'
         database = db

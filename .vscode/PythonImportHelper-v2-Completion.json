@@ -2037,7 +2037,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Fornecedores(Model):\n    ID = PrimaryKeyField()\n    cod_for = TextField()\n    nome = TextField()\n    cnpj = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()\n    estado = TextField()\n    cep = TextField()",
+        "peekOfCode": "class Fornecedores(Model):\n    ID = PrimaryKeyField()\n    cnpj = TextField()\n    email = TextField() \n    qntcompras = IntegerField()\n    cod_for = TextField()\n    nome = TextField()\n    ie = TextField()\n    endereco = TextField()\n    cidade = TextField()",
         "detail": "model",
         "documentation": {}
     },
