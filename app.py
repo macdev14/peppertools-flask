@@ -929,16 +929,25 @@ def pontocad(idponto):
 @login_required
 @managerLevel
 def pedido(idpedido):
+    clients = Clientes.select(Clientes.nome, Clientes.ID)
+    ferramentas = Ferramenta.select(Ferramenta.Ferramenta, Ferramenta.ID)
     if idpedido != '':
         if request.method == 'GET':
+           
             content = Pedidos.select().where(Pedidos.id == idpedido)
-            pagePedido = page('pedidos', content[0], edit=True)
+            pagePedido = page('Pedidos', content[0], select=clients, select2=ferramentas,edit=True)
             return pagePedido.render()
         elif request.method == 'POST':
-            Pedidos.update(numero = request.form['numero'], ano = request.form['ano'], id_cliente=request.form['id_cliente'], id_ferramenta= request.form['id_ferramenta'], especificacao= request.form['especificacao'], desenho=request.form['desenho'], unidade=request.form['unidade'], qnt= request.form['qnt'], preco=request.form['preco'],  data_entrada=datetime.datetime.strptime(request.form['data_entrada'], '%Y-%m-%d'), prazo=datetime.datetime.strptime(request.form['prazo'], '%Y-%m-%d'), qnt_acabada=request.form['qnt_acabada'], data_acabamento=request.form['data_acabamento'], pedido_cliente=request.form['pedido_cliente'], numero_os=request.form['numero_os'] ).where(pedidos.ID == idpedido).execute()
+            Pedidos.update(numero = request.form['numero'], ano = request.form['ano'], id_cliente=request.form['id_cliente'], id_ferramenta= request.form['id_ferramenta'], especificacao= request.form['especificacao'], desenho=request.form['desenho'], unidade=request.form['unidade'], qnt= request.form['qnt'], preco=request.form['preco'],  data_entrada=datetime.datetime.strptime(request.form['data_entrada'], '%Y-%m-%d'), prazo=datetime.datetime.strptime(request.form['prazo'], '%Y-%m-%d'), qnt_acabada=request.form['qnt_acabada'], data_acabamento=request.form['data_acabamento'], pedido_cliente=request.form['pedido_cliente'], numero_os=request.form['numero_os'] ).where(Pedidos.ID == idpedido).execute()
             flash("Alterado com Sucesso")
-            return redirect('/funcionarios/form/'+ str(idpedido))
-
+            return redirect('/pedido/form/'+ str(idpedido))
+    if request.method == 'POST':
+          Pedidos.create(numero = request.form['numero'], ano = request.form['ano'], id_cliente=request.form['id_cliente'], id_ferramenta= request.form['id_ferramenta'], especificacao= request.form['especificacao'], desenho=request.form['desenho'], unidade=request.form['unidade'], qnt= request.form['qnt'], preco=request.form['preco'],  data_entrada=datetime.datetime.strptime(request.form['data_entrada'], '%Y-%m-%d'), prazo=datetime.datetime.strptime(request.form['prazo'], '%Y-%m-%d'), qnt_acabada=request.form['qnt_acabada'], data_acabamento=request.form['data_acabamento'], pedido_cliente=request.form['pedido_cliente'], numero_os=request.form['numero_os'] )
+          idfuncnew = Pedidos.select(fn.MAX(Pedidos.ID)).scalar()
+          flash("Cadastrado com Sucesso")
+          return redirect('/pedido/form/'+ str(idfuncnew))
+    pagePedido = page('Pedidos', select=clients, select2=ferramentas)
+    return pagePedido.render()
 @app.route('/funcionarios/form/', defaults={'idfunc': ''}, methods=['POST', 'GET'])
 @app.route('/funcionarios/form/<int:idfunc>', methods=['POST', 'GET'])
 @login_required

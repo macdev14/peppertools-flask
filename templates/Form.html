@@ -194,7 +194,7 @@
           </select> <br>
          
           {% endif %}
-          {% elif selection2 and sel2Col and TableCol[i] == sel2Col %}
+          {% elif sel2Col and TableCol[i] == sel2Col %}
           
           <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
       
@@ -202,9 +202,9 @@
               {% if not sel2Len %}
                   <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
               {%elif sel2Len%}
-                  <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
+                 
                   {% for keysel2 in range(sel2Len) %}
-                      <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] or selection2[keysel2]['Id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta'] or selection2[keysel2]['Numero_Os'] or selection2[keysel2]['Nome'] }}</option>
+                      <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] or selection2[keysel2]['Id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta'] or selection2[keysel2]['Ferramenta'] or selection2[keysel2]['Numero_Os'] or selection2[keysel2]['Nome'] }}</option>
                   {% endfor %}    
                  
              

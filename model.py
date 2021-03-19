@@ -148,6 +148,9 @@ class Ferramenta(Model):
     Cod_ferramenta = TextField()
     cod_cli = IntegerField()
     mm = IntegerField()
+    class Meta:
+        db_table = 'ferramenta'
+        database = db
 
 class compras(Model):
     ID = PrimaryKeyField()
@@ -198,7 +201,7 @@ class Pedidos(Model):
     numero_os = IntegerField()
     status = IntegerField()
     class Meta:
-        db_table = 'Pedidos'
+        db_table = 'pedidos'
         database = db
     
 class funcionarios(Model):
