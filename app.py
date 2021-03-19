@@ -364,8 +364,6 @@ def os_edit(osid):
         x = datetime.datetime.now()
         date = x.strftime("%d/%m/%Y")
         idproc = Cadastro_OS.select(Cadastro_OS.STATUS).where(Cadastro_OS.Id == int(osid)).dicts()
-        if idproc:
-         
         idproc = idproc[0]["STATUS"]
         if idproc and int(idproc):
             procinfo = processos.select().where(processos.ID == idproc).dicts()
@@ -914,8 +912,8 @@ def pontocad(idponto):
     return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), clients=allcol, cliLen= len(allcol), cliCol='cod_func', data=datetime.datetime.now().strftime('%d/%m/%Y'), table='ponto', edit=False, active1="",active2="", active3="active", active4="")
 
 
-@app.route('/pedido/form/', defaults={'idpedido': ''}, methods=['POST', 'GET'])
-@app.route('/pedido/form/<int:idpedido>', methods=['POST', 'GET'])
+@app.route('/pedidos/form/', defaults={'idpedido': ''}, methods=['POST', 'GET'])
+@app.route('/pedidos/form/<int:idpedido>', methods=['POST', 'GET'])
 @login_required
 @managerLevel
 def pedido(idpedido):

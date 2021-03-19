@@ -81,7 +81,54 @@
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      {% if level == 1%}
+        {% if level == 2 or level == 4%}
+        <li class="nav-item dropdown {{ active4 }}">
+          <a class="nav-link dropdown-toggle" id="os" href="/os"
+            id="navbarDropdown" role="button" data-toggle="dropdown"
+            data-target="#os-dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Vendas
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="os-dropdown">
+            <a class="dropdown-item" href="/clientes">Clientes</a>
+            <a class="dropdown-item" href="/clientes/form">Cadastrar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/os">Ordem de Servi&ccedil;o</a>
+            <a class="dropdown-item" href="/os/form">Cadastrar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/notafiscal">Nota Fiscal</a>
+            <a class="dropdown-item" href="/notafiscal/form">Cadastrar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/orcamento">Or&ccedil;amento</a>
+            <a class="dropdown-item" href="/orcamento/form">Cadastrar</a>
+            <a class="dropdown-item" href="/pedidos">Or&ccedil;amento</a>
+            <a class="dropdown-item" href="/pedidos/form">Cadastrar</a>
+          </div>
+        </li>
+        {%endif%}  
+
+        {% if level == 2  or level == 4%}
+
+        <li class="nav-item dropdown {{ active2 }}">
+          <a class="nav-link dropdown-toggle" id="estoque" href="/estoque"
+            id="navbarDropdown" role="button" data-target="#funcionarios-dropdown" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Produção
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="funcionarios-dropdown">
+            <a class="dropdown-item" href="/funcionarios">Funcionario</a>
+            <a class="dropdown-item" href="/funcionarios/form">Cadastrar Funcionario</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/processos">Processos</a>
+            <a class="dropdown-item" href="/processos/form">Cadastrar
+              Processo</a>
+          </div>
+        </li>
+    {%endif%}
+      
+     
+     
+        {% if level == 1%}
       
      
         <ul class="navbar-nav mr-auto">
@@ -113,24 +160,7 @@
             </div>
           </li>
           {%endif%}
-         {% if level == 2  or level == 4%}
-
-          <li class="nav-item dropdown {{ active2 }}">
-            <a class="nav-link dropdown-toggle" id="estoque" href="/estoque"
-              id="navbarDropdown" role="button" data-target="#funcionarios-dropdown" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Produção
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="funcionarios-dropdown">
-              <a class="dropdown-item" href="/funcionarios">Funcionario</a>
-              <a class="dropdown-item" href="/funcionarios/form">Cadastrar Funcionario</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/processos">Processos</a>
-              <a class="dropdown-item" href="/processos/form">Cadastrar
-                Processo</a>
-            </div>
-          </li>
-      {%endif%}
+       
 
           {% if level == 3 or level == 4%}
 
@@ -148,29 +178,7 @@
             </div>
           </li>
           {%endif%}
-          {% if level == 2 or level == 4%}
-          <li class="nav-item dropdown {{ active4 }}">
-            <a class="nav-link dropdown-toggle" id="os" href="/os"
-              id="navbarDropdown" role="button" data-toggle="dropdown"
-              data-target="#os-dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Vendas
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="os-dropdown">
-              <a class="dropdown-item" href="/clientes">Clientes</a>
-              <a class="dropdown-item" href="/clientes/form">Cadastrar</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/os">Ordem de Servi&ccedil;o</a>
-              <a class="dropdown-item" href="/os/form">Cadastrar</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/notafiscal">Nota Fiscal</a>
-              <a class="dropdown-item" href="/notafiscal/form">Cadastrar</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/orcamento">Or&ccedil;amento</a>
-              <a class="dropdown-item" href="/orcamento/form">Cadastrar</a>
-            </div>
-          </li>
-          {%endif%}
+         
         </ul> 
         <div class="d-flex flex-row-reverse input-group w-auto">
          
