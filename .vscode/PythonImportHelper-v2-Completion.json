@@ -1704,7 +1704,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('Authorization'):\n            try: \n                print(request.headers.get('Authorization'))",
+        "peekOfCode": "def auth_required(f):\n    \"\"\"\n    Decorate routes to require login.\n    http://flask.pocoo.org/docs/1.0/patterns/viewdecorators/\n    \"\"\"\n    @wraps(f)\n    def decorated_function(*args, **kwargs):\n        if request.headers.get('Authorization'):\n            try: \n                jwt.decode(request.headers.get('Authorization'), os.environ['SECRET_KEY'], algorithms=['HS256'])",
         "detail": "helper",
         "documentation": {}
     },
@@ -1767,7 +1767,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    #print(rows[0]['ds_senha'])\n    #print(rows)\n    if not rows:\n        flash(\"Usuario/senha Inválida\")\n        return redirect('/login')\n    print(rows[0]['ds_senha'])",
+        "peekOfCode": "def login_user(user, password, jwtoken):\n    rows=list(usuarios.select().where(usuarios.ds_login == user).dicts())\n    #rows=[model_to_dict(row) for row in rows]\n    #rows = db.execute(\"SELECT * FROM usuarios WHERE ds_login = \\'\"+ user + \"\\'\")\n    #print(rows[0]['ds_senha'])\n    #print(rows)\n    if not rows:\n        flash(\"Usuario/senha Inválida\")\n        return redirect('/login')\n    if not check_password_hash(rows[0]['ds_senha'], password):",
         "detail": "helper",
         "documentation": {}
     },
@@ -1848,7 +1848,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def render_list(table):\n    print(table)\n    try:\n        tblist = str_to_class(table).select().distinct()\n        keys = list(str_to_class(table)._meta.fields.keys())\n    except:\n        try:\n            tblist = str_to_class(table.capitalize()).select().distinct()\n            keys = list(str_to_class(table.capitalize())._meta.fields.keys())\n        except:",
+        "peekOfCode": "def render_list(table):\n    try:\n        tblist = str_to_class(table).select().distinct()\n        keys = list(str_to_class(table)._meta.fields.keys())\n    except:\n        try:\n            tblist = str_to_class(table.capitalize()).select().distinct()\n            keys = list(str_to_class(table.capitalize())._meta.fields.keys())\n        except:\n            flash('Erro ao encontrar!')",
         "detail": "helper",
         "documentation": {}
     },
@@ -1884,7 +1884,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #print(os)\n    #os = os.reverse()\n    for item in os:\n        print(item)",
+        "peekOfCode": "def os_em_andamento(n_os=None):\n    if n_os:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc()).dicts())\n    #maxid = Historico_os.select(fn.MAX(Historico_os.periodo)).scalar()\n    else:\n        os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    #print(os)\n    #os = os.reverse()\n    for item in os:\n            #datetime.datetime.strptime(os[item]['fim'], '%H:%M:%S').time()",
         "detail": "helper",
         "documentation": {}
     },
@@ -1893,7 +1893,7 @@
         "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "def os_em_historico():\n    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    n_os = []\n    for row in os:\n        for col in row:\n           # print(col)\n            if col == 'Numero_Os':\n                #print(row[col])\n                n_os.append(row[col])\n    n_os = set(n_os)",
+        "peekOfCode": "def os_em_historico():\n    os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n    n_os = []\n    for row in os:\n        for col in row:\n           ##print(col)\n            if col == 'Numero_Os':\n                #print(row[col])\n                n_os.append(row[col])\n    n_os = set(n_os)",
         "detail": "helper",
         "documentation": {}
     },

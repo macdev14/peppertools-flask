@@ -78,7 +78,6 @@ def auth_required(f):
     def decorated_function(*args, **kwargs):
         if request.headers.get('Authorization'):
             try: 
-                print(request.headers.get('Authorization'))
                 jwt.decode(request.headers.get('Authorization'), os.environ['SECRET_KEY'], algorithms=['HS256'])
                 return f(*args, **kwargs)
             except jwt.ExpiredSignature:
@@ -177,9 +176,6 @@ def login_user(user, password, jwtoken):
     if not rows:
         flash("Usuario/senha Inválida")
         return redirect('/login')
-    print(rows[0]['ds_senha'])
-    print()
-    print(password)
     if not check_password_hash(rows[0]['ds_senha'], password):
         flash("Login Inválido")
         return redirect('/login')
@@ -309,7 +305,7 @@ def checkDate(str1):
     return str2
 
 def render_list(table):
-    print(table)
+    
     try:
         tblist = str_to_class(table).select().distinct()
         keys = list(str_to_class(table)._meta.fields.keys())
@@ -333,15 +329,14 @@ def render_list(table):
         for j in tblist:
             try:
                 nome = list(Clientes.select(Clientes.nome).where(Clientes.ID == j.Id_Cliente).dicts())
-                print(nome)
+                
                 #nome = nome[0]['nome']
                 j.Id_Cliente = nome
                 
             except:
                 pass
           #  try:
-            print('Loop:')
-            print(j)
+          
             nome = list(Clientes.select(Clientes.nome).where(Clientes.ID == j['id_cliente']).dicts())
             if nome:
                 nome = nome[0]['nome']
@@ -378,7 +373,7 @@ def render_list(table):
                 pass
             else:
                 j['data_pagamento'] = 'Não houve pagamento'
-    print(tblist)
+  
 
     if 'id_proc' in keys:
         i = keys.index('id_proc')
@@ -401,7 +396,7 @@ def render_list(table):
                 numero_os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os).where(Cadastro_OS.Id == j['id_os']).dicts())
                 numero_os = numero_os[0]['Numero_Os']
             if numero_os:
-                print(numero_os)
+                
                 #j['Numero OS'] = numero_os
                 html = str("<a target='_blank' style='font-weight:300px' href='/os/form/"+ str(j['id_os'])+ "'>"+str(numero_os)+"</a>")
                 j['Numero OS'] = Markup(html)
@@ -450,7 +445,7 @@ def os_em_andamento(n_os=None):
     #os = os.reverse()
         
     for item in os:
-        print(item)
+       
             #datetime.datetime.strptime(os[item]['fim'], '%H:%M:%S').time()
         if item['fim']:
             #if item['fim'] == '':
@@ -471,11 +466,11 @@ def os_em_historico():
     n_os = []
     for row in os:
         for col in row:
-           # print(col)
+           ##print(col)
             if col == 'Numero_Os':
                 #print(row[col])
                 n_os.append(row[col])
     n_os = set(n_os)
     n_os = list(n_os)
-    print(n_os.reverse())
+   #print(n_os.reverse())
     return n_os
