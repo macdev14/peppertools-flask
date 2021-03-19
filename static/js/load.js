@@ -1,3 +1,140 @@
+
+  $('#data').mask('00/00/0000');
+  $('#vencimento').mask('00/00/0000');
+  $('#data_pagamento').mask('00/00/0000');
+  $('#cep').mask('00000-000');
+
+if (document.getElementById('numero_nf-label') && typeof document.getElementById('numero_nf-label').innerHTML != 'undefined' ) {
+  document.getElementById('numero_nf-label').innerHTML = 'Número N.F';
+  document.getElementById('data_nf-label').innerHTML = 'Data da N.F';
+  document.getElementById('valor_nf-label').innerHTML = 'Valor da N.F';
+
+}
+
+if (document.getElementById('cod_for-label') && typeof document.getElementById('cod_for-label').innerHTML != 'undefined' ) {
+    document.getElementById('cod_for-label').innerHTML = 'Código Fornecedor';
+    document.getElementById('cod_for').placeholder = 'Insira o Código do Fornecedor';
+}
+
+if (document.getElementById('cod_cli-label') && typeof document.getElementById('cod_for-label').innerHTML != 'undefined' ) {
+    document.getElementById('cod_cli-label').innerHTML = 'Código do Cliente';
+    document.getElementById('cod_cli').placeholder = 'Insira o Código do Cliente';
+}
+
+if (document.getElementById('qntcompras-label') && typeof document.getElementById('qntcompras-label').innerHTML != 'undefined' ) {
+    document.getElementById('qntcompras-label').innerHTML = 'Quantidade de Compras';
+    document.getElementById('qntcompras').placeholder = 'Insira a Quantidade de Compras (Opcional)';
+    document.getElementById("qntcompras").required = false;
+    document.getElementById("qntcompras").type = 'number';
+    $("#qntcompras").attr({
+      "min" : 0
+    });
+}
+
+if (document.getElementById('ie-label') && typeof document.getElementById('ie-label').innerHTML != 'undefined' ) {
+    document.getElementById('ie-label').innerHTML = 'Inscrição Estadual';
+    document.getElementById('ie').placeholder = 'Insira a Inscrição Estadual';
+    document.getElementById("ie").required = false;
+}
+
+if (document.getElementById('fax-label') && typeof document.getElementById('fax-label').innerHTML != 'undefined' ) {
+    document.getElementById('fax-label').innerHTML = 'Celular';
+    document.getElementById('fax').placeholder = 'Celular (Opcional)';
+    document.getElementById("fax").required = false;
+}
+
+
+if (document.getElementById('celular-label') && typeof document.getElementById('celular-label').innerHTML != 'undefined' ) {
+    document.getElementById('celular-label').innerHTML = 'Celular';
+    document.getElementById('celular').placeholder = 'Celular (Opcional)';
+    document.getElementById("celular").required = false;
+}
+
+if (document.getElementById('obs-label') && typeof document.getElementById('obs-label').innerHTML != 'undefined' ) {
+    document.getElementById("obs").required = false;
+    document.getElementById('obs-label').innerHTML = 'Observação';
+    document.getElementById('obs').placeholder = 'Insira Observação (Opcional)';
+}
+
+if (document.getElementById('cnpj-label') && typeof document.getElementById('cnpj-label').innerHTML != 'undefined' ) {
+    document.getElementById('cnpj-label').innerHTML = 'CNPJ';
+    document.getElementById('cnpj').placeholder = 'Insira CNPJ';
+}
+
+if (document.getElementById('endereco-label') && typeof document.getElementById('endereco-label').innerHTML != 'undefined' ) {
+    document.getElementById('endereco-label').innerHTML = 'Endereço';
+    document.getElementById('endereco').placeholder = 'Insira o Endereço';
+}
+
+if (document.getElementById('cep-label') && typeof document.getElementById('cep-label').innerHTML != 'undefined' ) {
+    document.getElementById('cep-label').innerHTML = 'CEP';
+    document.getElementById('cep').placeholder = 'Insira o CEP';
+}
+
+
+if (document.getElementById('qt-label') && typeof document.getElementById('qt-label').innerHTML != 'undefined' ) {
+  document.getElementById('qt-label').innerHTML = 'Quantidade';
+  document.getElementById('mm-label').innerHTML = 'Milimetros';
+  $('#cep').mask('00000-000');
+  document.getElementById("data").attributes["required"]= = "";  
+  document.getElementById('gaveta').type = 'number';
+  document.getElementById('qt').type = 'number';
+  document.getElementById('qt').placeholder = 'Insira a Quantidade';
+}
+if ( document.getElementById('cod_pc') && typeof document.getElementById('cod_pc').innerHTML != 'undefined'){
+  document.getElementById('cod_pc-label').innerHTML = 'Código da Peça';
+  document.getElementById('cod_pc').placeholder = 'Insira o Código da Peça';
+  document.getElementById('id_cliente-label').innerHTML = 'Cliente';
+  document.getElementById('mm').type = 'number';
+}
+if (document.getElementById('prazo_entrega-label') && typeof document.getElementById('prazo_entrega-label').innerHTML != 'undefined'){
+  document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
+  document.getElementById('prazo_entrega').placeholder = 'Prazo de Entrega';
+
+  document.getElementById('prazo_pagto-label').innerHTML = 'Prazo de Pagamento';
+  document.getElementById('prazo_pagto').placeholder = 'Insira o Prazo de Pagamento';
+
+  document.getElementById('cod_item-label').innerHTML = 'Código do Item';
+  document.getElementById('cod_item').placeholder = 'Insira o Código do Item';
+
+  //document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
+  
+
+}
+
+if ( document.getElementById('cnpj') && typeof document.getElementById('cnpj').innerHTML != 'undefined'){
+  
+  cnpj = document.getElementById('cnpj')
+  cnpj.addEventListener('input', async function(evt){
+    
+    await loadcnpj(this.value)});
+  
+}
+
+if ( document.getElementById('data_pagamento-label') && typeof document.getElementById('data_pagamento-label').innerHTML != 'undefined'){
+  document.getElementById('cod_fornecedor-label').innerHTML = 'Fornecedor';
+  //document.getElementById('emptyoption').innerHTML = 'Fornecedor'
+  document.getElementById('vencimento').placeholder = 'dd/mm/yyyy';
+  document.getElementById('data_pagamento-label').innerHTML = 'Data do Pagamento';
+  document.getElementById('data_pagamento').placeholder = 'dd/mm/yyyy';
+  $('#valor').mask("# ##0,00", {reverse: true});
+  $('#pago').mask("# ##0,00", {reverse: true});
+  $('#vencimento').mask("00/00/0000");
+  $('#data_pagamento').mask("00/00/0000");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 String.prototype.capitalize = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };

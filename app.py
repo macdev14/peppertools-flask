@@ -93,7 +93,7 @@ def index():
     #historico_os = Historico_os.select().dicts()
    
     response = Response(render_template("home.html", title= "Inicio", auth=session.get('token'), historico_os=os,active1="active",active2="", active3="", active4=""))
-   # print(session.get('token'))
+   # #print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response
 
@@ -111,7 +111,7 @@ def estoque():
     columns.remove('ID')
     columns.remove('data')
     response = Response(render_template("list.html", title= "Estoque", client = True, tableCol=columns, table="estoque", columns=columns, col_len=len(columns), active1="",active2="active", active3="", active4=""))
-   # print(session.get('token'))
+   # #print(session.get('token'))
     response.headers['authorization'] = session.get('_permanent')
     return response"""
 
@@ -137,7 +137,6 @@ def search():
 def cadCli():
     if request.method == 'GET':
         clientes = list(Clientes._meta.fields.keys())
-        print(clientes)
         return render_template("Form.html", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1="",active2="", active3="", active4="active")
        # return render_template("client_edit.html", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1="",active2="", active3="active", active4="")
     elif request.method == 'POST':   # clientes = getData(" ","*", "Clientes")
@@ -148,7 +147,7 @@ def cadCli():
                 Clientes.create(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], obs=request.form['obs'])
                 idCli = Clientes.select(fn.MAX(Clientes.ID)).scalar()
                 flash('Cliente cadastrado com sucesso')
-                #print(request.form)
+                ##print(request.form)
                 return redirect('/clientes/form/'+ str(idCli))
             else:
                 raise Exception("Empty")
@@ -165,13 +164,11 @@ def editCli(cliId):
             flash('Erro ao encontrar cliente.')
             return redirect('/clientes/form/')
         clientesCol = list(Clientes._meta.fields.keys())
-        print(clientesCol[0])
         cliLen = len(clientesCol)
-       # print(clientes)
+       # #print(clientes)
         return render_template("Form.html", table='clientes', content=clientes[0], TableLen=cliLen, TableCol=clientesCol, id=cliId, edit=True, active1="",active2="", active3="active", active4="") 
     elif request.method == 'POST':
         if request.form:
-            print(request.form)
             #Clientes.update()
             Clientes.update(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], obs=request.form['obs']).where(Clientes.ID == cliId).execute()
             #updateData(dict(request.form), 'Clientes', 'ID', cliId)
@@ -234,7 +231,6 @@ def logout():
 @login_required
 def all():
     nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()
-    print(nos)
     return jsonify(nos)
 
 
@@ -244,9 +240,7 @@ def all():
 def new_os():
     #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')
         clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()
-    
 
-        print(clients)
         x = datetime.datetime.now()
         date = x.strftime("%d/%m/%Y")
         #os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')
@@ -257,7 +251,6 @@ def new_os():
                 if request.form['Id_Cliente'] == 0 or request.form['Id_Cliente'] == '0':
                     flash('Selecione um cliente')
                     return redirect('/os/form/')
-                print(dict(request.form))
                 data = dict(request.form)
             # data = json.loads(data)
                 Cadastro_OS.create(Tipo=request.form['Tipo'], Numero_Os = request.form['Numero_Os'],
@@ -273,14 +266,14 @@ def new_os():
                 idos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).scalar()
                 idproc = request.form['STATUS']
                 registerprocess(idproc, idos, request.form['Data'], '')
-                print(idos)
+                
                 flash('O.S cadastrada com sucesso')
-                print(request.form)
+              
                 return redirect('/os/form/'+ str(idos))
             except:
                 flash("Erro ao cadastrar")
                 return redirect('/os/form/')
-        print(request.form)
+        
         processes = processos.select()
         linha_os = linha.select(linha.id, linha.nome)
         return render_template('os_gen.html', clients = clients, clients_len = clients_len, os_num = os_num, field = '' , data = date, processes= processes, linha= linha_os, title="Ordem de Serviço")
@@ -341,7 +334,7 @@ def os_edit(osid):
         
 
         flash('O.S alterada com sucesso')
-        print(osid)
+        
         if session.get('osid'):
            session.pop('osid')
         return redirect('/os/form/'+ str(osid))
@@ -355,7 +348,7 @@ def os_edit(osid):
         os = [model_to_dict(o) for o in os]
         if not os:
             return redirect('/os/form/')
-        print(os)
+        
         field = os[0]
         if field['Data_Pedido']:
             field['Data_Pedido'] =datetime.datetime.strptime( str(field['Data_Pedido']), '%Y-%m-%d').strftime('%d/%m/%Y')
@@ -367,15 +360,12 @@ def os_edit(osid):
             field['Prazo'] = datetime.datetime.strptime( str(field['Prazo']), '%Y-%m-%d').strftime('%d/%m/%Y')
         if field['Data_Nf']:
             field['Data_Nf'] = datetime.datetime.strptime( str(field['Data_Nf']), '%Y-%m-%d').strftime('%d/%m/%Y')
-        print(str(field['Data']))
-        print(str(field['Numero_Os']))
+        
         x = datetime.datetime.now()
         date = x.strftime("%d/%m/%Y")
         idproc = Cadastro_OS.select(Cadastro_OS.STATUS).where(Cadastro_OS.Id == int(osid)).dicts()
         if idproc:
-            print('before: ')
-            print(idproc)
-            print('After: ')
+         
         idproc = idproc[0]["STATUS"]
         if idproc and int(idproc):
             procinfo = processos.select().where(processos.ID == idproc).dicts()
@@ -429,7 +419,7 @@ def register():
        
         usuarios.create(ds_login=request.form.get('username'), ds_senha=generate_password_hash(request.form.get('password')), nivel=request.form.get('nivel'))
                 #stmt = "INSERT INTO usuarios(ds_login, ds_senha, nivel) VALUES(\'" + request.form.get('username') + "\', \'" + generate_password_hash(request.form.get('password')) + "\', " + request.form.get('nivel') + ")"
-                #print(stmt)
+                ##print(stmt)
                 #db.execute(stmt)
         flash("Usuário cadastrado com sucesso. Faça seu login.")
         return logoutCommit()
@@ -446,20 +436,20 @@ def register():
 @app.route('/os/form/print/<int:osid>', methods = ['GET'])
 #@login_required
 def print_os(osid):
-    print(osid)
+    #print(osid)
     if request.method == 'GET':
         rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())
         maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()
-        print(rows[0])
+        #print(rows[0])
         allProcessos = list(processos.select(processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())
-        print(allProcessos)
+        #print(allProcessos)
         #os = getOs(osid)
         if not os:
             flash("O.S não encontrada.")
             return redirect("/")
         field = rows[0]
         res = list(Clientes.select(Clientes.nome, Clientes.ID).from_(Clientes, Cadastro_OS).where(Cadastro_OS.Id_Cliente == Clientes.ID, Cadastro_OS.Id == osid).dicts())
-        #print(res)
+        ##print(res)
         qr = "http://peppertools.cf/os/"+str(osid)
         field['nome'] = res[0]['nome']
         field['Data_digit'] = datetime.datetime.strptime(str(field['Data']), '%Y-%m-%d').strftime('%y')
@@ -506,7 +496,7 @@ def cadEstoque():
         idEst = Estoque.select().order_by(Estoque.ID.desc()).get()
             #idCli = insertData(data, 'Estoque')
         
-        print(request.form)
+        #print(request.form)
         return redirect('/estoque/form/'+ str(idEst))
     data = datetime.datetime.now().strftime('%d/%m/%Y')
     select2 = list(itens.select().dicts())
@@ -527,14 +517,14 @@ def editEstoque(estId):
         try:
             estoque = Estoque.select(Estoque, Clientes.ID, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque.ID == estId) #getData(" ", "*", "Estoque WHERE ID = "+ str(estId))
             estoque = [model_to_dict(item) for item in estoque]
-            print(estoque)
+            #print(estoque)
             try:
                 estoque[0]['data'] = estoque[0]['data'].strftime("%d/%m/%Y")
             except:
                 pass
             estoqueCol = list(Estoque._meta.fields.keys())
             estLen = len(estoqueCol)
-        # print(clientes)
+        # #print(clientes)
             pagefunc = page('Estoque', select=clients, select2=select2, edit=True)
             return pagefunc.render()
             #return render_template("Form.html", table='estoque', content=estoque[0], cliLen = len(clients), clients = clients, cliCol = 'id_cliente',TableCol=estoqueCol, TableLen = estLen, id=estId, edit=True, active1="",active2="", active3="active", active4="") 
@@ -546,7 +536,7 @@ def editEstoque(estId):
         
            
     elif request.method == 'POST' and request.form:
-            #print(request.form)
+            ##print(request.form)
         data = dict(request.form)
         if not data['data']:
             data['data'] = datetime.datetime.now().strftime('%d/%m/%Y')
@@ -867,10 +857,10 @@ def pontocad(idponto):
                     data['hora'] = datetime.datetime.strptime(data['hora'], '%H:%M').strftime('%H')
                 except:
                     data['hora'] = datetime.datetime.now().strftime('%H:%M')
-                print()
-                print(data['data'])
-                print()
-                print(data['hora'])
+                #print()
+                #print(data['data'])
+                #print()
+                #print(data['hora'])
                 ponto.update(
                     cod_func=request.form['cod_func'], 
                     data=data['data'], hora=data['hora'],  
@@ -1108,13 +1098,13 @@ def deleterow(col, idtab):
         except:
             flash('Erro ao deletar.')
             return redirect('/'+str(col.lower())+'/form/'+ str(idtab))
-    print(idtab)
+    #print(idtab)
 
 @app.route('/redirect/<int:n_os>', methods=['GET'])
 def redirect_num(n_os):
     try:
         idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())
-        print(idos[0]['Id'])
+        #print(idos[0]['Id'])
         return redirect('/os/form/'+ str(idos[0]['Id']))
     except:
         return redirect('#')
@@ -1174,10 +1164,10 @@ def longlogin():
      #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])
     rows = [model_to_dict(row) for row in rows]
         #obj = json.loads(request.data)
-     #print(obj['username'])
+     ##print(obj['username'])
        
     password = obj['password']
-    print(obj['password'])
+    #print(obj['password'])
     
     if check_password_hash(rows[0]["ds_senha"], password) or rows[0]["ds_senha"] == password:
                 
@@ -1198,17 +1188,17 @@ def log():
     except:
         pass
         
-    print(obj)
-    print(obj['username'])
+    #print(obj)
+    #print(obj['username'])
     rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])
      #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])
     rows = [model_to_dict(row) for row in rows]
         #obj = json.loads(request.data)
-     #print(obj['username'])
+     ##print(obj['username'])
        
     password = obj['password']
-    print(obj['password'])
-    print(rows[0]["ds_senha"])
+    #print(obj['password'])
+    #print(rows[0]["ds_senha"])
     
     if check_password_hash(rows[0]["ds_senha"], password) or rows[0]["ds_senha"] == password:
                 
@@ -1256,8 +1246,8 @@ def osApi(osid):
 def osApiall(limit):
   #  try:
         rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())
-        #print()
-       # print(rows)
+        ##print()
+       # #print(rows)
         #rows = [model_to_dict(row) for row in rows]
         #stmt = "SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT " + str(limit)
         if request.method == 'GET':
@@ -1348,7 +1338,7 @@ def inicioProcesso():
     (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != None) )
     if (osproc):
         periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc)).scalar()
-        print(periodo)
+        #print(periodo)
         if not periodo:
             periodo = 1
         else:
@@ -1427,7 +1417,7 @@ def allEstoque(limit):
    
     if request.method == 'GET':
         rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())
-        print(rows)
+        #print(rows)
         return jsonify(rows)
     elif request.method == 'POST' and request.data:
           #  try:
@@ -1442,7 +1432,7 @@ def allEstoque(limit):
 def queryEstoque(query, col):
     rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())
     #stmt = "SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND "+ col + "=" + query +" ORDER BY e.ID DESC"
-    #print(stmt)
+    ##print(stmt)
     #rows = db.execute(stmt)  
     return jsonify(rows)
     

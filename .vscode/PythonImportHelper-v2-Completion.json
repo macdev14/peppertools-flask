@@ -786,7 +786,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    response = Response(render_template(\"home.html\", title= \"Inicio\", auth=session.get('token'), historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/historico')\n@login_required",
+        "peekOfCode": "def index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    response = Response(render_template(\"home.html\", title= \"Inicio\", auth=session.get('token'), historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))\n   # #print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\n@app.route('/historico')\n@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -804,7 +804,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"list.html\", title= \"Estoque\", client = True, tableCol=columns, table=\"estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\"\"\"",
+        "peekOfCode": "def estoque():\n    keys = Estoque._meta.fields.keys()\n    columns = list(keys)\n    columns.remove('id_cliente')\n    columns.remove('ID')\n    columns.remove('data')\n    response = Response(render_template(\"list.html\", title= \"Estoque\", client = True, tableCol=columns, table=\"estoque\", columns=columns, col_len=len(columns), active1=\"\",active2=\"active\", active3=\"\", active4=\"\"))\n   # #print(session.get('token'))\n    response.headers['authorization'] = session.get('_permanent')\n    return response\"\"\"",
         "detail": "app",
         "documentation": {}
     },
@@ -822,7 +822,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\n@managerLevel\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")",
+        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/form/', methods=[\"GET\", \"POST\"])\n@login_required\n@managerLevel\ndef cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")",
         "detail": "app",
         "documentation": {}
     },
@@ -831,7 +831,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        print(clientes)\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)",
+        "peekOfCode": "def cadCli():\n    if request.method == 'GET':\n        clientes = list(Clientes._meta.fields.keys())\n        return render_template(\"Form.html\", TableCol=clientes, TableLen = len(clientes), table='clientes' , edit=False, id=id, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n       # return render_template(\"client_edit.html\", clientes2=clientes, cliLen=len(clientes), edit=False, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n    elif request.method == 'POST':   # clientes = getData(\" \",\"*\", \"Clientes\")\n        try:\n            if request.form:\n                data = dict(request.form)\n                Clientes.create(cod_cli=request.form['cod_cli'], nome = request.form['nome'], cnpj=request.form['cnpj'], ie = request.form['ie'], endereco=request.form['endereco'], cidade=request.form['cidade'], cep=request.form['cep'], telefone=request.form['telefone'], celular=request.form['celular'], obs=request.form['obs'])",
         "detail": "app",
         "documentation": {}
     },
@@ -840,7 +840,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def editCli(cliId):\n    if request.method == 'GET':\n        clientes = Clientes.select().where(Clientes.ID == cliId)\n        if not clientes:\n            flash('Erro ao encontrar cliente.')\n            return redirect('/clientes/form/')\n        clientesCol = list(Clientes._meta.fields.keys())\n        print(clientesCol[0])\n        cliLen = len(clientesCol)\n       # print(clientes)",
+        "peekOfCode": "def editCli(cliId):\n    if request.method == 'GET':\n        clientes = Clientes.select().where(Clientes.ID == cliId)\n        if not clientes:\n            flash('Erro ao encontrar cliente.')\n            return redirect('/clientes/form/')\n        clientesCol = list(Clientes._meta.fields.keys())\n        cliLen = len(clientesCol)\n       # #print(clientes)\n        return render_template(\"Form.html\", table='clientes', content=clientes[0], TableLen=cliLen, TableCol=clientesCol, id=cliId, edit=True, active1=\"\",active2=\"\", active3=\"active\", active4=\"\") ",
         "detail": "app",
         "documentation": {}
     },
@@ -885,7 +885,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n    print(nos)\n    return jsonify(nos)\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required",
+        "peekOfCode": "def logout():\n    return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n    return jsonify(nos)\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel",
         "detail": "app",
         "documentation": {}
     },
@@ -894,7 +894,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def all():\n    nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n    print(nos)\n    return jsonify(nos)\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()",
+        "peekOfCode": "def all():\n    nos = Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n    return jsonify(nos)\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\n@managerLevel\ndef new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        x = datetime.datetime.now()",
         "detail": "app",
         "documentation": {}
     },
@@ -903,7 +903,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        print(clients)\n        x = datetime.datetime.now()\n        date = x.strftime(\"%d/%m/%Y\")\n        #os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n        os_num = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1\n        clients_len = len(clients)\n        if request.method == 'POST':",
+        "peekOfCode": "def new_os():\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n        clients = Clientes.select(Clientes.ID, Clientes.nome).join(Cadastro_OS, on=(Cadastro_OS.Id_Cliente == Clientes.ID)).distinct()\n        x = datetime.datetime.now()\n        date = x.strftime(\"%d/%m/%Y\")\n        #os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n        os_num = int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1\n        clients_len = len(clients)\n        if request.method == 'POST':\n            try:",
         "detail": "app",
         "documentation": {}
     },
@@ -939,7 +939,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def print_os(osid):\n    print(osid)\n    if request.method == 'GET':\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()\n        print(rows[0])\n        allProcessos = list(processos.select(processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())\n        print(allProcessos)\n        #os = getOs(osid)\n        if not os:",
+        "peekOfCode": "def print_os(osid):\n    #print(osid)\n    if request.method == 'GET':\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()\n        #print(rows[0])\n        allProcessos = list(processos.select(processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())\n        #print(allProcessos)\n        #os = getOs(osid)\n        if not os:",
         "detail": "app",
         "documentation": {}
     },
@@ -966,7 +966,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def editEstoque(estId):\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')\n    if request.method == 'GET':\n        try:\n            estoque = Estoque.select(Estoque, Clientes.ID, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque.ID == estId) #getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n            estoque = [model_to_dict(item) for item in estoque]\n            print(estoque)\n            try:\n                estoque[0]['data'] = estoque[0]['data'].strftime(\"%d/%m/%Y\")",
+        "peekOfCode": "def editEstoque(estId):\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n    #clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.Id_Cliente = Clientes.ID')\n    if request.method == 'GET':\n        try:\n            estoque = Estoque.select(Estoque, Clientes.ID, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque.ID == estId) #getData(\" \", \"*\", \"Estoque WHERE ID = \"+ str(estId))\n            estoque = [model_to_dict(item) for item in estoque]\n            #print(estoque)\n            try:\n                estoque[0]['data'] = estoque[0]['data'].strftime(\"%d/%m/%Y\")",
         "detail": "app",
         "documentation": {}
     },
@@ -1128,7 +1128,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())\n        print(idos[0]['Id'])\n        return redirect('/os/form/'+ str(idos[0]['Id']))\n    except:\n        return redirect('#')\n@app.route('/linha/form/', defaults={'idlinha': ''}, methods=['POST', 'GET'])\n@app.route('/linha/form/<int:idlinha>', methods=['POST', 'GET'])\n@login_required",
+        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())\n        #print(idos[0]['Id'])\n        return redirect('/os/form/'+ str(idos[0]['Id']))\n    except:\n        return redirect('#')\n@app.route('/linha/form/', defaults={'idlinha': ''}, methods=['POST', 'GET'])\n@app.route('/linha/form/<int:idlinha>', methods=['POST', 'GET'])\n@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -1155,7 +1155,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def longlogin():\n    obj = json.loads(request.data)\n    rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])\n    rows = [model_to_dict(row) for row in rows]\n        #obj = json.loads(request.data)\n     #print(obj['username'])\n    password = obj['password']\n    print(obj['password'])\n    if check_password_hash(rows[0][\"ds_senha\"], password) or rows[0][\"ds_senha\"] == password:",
+        "peekOfCode": "def longlogin():\n    obj = json.loads(request.data)\n    rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])\n    rows = [model_to_dict(row) for row in rows]\n        #obj = json.loads(request.data)\n     ##print(obj['username'])\n    password = obj['password']\n    #print(obj['password'])\n    if check_password_hash(rows[0][\"ds_senha\"], password) or rows[0][\"ds_senha\"] == password:",
         "detail": "app",
         "documentation": {}
     },
@@ -1164,7 +1164,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def log():\n    obj = json.loads(request.data)\n    try:\n        obj = (obj['data'])\n    except:\n        pass\n    print(obj)\n    print(obj['username'])\n    rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])",
+        "peekOfCode": "def log():\n    obj = json.loads(request.data)\n    try:\n        obj = (obj['data'])\n    except:\n        pass\n    #print(obj)\n    #print(obj['username'])\n    rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])\n     #rows = db.execute('SELECT ds_senha FROM usuarios WHERE  ds_login = ?', obj['username'])",
         "detail": "app",
         "documentation": {}
     },
@@ -1191,7 +1191,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def osApiall(limit):\n  #  try:\n        rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())\n        #print()\n       # print(rows)\n        #rows = [model_to_dict(row) for row in rows]\n        #stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            return jsonify(list(rows))",
+        "peekOfCode": "def osApiall(limit):\n  #  try:\n        rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())\n        ##print()\n       # #print(rows)\n        #rows = [model_to_dict(row) for row in rows]\n        #stmt = \"SELECT c.ID, c.nome, o.Tipo, o.Especificacao, o.Prazo, o.Numero_Os, o.Id_Cliente, o.Id, o.Data FROM Clientes c, Cadastro_OS o WHERE c.ID=o.Id_Cliente ORDER BY o.Numero_Os DESC LIMIT \" + str(limit)\n        if request.method == 'GET':\n            #db.execute('SELECT * FROM Cadastro_OS ORDER BY Id DESC LIMIT '+ str(limit))\n            return jsonify(list(rows))",
         "detail": "app",
         "documentation": {}
     },
@@ -1272,7 +1272,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def cliLimit(limit):\n    res = list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())\n    #res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\n@auth_required\ndef allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        print(rows)",
+        "peekOfCode": "def cliLimit(limit):\n    res = list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())\n    #res = [model_to_dict(row) for row in res]\n    return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])\n@auth_required\ndef allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        #print(rows)",
         "detail": "app",
         "documentation": {}
     },
@@ -1281,7 +1281,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        print(rows)\n        return jsonify(rows)\n    elif request.method == 'POST' and request.data:\n          #  try:\n        obj = json.loads(request.data)\n        insertData(obj, 'Estoque')\n        return jsonify('Item-criado')",
+        "peekOfCode": "def allEstoque(limit):\n    if request.method == 'GET':\n        rows = list(Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n        #print(rows)\n        return jsonify(rows)\n    elif request.method == 'POST' and request.data:\n          #  try:\n        obj = json.loads(request.data)\n        insertData(obj, 'Estoque')\n        return jsonify('Item-criado')",
         "detail": "app",
         "documentation": {}
     },
@@ -1290,7 +1290,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    #print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\n@auth_required\ndef progress(n_os):\n    return os_em_andamento(n_os)",
+        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    ##print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\n@auth_required\ndef progress(n_os):\n    return os_em_andamento(n_os)",
         "detail": "app",
         "documentation": {}
     },

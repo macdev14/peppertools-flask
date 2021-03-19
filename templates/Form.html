@@ -119,7 +119,7 @@
     
     <div class="form-group">
       <label for="col"  id="{{ TableCol[i] }}-label">{{ TableCol[i].capitalize() }}</label>
-      <input type="text" type="text" class="form-control"  name="{{ TableCol[i] }}" id="{{ TableCol[i] }}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{ TableCol[i].capitalize() }}" value="{{ content[TableCol[i]] }}">
+      <input type="text" required type="text" class="form-control"  name="{{ TableCol[i] }}" id="{{ TableCol[i] }}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{ TableCol[i].capitalize() }}" value="{{ content[TableCol[i]] }}">
     </div>
   
      {% endif %}
@@ -256,85 +256,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 <script type="text/javascript" src="{{ url_for('static',
       filename='js/load.js')}}"></script>
-<script type="text/javascript">
-/*if ( document.getElementById('cnpj-search') && typeof document.getElementById('cnpj-search').innerHTML != 'undefined'){
-  
-  document.getElementById("cnpj-search").addEventListener("click", async function (){
-    
-    let cnpj = document.getElementById("cnpj").value;
-    await loadcnpj(cnpj)});
-}*/
-  //$('#fax').mask('(99) 9999-9999');
- 
-  /*$(window).on('load', function() {
-       $('#myModal').modal('show');
-       setTimeout(1500)
-       $('#myModal').modal('hide');
-  });*/
 
-  $('#data').mask('00/00/0000');
-  $('#vencimento').mask('00/00/0000');
-  $('#data_pagamento').mask('00/00/0000');
-if (document.getElementById('numero_nf-label') && typeof document.getElementById('numero_nf-label').innerHTML != 'undefined' ) {
-  document.getElementById('numero_nf-label').innerHTML = 'Número N.F';
-  document.getElementById('data_nf-label').innerHTML = 'Data da N.F';
-  document.getElementById('valor_nf-label').innerHTML = 'Valor da N.F';
-
-}
-
-if (document.getElementById('qt-label') && typeof document.getElementById('qt-label').innerHTML != 'undefined' ) {
-  document.getElementById('qt-label').innerHTML = 'Quantidade';
-  document.getElementById('mm-label').innerHTML = 'Milimetros';
-  $('#cep').mask('00000-000');
-  document.getElementById("data").attributes["required"] = "";  
-  document.getElementById('gaveta').type = 'number';
-  document.getElementById('qt').type = 'number';
-  document.getElementById('qt').placeholder = 'Insira Quantidade';
-}
-if ( document.getElementById('cod_pc') && typeof document.getElementById('cod_pc').innerHTML != 'undefined'){
-  document.getElementById('cod_pc-label').innerHTML = 'Código da Peça';
-  document.getElementById('cod_pc').placeholder = 'Insira o Código da Peça';
-  document.getElementById('id_cliente-label').innerHTML = 'Cliente';
-  document.getElementById('mm').type = 'number';
-}
-if (document.getElementById('prazo_entrega-label') && typeof document.getElementById('prazo_entrega-label').innerHTML != 'undefined'){
-  document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
-  document.getElementById('prazo_entrega').placeholder = 'Prazo de Entrega';
-
-  document.getElementById('prazo_pagto-label').innerHTML = 'Prazo de Pagamento';
-  document.getElementById('prazo_pagto').placeholder = 'Prazo de Pagamento';
-
-  document.getElementById('cod_item-label').innerHTML = 'Código do Item';
-  document.getElementById('cod_item').placeholder = 'Código do Item';
-
-  //document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
-  
-
-}
-
-if ( document.getElementById('cnpj') && typeof document.getElementById('cnpj').innerHTML != 'undefined'){
-  
-  cnpj = document.getElementById('cnpj')
-  cnpj.addEventListener('input', async function(evt){
-    
-    await loadcnpj(this.value)});
-  
-}
-
-if ( document.getElementById('data_pagamento-label') && typeof document.getElementById('data_pagamento-label').innerHTML != 'undefined'){
-  document.getElementById('cod_fornecedor-label').innerHTML = 'Fornecedor';
-  //document.getElementById('emptyoption').innerHTML = 'Fornecedor'
-  document.getElementById('vencimento').placeholder = 'dd/mm/yyyy';
-  document.getElementById('data_pagamento-label').innerHTML = 'Data do Pagamento';
-  document.getElementById('data_pagamento').placeholder = 'dd/mm/yyyy';
-  $('#valor').mask("# ##0,00", {reverse: true});
-  $('#pago').mask("# ##0,00", {reverse: true});
-  $('#vencimento').mask("00/00/0000");
-  $('#data_pagamento').mask("00/00/0000");
-}
-
-
-</script>
 
 
 {% endblock %}
