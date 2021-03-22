@@ -148,3 +148,7 @@ option:focus {
   .container-fluid .shortcut-btn{
     float: left;
   }
+
+  .MuiDataGrid-cell{
+    color:#555
+  }

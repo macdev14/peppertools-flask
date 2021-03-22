@@ -7,7 +7,13 @@
   localStorage.setItem('auth', `{{auth}}`)
   </script>
 <!-- Grid container -->
+
+<div class="container-fluid">
+   <div id="app"></div>
+  </div>
+
 <div class="container">
+ 
     <div class="row"> <div class="col-md-6"></div></div>
     <!--Grid row-->
     
@@ -29,6 +35,9 @@
           
       
     </div> 
+     <!-- DataTables CSS -->
+     
+
   </div>
   
   <!-- Grid container -->
@@ -42,8 +51,7 @@
       <!-- MDB core JavaScript -->
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
      
-      <!-- DataTables CSS -->
-      <div id="app"></div>
+     
       
   <!--     <script src="{{ url_for('static', filename='js/graphics.js') }}" type="text/javascript"></script>-->
 {% endblock %}
