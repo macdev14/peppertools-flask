@@ -1440,7 +1440,13 @@ def queryEstoque(query, col):
 def progress(n_os):
     return os_em_andamento(n_os)
 
-      
+@app.route('/api/progress/allos', methods=['GET'])
+@auth_required
+def osinprogress():
+    os = os_em_historico()
+    return jsonify(os)
+
+    
 if __name__ == "__main__" :
      app.run(debug=True)
      socketio.run(app, debug=True)

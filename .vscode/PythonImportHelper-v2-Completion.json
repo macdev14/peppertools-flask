@@ -1299,7 +1299,16 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def progress(n_os):\n    return os_em_andamento(n_os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)\n     socketio.run(app, debug=True)",
+        "peekOfCode": "def progress(n_os):\n    return os_em_andamento(n_os)\n@app.route('/api/progress/allos', methods=['GET'])\n@auth_required\ndef osinprogress():\n    os = os_em_historico()\n    return jsonify(os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)\n     socketio.run(app, debug=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "osinprogress",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def osinprogress():\n    os = os_em_historico()\n    return jsonify(os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)\n     socketio.run(app, debug=True)",
         "detail": "app",
         "documentation": {}
     },
