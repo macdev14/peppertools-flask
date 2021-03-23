@@ -59,9 +59,12 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
                 <br> Data: ${response['data'][dict]['data']}
                 </div>
                 <div class="modal-footer">
+                <a href="os/form/${response['data'][dict]['ID']}">
+                  <button type="button" class="btn btn-warning">Editar O.S</button></a>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                   <a href="delete/table=Historico_os&id=${response['data'][dict]['ID']}">
-                  <button type="button" class="btn btn-primary">Deletar</button></a>
+                  <button type="button" class="btn btn-danger">Deletar</button></a>
+                  </div>
                 </div>
               </div>
             </div>
