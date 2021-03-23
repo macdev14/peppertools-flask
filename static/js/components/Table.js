@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 //import ReactDOM from 'react-dom';
-//import Button from '@material-ui/core/Button';
-import { DataGrid } from '@material-ui/data-grid';
+import Button from '@material-ui/core/Button';
+import { DataGrid, ptBR } from '@material-ui/data-grid';
 import axios from 'axios'
-
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+const parse = require('html-react-parser');
 export default class Table extends React.Component
 {
 
@@ -12,7 +13,9 @@ export default class Table extends React.Component
         super(props);
         this.state = {
             processos : [],
-            production : []
+            production : [],
+            modalOpen: false,
+            divHeight: 0
         }
     }
 
@@ -32,7 +35,15 @@ export default class Table extends React.Component
   // console.log(response.data)
    response.data.map((val, i) => {
    
-    let arr = [...this.state.processos, {field : val['Nome'], width: 180}]
+    let arr = [...this.state.processos, {field : val['Nome'], flex: 1, headerAlign: 'center', 
+    renderCell: (params) => {
+            console.log(params)
+            console.log(val['Nome'])
+            let col = '#info'+ params.row.id.toString()
+            return( <a href="#" data-toggle="modal" class="cell-info" color="#000000" data-target={col}> {params.row[params.field]}</a>)
+    }
+    
+     } ]
     this.setState({processos: arr})
     
      
@@ -48,24 +59,11 @@ export default class Table extends React.Component
      let response = axios.get(`https://peppertools.herokuapp.com/api/progress/${nOs}`, {headers: {'authorization': localStorage.getItem('auth') }}).then((response) =>{ return response.data
      }).then((res)=>
      { 
-      //let index = ( this.state.processos.findIndex(x => x.field  === res[0]['Nome']) ) + 1
-      //console.log(index) 
-      let arr = [...this.state.production, {id: index, [res[0]['Nome']] : nOs.toString()}]
+      let modal = nOs.toString() + ' - '+ res[0]['nome'].substring(0, 6)
+      let arr = [...this.state.production, {id: res[0]['ID'], [res[0]['Nome']] : modal} ]
       this.setState({production: arr})
      }
-     )
-     
-  // console.log(response.data)
-   /*response.data.map((val, i) => {
-   
-    let arr = [...this.state.processos, {field : val['Nome'], width: 200}]
-    this.setState({processos: arr})
-    console.log(arr)*
-    
-     */
-   
-   
- 
+     )   
 
  }
 
@@ -76,21 +74,23 @@ export default class Table extends React.Component
         
     }
         
-   
+  theme = createMuiTheme({
+    palette: {
+        primary: { main: '#ffffff' },
+    },
+    }, ptBR);
 
         
 
     render(){
         var that = this;
-        console.log(that.state.production);
+        console.log('state')
+        console.log(that.state.production)
         return(
-         <div style={{ height: 500, width: '100%', color: '#000000', display: 'flex', justifyContent:'center', alignItems:'center' }}>
-       <DataGrid
-  columns={that.state.processos}
-  rows={that.state.production} components={{
-    Toolbar: CustomToolbar,
-  }} />
-       
+         <div style={{ height: 400, width: '100%', color: '#000000', display: 'flex', justifyContent:'center', alignItems:'center' }}>
+       <ThemeProvider theme={that.theme}>
+       <DataGrid apiRef={that.requestProcesses} columns={that.state.processos} rows={that.state.production} />
+       </ThemeProvider>;
         </div>
         )
         
