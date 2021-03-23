@@ -10,7 +10,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
   let el = `progress-${number}`;
   document.getElementById(el).innerHTML = "Carregando.."
   
-  const URL_API = `https://peppertools-test.herokuapp.com/api/progress/${number}`
+  const URL_API = `https://peppertools.herokuapp.com/api/progress/${number}`
   await axios(URL_API,  { headers: {'authorization': localStorage.getItem('auth') } } ).then((response) => {
        document.getElementById(`progress-${number}`).innerHTML = ""
        console.log(response['data'])
@@ -39,6 +39,7 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
            }
            // n = m/(arr.length*4);
         //   if (response['data'][dict]['fim']){
+         
              document.getElementById('modals-to-open').innerHTML += `
              
               <div class="modal fade" id="info${response['data'][dict]['ID']}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,7 +52,9 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
                   </button>
                 </div>
                 <div class="modal-body">
-              ${response['data'][dict]['duration'] ? 'Duracao: '+ response['data'][dict]['duration'] : ''}
+               
+              ${response['data'][dict]['duration'] ? '<br>Duracao: '+ response['data'][dict]['duration'] : ''}
+              ${response['data'][dict]['Tipo'] ? '<br>Tipo: '+ response['data'][dict]['Tipo'].charAt(0).toUpperCase()+ response['data'][dict]['Tipo'].slice(1) : ''}
                ${response['data'][dict]['nome'] ?   '<br>Cliente: ' + response['data'][dict]['nome'] : ''}
                ${response['data'][dict]['qtd'] ?   '<br>Quantidade: ' + response['data'][dict]['qtd'] : ''}<br>
                 Processo: ${response['data'][dict]['Nome']} <br> Início:  ${response['data'][dict]['inicio']} <br> 

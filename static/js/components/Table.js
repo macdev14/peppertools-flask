@@ -59,7 +59,7 @@ export default class Table extends React.Component
      let response = axios.get(`https://peppertools.herokuapp.com/api/progress/${nOs}`, {headers: {'authorization': localStorage.getItem('auth') }}).then((response) =>{ return response.data
      }).then((res)=>
      { 
-      let modal = nOs.toString() + ' - '+ res[0]['nome'].substring(0, 6)
+      let modal = nOs.toString() + ' - '+ res[0]['nome'].substring(0, 6) + "- " + res[0]['Tipo'].substring(0, 3).toUpperCase()
       let arr = [...this.state.production, {id: res[0]['ID'], [res[0]['Nome']] : modal} ]
       this.setState({production: arr})
      }
