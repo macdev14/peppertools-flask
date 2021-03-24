@@ -11,6 +11,64 @@ if (document.getElementById('numero_nf-label') && typeof document.getElementById
 
 }
 
+if (document.getElementById('id_cliente-label') && typeof document.getElementById('id_cliente-label').innerHTML != 'undefined' ) {
+   document.getElementById('id_cliente-label').innerHTML = 'Cliente';
+}
+
+if (document.getElementById('cod_func-label') && typeof document.getElementById('cod_func-label').innerHTML != 'undefined' ) {
+   document.getElementById('cod_func-label').innerHTML = 'Colaborador';
+}
+
+if (document.getElementById('codigo-label') && typeof document.getElementById('codigo-label').innerHTML != 'undefined') {
+   document.getElementById('codigo-label').innerHTML = 'Código';
+  document.getElementById('cod_mat-label').innerHTML = 'Material';
+   document.getElementById('descricao').addEventListener('input',  async function(evt){
+    
+    if (document.getElementById("codigo").value == '' || document.getElementById("codigo").value=='None'){
+          var word = '';
+          var number = Math.floor(Math.random() * 90 + 10)
+          var words = this.value.split(" ");
+          for(var i = 0; i< words.length-1; i++)
+          {
+              word += words[i][0]
+          }
+           console.log(word)
+           
+          document.getElementById("codigo").value = word + number
+
+    }
+          
+
+    
+   
+  
+})
+   
+}
+
+if (document.getElementById('descricao-label') && typeof document.getElementById('descricao-label').innerHTML != 'undefined' &&
+  document.getElementById('cod_item-label') && typeof document.getElementById('cod_item-label').innerHTML != 'undefined') {
+   document.getElementById('cod_item-label').innerHTML = 'Item';
+   document.getElementById('descricao').addEventListener('input',  async function(evt){
+    
+    if (document.getElementById("cod_item").value == '' || document.getElementById("cod_item").value=='None'){
+          var word = '';
+          var number = Math.floor(Math.random() * 90 + 10)
+          var words = this.value.split(" ");
+          for(var i = 0; i< words.length-1; i++)
+          {
+              word += words[i][0]
+          }
+           console.log(word)
+          document.getElementById("cod_item").value = word + number
+
+    }
+  } )
+}
+
+
+
+
 if (document.getElementById('cod_for-label') && typeof document.getElementById('cod_for-label').innerHTML != 'undefined' ) {
     document.getElementById('cod_for-label').innerHTML = 'Código Fornecedor';
     document.getElementById('cod_for').placeholder = 'Insira o Código do Fornecedor';
@@ -76,7 +134,7 @@ if (document.getElementById('qt-label') && typeof document.getElementById('qt-la
   document.getElementById('qt-label').innerHTML = 'Quantidade';
   document.getElementById('mm-label').innerHTML = 'Milimetros';
   $('#cep').mask('00000-000');
-  document.getElementById("data").attributes["required"]= = "";  
+  document.getElementById("data").attributes["required"] =  "";  
   document.getElementById('gaveta').type = 'number';
   document.getElementById('qt').type = 'number';
   document.getElementById('qt').placeholder = 'Insira a Quantidade';
@@ -94,7 +152,7 @@ if (document.getElementById('prazo_entrega-label') && typeof document.getElement
   document.getElementById('prazo_pagto-label').innerHTML = 'Prazo de Pagamento';
   document.getElementById('prazo_pagto').placeholder = 'Insira o Prazo de Pagamento';
 
-  document.getElementById('cod_item-label').innerHTML = 'Código do Item';
+  document.getElementById('cod_item-label').innerHTML = 'Item';
   document.getElementById('cod_item').placeholder = 'Insira o Código do Item';
 
   //document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
@@ -267,6 +325,7 @@ async function loadcnpj(cnpj) {
       })*/
         if (typeof document.getElementById("cod_cli") !== 'undefined' && document.getElementById("cod_cli")){
         if (document.getElementById("cod_cli").value == '' || document.getElementById("cod_cli").value=='None'){
+          var number = Math.floor(Math.random() * 90 + 10)
           var word = '';
           var words = response.data.name.split(" ");
           for(var i = 0; i< words.length-1; i++)
@@ -290,7 +349,7 @@ async function loadcnpj(cnpj) {
               word += words[i][0]
           }
           console.log(word)
-            document.getElementById("cod_for").value = word + '01'
+            document.getElementById("cod_for").value = word + number
           }
         }
       }

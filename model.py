@@ -99,6 +99,7 @@ class orcamento(Model):
     numero = IntegerField()
     id_cliente = IntegerField()
     ano = IntegerField()
+    cod_func = IntegerField()
     cod_item = IntegerField()
     data = DateTimeField(default=datetime.datetime.now)
     prazo_entrega = TextField()
@@ -226,7 +227,7 @@ class ponto(Model):
 
 class Material(Model):
     ID = PrimaryKeyField()
-    material = TextField()
+    nome = TextField()
     cod_material = TextField()
     class Meta:
         db_table = 'Material'
@@ -280,4 +281,16 @@ class linha(Model):
     numero_inicial = IntegerField()
     class Meta:
         db_table = 'linha'
+        database = db
+
+class item(Model):
+    id = PrimaryKeyField()
+    descricao = TextField()
+    codigo = TextField()
+    cod_mat = TextField()
+    esp1 = TextField()
+    esp2 = TextField()
+    esp3 = TextField()
+    class Meta:
+        db_table = 'itens'
         database = db

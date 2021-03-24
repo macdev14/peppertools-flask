@@ -575,12 +575,12 @@ def invoice():
         return redirect('/orcamento/form/'+ str(idorcam))
         #except:
         #    flash('Erro ao cadastrar!')
-    elif request.method == 'GET':
-        items = Estoque.select(Estoque.ferramenta, Estoque.ID)
-        clients = Clientes.select(Clientes.nome, Clientes.ID)
-        num = orcamento.select(fn.MAX(orcamento.numero)).scalar()
-        pager = page(table='orcamento', edit=False, select = clients , select2 = items)
-        return pager.render()
+    funcionario = funcionarios.select(funcionarios.id, funcionarios.nome)
+    items = Estoque.select(Estoque.ferramenta, Estoque.ID)
+    clients = Clientes.select(Clientes.nome, Clientes.ID)
+    num = orcamento.select(fn.MAX(orcamento.numero)).scalar()
+    pager = page(table='orcamento', edit=False, select = clients , select2=funcionario , select3=items)
+    return pager.render()
         #return render_template("Form.html", TableCol=Keys, clients=items, cliLen= len(items), selection2=clients, sel2Col='id_cliente', sel2Len=len(clients), cliCol = 'cod_item' ,data=data, TableLen = len(Keys), table='orcamento' , edit=False, numfield=num ,active1="",active2="", active3="active", active4="")
  
 
@@ -588,13 +588,20 @@ def invoice():
 @login_required
 def invoiceEdit(inid):
     if request.method == 'POST':
-        orcamento.update(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], id_cliente = request.form['id_cliente'], cod_func=request.form['cod_func'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()
+        if request.form['cod_item'] and request.form['id_cliente'] and request.form['cod_func']:
+            orcamento.update(numero=request.form['numero'], ano=request.form['ano'], cod_item=request.form['cod_item'], data=request.form['data'], id_cliente = request.form['id_cliente'], cod_func=request.form['cod_func'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()
+        flash('Verifique os campos.')
+        return redirect('/orcamento/form/'+ str(inid))
+    funcionario = funcionarios.select(funcionarios.id, funcionarios.nome)
     Keys = list(orcamento._meta.fields.keys())
     clients = list(Clientes.select(Clientes.nome, Clientes.ID).dicts())
     items = list(Estoque.select(Estoque.ferramenta, Estoque.ID).dicts())
     invoice = orcamento.select().where(orcamento.ID == inid)
-    pager = page(table = 'orcamento', content = invoice[0], edit=True, select = clients , select2 = items)
+    pager = page(table = 'orcamento', content = invoice[0], edit=True, select = clients , select2=funcionario, select3=items)
     return pager.render()
+    
+    
+    
     #return render_template("Form.html", content=invoice[0], clients=items, cliLen= len(items), cliCol = 'cod_item', selection2=clients, sel2Col='id_cliente', sel2Len=len(clients), TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1="",active2="", active3="active", active4="")
 
 @app.route('/list')
@@ -826,6 +833,37 @@ def inicio():
     return redirect('/ponto/form/')
 
 
+
+@app.route('/item/form/', defaults={'iditem': ''}, methods=['POST', 'GET'])
+@app.route('/item/form/<int:iditem>', methods=['POST', 'GET'])
+@login_required
+@employeeLevel
+def items(iditem):
+    Keys = list(item._meta.fields.keys())
+    if iditem != '':
+        if request.method == 'GET':
+            try:
+                materials = Material.select(Material.nome, Material.ID)
+                iteminfo = item.select().where(item.id == iditem)
+                itempage = page('item', content=iteminfo[0], edit=True, select=materials)
+                return itempage.render()
+            except:
+                return redirect('/item/form/')
+        elif request.method == 'POST':
+            try:
+                item.update(descricao= request.form['descricao'], codigo = request.form['codigo'], material=request.form['material'], esp1=request.form['esp1'], esp2= request.form['esp2'],esp3=request.form['esp3']).where(item.id == iditem).execute()
+                return redirect('/item/form/'+str(iditem))
+            except:
+                return redirect('/item/form/'+str(iditem))
+    
+    if request.method == 'POST':
+        item.create(descricao= request.form['descricao'], codigo = request.form['codigo'], material=request.form['material'], esp1=request.form['esp1'], esp2= request.form['esp2'],esp3=request.form['esp3'])
+        itemidnew = item.select(fn.MAX(item.id)).scalar()
+        return redirect('/item/form/'+str(itemidnew))
+    materials = Material.select(Material.nome, Material.ID)
+    itempage = page('item' , select=materials)
+    return itempage.render()
+    
 @app.route('/ponto/form/', defaults={'idponto': ''}, methods=['POST', 'GET'])
 @app.route('/ponto/form/<int:idponto>', methods=['POST', 'GET'])
 @login_required
@@ -1446,7 +1484,7 @@ def osinprogress():
     os = os_em_historico()
     return jsonify(os)
 
-    
+
 if __name__ == "__main__" :
      app.run(debug=True)
      socketio.run(app, debug=True)

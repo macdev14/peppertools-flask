@@ -3,7 +3,7 @@
 {% if edit == True %}
 
 <h2 class="text-center"> 
-  Alterar {% if table == 'contasapagar' %} Contas a Pagar {%else%} {{table.capitalize()}} {%endif%} <i class="fa fa-user-edit"></i>
+  Alterar {% if table == 'contasapagar' %} Contas a Pagar {%else%} {{table.capitalize()}} {%endif%} 
   
   </h2>
   <hr>
@@ -29,90 +29,74 @@
 <form action="/{{table}}/form/{{ content['ID'] or content['Id'] or content['id']}}" method="post">
     {% for i in range(TableLen) %}
     {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
-    <div class="form-group">
+    <div class="form-group"> 
         
-      {% if TableCol[i] == cliCol %}
-
-     
-      <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>  
-     
-  
-        <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
-          {% if clients and cliLen > 0%}
-              {% for client in clients %}
-              {% if client.ID %}
-            
-              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor'] or client.ID | int == content['id_bike'] or client.ID | int == content['cod_func'] or client.ID | int == content['id_os'] or client.ID | int == content['id_proc'] %}
-              <option value="{{ client['ID'] or client['id']  or client['Id'] }}" selected> {{ client['nome'] or client['ferramenta'] or client['Nome'] or client['Numero_Os'] }} </option>
-              {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome'] }}</option>
-              {% endif %}
-        
-              {% elif client.id %}
-                {% if client.id | int == content['id_cliente'] or client.id | int == content['cod_fornecedor'] or client.id | int == content['id_bike'] or client.id | int == content['cod_func'] or client.id | int == content['id_os'] or client.ID | int == content['id_proc']  %}
-                  <option value="{{ client['ID'] or client['id']  or client['Id'] }}" selected>{{client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome']  }}</option>
-                {% else %}
-                  <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome'] }}</option>
-                {% endif %}
-              {% elif client.Id %}
-                {% if client.Id | int == content['id_cliente'] or client.Id | int == content['cod_fornecedor'] or client.Id | int == content['id_bike'] or client.Id | int == content['cod_func'] or client.Id | int == content['id_os'] or client.ID | int == content['id_proc'] %}
-                  <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{client['nome'] or client['ferramenta'] or client['Nome'] or client['Numero_Os'] }}</option>
-                {% else %}
-                  <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{client['nome'] or client['ferramenta'] or client['Nome'] or client['Numero_Os'] }}</option>
-                {% endif %}
-
-              {% endif %}
-             
-              {% endfor %}    
-             {%else%}
-             <option value="" id="emptyoption" selected> Cadastre suas Opções </option>
-        {% endif %}
-         
-        </select> <br>
-       {%elif TableCol[i] == sel2Col%}
-
-          <select name="{{TableCol[i]}}" class="{{TableCol[i]}}"> 
-            {%if sel2Len == 0%}  
-              <option value="" id="emptyoption" selected> Cadastre suas Opções </option>
-          
-            {% elif selection2 and sel2len != 0 %}
-            {% for client in selection2 %}
-            {% if client.ID %}
-              {% if client.ID | int == content['id_cliente'] or client.ID | int == content['cod_fornecedor']  or client.ID | int == content['id_os'] or client.ID | int == content['id_proc']%}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected> {{ client['nome'] or client['ferramenta'] or client[keysel2]['Numero_Os'] }} </option>
-              {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] }}</option>
-              {% endif %}
-            
-            {% elif client.id %}
-              {% if client.id | int == content['cod_func'] or client.id | int == content['id_cliente'] or client.id | int == content['cod_fornecedor'] or client.id | int == content['id_os'] or client.id | int == content['id_proc']%}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] }}</option>
-              {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id'] }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or client['Nome'] }}</option>
-              {% endif %}
-            
-
-          {% elif client.Id %}
-              {% if client.Id | int == content['cod_func'] or client.Id  | int == content['id_cliente'] or client.Id | int == content['cod_fornecedor'] or client.Id | int == content['id_os'] or client.Id | int == content['id_proc'] %}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}" selected>{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or  client['Nome']  }}</option>
-              {% else %}
-              <option value="{{ client['ID'] or client['id'] or client['Id']  }}">{{ client['nome'] or client['ferramenta'] or client['Numero_Os'] or  client['Nome'] }}</option>
-              {% endif %}
-          {% endif %}
-          
-
-          {% endfor %}    
-          
-          
-       
-      </select> <br>
-  
-      {% endif %}
+      {% if cliCol and TableCol[i] == cliCol %}
       
-      {% else %}
-  
+        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>      
+    
+          <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+            {% if not cliLen %}
+                <option value="0" selected disabled>Cadastre/Selecione um item</option>
+                {% elif cliLen %}   
+                <option value="0" selected disabled> Cadastre/Selecione uma opção</option>
+                {% for client in range(cliLen) %}
+                    <option value="{{ clients[client]['ID'] or clients[client]['id']  or clients[client]['Id'] }}">{{clients[client]['nome'] or clients[client]['ferramenta'] or clients[client]['Numero_Os'] or clients[client]['Nome'] }}</option>
+                {% endfor %}    
+            {%endif%}
+           
+          </select> <br>
+          <p id="msg">
+            <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+           </p>
+          </div>
+      {% elif sel2Col and TableCol[i] == sel2Col %}
+          <div class="form-group">
+          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>       
+      
+            <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+              {% if not sel2Len %}
+                  <option value="0" selected disabled>Cadastre/Selecione um item </option>
+              {%elif sel2Len%}
+                 
+                  {% for keysel2 in range(sel2Len) %}
+                      <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] or selection2[keysel2]['Id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta'] or selection2[keysel2]['Ferramenta'] or selection2[keysel2]['Numero_Os'] or selection2[keysel2]['Nome'] }}</option>
+                  {% endfor %}    
+                 {%endif%}
+             
+            </select> <br>
+            <p id="msg">
+              <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+             </p>
+            </div>
+      {% elif sel3Col and TableCol[i] == sel3Col %}
+      <div class="form-group">
+            <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>         
+        
+              <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+                {% if not sel3Len %}
+                    <option value="0" selected disabled> Cadastre/Selecione uma opção</option>
+                {%elif sel3Len%}
+                   
+                    {% for keysel3 in range(sel3Len) %}
+                        <option value="{{ selection3[keysel3]['ID'] or selection3[keysel3]['id'] or selection3[keysel3]['Id'] }}">{{selection3[keysel3]['nome'] or selection3[keysel3]['ferramenta'] or selection3[keysel3]['Ferramenta'] or selection3[keysel3]['Numero_Os'] or selection3[keysel3]['Nome'] }}</option>
+                    {% endfor %}    
+                {%endif%}
+               
+              </select> <br>
 
-        {% if TableCol[i] == 'data' and data %}
+         
+              <p id="msg">
+                <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+               </p>
+
+                </div>
+      
+      
+      
+      
+      
+        {% elif TableCol[i] == 'data' and data %}
           <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
           <input type="text" required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
           {%else%}
@@ -124,7 +108,7 @@
   
      {% endif %}
      {% endif %}
-     {% endif %}
+     
     {% endfor %}
     <button class="btn btn-warning btn-lg">
       Alterar {% if table == 'contasapagar' %} Conta {%else%} {{table.capitalize()}}{%endif%} <i class=".glyphicon-glyphicon-pencil"></i></button>
@@ -144,17 +128,17 @@
 
 
   <form action="/delete/table={{table}}&id={{ content['ID'] or content['id'] or content['Id'] }}" method="post">
-    <button class="btn btn-danger btn-lg">
+    <button class="btn btn-danger btn-md">
      Deletar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></form>
     <br>
 <form action="/{{table}}/form/" method="get">
-  <button class="btn btn-primary btn-lg">
+  <button class="btn btn-primary btn-md">
    Cadastrar Novo <i class=".glyphicon-glyphicon-pencil"></i>
   </button></form>
 
   <form action="/{{table}}" method="get">
-    <button class="btn btn-primary btn-lg">
+    <button class="btn btn-primary btn-md">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></form>
 
@@ -171,67 +155,92 @@
   <form action="/{{table}}/form/inicio" method="post">
     {%else%}
     <form action="/{{table}}/form/" method="post">
-      {%endif%}
+  {%endif%}
+    
       <button class="btn btn-primary btn-sm float-right">Cadastrar</button>
       {% for i in range(TableLen) %}
       {% if TableCol[i] != 'ID' and TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
       <div class="form-group">
       
         {% if cliCol and TableCol[i] == cliCol %}
-      
+        <div class="form-group">
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
     
           <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
             {% if not cliLen %}
-                <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
+                <option value="0" selected disabled> Cadastre/Selecione uma opção</option>
                 {% elif cliLen %}   
-                <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
+                <option value="0" selected disabled> Cadastre/Selecione uma opção</option>
                 {% for client in range(cliLen) %}
                     <option value="{{ clients[client]['ID'] or clients[client]['id']  or clients[client]['Id'] }}">{{clients[client]['nome'] or clients[client]['ferramenta'] or clients[client]['Numero_Os'] or clients[client]['Nome'] }}</option>
                 {% endfor %}    
                
-           
-          </select> <br>
-         
-          {% endif %}
+            {% endif %}
+          </select> 
+          <p id="msg">
+            <form action="/{{TableCol[i]}}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+           </p>
+          </div>
           {% elif sel2Col and TableCol[i] == sel2Col %}
-          
+          <div class="form-group"> 
           <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
       
             <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
               {% if not sel2Len %}
-                  <option value="0" selected disabled>CADASTRE SUA OPÇÃO</option>
+                  <option value="0" selected disabled> Cadastre/Selecione uma opção</option>
               {%elif sel2Len%}
                  
                   {% for keysel2 in range(sel2Len) %}
                       <option value="{{ selection2[keysel2]['ID'] or selection2[keysel2]['id'] or selection2[keysel2]['Id'] }}">{{selection2[keysel2]['nome'] or selection2[keysel2]['ferramenta'] or selection2[keysel2]['Ferramenta'] or selection2[keysel2]['Numero_Os'] or selection2[keysel2]['Nome'] }}</option>
                   {% endfor %}    
-                 
+                {%endif%}
              
-            </select> <br>
-
-          {%endif%}
+            </select> 
+           <p id="msg">
+            <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+           </p>
+          </div>
+            {% elif sel3Col and TableCol[i] == sel3Col %}
+            <div class="form-group"> 
+            <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
+        
+              <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
+                {% if not sel3Len %}
+                    <option value="0" selected disabled> Cadastre/Selecione uma opção</option>
+                {%elif sel3Len%}
+                   
+                    {% for keysel3 in range(sel3Len) %}
+                        <option value="{{ selection3[keysel3]['ID'] or selection3[keysel3]['id'] or selection3[keysel3]['Id'] }}">{{selection3[keysel3]['nome'] or selection3[keysel3]['ferramenta'] or selection3[keysel3]['Ferramenta'] or selection3[keysel3]['Numero_Os'] or selection3[keysel3]['Nome'] }}</option>
+                    {% endfor %}    
+                {%endif%}
+               
+              </select>
+              <p id="msg">
+                <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+               </p>
+     </div>
     
     
         
-        {% else %}
+      
 
-        {% if TableCol[i] == 'data'  and data%}
+        {% elif TableCol[i] == 'data'  and data%}
 
-        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
-        <input type="text" class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
+          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>
+          <input type="text" class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" placeholder="Insira {{TableCol[i].capitalize()}}" value="{{data}}">
         {% elif table == 'ponto'%}    
-        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
-        <input class="form-control"  id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
+          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
+          <input class="form-control"  id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
         {%else%}
-        <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
-        <input class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
+          <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize().replace('_', ' ') }}</label>
+          <input  required class="form-control" id="{{TableCol[i]}}" name="{{TableCol[i]}}" aria-describedby="{{TableCol[i]}}" {% if i == 1 and numfield %}value="{{numfield}}" type="number"{% elif TableCol[i] == "Tempo_Objetivo" %} type="number" placeholder="Minutos"{%endif%} placeholder="Insira {{ TableCol[i].capitalize().replace('_', ' ') }}" type="text">
         {% endif %}
        
         
       </div>
       {% endif %} 
-      {% endif %} 
+    
+      
       {% endfor %}
     
       <br>
@@ -243,7 +252,7 @@
   <br>
 
   <a href="/{{table}}">
-    <button class="btn btn-primary btn-lg">
+    <button class="btn btn-primary btn-md">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></a>
   </div>

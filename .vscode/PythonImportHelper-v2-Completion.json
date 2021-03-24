@@ -984,7 +984,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def invoiceEdit(inid):\n    if request.method == 'POST':\n        orcamento.update(numero=request.form['numero'], ano = request.form['ano'], cod_item=request.form['cod_item'], data= request.form['data'], id_cliente = request.form['id_cliente'], cod_func=request.form['cod_func'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()\n    Keys = list(orcamento._meta.fields.keys())\n    clients = list(Clientes.select(Clientes.nome, Clientes.ID).dicts())\n    items = list(Estoque.select(Estoque.ferramenta, Estoque.ID).dicts())\n    invoice = orcamento.select().where(orcamento.ID == inid)\n    pager = page(table = 'orcamento', content = invoice[0], edit=True, select = clients , select2 = items)\n    return pager.render()\n    #return render_template(\"Form.html\", content=invoice[0], clients=items, cliLen= len(items), cliCol = 'cod_item', selection2=clients, sel2Col='id_cliente', sel2Len=len(clients), TableCol=Keys, TableLen = len(Keys), table='orçamento' , edit=True, id=inid, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")",
+        "peekOfCode": "def invoiceEdit(inid):\n    if request.method == 'POST':\n        if request.form['cod_item'] and request.form['id_cliente'] and request.form['cod_func']:\n            orcamento.update(numero=request.form['numero'], ano=request.form['ano'], cod_item=request.form['cod_item'], data=request.form['data'], id_cliente = request.form['id_cliente'], cod_func=request.form['cod_func'], prazo_entrega=request.form['prazo_entrega'], prazo_pagto=request.form['prazo_pagto'], ipi=request.form['ipi'], icms=request.form['icms']).where(orcamento.ID == inid).execute()\n        flash('Verifique os campos.')\n        return redirect('/orcamento/form/'+ str(inid))\n    funcionario = funcionarios.select(funcionarios.id, funcionarios.nome)\n    Keys = list(orcamento._meta.fields.keys())\n    clients = list(Clientes.select(Clientes.nome, Clientes.ID).dicts())\n    items = list(Estoque.select(Estoque.ferramenta, Estoque.ID).dicts())",
         "detail": "app",
         "documentation": {}
     },
@@ -1057,6 +1057,15 @@
         "importPath": "app",
         "description": "app",
         "peekOfCode": "def inicio():\n    if request.method == 'POST':\n        try:\n            data = dict(request.form)\n            if not request.form['cod_func'] or request.form['cod_func'] == 0:\n                flash('Selecione colaborador')\n                return redirect('/ponto/form/')\n            desc = data['desc']\n            ponto.create(inicio=datetime.datetime.now().strftime('%H:%M:%S') ,desc=desc ,data=datetime.datetime.now().strftime('%Y-%m-%d'), cod_func=data['cod_func'])\n            idpontonew = ponto.select(fn.MAX(ponto.id)).scalar()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "items",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def items(iditem):\n    Keys = list(item._meta.fields.keys())\n    if iditem != '':\n        if request.method == 'GET':\n            try:\n                materials = Material.select(Material.nome, Material.ID)\n                iteminfo = item.select().where(item.id == iditem)\n                itempage = page('item', content=iteminfo[0], edit=True, select=materials)\n                return itempage.render()\n            except:",
         "detail": "app",
         "documentation": {}
     },
@@ -2028,7 +2037,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class orcamento(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    id_cliente = IntegerField()\n    ano = IntegerField()\n    cod_item = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)\n    prazo_entrega = TextField()\n    prazo_pagto = TextField()\n    ipi = TextField()",
+        "peekOfCode": "class orcamento(Model):\n    ID = PrimaryKeyField()\n    numero = IntegerField()\n    id_cliente = IntegerField()\n    ano = IntegerField()\n    cod_func = IntegerField()\n    cod_item = IntegerField()\n    data = DateTimeField(default=datetime.datetime.now)\n    prazo_entrega = TextField()\n    prazo_pagto = TextField()",
         "detail": "model",
         "documentation": {}
     },
@@ -2118,7 +2127,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Material(Model):\n    ID = PrimaryKeyField()\n    material = TextField()\n    cod_material = TextField()\n    class Meta:\n        db_table = 'Material'\n        database = db\nclass notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()",
+        "peekOfCode": "class Material(Model):\n    ID = PrimaryKeyField()\n    nome = TextField()\n    cod_material = TextField()\n    class Meta:\n        db_table = 'Material'\n        database = db\nclass notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()",
         "detail": "model",
         "documentation": {}
     },
@@ -2163,7 +2172,16 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class linha(Model):\n    id= PrimaryKeyField()\n    nome= TextField()\n    numero_inicial = IntegerField()\n    class Meta:\n        db_table = 'linha'\n        database = db",
+        "peekOfCode": "class linha(Model):\n    id= PrimaryKeyField()\n    nome= TextField()\n    numero_inicial = IntegerField()\n    class Meta:\n        db_table = 'linha'\n        database = db\nclass item(Model):\n    id = PrimaryKeyField()\n    descricao = TextField()",
+        "detail": "model",
+        "documentation": {}
+    },
+    {
+        "label": "item",
+        "kind": 6,
+        "importPath": "model",
+        "description": "model",
+        "peekOfCode": "class item(Model):\n    id = PrimaryKeyField()\n    descricao = TextField()\n    codigo = TextField()\n    cod_mat = TextField()\n    esp1 = TextField()\n    esp2 = TextField()\n    esp3 = TextField()\n    class Meta:\n        db_table = 'itens'",
         "detail": "model",
         "documentation": {}
     },
@@ -2199,7 +2217,7 @@
         "kind": 6,
         "importPath": "page",
         "description": "page",
-        "peekOfCode": "class page:\n    '''\n    arg: \n    table, content, edit, select, select2\n    '''\n    def __init__(self, table, content = None, edit=False, select = None, select2 = None):\n        self.col = []\n        self.table = table\n        self.Keys = list(globals()[self.table]._meta.fields.keys())\n        self.edit = edit",
+        "peekOfCode": "class page:\n    '''\n    arg: \n    table, content, edit, select, select2\n    '''\n    def __init__(self, table, content = None, edit=False, select = None, select2 = None, select3 = None):\n        self.col = []\n        self.table = table\n        self.Keys = list(globals()[self.table]._meta.fields.keys())\n        self.edit = edit",
         "detail": "page",
         "documentation": {}
     },
