@@ -11,7 +11,7 @@ from flask import flash, redirect, render_template, request, session, escape, Re
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
-import mysql.connector as sqlite3
+#import mysql.connector as sqlite3
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from model import *
 """

@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask
 
 ### Flask ###
+minified/
 ssl/
 flask_session/
 tmp.py
