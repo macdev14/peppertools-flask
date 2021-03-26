@@ -16,14 +16,6 @@
         "documentation": {}
     },
     {
-        "label": "QRcode",
-        "importPath": "flask_qrcode",
-        "description": "flask_qrcode",
-        "isExtraImport": true,
-        "detail": "flask_qrcode",
-        "documentation": {}
-    },
-    {
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -161,54 +153,6 @@
     },
     {
         "label": "make_response",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "Flask",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "render_template",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "request",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "session",
-        "importPath": "flask",
-        "description": "flask",
-        "isExtraImport": true,
-        "detail": "flask",
-        "documentation": {}
-    },
-    {
-        "label": "flash",
         "importPath": "flask",
         "description": "flask",
         "isExtraImport": true,
@@ -409,14 +353,6 @@
     },
     {
         "label": "Session",
-        "importPath": "flask_session.__init__",
-        "description": "flask_session.__init__",
-        "isExtraImport": true,
-        "detail": "flask_session.__init__",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
         "importPath": "flask_session",
         "description": "flask_session",
         "isExtraImport": true,
@@ -429,22 +365,6 @@
         "description": "flask_session",
         "isExtraImport": true,
         "detail": "flask_session",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "flask_session",
-        "description": "flask_session",
-        "isExtraImport": true,
-        "detail": "flask_session",
-        "documentation": {}
-    },
-    {
-        "label": "mkdtemp",
-        "importPath": "tempfile",
-        "description": "tempfile",
-        "isExtraImport": true,
-        "detail": "tempfile",
         "documentation": {}
     },
     {
@@ -549,46 +469,6 @@
         "description": "werkzeug.exceptions",
         "isExtraImport": true,
         "detail": "werkzeug.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "default_exceptions",
-        "importPath": "werkzeug.exceptions",
-        "description": "werkzeug.exceptions",
-        "isExtraImport": true,
-        "detail": "werkzeug.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "HTTPException",
-        "importPath": "werkzeug.exceptions",
-        "description": "werkzeug.exceptions",
-        "isExtraImport": true,
-        "detail": "werkzeug.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "InternalServerError",
-        "importPath": "werkzeug.exceptions",
-        "description": "werkzeug.exceptions",
-        "isExtraImport": true,
-        "detail": "werkzeug.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "check_password_hash",
-        "importPath": "werkzeug.security",
-        "description": "werkzeug.security",
-        "isExtraImport": true,
-        "detail": "werkzeug.security",
-        "documentation": {}
-    },
-    {
-        "label": "generate_password_hash",
-        "importPath": "werkzeug.security",
-        "description": "werkzeug.security",
-        "isExtraImport": true,
-        "detail": "werkzeug.security",
         "documentation": {}
     },
     {
@@ -655,14 +535,6 @@
         "importPath": "sys.os.jwt.json",
         "description": "sys.os.jwt.json",
         "detail": "sys.os.jwt.json",
-        "documentation": {}
-    },
-    {
-        "label": "Undefined",
-        "importPath": "jinja2",
-        "description": "jinja2",
-        "isExtraImport": true,
-        "detail": "jinja2",
         "documentation": {}
     },
     {
@@ -798,14 +670,6 @@
         "documentation": {}
     },
     {
-        "label": "*",
-        "importPath": "helper",
-        "description": "helper",
-        "isExtraImport": true,
-        "detail": "helper",
-        "documentation": {}
-    },
-    {
         "label": "sys,",
         "kind": 6,
         "isExtraImport": true,
@@ -852,48 +716,6 @@
         "description": "page",
         "isExtraImport": true,
         "detail": "page",
-        "documentation": {}
-    },
-    {
-        "label": "sys",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "sys",
-        "description": "sys",
-        "detail": "sys",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "SQL",
-        "importPath": "cs50",
-        "description": "cs50",
-        "isExtraImport": true,
-        "detail": "cs50",
-        "documentation": {}
-    },
-    {
-        "label": "SQL",
-        "importPath": "cs50",
-        "description": "cs50",
-        "isExtraImport": true,
-        "detail": "cs50",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "flask_ssl",
-        "description": "flask_ssl",
-        "isExtraImport": true,
-        "detail": "flask_ssl",
         "documentation": {}
     },
     {
@@ -952,6 +774,14 @@
         "importPath": "urllib.parse",
         "description": "urllib.parse",
         "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "SQL",
+        "importPath": "cs50",
+        "description": "cs50",
+        "isExtraImport": true,
+        "detail": "cs50",
         "documentation": {}
     },
     {
@@ -2266,213 +2096,6 @@
         "description": "app",
         "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():",
         "detail": "app",
-        "documentation": {}
-    },
-    {
-        "label": "after_request",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "index",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_val = getData(\"val\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_len = len(clientes)\n    val_len = len(clientes_val)\n    #return getClientes(\"key\",\"*\")",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "clientes",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_val = getData(\"val\",\"*\", \"Clientes\",\"\",\"\")\n    clientes_len = len(clientes)\n    val_len = len(clientes_val)\n    #return getClientes(\"key\",\"*\")\n    return render_template(\"clientes.html\", title=\"Clientes\", clientes=clientes, clientes_val = clientes_val, clientes_len = clientes_len, \n                            val_len = val_len, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route('/clientes/buscar')\n@login_required",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "search",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def search():\n    return underdev()\n@app.route('/clientes/editar', methods=[\"GET\", \"POST\"])\n@login_required\ndef editar():\n    if request.method == 'GET':\n        return redirect(\"/clientes\")\n    else:\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        id = request.form.get(\"id\")",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "editar",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def editar():\n    if request.method == 'GET':\n        return redirect(\"/clientes\")\n    else:\n        clientes = getData(\"key\",\"*\", \"Clientes\")\n        id = request.form.get(\"id\")\n        return render_template(\"client_edit.html\", clientes=clientes, id=id, active1=\"\",active2=\"\", active3=\"active\", active4=\"\")\n@app.route(\"/os\")\n@login_required\ndef os():",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def os():\n    os = getData(\"key\",\"*\", \"Cadastro_Os\",\"limit\",\"Numero_os\") \n    os_val = getData(\"val\",\"*\", \"Cadastro_Os\", \"limit\", \"Numero_os\")\n    os_len = len(os) \n    val_len = len(os_val)\n    return render_template(\"os.html\", os=os, os_val= os_val, os_len=os_len, val_len=val_len, active1=\"\",active2=\"\", active3=\"\", active4=\"active\")     \n@app.route(\"/os/imprimir\")\n@login_required\ndef print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "print1",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "buscar",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)  \"\"\"",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "login",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)  \"\"\"\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    if request.method == 'POST':\n        user = request.form.get('user')",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "logout",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def logout():\n    session.clear()\n    return redirect('/login')\n@app.route(\"/os/total\")\n@login_required\ndef all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "all",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def all():\n    return getNumber()\n@app.route('/os/form/', methods=[\"POST\", \"GET\"])\n@login_required\ndef new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "new_os",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def new_os():\n    clients = db.execute('SELECT DISTINCT Clientes.ID, nome FROM Cadastro_OS, Clientes WHERE Cadastro_OS.id_cliente = Clientes.ID')\n    x = datetime.datetime.now()\n    date = x.strftime(\"%d/%m/%Y\")\n    os_num = db.execute('SELECT MAX(Numero_Os) AS num_os FROM Cadastro_OS')\n    os_num = int(os_num[0]['num_os']) + 1\n    clients_len = len(clients)\n    if request.method == 'POST' and request.form['Id_Cliente'] != str(0):\n        print(dict(request.form))\n        data = dict(request.form)",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "os_edit",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def os_edit(osid):\n    osid2 = osid  \n    if request.method == 'POST':\n        data = dict(request.form)\n        try:\n            data['Numero_Os'] = int(data['Numero_Os'])\n            data['Id_Cliente'] = int(data['Id_Cliente'])\n            data['Numero_Nf'] = int(data['Numero_Nf'])\n            data['Numero_Pedido'] = int(data['Numero_Pedido'])\n            data['Quantidade'] = int(data['Quantidade'])",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "os_del",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def os_del(osid):\n    if request.method == 'GET':\n        try:\n            deleteData('Cadastro_Os', 'Numero_Os', osid)\n            flash('O.S deletada com sucesso')\n            return redirect('/os/form/')\n        except:\n            flash('Erro ao deletar O.S')\n            return redirect('/os/form/'+str(osid))\n    flash('Erro ao deletar O.S')",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def register():\n    \"\"\"Register user\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"\n    if request.method == 'POST':\n        # Ensure username was submitted\n        if not request.form.get(\"username\"):\n            flash(\"Usuário inválido.\")",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "print",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def print(osid):\n    if request.method == 'GET':\n        os = getOs(osid)\n        field = dict(os[0])\n        res = getClient(osid)\n       #print(res)\n        qr = \"https://peppertools.herokuapp.com/os/\"+str(field['Numero_Os'])\n        field['nome'] = res\n        field['Data_digit'] = datetime.datetime.strptime(checkDate(field['Data']), '%d/%m/%Y').strftime('%y')\n        field['Data'] = checkDate(field['Data'])",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "access",
-        "kind": 2,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "def access(osid):\n    session['osid'] = osid\n    return redirect('/login')",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "db",
-        "kind": 5,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "db = SQL(\"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\")\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "JINJA2_ENVIRONMENT_OPTIONS",
-        "kind": 5,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined }\napp = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "app",
-        "kind": 5,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "app = Flask(__name__)\nQRcode(app)\n@app.after_request\ndef after_request(response):\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    return response\napp.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "app.config[\"SESSION_FILE_DIR\"]",
-        "kind": 5,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "app.config[\"SESSION_PERMANENT\"]",
-        "kind": 5,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():",
-        "detail": "bla",
-        "documentation": {}
-    },
-    {
-        "label": "app.config[\"SESSION_TYPE\"]",
-        "kind": 5,
-        "importPath": "bla",
-        "description": "bla",
-        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/')\n@login_required\ndef index():\n    return render_template(\"layout.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"\")\n@app.route('/clientes')\n@login_required\ndef clientes():\n    clientes = getData(\"key\",\"*\", \"Clientes\",\"\",\"\")",
-        "detail": "bla",
         "documentation": {}
     },
     {
