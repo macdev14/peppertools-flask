@@ -3,6 +3,13 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask
 
 ### Flask ###
+ssl/
+flask_session/
+tmp.py
+.vscode/
+__pycache__/
+.vercel/
+bla.py
 instance/*
 !instance/.gitignore
 .webassets-cache
@@ -11,6 +18,7 @@ static/node_modules/
 static/b.js
 flask_session/
 app.yaml
+peppertools.db
 peppertools34.db
 peppertools34.sqlite3
 peppertools45.db 

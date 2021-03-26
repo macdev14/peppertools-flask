@@ -1,21 +1,5 @@
 [
     {
-        "label": "*",
-        "importPath": "helper",
-        "description": "helper",
-        "isExtraImport": true,
-        "detail": "helper",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "helper",
-        "description": "helper",
-        "isExtraImport": true,
-        "detail": "helper",
-        "documentation": {}
-    },
-    {
         "label": "QRcode",
         "importPath": "flask_qrcode",
         "description": "flask_qrcode",
@@ -29,6 +13,86 @@
         "description": "flask_qrcode",
         "isExtraImport": true,
         "detail": "flask_qrcode",
+        "documentation": {}
+    },
+    {
+        "label": "QRcode",
+        "importPath": "flask_qrcode",
+        "description": "flask_qrcode",
+        "isExtraImport": true,
+        "detail": "flask_qrcode",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "send_from_directory",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "make_response",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
         "documentation": {}
     },
     {
@@ -312,6 +376,30 @@
         "documentation": {}
     },
     {
+        "label": "CORS",
+        "importPath": "flask_cors",
+        "description": "flask_cors",
+        "isExtraImport": true,
+        "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
+        "label": "cross_origin",
+        "importPath": "flask_cors",
+        "description": "flask_cors",
+        "isExtraImport": true,
+        "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "flask_session.__init__",
+        "description": "flask_session.__init__",
+        "isExtraImport": true,
+        "detail": "flask_session.__init__",
+        "documentation": {}
+    },
+    {
         "label": "Session",
         "importPath": "flask_session.__init__",
         "description": "flask_session.__init__",
@@ -344,6 +432,14 @@
         "documentation": {}
     },
     {
+        "label": "Session",
+        "importPath": "flask_session",
+        "description": "flask_session",
+        "isExtraImport": true,
+        "detail": "flask_session",
+        "documentation": {}
+    },
+    {
         "label": "mkdtemp",
         "importPath": "tempfile",
         "description": "tempfile",
@@ -357,6 +453,22 @@
         "description": "tempfile",
         "isExtraImport": true,
         "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "mkdtemp",
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "isExtraImport": true,
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "SocketIO",
+        "importPath": "flask_socketio",
+        "description": "flask_socketio",
+        "isExtraImport": true,
+        "detail": "flask_socketio",
         "documentation": {}
     },
     {
@@ -440,6 +552,46 @@
         "documentation": {}
     },
     {
+        "label": "default_exceptions",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "InternalServerError",
+        "importPath": "werkzeug.exceptions",
+        "description": "werkzeug.exceptions",
+        "isExtraImport": true,
+        "detail": "werkzeug.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "check_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
+        "label": "generate_password_hash",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
         "label": "check_password_hash",
         "importPath": "werkzeug.security",
         "description": "werkzeug.security",
@@ -497,12 +649,20 @@
         "documentation": {}
     },
     {
-        "label": "sys,",
+        "label": "sys,os,jwt,json",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "sys.",
-        "description": "sys.",
-        "detail": "sys.",
+        "importPath": "sys.os.jwt.json",
+        "description": "sys.os.jwt.json",
+        "detail": "sys.os.jwt.json",
+        "documentation": {}
+    },
+    {
+        "label": "Undefined",
+        "importPath": "jinja2",
+        "description": "jinja2",
+        "isExtraImport": true,
+        "detail": "jinja2",
         "documentation": {}
     },
     {
@@ -527,6 +687,14 @@
         "isExtraImport": true,
         "importPath": "datetime",
         "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
         "detail": "datetime",
         "documentation": {}
     },
@@ -603,6 +771,47 @@
         "description": "playhouse.shortcuts",
         "isExtraImport": true,
         "detail": "playhouse.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "model_to_dict",
+        "importPath": "playhouse.shortcuts",
+        "description": "playhouse.shortcuts",
+        "isExtraImport": true,
+        "detail": "playhouse.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "dict_to_model",
+        "importPath": "playhouse.shortcuts",
+        "description": "playhouse.shortcuts",
+        "isExtraImport": true,
+        "detail": "playhouse.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "helper",
+        "description": "helper",
+        "isExtraImport": true,
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "helper",
+        "description": "helper",
+        "isExtraImport": true,
+        "detail": "helper",
+        "documentation": {}
+    },
+    {
+        "label": "sys,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys.",
+        "description": "sys.",
+        "detail": "sys.",
         "documentation": {}
     },
     {
@@ -752,6 +961,564 @@
         "importPath": "urllib.parse",
         "description": "urllib.parse",
         "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "before_request",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def before_request():\n db.connect()\n@app.after_request\ndef after_request(response):\n db.close()\n response.headers[\"Cache-Control\"]=\"no-cache, no-store, must-revalidate\"\n response.headers[\"Expires\"]=0\n response.headers[\"Pragma\"]=\"no-cache\"\n response.headers['Access-Control-Allow-Origin']='*'\n response.headers[\"Access-Control-Allow-Credentials\"]=\"true\"",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "after_request",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def after_request(response):\n db.close()\n response.headers[\"Cache-Control\"]=\"no-cache, no-store, must-revalidate\"\n response.headers[\"Expires\"]=0\n response.headers[\"Pragma\"]=\"no-cache\"\n response.headers['Access-Control-Allow-Origin']='*'\n response.headers[\"Access-Control-Allow-Credentials\"]=\"true\"\n response.headers[\"Access-Control-Allow-Headers\"]=\"Access-Control-Allow-Headers, Authorization, Origin, X-Requested-With, Content-Type, Accept\"\n response.headers[\"Access-Control-Allow-Methods\"]=\"GET,HEAD,OPTIONS,POST,PUT\"\n return response",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "favicon",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def favicon():\n return send_from_directory(os.path.join(app.root_path,'static'),'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():\n os=os_em_historico()\n response=Response(render_template(\"home.html\",title=\"Inicio\",auth=session.get('token'),historico_os=os,active1=\"active\",active2=\"\",active3=\"\",active4=\"\"))\n response.headers['authorization']=session.get('_permanent')\n return response",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def index():\n os=os_em_historico()\n response=Response(render_template(\"home.html\",title=\"Inicio\",auth=session.get('token'),historico_os=os,active1=\"active\",active2=\"\",active3=\"\",active4=\"\"))\n response.headers['authorization']=session.get('_permanent')\n return response\n'''@app.route('/historico')\n@login_required\n@managerLevel\ndef historico():\n    os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "historico",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def historico():\n    os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n'''\n@app.route('/clientes')\n@login_required\n@managerLevel\ndef clientes():\n return render_template(\"clientes.html\",auth=session.get('token'),title=\"Clientes\",active1=\"\",active2=\"\",active3=\"\",active4=\"active\")\n'''@app.route('/clientes/buscar')\n@login_required",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "clientes",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def clientes():\n return render_template(\"clientes.html\",auth=session.get('token'),title=\"Clientes\",active1=\"\",active2=\"\",active3=\"\",active4=\"active\")\n'''@app.route('/clientes/buscar')\n@login_required\n@managerLevel\ndef search():\n    return underdev()\n'''\n@app.route('/clientes/form/',methods=[\"GET\",\"POST\"])\n@login_required",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "search",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def search():\n    return underdev()\n'''\n@app.route('/clientes/form/',methods=[\"GET\",\"POST\"])\n@login_required\n@managerLevel\ndef cadCli():\n if request.method=='GET':\n  clientes=list(Clientes._meta.fields.keys())\n  return render_template(\"Form.html\",TableCol=clientes,TableLen=len(clientes),table='clientes',edit=False,id=id,active1=\"\",active2=\"\",active3=\"\",active4=\"active\")",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "cadCli",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def cadCli():\n if request.method=='GET':\n  clientes=list(Clientes._meta.fields.keys())\n  return render_template(\"Form.html\",TableCol=clientes,TableLen=len(clientes),table='clientes',edit=False,id=id,active1=\"\",active2=\"\",active3=\"\",active4=\"active\")\n elif request.method=='POST': \n  try:\n   if request.form:\n    data=dict(request.form)\n    Clientes.create(cod_cli=request.form['cod_cli'],nome=request.form['nome'],cnpj=request.form['cnpj'],ie=request.form['ie'],endereco=request.form['endereco'],cidade=request.form['cidade'],cep=request.form['cep'],telefone=request.form['telefone'],celular=request.form['celular'],obs=request.form['obs'])\n    idCli=Clientes.select(fn.MAX(Clientes.ID)).scalar()",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "editCli",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def editCli(cliId):\n if request.method=='GET':\n  clientes=Clientes.select().where(Clientes.ID==cliId)\n  if not clientes:\n   flash('Erro ao encontrar cliente.')\n   return redirect('/clientes/form/')\n  clientesCol=list(Clientes._meta.fields.keys())\n  cliLen=len(clientesCol)\n  return render_template(\"Form.html\",table='clientes',content=clientes[0],TableLen=cliLen,TableCol=clientesCol,id=cliId,edit=True,active1=\"\",active2=\"\",active3=\"active\",active4=\"\")\n elif request.method=='POST':",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "osAll",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def osAll():\n try:\n  session.pop('osid')\n except:\n  pass\n return render_template(\"os.html\",auth=session.get('token'),active1=\"\",active2=\"\",active3=\"\",active4=\"active\",title=\"Ordem de Serviço\") \n'''\n@app.route(\"/os/imprimir\")\n@login_required\n@managerLevel",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "print1",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def print1():\n    #return render_template(\"imprimir_os.html\", title= \"Inicio\", active1=\"active\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route(\"/os/buscar\")\n@login_required\n@adminLevel\ndef buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n'''",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "buscar",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n'''\n@app.route('/login',methods=[\"GET\",\"POST\"])\ndef login():\n tz=pytz.timezone('America/Sao_Paulo')\n x=datetime.datetime.now(tz=tz)\n date=x.strftime(\"%d/%m/%Y\")\n if request.method=='POST':",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def login():\n tz=pytz.timezone('America/Sao_Paulo')\n x=datetime.datetime.now(tz=tz)\n date=x.strftime(\"%d/%m/%Y\")\n if request.method=='POST':\n  user=request.form.get('user')\n  password=request.form.get('password')\n  return login_user(user,password,os.environ['SECRET_KEY'])\n else: \n  return render_template('login.html',date=date)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def logout():\n return logoutCommit()\n@app.route(\"/os/total\")\n@login_required\ndef all():\n nos=Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n return jsonify(nos)\n@app.route('/os/form/',methods=[\"POST\",\"GET\"])\n@login_required\n@managerLevel",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "all",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def all():\n nos=Cadastro_OS.select(fn.MAX(Cadastro_OS.Id)).get()\n return jsonify(nos)\n@app.route('/os/form/',methods=[\"POST\",\"GET\"])\n@login_required\n@managerLevel\ndef new_os():\n clients=Clientes.select(Clientes.ID,Clientes.nome).join(Cadastro_OS,on=(Cadastro_OS.Id_Cliente==Clientes.ID)).distinct()\n x=datetime.datetime.now()\n date=x.strftime(\"%d/%m/%Y\")",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "new_os",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def new_os():\n clients=Clientes.select(Clientes.ID,Clientes.nome).join(Cadastro_OS,on=(Cadastro_OS.Id_Cliente==Clientes.ID)).distinct()\n x=datetime.datetime.now()\n date=x.strftime(\"%d/%m/%Y\")\n os_num=int(Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar())+1\n clients_len=len(clients)\n if request.method=='POST':\n  try:\n   if request.form['Id_Cliente']==0 or request.form['Id_Cliente']=='0':\n    flash('Selecione um cliente')",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "os_edit",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def os_edit(osid):\n if request.method=='POST':\n  if not 'id_Linha' in request.form:\n   flash('Selecione uma Linha de Produto')\n   return redirect('/os/form/'+str(osid))\n  elif not 'Id_Cliente' in request.form:\n   flash('Selecione um Cliente')\n   return redirect('/os/form/'+str(osid))\n  data=dict(request.form)\n  try:",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "os_del",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def os_del(osid):\n if request.method=='GET':\n  try:\n   Cadastro_OS.delete().where(Cadastro_OS.Id==osid).execute()\n   flash('O.S deletada com sucesso')\n   return redirect('/os/form/')\n  except:\n   flash('Erro ao deletar O.S')\n   return redirect('/os/form/'+str(osid))\n flash('Erro ao deletar O.S')",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def register():\n if request.method=='POST':\n  rows=usuarios.select().where(usuarios.ds_login==request.form.get(\"username\"))\n  rows=[model_to_dict(row)for row in rows]\n  rowsPass=usuarios.select().where(usuarios.ds_login==request.form.get(\"username\"))\n  rowsPass=[model_to_dict(row)for row in rowsPass]\n  if len(rows)==1 or len(rowsPass)==1:\n   flash(\"User or password already exists\")\n   return redirect(\"/register\")\n  if request.form.get(\"password\")!=request.form.get(\"password-confirm\"):",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "print_os",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def print_os(osid):\n if request.method=='GET':\n  rows=list(Cadastro_OS.select().where(Cadastro_OS.Id==osid).dicts())\n  maxPeriod=Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc==rows[0]['STATUS']).scalar()\n  allProcessos=list(processos.select(processos.Nome,processos.ID).from_(processos,Historico_os).where(processos.ID==Historico_os.id_proc,Historico_os.id_os==osid,Historico_os.periodo==maxPeriod).dicts())\n  if not os:\n   flash(\"O.S não encontrada.\")\n   return redirect(\"/\")\n  field=rows[0]\n  res=list(Clientes.select(Clientes.nome,Clientes.ID).from_(Clientes,Cadastro_OS).where(Cadastro_OS.Id_Cliente==Clientes.ID,Cadastro_OS.Id==osid).dicts())",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "access",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def access(osid):\n session['osid']=osid\n return redirect('/login')\n@app.route('/estoque/form/',methods=['POST','GET'])\n@login_required\ndef cadEstoque():\n clients=Clientes.select(Clientes.nome,Clientes.ID)\n estKeys=list(Estoque._meta.fields.keys())\n if request.method=='POST' and request.form:\n  data=dict(request.form)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "cadEstoque",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def cadEstoque():\n clients=Clientes.select(Clientes.nome,Clientes.ID)\n estKeys=list(Estoque._meta.fields.keys())\n if request.method=='POST' and request.form:\n  data=dict(request.form)\n  if not data['data']:\n   data['data']=datetime.datetime.now().strftime('%d/%m/%Y')\n  else: \n   try:\n    data['data']= datetime.datetime.strptime(data['data'],'%d/%m/%Y').strftime('%Y-%m-%d')",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "editEstoque",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def editEstoque(estId):\n clients=Clientes.select(Clientes.nome,Clientes.ID)\n if request.method=='GET':\n  try:\n   estoque=Estoque.select(Estoque,Clientes.ID,Clientes.nome).from_(Estoque,Clientes).where(Estoque.id_cliente==Clientes.ID,Estoque.ID==estId)\n   estoque=[model_to_dict(item)for item in estoque]\n   try:\n    estoque[0]['data']=estoque[0]['data'].strftime(\"%d/%m/%Y\")\n   except:\n    pass",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "invoice",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def invoice():\n Keys=list(orcamento._meta.fields.keys())\n data=datetime.datetime.now().strftime('%d/%m/%Y')\n if request.method=='POST' and request.form:\n  orcamento.create(numero=request.form['numero'],ano=request.form['ano'],cod_item=request.form['cod_item'],data=request.form['data'],cod_func=request.form['cod_func'],id_cliente=request.form['id_cliente'],prazo_entrega=request.form['prazo_entrega'],prazo_pagto=request.form['prazo_pagto'],ipi=request.form['ipi'],icms=request.form['icms'])\n  idorcam=orcamento.select(fn.MAX(orcamento.ID)).scalar()\n  flash('Cadastrado com sucesso!')\n  return redirect('/orcamento/form/'+str(idorcam))\n funcionario=funcionarios.select(funcionarios.id,funcionarios.nome)\n items=Estoque.select(Estoque.ferramenta,Estoque.ID)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "invoiceEdit",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def invoiceEdit(inid):\n if request.method=='POST':\n  if request.form['cod_item']and request.form['id_cliente']and request.form['cod_func']:\n   orcamento.update(numero=request.form['numero'],ano=request.form['ano'],cod_item=request.form['cod_item'],data=request.form['data'],id_cliente=request.form['id_cliente'],cod_func=request.form['cod_func'],prazo_entrega=request.form['prazo_entrega'],prazo_pagto=request.form['prazo_pagto'],ipi=request.form['ipi'],icms=request.form['icms']).where(orcamento.ID==inid).execute()\n  flash('Verifique os campos.')\n  return redirect('/orcamento/form/'+str(inid))\n funcionario=funcionarios.select(funcionarios.id,funcionarios.nome)\n Keys=list(orcamento._meta.fields.keys())\n clients=list(Clientes.select(Clientes.nome,Clientes.ID).dicts())\n items=list(Estoque.select(Estoque.ferramenta,Estoque.ID).dicts())",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "listing",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def listing():\n return render_template('table.html')\n@app.route('/contasapagar/form/',methods=['POST','GET'])\n@login_required\n@financialLevel\ndef contaspagar():\n forn=Fornecedores.select(Fornecedores.nome,Fornecedores.ID)\n Keys=list(contasapagar._meta.fields.keys())\n if request.method=='POST':\n  contasapagar.create(vencimento=datetime.datetime.strptime(request.form['vencimento'],'%d/%m/%Y').strftime('%d/%m/%Y'),descricao=request.form['descricao'],valor=float(request.form['valor'].strip()),pago=float(request.form['pago'].strip()),data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'],\"%d/%m/%Y\").strftime(\"%d/%m/%Y\"),cod_fornecedor=int(request.form['cod_fornecedor']))",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "contaspagar",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def contaspagar():\n forn=Fornecedores.select(Fornecedores.nome,Fornecedores.ID)\n Keys=list(contasapagar._meta.fields.keys())\n if request.method=='POST':\n  contasapagar.create(vencimento=datetime.datetime.strptime(request.form['vencimento'],'%d/%m/%Y').strftime('%d/%m/%Y'),descricao=request.form['descricao'],valor=float(request.form['valor'].strip()),pago=float(request.form['pago'].strip()),data_pagamento=datetime.datetime.strptime(request.form['data_pagamento'],\"%d/%m/%Y\").strftime(\"%d/%m/%Y\"),cod_fornecedor=int(request.form['cod_fornecedor']))\n  idconta=contasapagar.select(fn.MAX(contasapagar.ID)).scalar()\n  flash('Cadastrado com Sucesso')\n  return redirect('/contasapagar/form/'+str(idconta))\n return render_template(\"Form.html\",TableCol=Keys,TableLen=len(Keys),clients=forn,cliCol='id_cliente',cliLen=len(forn),table='contasapagar',edit=False,active1=\"\",active2=\"\",active3=\"active\",active4=\"\")\n@app.route('/contasapagar/form/<int:idconta>',methods=['POST','GET'])",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "editarcontas",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def editarcontas(idconta):\n forn=Fornecedores.select(Fornecedores.nome,Fornecedores.ID)\n Keys=list(contasapagar._meta.fields.keys())\n conta=list(contasapagar.select().where(contasapagar.ID==idconta).dicts())\n try:\n  conta[0]['vencimento']=datetime.datetime.strptime(conta[0]['vencimento'],'%Y-%m-%d').strftime('%d/%m/%Y')\n  conta[0]['data_pagamento']=datetime.datetime.strptime(conta[0]['vencimento'],'%Y-%m-%d').strftime('%d/%m/%Y')\n except:\n  pass\n if request.method=='POST':",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "fornecedor",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def fornecedor(idfor):\n Keys=list(Fornecedores._meta.fields.keys())\n if idfor!='':\n  if request.method=='POST':\n   try:\n    Fornecedores.update(cod_for=request.form['cod_for'],nome=request.form['nome'],cnpj=request.form['cnpj'],ie=request.form['ie'],endereco=request.form['endereco'],cidade=request.form['cidade'],estado=request.form['estado'],cep=request.form['cep'],telefone=request.form['telefone'],celular=request.form['celular'],email=request.form['email'],obs=request.form['obs'],qntcompras=request.form['qntcompras']).where(Fornecedores.ID==idfor).execute()\n    flash('Alterado com sucesso')\n   except:\n    flash('Erro ao alterar Fornecedor')\n   return redirect('/fornecedor/form/'+str(idfor))",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "comprasform",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def comprasform(idcompra):\n Keys=list(compras._meta.fields.keys())\n fornecedores=Fornecedores.select(Fornecedores.ID,Fornecedores.nome)\n fornecedores_len=len(fornecedores)\n if idcompra!='':\n  if request.method=='POST':\n   data=dict(request.form)\n   try:\n    try:\n     data['qnt']=int(data['qnt'])",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "nfform",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def nfform(idnota):\n Keys=list(notafiscal._meta.fields.keys())\n if idnota!='':\n  if request.method=='POST':\n   data=dict(request.form)\n   try:\n    try:\n     data['numero_nf']=int(data['numero_nf'])\n    except:\n     data['numero_nf']=0 ",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "fim",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def fim(idponto):\n if not idponto:\n  flash('Ponto não encontrada!')\n  return redirect('/ponto/form/')\n ponto.update(fim=datetime.datetime.now().strftime('%H:%M:%S')).where(ponto.id==idponto).execute()\n flash('finalizado com successo')\n return redirect('/ponto/form/'+str(idponto))\n@app.route('/ponto/form/inicio/',methods=['POST','GET'])\n@login_required\n@employeeLevel",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "inicio",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def inicio():\n if request.method=='POST':\n  try:\n   data=dict(request.form)\n   if not request.form['cod_func']or request.form['cod_func']==0:\n    flash('Selecione colaborador')\n    return redirect('/ponto/form/')\n   desc=data['desc']\n   ponto.create(inicio=datetime.datetime.now().strftime('%H:%M:%S'),desc=desc,data=datetime.datetime.now().strftime('%Y-%m-%d'),cod_func=data['cod_func'])\n   idpontonew=ponto.select(fn.MAX(ponto.id)).scalar()",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "items",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def items(iditem):\n Keys=list(item._meta.fields.keys())\n if iditem!='':\n  if request.method=='GET':\n   try:\n    materials=Material.select(Material.nome,Material.ID)\n    iteminfo=item.select().where(item.id==iditem)\n    itempage=page('item',content=iteminfo[0],edit=True,select=materials)\n    return itempage.render()\n   except:",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "pontocad",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def pontocad(idponto):\n Keys=list(ponto._meta.fields.keys())\n allcol=funcionarios.select(funcionarios.id,funcionarios.nome)\n if idponto!='':\n  pontohora=list(ponto.select(ponto,funcionarios.id,funcionarios.nome).from_(ponto,funcionarios).where(ponto.id==idponto).dicts())\n  if not pontohora:\n   flash('Ponto Não Encontrado')\n   return redirect('/ponto/form/')\n  if request.method=='POST':\n   data=dict(request.form)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "pedido",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def pedido(idpedido):\n clients=Clientes.select(Clientes.nome,Clientes.ID)\n ferramentas=Ferramenta.select(Ferramenta.Ferramenta,Ferramenta.ID)\n if idpedido!='':\n  if request.method=='GET':\n   content=Pedidos.select().where(Pedidos.id==idpedido)\n   pagePedido=page('Pedidos',content[0],select=clients,select2=ferramentas,edit=True)\n   return pagePedido.render()\n  elif request.method=='POST':\n   Pedidos.update(numero=request.form['numero'],ano=request.form['ano'],id_cliente=request.form['id_cliente'],id_ferramenta=request.form['id_ferramenta'],especificacao=request.form['especificacao'],desenho=request.form['desenho'],unidade=request.form['unidade'],qnt=request.form['qnt'],preco=request.form['preco'],data_entrada=datetime.datetime.strptime(request.form['data_entrada'],'%Y-%m-%d'),prazo=datetime.datetime.strptime(request.form['prazo'],'%Y-%m-%d'),qnt_acabada=request.form['qnt_acabada'],data_acabamento=request.form['data_acabamento'],pedido_cliente=request.form['pedido_cliente'],numero_os=request.form['numero_os']).where(Pedidos.ID==idpedido).execute()",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "func",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def func(idfunc):\n if idfunc!='':\n  if request.method=='GET':\n   content=funcionarios.select().where(funcionarios.id==idfunc)\n   pagefunc=page('funcionarios',content[0],edit=True)\n   return pagefunc.render()\n  elif request.method=='POST':\n   funcionarios.update(funcionario=request.form['funcionario'],nome=request.form['nome'],senha=request.form['senha']).where(funcionarios.id==idfunc).execute()\n   flash(\"Alterado com Sucesso\")\n   return redirect('/funcionarios/form/'+str(idfunc))",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "processosOs",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def processosOs(idproc):\n if idproc!='':\n  if request.method=='GET':\n   content=processos.select().where(processos.ID==idproc)\n   if not content:\n    flash('Não Encontrada!')\n    return redirect('/processos/form/')\n   pagefunc=page('processos',content[0],edit=True)\n   return pagefunc.render()\n  elif request.method=='POST':",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "renderTable",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def renderTable(table):\n tablefinan=['caixa','numero_pedidos','fornecedores','constasapagar','constasareceber','compras']\n tablefunc=['ponto']\n tablegeren=['cadastro_os','fornecedores','numero_pedidos','compras','material','estoque']\n tok=jwt.decode(session.get('token'),os.environ['SECRET_KEY'],algorithms=['HS256'])\n if tok['level']==4:\n  return render_list(table)\n if tok['level']==3 and table.lower()in tablefinan:\n  return render_list(table)\n elif tok['level']==2 and table.lower()in tablegeren:",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "histform",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def histform(idhist):\n allcol=processos.select(processos.ID,processos.Nome)\n allos=Cadastro_OS.select(Cadastro_OS.Id,Cadastro_OS.Numero_Os)\n if idhist!='':\n  if request.method=='POST':\n   try:\n    if request.form['data']!='':\n     data =datetime.datetime.strptime(str(request.form['data']),'%d/%m/%Y').strftime('%Y-%m-%d')\n   except:\n    pass",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "deleterow",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def deleterow(col,idtab):\n if col!='' and idtab>=0:\n  try:\n   try: \n    str_to_class(col).delete().where(str_to_class(col).id==idtab).execute()\n    flash('Deletado com sucesso!')\n    return redirect('/'+str(col.lower())+'/form/')\n   except:\n    pass\n   try:",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "redirect_num",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def redirect_num(n_os):\n try:\n  idos=list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os==n_os).dicts())\n  return redirect('/os/form/'+str(idos[0]['Id']))\n except:\n  return redirect('#')\n@app.route('/linha/form/',defaults={'idlinha':''},methods=['POST','GET'])\n@app.route('/linha/form/<int:idlinha>',methods=['POST','GET'])\n@login_required\ndef linha_os(idlinha):",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "linha_os",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def linha_os(idlinha):\n if idlinha!='':\n  content=linha.select().where(linha.id==idlinha)\n  if request.method=='POST':\n   try:\n    num=int(request.form['numero_inicial'])\n   except:\n    num=0\n   content.update(nome=request.form['nome'],numero_inicial=num).execute()\n  pageLinha=page('linha',content=content[0])",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "invalid_route",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def invalid_route(e):\n return underdev()\n\"\"\"\n*** API ROUTES ***\n\"\"\"\n@app.route('/app/api/login',methods=['POST'])\n@cross_origin()\ndef longlogin():\n obj=json.loads(request.data)\n rows=usuarios.select(usuarios.ds_senha).where(usuarios.ds_login==obj['username'])",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "longlogin",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def longlogin():\n obj=json.loads(request.data)\n rows=usuarios.select(usuarios.ds_senha).where(usuarios.ds_login==obj['username'])\n rows=[model_to_dict(row)for row in rows]\n password=obj['password']\n if check_password_hash(rows[0][\"ds_senha\"],password)or rows[0][\"ds_senha\"]==password:\n  token=jwt.encode({'user':obj['username'],'exp':datetime.datetime.utcnow()+datetime.timedelta(hours=12)},os.environ['SECRET_KEY'])\n  return make_response(jsonify({'token':token.decode('UTF-8')}))\n return jsonify('Not found')\n@app.route('/api/login',methods=['POST'])",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "log",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def log():\n obj=json.loads(request.data)\n try:\n  obj=(obj['data'])\n except:\n  pass\n rows=usuarios.select(usuarios.ds_senha).where(usuarios.ds_login==obj['username'])\n rows=[model_to_dict(row)for row in rows]\n password=obj['password']\n if check_password_hash(rows[0][\"ds_senha\"],password)or rows[0][\"ds_senha\"]==password:",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "all_api",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def all_api():\n rows=Cadastro_OS.select()\n rows=[model_to_dict(row)for row in rows]\n return rows\n@app.route('/api/os/<int:osid>',methods=['POST','GET'])\n@auth_required\n@cross_origin()\ndef osApi(osid):\n try:\n  rows=Cadastro_OS.select().where(Cadastro_OS.Id==osid)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "osApi",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def osApi(osid):\n try:\n  rows=Cadastro_OS.select().where(Cadastro_OS.Id==osid)\n  rows=[model_to_dict(row)for row in rows]\n  if not rows:\n   return jsonify('Not found')\n  if request.method=='POST':\n   obj=json.loads(request.data)\n   try:\n    updateData(obj,'Cadastro_OS','Id',osid)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "osApiall",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def osApiall(limit):\n rows=list(Cadastro_OS.select(Cadastro_OS,Clientes.nome).from_(Cadastro_OS,Clientes).where(Cadastro_OS.Id_Cliente==Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())\n if request.method=='GET':\n  return jsonify(list(rows))\n elif request.method=='POST':\n  obj=json.loads(request.data)\n  insertData(obj,'Cadastro_OS')\n  return jsonify('Created-Successfully')\n@app.route('/api/os/q=<string:query>',methods=['GET','POST'])\n@auth_required",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "osApiSearch",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def osApiSearch(query):\n if len(query)<2:\n  rows=list(Cadastro_OS.select(Cadastro_OS,Clientes.nome).from_(Cadastro_OS,Clientes).where(Cadastro_OS.Especificacao.contains(query),Cadastro_OS.Id_Cliente==Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(200).dicts())\n else:\n  rows=list(Cadastro_OS.select(Cadastro_OS,Clientes.nome).from_(Cadastro_OS,Clientes).where(Cadastro_OS.Especificacao.contains(query),Cadastro_OS.Id_Cliente==Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())\n if request.method=='GET':\n  return jsonify(rows)\n elif request.method=='POST':\n  obj=json.loads(request.data)\n  insertData(obj,'Cadastro_OS')",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "osApiNum",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def osApiNum():\n try:\n  os_num=Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar()\n  os_num=int(os_num)+1\n  return jsonify(os_num)\n except:\n  return jsonify('Error')\n@app.route('/api/clientes',methods=['GET','POST'])\n@auth_required\ndef allClientes():",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "allClientes",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def allClientes():\n clients=list(Clientes.select().dicts())\n return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization','authorization'])\n@app.route('/api/processos/inicio',methods=['POST'])\n@auth_required\ndef inicioProcesso():\n obj=json.loads(request.data)\n osid=obj['osid']\n horario=obj['horario']",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "inicioProcesso",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def inicioProcesso():\n obj=json.loads(request.data)\n osid=obj['osid']\n horario=obj['horario']\n idproc=obj['idProc']\n qtd=obj['qtd']\n altos=Cadastro_OS.select().where(Cadastro_OS.Id==osid).get()\n altos.STATUS=idproc\n altos.save()\n osproc=Historico_os.select().where((Historico_os.id_os==osid)&(Historico_os.id_proc==idproc)&(Historico_os.inicio!=''))",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "allProcesso",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def allProcesso():\n if request.method=='GET':\n  process_list=processos.select()\n  process_list=[model_to_dict(processo)for processo in process_list]\n  return jsonify(process_list)\n@cross_origin(origin='*',headers=['Content- Type','Authorization','authorization'])\n@app.route('/api/processos/fim',methods=['POST'])\n@auth_required\ndef fimProcesso():\n obj=json.loads(request.data)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "fimProcesso",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def fimProcesso():\n obj=json.loads(request.data)\n osid=obj['osid']\n horario=obj['horario']\n idproc=obj['idProc']\n periodo=Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os==osid)&(Historico_os.id_proc==idproc)).scalar()\n if not periodo:\n  periodo=1\n althistos=Historico_os.select().where((Historico_os.id_os==osid)&(Historico_os.id_proc==idproc)&(Historico_os.periodo==periodo))\n if(althistos):",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "IdClientes",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def IdClientes(id):\n res=Clientes.select(Clientes.ID,Clientes.nome).where(Clientes.ID==id).order_by(Clientes.ID.asc())\n return jsonify(model_to_dict(res))\n@app.route('/api/clientes/',defaults={'query':'none'},methods=['POST','GET'])\n@app.route('/api/clientes/q=<string:query>',methods=['POST','GET'])\n@auth_required\ndef nome(query):\n res=list(Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc()).dicts())\n return jsonify(res)\n@app.route('/api/clientes/limit=<int:limit>',methods=['GET','POST'])",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "nome",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def nome(query):\n res=list(Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc()).dicts())\n return jsonify(res)\n@app.route('/api/clientes/limit=<int:limit>',methods=['GET','POST'])\n@auth_required\ndef cliLimit(limit):\n res=list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())\n return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>',methods=['GET','POST'])\n@auth_required",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "cliLimit",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def cliLimit(limit):\n res=list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())\n return jsonify(res)\n@app.route('/api/estoque/limit=<int:limit>',methods=['GET','POST'])\n@auth_required\ndef allEstoque(limit):\n if request.method=='GET':\n  rows=list(Estoque.select(Estoque,Clientes.nome).from_(Estoque,Clientes).where(Estoque.id_cliente==Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n  return jsonify(rows)\n elif request.method=='POST' and request.data:",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "allEstoque",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def allEstoque(limit):\n if request.method=='GET':\n  rows=list(Estoque.select(Estoque,Clientes.nome).from_(Estoque,Clientes).where(Estoque.id_cliente==Clientes.ID).order_by(Estoque.qt.desc()).dicts())\n  return jsonify(rows)\n elif request.method=='POST' and request.data:\n  obj=json.loads(request.data)\n  insertData(obj,'Estoque')\n  return jsonify('Item-criado')\n else:\n  return jsonify('UNAUTHORIZED')",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "queryEstoque",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def queryEstoque(query,col):\n rows=Estoque.select(Estoque,Clientes.nome).from_(Estoque,Clientes).where(Estoque.id_cliente==Clientes.ID,Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n return jsonify(rows)\n@app.route('/api/progress/<int:n_os>',methods=['GET'])\n@auth_required\ndef progress(n_os):\n return os_em_andamento(n_os)\n@app.route('/api/progress/allos',methods=['GET'])\n@auth_required\ndef osinprogress():",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "progress",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def progress(n_os):\n return os_em_andamento(n_os)\n@app.route('/api/progress/allos',methods=['GET'])\n@auth_required\ndef osinprogress():\n os=os_em_historico()\n return jsonify(os)\nif __name__==\"__main__\":\n app.run(debug=True)\n socketio.run(app,debug=True)",
+        "detail": "minified.app",
+        "documentation": {}
+    },
+    {
+        "label": "osinprogress",
+        "kind": 2,
+        "importPath": "minified.app",
+        "description": "minified.app",
+        "peekOfCode": "def osinprogress():\n os=os_em_historico()\n return jsonify(os)\nif __name__==\"__main__\":\n app.run(debug=True)\n socketio.run(app,debug=True)\n# Created by pyminifier (https://github.com/liftoff/pyminifier)",
+        "detail": "minified.app",
         "documentation": {}
     },
     {
