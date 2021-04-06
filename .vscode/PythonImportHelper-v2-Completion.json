@@ -1536,7 +1536,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def access(osid):\n    session['osid'] = osid\n    return redirect('/login')\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\n@login_required\ndef cadEstoque():\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n        #clientes = list(Estoque._meta.fields.keys())\n    estKeys = list(Estoque._meta.fields.keys())\n        #clientes = clientes[0]",
+        "peekOfCode": "def access(osid):\n    uncrypt = jwt.decode(osid, os.environ['SECRET_KEY'], algorithms=['HS256'])\n    session['osid'] = uncrypt['osid']\n    return redirect('/login')\n@app.route('/estoque/form/', methods = ['POST', 'GET'])\n@login_required\ndef cadEstoque():\n    clients = Clientes.select(Clientes.nome, Clientes.ID)\n        #clientes = list(Estoque._meta.fields.keys())\n    estKeys = list(Estoque._meta.fields.keys())",
         "detail": "app",
         "documentation": {}
     },
@@ -1815,7 +1815,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allClientes():\n    clients = list(Clientes.select().dicts())\n    #clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']",
+        "peekOfCode": "def allClientes():\n    clients = list(Clientes.select().dicts())\n    #clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])",
         "detail": "app",
         "documentation": {}
     },
@@ -1824,7 +1824,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    qtd = obj['qtd']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()\n    osproc = Historico_os.select().where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    qtd = obj['qtd']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()",
         "detail": "app",
         "documentation": {}
     },
@@ -1842,7 +1842,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    osid = obj['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &\n    (Historico_os.id_proc == idproc)).scalar()\n    if not periodo:\n        periodo = 1\n    althistos = Historico_os.select().where( ",
+        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &\n    (Historico_os.id_proc == idproc)).scalar()\n    if not periodo:\n        periodo = 1",
         "detail": "app",
         "documentation": {}
     },

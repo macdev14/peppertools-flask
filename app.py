@@ -448,7 +448,8 @@ def print_os(osid):
         field = rows[0]
         res = list(Clientes.select(Clientes.nome, Clientes.ID).from_(Clientes, Cadastro_OS).where(Cadastro_OS.Id_Cliente == Clientes.ID, Cadastro_OS.Id == osid).dicts())
         ##print(res)
-        qr = "http://peppertools.cf/os/"+str(osid)
+        tok = jwt.encode({'osid': str(osid)}, os.environ['SECRET_KEY']).decode('UTF-8')
+        qr = "https://peppertools.herokuapp.com/os/"+str(tok)
         field['nome'] = res[0]['nome']
         field['Data_digit'] = datetime.datetime.strptime(str(field['Data']), '%Y-%m-%d').strftime('%y')
         field['Data'] = checkDate(field['Data'])
@@ -462,10 +463,13 @@ def print_os(osid):
         return render_template("imprimir_os.html", field = field, qr=qr)
       
 
-@app.route('/os/<int:osid>', methods = ['POST', 'GET'])
+@app.route('/os/<string:osid>', methods = ['POST', 'GET'])
 def access(osid):
-    session['osid'] = osid
+   
+    uncrypt = jwt.decode(osid, os.environ['SECRET_KEY'], algorithms=['HS256'])
+    session['osid'] = uncrypt['osid']
     return redirect('/login')
+    
    
 
 
@@ -1356,7 +1360,8 @@ def allClientes():
 @auth_required
 def inicioProcesso():
     obj = json.loads(request.data)
-    osid = obj['osid']
+    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])
+    osid = objtok['osid']
     horario = obj['horario']
     idproc = obj['idProc']
     qtd = obj['qtd']
@@ -1401,7 +1406,8 @@ def allProcesso():
 @auth_required
 def fimProcesso():
     obj = json.loads(request.data)
-    osid = obj['osid']
+    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])
+    osid = objtok['osid']
     horario = obj['horario']
     idproc = obj['idProc']
     periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
