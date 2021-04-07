@@ -1815,7 +1815,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allClientes():\n    clients = list(Clientes.select().dicts())\n    #clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    jtok = obj['osid'][0][\"url\"][37:]",
+        "peekOfCode": "def allClientes():\n    clients = list(Clientes.select().dicts())\n    #clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    if 'http' in obj['osid'][0][\"url\"]:",
         "detail": "app",
         "documentation": {}
     },
@@ -1824,7 +1824,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    jtok = obj['osid'][0][\"url\"][37:]\n    #print(jtok)\n    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    qtd = obj['qtd']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    if 'http' in obj['osid'][0][\"url\"]:\n        jtok = obj['osid'][0][\"url\"][37:]\n    else:\n        jtok = obj['osid'][0][\"url\"] \n    #print(jtok)\n    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']",
         "detail": "app",
         "documentation": {}
     },
@@ -1833,7 +1833,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allProcesso():\n    if request.method == 'GET':\n        process_list = processos.select()\n        process_list = [model_to_dict(processo) for processo in process_list]\n        return jsonify(process_list)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/fim', methods=['POST'])\n@auth_required\ndef fimProcesso():\n    try:",
+        "peekOfCode": "def allProcesso():\n    if request.method == 'GET':\n        process_list = processos.select()\n        process_list = [model_to_dict(processo) for processo in process_list]\n        return jsonify(process_list)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/fim', methods=['POST'])\n@auth_required\ndef fimProcesso():\n    obj = json.loads(request.data)",
         "detail": "app",
         "documentation": {}
     },
@@ -1842,7 +1842,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def fimProcesso():\n    try:\n        obj = json.loads(request.data)\n        #jtok = re.sub(r'^https?:\\/\\/.*[\\r\\n]*', '', obj['osid'][0][\"url\"])\n        jtok = obj['osid'][0][\"url\"][37:]\n        #print(jtok)\n        objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])\n        osid = objtok['osid']\n        horario = obj['horario']\n        idproc = obj['idProc']",
+        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n        #jtok = re.sub(r'^https?:\\/\\/.*[\\r\\n]*', '', obj['osid'][0][\"url\"])\n    if 'http' in obj['osid'][0][\"url\"]:\n       jtok = obj['osid'][0][\"url\"][37:]\n    else:\n       jtok = obj['osid'][0][\"url\"] \n    #print(jtok)\n    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']",
         "detail": "app",
         "documentation": {}
     },
