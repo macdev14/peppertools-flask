@@ -1438,12 +1438,11 @@ def fimProcesso():
         (Historico_os.periodo == periodo) & (Historico_os.fim == None))
         if (althistos):
             althistos = althistos.get()
-            althistos.qtdFim = qtdFim
             althistos.fim = horario
             althistos.save()
             return jsonify("Período "+str(periodo)+" Finalizado!")
         return jsonify("Periodo do processo não iniciado!")
-   except:
+    except:
        return jsonify("O.S Inválida!") 
 
 
