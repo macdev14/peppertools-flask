@@ -432,7 +432,7 @@ def register():
   
 
 @app.route('/os/form/print/<int:osid>', methods = ['GET'])
-#@login_required
+@login_required
 def print_os(osid):
     #print(osid)
     if request.method == 'GET':
@@ -1390,7 +1390,7 @@ def inicioProcesso():
         else:
             periodo = periodo + 1
         Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today(), qtd=qtd)
-        return jsonify("Periodo número "+str(periodo)+" do processo iniciado!")    
+        return jsonify("Periodo número "+str(periodo)+" do processo já iniciado!")    
     
    
     Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1, data=date.today(), qtd=qtd)    
