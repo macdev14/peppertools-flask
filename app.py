@@ -1434,7 +1434,7 @@ def fimProcesso():
             althistos.save()
             return jsonify("Período "+str(periodo)+" Finalizado!")
         return jsonify("Periodo do processo não iniciado!")
-   except:
+    except:
        return jsonify("Erro ao Finalizar Processo")
 
 
