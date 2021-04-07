@@ -1427,7 +1427,7 @@ def fimProcesso():
     osid = objtok['osid']
     horario = obj['horario']
     idproc = obj['idProc']
-    qtdFim = obj['qtd']
+    
     periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
     (Historico_os.id_proc == idproc)).scalar()
     if not periodo:
