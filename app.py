@@ -436,6 +436,7 @@ def register():
 def print_os(osid):
     #print(osid)
     if request.method == 'GET':
+        
         rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())
         maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()
         #print(rows[0])
@@ -1359,44 +1360,46 @@ def allClientes():
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required
 def inicioProcesso():
-    obj = json.loads(request.data)
-    if 'http' in obj['osid'][0]["url"]:
-        jtok = obj['osid'][0]["url"][37:]
-    else:
-        jtok = obj['osid'][0]["url"] 
-    #print(jtok)
-    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])
-    osid = objtok['osid']
-    horario = obj['horario']
-    idproc = obj['idProc']
-    qtd = obj['qtd']
-    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
-    altos.STATUS = idproc
-    altos.save()
-
-    osproc = Historico_os.select().where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )
-    if osproc:
-        osproc = osproc.get()
-        if osproc.fim == None or osproc.fim == '':
-            return jsonify("Período do processo não finalizado!")
-
-    osproc = Historico_os.select().where((Historico_os.id_os == osid) &
-    (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != None) )
-    if (osproc):
-        periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc)).scalar()
-        #print(periodo)
-        if not periodo:
-            periodo = 1
+    try:
+        obj = json.loads(request.data)
+        if 'http' in obj['osid'][0]["url"]:
+            jtok = obj['osid'][0]["url"][37:]
         else:
-            periodo = periodo + 1
-        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today(), qtd=qtd)
-        return jsonify("Periodo número "+str(periodo)+" do processo já iniciado!")    
+            jtok = obj['osid'][0]["url"] 
+        #print(jtok)
+        objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])
+        osid = objtok['osid']
+        horario = obj['horario']
+        idproc = obj['idProc']
+        qtd = obj['qtd']
+        altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
+        altos.STATUS = idproc
+        altos.save()
+
+        osproc = Historico_os.select().where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') )
+        if osproc:
+            osproc = osproc.get()
+            if osproc.fim == None or osproc.fim == '':
+                return jsonify("Período do processo não finalizado!")
+
+        osproc = Historico_os.select().where((Historico_os.id_os == osid) &
+        (Historico_os.id_proc == idproc) & (Historico_os.inicio != '') & (Historico_os.fim != None) )
+        if (osproc):
+            periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid) & (Historico_os.id_proc == idproc)).scalar()
+            #print(periodo)
+            if not periodo:
+                periodo = 1
+            else:
+                periodo = periodo + 1
+            Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=periodo, data=date.today(), qtd=qtd)
+            return jsonify("Periodo número "+str(periodo)+" do processo já iniciado!")    
+        
     
-   
-    Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1, data=date.today(), qtd=qtd)    
-    return jsonify("Período do processo iniciado com Sucesso!")
-    
-    
+        Historico_os.create(id_proc=idproc, id_os=osid, inicio=horario, periodo=1, data=date.today(), qtd=qtd)    
+        return jsonify("Período do processo iniciado com Sucesso!")
+    except:
+        return jsonify("O.S Inválida")
+        
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
 @app.route('/api/processos', methods=['GET'])
 @auth_required
@@ -1410,37 +1413,38 @@ def allProcesso():
 @app.route('/api/processos/fim', methods=['POST'])
 @auth_required
 def fimProcesso():
-    
-    obj = json.loads(request.data)
-        
-        #jtok = re.sub(r'^https?:\/\/.*[\r\n]*', '', obj['osid'][0]["url"])
-    if 'http' in obj['osid'][0]["url"]:
-       jtok = obj['osid'][0]["url"][37:]
-    else:
-       jtok = obj['osid'][0]["url"] 
-    #print(jtok)
-        
-    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])
-    osid = objtok['osid']
-    horario = obj['horario']
-    idproc = obj['idProc']
-    qtdFim = obj['qtd']
-    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
-    (Historico_os.id_proc == idproc)).scalar()
-    if not periodo:
-        periodo = 1
-    althistos = Historico_os.select().where( 
-    (Historico_os.id_os == osid) &
-    (Historico_os.id_proc == idproc) &
-    (Historico_os.periodo == periodo) & (Historico_os.fim == None))
-    if (althistos):
-        althistos = althistos.get()
-        althistos.qtdFim = qtdFim
-        althistos.fim = horario
-        althistos.save()
-        return jsonify("Período "+str(periodo)+" Finalizado!")
-    return jsonify("Periodo do processo não iniciado!")
- 
+    try:
+        obj = json.loads(request.data)
+            
+            #jtok = re.sub(r'^https?:\/\/.*[\r\n]*', '', obj['osid'][0]["url"])
+        if 'http' in obj['osid'][0]["url"]:
+            jtok = obj['osid'][0]["url"][37:]
+        else:
+            jtok = obj['osid'][0]["url"] 
+        #print(jtok)
+            
+        objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])
+        osid = objtok['osid']
+        horario = obj['horario']
+        idproc = obj['idProc']
+        qtdFim = obj['qtd']
+        periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
+        (Historico_os.id_proc == idproc)).scalar()
+        if not periodo:
+            periodo = 1
+        althistos = Historico_os.select().where( 
+        (Historico_os.id_os == osid) &
+        (Historico_os.id_proc == idproc) &
+        (Historico_os.periodo == periodo) & (Historico_os.fim == None))
+        if (althistos):
+            althistos = althistos.get()
+            althistos.qtdFim = qtdFim
+            althistos.fim = horario
+            althistos.save()
+            return jsonify("Período "+str(periodo)+" Finalizado!")
+        return jsonify("Periodo do processo não iniciado!")
+   except:
+       return jsonify("O.S Inválida!") 
 
 
 
