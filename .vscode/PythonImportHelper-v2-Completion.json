@@ -1815,7 +1815,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def allClientes():\n    clients = list(Clientes.select().dicts())\n    #clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])",
+        "peekOfCode": "def allClientes():\n    clients = list(Clientes.select().dicts())\n    #clients = [model_to_dict(client) for client in clients]\n    return jsonify(clients)\n@cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])\n@app.route('/api/processos/inicio', methods=['POST'])\n@auth_required\ndef inicioProcesso():\n    obj = json.loads(request.data)\n    jtok = re.sub(r'^https?:\\/\\/.*[\\r\\n]*', '', obj['osid'])",
         "detail": "app",
         "documentation": {}
     },
@@ -1824,7 +1824,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    qtd = obj['qtd']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()\n    altos.STATUS = idproc\n    altos.save()",
+        "peekOfCode": "def inicioProcesso():\n    obj = json.loads(request.data)\n    jtok = re.sub(r'^https?:\\/\\/.*[\\r\\n]*', '', obj['osid'])\n    print(jtok)\n    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    qtd = obj['qtd']\n    altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()",
         "detail": "app",
         "documentation": {}
     },
@@ -1842,7 +1842,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &\n    (Historico_os.id_proc == idproc)).scalar()\n    if not periodo:\n        periodo = 1",
+        "peekOfCode": "def fimProcesso():\n    obj = json.loads(request.data)\n    jtok = re.sub(r'^https?:\\/\\/.*[\\r\\n]*', '', obj['osid'])\n    print(jtok)\n    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])\n    osid = objtok['osid']\n    horario = obj['horario']\n    idproc = obj['idProc']\n    qtdFim = obj['qtd']\n    periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &",
         "detail": "app",
         "documentation": {}
     },
@@ -2535,7 +2535,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    periodo = IntegerField()\n    data = TextField()\n    qtd = IntegerField() \n    class Meta:",
+        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    periodo = IntegerField()\n    data = TextField()\n    qtd = IntegerField() \n    qtdFim = IntegerField()",
         "detail": "model",
         "documentation": {}
     },

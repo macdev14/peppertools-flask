@@ -1360,7 +1360,9 @@ def allClientes():
 @auth_required
 def inicioProcesso():
     obj = json.loads(request.data)
-    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])
+    jtok = re.sub(r'^https?:\/\/.*[\r\n]*', '', obj['osid'])
+    print(jtok)
+    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])
     osid = objtok['osid']
     horario = obj['horario']
     idproc = obj['idProc']
@@ -1406,10 +1408,13 @@ def allProcesso():
 @auth_required
 def fimProcesso():
     obj = json.loads(request.data)
-    objtok = jwt.decode(obj['osid'], os.environ['SECRET_KEY'], algorithms=['HS256'])
+    jtok = re.sub(r'^https?:\/\/.*[\r\n]*', '', obj['osid'])
+    print(jtok)
+    objtok = jwt.decode(jtok, os.environ['SECRET_KEY'], algorithms=['HS256'])
     osid = objtok['osid']
     horario = obj['horario']
     idproc = obj['idProc']
+    qtdFim = obj['qtd']
     periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
     (Historico_os.id_proc == idproc)).scalar()
     if not periodo:
@@ -1420,6 +1425,7 @@ def fimProcesso():
     (Historico_os.periodo == periodo))
     if (althistos):
         althistos = althistos.get()
+        althistos.qtdFim = qtdFim
         althistos.fim = horario
         althistos.save()
         return jsonify("Período "+str(periodo)+" Finalizado!")
