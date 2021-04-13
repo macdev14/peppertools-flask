@@ -187,12 +187,12 @@
      <tr>
        <td width="20%" class="LINHA">
       <div align="right" class="style15">
-         <div align="left"><span class="style13">process.Nome</span></div>
+         <div align="left"><span class="style13">{{process['Nome']}}</span></div>
        </div>
       </td>
-       <td class="LINHA" width="20%" >process.inicio</td>
-       <td class="LINHA" width="20%" >process.fim</td>
-       <td class="LINHA" width="22%" >&nbsp;</td>
+       <td class="LINHA" width="20%" >{{process['periodo']}}</td>
+       <td class="LINHA" width="20%" >{{process['inicio']}}</td>
+       <td class="LINHA" width="22%" >{{process['fim']}}</td>
      </tr>
 {%endfor%}
 

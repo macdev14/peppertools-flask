@@ -436,7 +436,11 @@ def register():
 def print_os(osid):
     #print(osid)
     if request.method == 'GET':
-        
+        laprocessos =  list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Cadastro_OS.Tipo, Historico_os.qtd ,processos.Nome, Historico_os.periodo, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).distinct().where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id==osid, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc(), Historico_os.periodo.desc()).dicts())
+        print(laprocessos)
+        #laprocessos = laprocessos[0]
+        #print("1--1---1")
+        #print(laprocessos)
         rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())
         maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()
         #print(rows[0])
@@ -461,7 +465,7 @@ def print_os(osid):
             session.pop('osid')
         except:
             pass    
-        return render_template("imprimir_os.html", field = field, qr=qr)
+        return render_template("imprimir_os.html", field = field, qr=qr, processes=laprocessos)
       
 
 @app.route('/os/<string:osid>', methods = ['POST', 'GET'])

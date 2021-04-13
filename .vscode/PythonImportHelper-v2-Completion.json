@@ -1527,7 +1527,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def print_os(osid):\n    #print(osid)\n    if request.method == 'GET':\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()\n        #print(rows[0])\n        allProcessos = list(processos.select(processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())\n        #print(allProcessos)\n        #os = getOs(osid)\n        if not os:",
+        "peekOfCode": "def print_os(osid):\n    #print(osid)\n    if request.method == 'GET':\n        laprocessos =  list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Cadastro_OS.Tipo, Historico_os.qtd ,processos.Nome, Historico_os.periodo, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).distinct().where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id==osid, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc(), Historico_os.periodo.desc()).dicts())\n        print(laprocessos)\n        #laprocessos = laprocessos[0]\n        #print(\"1--1---1\")\n        #print(laprocessos)\n        rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())\n        maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()",
         "detail": "app",
         "documentation": {}
     },
