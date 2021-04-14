@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Table from "./Table";
-import dynamicOption from "./dynamicOption"
+import Textselect from "./dynamicOption"
 if (document.getElementById("app") && typeof document.getElementById("app") !== 'undefined'){
 
 ReactDOM.render(<Table/>, document.getElementById("app"));
@@ -9,5 +9,5 @@ ReactDOM.render(<Table/>, document.getElementById("app"));
 }
 
 if (document.getElementById("optdiv")  && typeof document.getElementById("optdiv") !== 'undefined'){
-    ReactDOM.render(<dynamicOption/>, document.getElementById("optdiv"));
+    ReactDOM.render(<Textselect/>, document.getElementById("optdiv"));
 }

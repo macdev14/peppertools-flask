@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import TextField from '@material-ui/core/TextField';
-export default class dynamicOption extends React.Component{
+export default class Textselect extends React.Component{
     constructor(props){
         super(props);
         this.state = {
