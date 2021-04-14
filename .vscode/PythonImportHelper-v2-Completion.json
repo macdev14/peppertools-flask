@@ -1887,7 +1887,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    ##print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/item/allitems', methods=['GET'])\ndef getItems():\n    rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())\n    return jsonify(rows)",
+        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    ##print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/item/allitems', methods=['GET'])\n@auth_required\ndef getItems():\n    rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())",
         "detail": "app",
         "documentation": {}
     },
@@ -1896,7 +1896,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def getItems():\n    rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())\n    return jsonify(rows)\n@app.route('/api/item/<int:itemid>', methods=['GET', 'POST'])\ndef alterItems():\n    if request.method == 'GET':\n        rows = list(item.select().where(item.id== iditem).dicts())\n        return jsonify(rows)\n    elif request.method == 'POST':\n        obj = json.loads(request.data)",
+        "peekOfCode": "def getItems():\n    rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())\n    return jsonify(rows)\n@app.route('/api/item/<int:itemid>', methods=['GET', 'POST'])\n@auth_required\ndef alterItems():\n    if request.method == 'GET':\n        rows = list(item.select().where(item.id== iditem).dicts())\n        return jsonify(rows)\n    elif request.method == 'POST':",
         "detail": "app",
         "documentation": {}
     },

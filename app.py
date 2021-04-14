@@ -1503,12 +1503,14 @@ def queryEstoque(query, col):
 
 
 @app.route('/api/item/allitems', methods=['GET'])
+@auth_required
 def getItems():
     rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())
     return jsonify(rows)
 
 
 @app.route('/api/item/<int:itemid>', methods=['GET', 'POST'])
+@auth_required
 def alterItems():
     if request.method == 'GET':
         rows = list(item.select().where(item.id== iditem).dicts())
@@ -1523,6 +1525,7 @@ def alterItems():
         return jsonify('Atualizado')
 
 @app.route('/api/item/', methods=['POST'])
+@auth_required
 def createItem():
     obj = json.loads(request.data)
     item.create(descricao=obj['descricao'], cod_mat=obj['cod_mat'])
