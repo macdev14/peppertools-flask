@@ -4,6 +4,30 @@
   $('#data_pagamento').mask('00/00/0000');
   $('#cep').mask('00000-000');
 
+if (document.getElementsByClassName('add-input') && typeof document.getElementsByClassName('add-input') !== 'undefined'){
+
+  $(document).ready(function(){
+    var max_input_fields = 10;
+    var add_input = $('.add-input');
+    var form_group = $('.form-group');
+    var new_input = '<div><input type="text" name="item[]" value=""/><a href="javascript:void(0);" class="remove-input" title="Remove input"><i class=""></i></a></div>';
+    var add_input_count = 1; 
+    $(add_input).click(function(){
+        if(add_input_count < max_input_fields){
+            add_input_count++; 
+            $(form_group).append(new_input); 
+        }
+    });
+    $(form_group).on('click', '.remove-input', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove();
+        add_input_count--;
+    });
+});
+
+}
+
+
 if (document.getElementById('numero_nf-label') && typeof document.getElementById('numero_nf-label').innerHTML != 'undefined' ) {
   document.getElementById('numero_nf-label').innerHTML = 'Número N.F';
   document.getElementById('data_nf-label').innerHTML = 'Data da N.F';
@@ -152,8 +176,9 @@ if (document.getElementById('prazo_entrega-label') && typeof document.getElement
   document.getElementById('prazo_pagto-label').innerHTML = 'Prazo de Pagamento';
   document.getElementById('prazo_pagto').placeholder = 'Insira o Prazo de Pagamento';
 
-  document.getElementById('cod_item-label').innerHTML = 'Item';
-  document.getElementById('cod_item').placeholder = 'Insira o Código do Item';
+  if (document.getElementById('cod_item-label') && typeof document.getElementById('cod_item-label').innerHTML != 'undefined'){
+     document.getElementById('cod_item-label').innerHTML = 'Item';}
+  
 
   //document.getElementById('prazo_entrega-label').innerHTML = 'Prazo de Entrega';
   

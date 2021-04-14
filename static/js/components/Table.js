@@ -98,9 +98,9 @@ resize() {
  
     }
 
-    componentWillUnmount() {
+  /*  componentWillUnmount() {
     window.removeEventListener("resize", this.resize.bind(this));
-}
+}*/
     
         
   theme = createMuiTheme({

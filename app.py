@@ -1500,7 +1500,41 @@ def queryEstoque(query, col):
     ##print(stmt)
     #rows = db.execute(stmt)  
     return jsonify(rows)
+
+
+@app.route('/api/item/allitems', methods=['GET'])
+def getItems():
+    rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())
+    return jsonify(rows)
+
+
+@app.route('/api/item/<int:itemid>', methods=['GET', 'POST'])
+def alterItems():
+    if request.method == 'GET':
+        rows = list(item.select().where(item.id== iditem).dicts())
+        return jsonify(rows)
+        
+    elif request.method == 'POST':
+        obj = json.loads(request.data)
+        alterItem = item.select().where(item.id == iditem)
+        alterItem['descricao'] = obj['descricao']
+        alterItem['cod_mat'] = obj['cod_mat']
+        alterItem.save()
+        return jsonify('Atualizado')
+
+@app.route('/api/item/', methods=['POST'])
+def createItem():
+    obj = json.loads(request.data)
+    item.create(descricao=obj['descricao'], cod_mat=obj['cod_mat'])
     
+
+    
+
+    
+
+
+
+
 
 @app.route('/api/progress/<int:n_os>', methods=['GET'])
 @auth_required
@@ -1512,6 +1546,9 @@ def progress(n_os):
 def osinprogress():
     os = os_em_historico()
     return jsonify(os)
+
+
+
 
 
 if __name__ == "__main__" :

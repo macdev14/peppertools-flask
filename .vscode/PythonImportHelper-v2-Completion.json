@@ -1887,7 +1887,34 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    ##print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\n@auth_required\ndef progress(n_os):\n    return os_em_andamento(n_os)",
+        "peekOfCode": "def queryEstoque(query, col):\n    rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())\n    #stmt = \"SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND \"+ col + \"=\" + query +\" ORDER BY e.ID DESC\"\n    ##print(stmt)\n    #rows = db.execute(stmt)  \n    return jsonify(rows)\n@app.route('/api/item/allitems', methods=['GET'])\ndef getItems():\n    rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())\n    return jsonify(rows)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "getItems",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def getItems():\n    rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())\n    return jsonify(rows)\n@app.route('/api/item/<int:itemid>', methods=['GET', 'POST'])\ndef alterItems():\n    if request.method == 'GET':\n        rows = list(item.select().where(item.id== iditem).dicts())\n        return jsonify(rows)\n    elif request.method == 'POST':\n        obj = json.loads(request.data)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "alterItems",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def alterItems():\n    if request.method == 'GET':\n        rows = list(item.select().where(item.id== iditem).dicts())\n        return jsonify(rows)\n    elif request.method == 'POST':\n        obj = json.loads(request.data)\n        alterItem = item.select().where(item.id == iditem)\n        alterItem['descricao'] = obj['descricao']\n        alterItem['cod_mat'] = obj['cod_mat']\n        alterItem.save()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "createItem",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def createItem():\n    obj = json.loads(request.data)\n    item.create(descricao=obj['descricao'], cod_mat=obj['cod_mat'])\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\n@auth_required\ndef progress(n_os):\n    return os_em_andamento(n_os)\n@app.route('/api/progress/allos', methods=['GET'])\n@auth_required",
         "detail": "app",
         "documentation": {}
     },

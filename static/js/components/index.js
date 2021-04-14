@@ -1,5 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Table from "./Table";
-  
-ReactDOM.render(<Table />, document.getElementById("app"));
+import dynamicOption from "./dynamicOption"
+if (document.getElementById("app") && typeof document.getElementById("app") !== 'undefined'){
+
+ReactDOM.render(<Table/>, document.getElementById("app"));
+
+}
+
+if (document.getElementById("optdiv")  && typeof document.getElementById("optdiv") !== 'undefined'){
+    ReactDOM.render(<dynamicOption/>, document.getElementById("optdiv"));
+}

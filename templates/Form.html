@@ -31,8 +31,8 @@
     {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
     <div class="form-group"> 
         
-      {% if cliCol and TableCol[i] == cliCol %}
-      
+      {% if cliCol and TableCol[i] == cliCol and cliCol != 'cod_item' %}
+    
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>      
     
           <select name="{{ TableCol[i] }}" class="{{ TableCol[i] }}" required> 
@@ -50,7 +50,9 @@
             <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
            </p>
           </div>
-      {% elif sel2Col and TableCol[i] == sel2Col %}
+          
+      {% elif sel2Col and TableCol[i] == sel2Col and sel2Col != 'cod_item' %}
+     
           <div class="form-group">
           <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>       
       
@@ -69,7 +71,10 @@
               <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
              </p>
             </div>
-      {% elif sel3Col and TableCol[i] == sel3Col %}
+  
+       
+      {% elif sel3Col and TableCol[i] == sel3Col and sel3Col != 'cod_item'%}
+      
       <div class="form-group">
             <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label>         
         
@@ -92,8 +97,10 @@
 
                 </div>
       
+        {% elif TableCol[i] == 'cod_item'%} 
       
-      
+                <div id="optdiv">
+                </div>
       
       
         {% elif TableCol[i] == 'data' and data %}
@@ -162,7 +169,7 @@
       {% if TableCol[i] != 'ID' and TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
       <div class="form-group">
       
-        {% if cliCol and TableCol[i] == cliCol %}
+        {% if cliCol and TableCol[i] == cliCol and cliCol != 'cod_item'%}
         <div class="form-group">
         <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
     
@@ -181,7 +188,7 @@
             <form action="/{{TableCol[i]}}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
            </p>
           </div>
-          {% elif sel2Col and TableCol[i] == sel2Col %}
+          {% elif sel2Col and TableCol[i] == sel2Col  and sel2Col != 'cod_item' %}
           <div class="form-group"> 
           <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
       
@@ -200,7 +207,7 @@
             <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
            </p>
           </div>
-            {% elif sel3Col and TableCol[i] == sel3Col %}
+            {% elif sel3Col and TableCol[i] == sel3Col and sel3Col != 'cod_item'%}
             <div class="form-group"> 
             <label for="col" id="{{TableCol[i]}}-label">{{ TableCol[i].capitalize() }}</label><i class="fa fa-user"></i>            
         
@@ -219,8 +226,9 @@
                 <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
                </p>
      </div>
-    
-    
+    {% elif TableCol[i] == 'cod_item' %}
+     <div id="optdiv"></div>
+   
         
       
 
