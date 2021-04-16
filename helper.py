@@ -434,7 +434,7 @@ def registerprocess(id_proc, id_os, inicio=None, fim=None, ):
        Historico_os.create(inicio=inicio, fim=fim, id_proc=id_proc, id_os=id_os)
        return True
 
-def os_em_andamento(n_os=None):
+def os_em_andamento(n_os=None, py=None):
     
     if n_os:
         os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Cadastro_OS.Tipo, Historico_os.qtd ,processos.Nome, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Numero_Os==n_os, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc()).dicts())
@@ -458,8 +458,9 @@ def os_em_andamento(n_os=None):
         #beginning = datetime.time(beginning)
             duration = datetime.datetime.combine(date.min, end) - datetime.datetime.combine(date.min, beginning)
             item['duration'] = str(duration)
-    
-    return jsonify(os)
+    if not py:
+        return jsonify(os)
+    return os
 
 def os_em_historico():
     os = list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Cadastro_OS.Tipo, processos.Nome, Historico_os.inicio, Historico_os.fim).from_(Cadastro_OS, processos, Historico_os).where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID).order_by(Cadastro_OS.Numero_Os.desc()).dicts())

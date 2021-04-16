@@ -34,6 +34,10 @@ export default class Textselect extends React.Component{
 
  }
 
+
+componentDidMount(){
+    this.requestItems()
+}
     render(){
         var that = this;
         return(
