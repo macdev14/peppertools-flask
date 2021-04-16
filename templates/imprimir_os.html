@@ -183,25 +183,42 @@
      <tr class="style13">
        <td colspan="4" class="LINHA"><div align="left"></div>      <div align="center"></div></td>
      </tr>
+
+     <tr>
+      <td width="20%" class="LINHA">
+     <div align="right" class="style15">
+        <div align="left"><span class="style13"><b>Nome</b></span></div>
+      </div>
+     </td>
+      <td class="LINHA" width="20%" ><b>Período</b></td>
+      <td class="LINHA" width="20%" ><b>Início</b></td>
+      <td class="LINHA" width="22%" ><b>Fim</b></td>
+    </tr>
+
+
+     {% set cols = namespace(procs='') %}
      {% for process in processes%}
-    
-     {% if not proc or process['id_proc'] != proc %}{%
-       
-      {% set proc = process['id_proc'] %}
-      <tr>
-        <td width="20%" class="LINHA">
-       <div align="right" class="style15">
-          <div align="left"><span class="style13">{{process['Nome']}}</span></div>
-        </div>
-       </td>
-        <td class="LINHA" width="20%" >{{process['periodo']}}</td>
-        <td class="LINHA" width="20%" >{{process['inicio']}}</td>
-        <td class="LINHA" width="22%" >{{process['fim']}}</td>
-      </tr>
+     {{procs}}
+     {% if process['id_proc'] != cols.procs %}
+     {{procs}}
+     {%  set cols.procs = process['id_proc'] %}
+
+     <tr>
+      <td width="20%" class="LINHA">
+     <div align="right" class="style15">
+        <div align="left"><span class="style13">{{process['Nome']}}</span></div>
+      </div>
+     </td>
+      <td class="LINHA" width="20%" >{{process['periodo']}}</td>
+      <td class="LINHA" width="20%" >{{process['inicio']}}</td>
+      <td class="LINHA" width="22%" >{{process['fim']}}</td>
+    </tr>
+     
+      
     {%endif%}
      
 {%endfor%}
-
+<!-- 
      <tr>
        <td class="LINHA"><div align="right" class="style15">
          <div align="left"><span class="style13"> Torno</span></div>
@@ -329,7 +346,7 @@
        <td class="LINHA">&nbsp;</td>
        <td class="LINHA">&nbsp;</td>
        <td class="LINHA">&nbsp;</td>
-     </tr>
+     </tr> -->
    </table>
    <!---<p><span class="style13"><strong>OCORR&Ecirc;NCIAS / REFUGO:</strong></span></p> --->
    <table style="float: left; margin-left:10px" width="45%" border="0" cellspacing="0" cellpadding="0">

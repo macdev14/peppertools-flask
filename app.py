@@ -436,7 +436,7 @@ def register():
 def print_os(osid):
     #print(osid)
     if request.method == 'GET':
-        laprocessos =  list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Cadastro_OS.Tipo, Historico_os.qtd ,processos.Nome, Historico_os.periodo, Historico_os.inicio, Historico_os.fim, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).distinct().where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id==osid, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc(), Historico_os.ID.desc(), Historico_os.periodo.desc()).dicts())
+        laprocessos =  list(Cadastro_OS.select(Cadastro_OS.Numero_Os, Cadastro_OS.Tipo, Historico_os.qtd ,processos.Nome, Historico_os.periodo, Historico_os.inicio, Historico_os.fim, Historico_os.id_proc, Historico_os.data, Historico_os.ID, Clientes.nome).from_(Cadastro_OS, processos, Historico_os, Clientes).distinct().where(Historico_os.id_os == Cadastro_OS.Id, Historico_os.id_proc == processos.ID, Cadastro_OS.Id==osid, Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Historico_os.id_proc.desc(), Historico_os.periodo.desc()).dicts())
         #laprocessos = os_em_andamento(py=True)
         print(laprocessos)
         #laprocessos = laprocessos[0]
@@ -445,7 +445,7 @@ def print_os(osid):
         rows = list(Cadastro_OS.select().where(Cadastro_OS.Id == osid).dicts())
         maxPeriod = Historico_os.select(fn.MAX(Historico_os.periodo)).where(Historico_os.id_proc == rows[0]['STATUS']).scalar()
         #print(rows[0])
-        allProcessos = list(processos.select(Historico_os.id_proc, processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())
+        #allProcessos = list(processos.select(Historico_os.id_proc, processos.Nome, processos.ID).from_(processos, Historico_os).where(processos.ID == Historico_os.id_proc, Historico_os.id_os == osid, Historico_os.periodo==maxPeriod).dicts())
         #print(allProcessos)
         #os = getOs(osid)
         if not os:
