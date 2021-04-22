@@ -20,6 +20,9 @@ import requests
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from model import *
 from page import *
+from flask_wtf.csrf import CSRFProtect,  generate_csrf
+
+
 
 """os.environ['SECRET_KEY'] =  "caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79"
 os.environ['DB'] =  "mysql://rkpmtiv6bbvm81e5:bfm5w4ohfjp7ldw8@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4nn "
@@ -41,6 +44,7 @@ JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level':
 
 socketio = SocketIO(app)
 cors = CORS(app)
+csrf = CSRFProtect(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'
 #SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'
@@ -704,7 +708,7 @@ def comprasform(idcompra):
                     data['qnt'] = int(data['qnt'])
                 except:
                     data['qnt']=0  
-                    flash('Erro ao alterar Quantidade')
+                    flash('Erro aos alterar Quantidade')
                 try:
                     data['preco'] = float(data['preco'])
                 except: 
@@ -747,7 +751,7 @@ def comprasform(idcompra):
             return redirect('/compras/form/'+str(idcompra))
      #   except:
      #       flash('Erro ao cadastrar campo(s)')
-    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), table='compras', clients=fornecedores , cliLen= fornecedores_len, edit=False, active1="",active2="", active3="active", active4="")
+    return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), table='compras', clients=fornecedores , cliCol='cod_fornecedor', cliLen= fornecedores_len, edit=False, active1="",active2="", active3="active", active4="")
 
 
 @app.route('/notafiscal/form/', defaults={'idnota': ''}, methods=['POST', 'GET'])
@@ -766,24 +770,37 @@ def nfform(idnota):
                     data['numero_nf']=0  
                     flash('Erro ao alterar Numero NF')
                 try:    
-                    data['valor_nf'] = float(data['valor'])
+                    data['valor_nf'] = (data['valor'])
                 except:
                     data['valor_nf'] = 0.00
                     flash('Erro ao alterar valor')
+                try:
+                    data['data_nf'] = datetime.datetime.strptime(data['data_nf'], '%d/%m/%Y').strftime('%Y-%m-%d')
+                except:
+                    flash('Erro ao alterar data')     
 
                 notafiscal.update(
-                    numero_nf=request.form['numero_nf'], 
-                    data_nf=data['data_nf'], valor_nf=data['valor_nf'],  
-                    desc= request.form['desc']).where(compras.ID == idnota).execute()
+                    numero_nf=data['numero_nf'], 
+                    data_nf=data['data_nf'], valor_nf=data['valor_nf']).where(notafiscal.ID == idnota).execute()
 
                 nf = notafiscal.select().where(notafiscal.ID == idnota)    
                 flash('Alterado com sucesso')
         
             except:
-                flash('Erro ao alterar Compra')
-            return redirect('/compras/form/'+str(idnota))
-        nf = notafiscal.select().where(compras.ID == idnota)
-        return render_template("Form.html", content=nf[0], TableCol=Keys, TableLen = len(Keys), table='notafiscal' , edit=True, id=idnota, active1="",active2="", active3="active", active4="")
+                flash('Erro ao alterar N.F')
+            return redirect('/notafiscal/form/'+str(idnota))
+        nf = list(notafiscal.select().where(notafiscal.ID == idnota).dicts())
+        if nf:
+            try:
+                nf[0]["data_nf"] = datetime.datetime.strptime( str(nf[0]["data_nf"]), '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y ')
+            except:
+                pass
+            try:
+                nf[0]["data_nf"] = datetime.datetime.strptime( str(nf[0]["data_nf"]), '%Y-%m-%d').strftime('%d/%m/%Y ')
+            except:
+                flash('Erro ao alterar data')
+            return render_template("Form.html", content=nf[0], TableCol=Keys, TableLen = len(Keys), table='notafiscal' , edit=True, id=idnota, active1="",active2="", active3="active", active4="")
+        return redirect('/notafiscal/form/')
     if request.method == 'POST':
       #  try:
             data = dict(request.form)
@@ -798,15 +815,23 @@ def nfform(idnota):
             except:
                 data['valor_nf'] = 0.00
                 flash('Erro ao cadastrar Valor')
+            
+            try:
+                data['data_nf'] = datetime.datetime.strptime(data['data_nf'], '%d/%m/%Y').strftime('%Y-%m-%d')
+            except:
+                pass
+            try:
+                data['data_nf'] = datetime.datetime.strptime(data['data_nf'], '%d/%m/%Y %H:%M:%S').strftime('%Y-%m-%d')
+            except:    
+                flash('Erro ao cadastrar data') 
 
             notafiscal.create(
                     numero_nf=data['numero_nf'], 
-                    data_nf=data['data_nf'], valor_nf=data['valor_nf'],  
-                    desc= data['desc'])
+                    data_nf=data['data_nf'], valor_nf=data['valor_nf'])
 
-            idnf = notafiscal.select(fn.MAX(compras.ID)).scalar()
+            idnf = notafiscal.select(fn.MAX(notafiscal.ID)).scalar()
             flash('Cadastrado com sucesso')
-            return redirect('/compras/form/'+str(idnf))
+            return redirect('/notafiscal/form/'+str(idnf))
      #   except:
      #       flash('Erro ao cadastrar campo(s)')
     return render_template("Form.html", TableCol=Keys, TableLen = len(Keys), table='notafiscal', edit=False, active1="",active2="", active3="active", active4="")
@@ -1377,6 +1402,7 @@ def inicioProcesso():
         horario = obj['horario']
         idproc = obj['idProc']
         qtd = obj['qtd']
+        #ocorrencia = obj['ocorrencia']
         altos = Cadastro_OS.select().where(Cadastro_OS.Id == osid).get()
         altos.STATUS = idproc
         altos.save()
@@ -1432,7 +1458,7 @@ def fimProcesso():
     osid = objtok['osid']
     horario = obj['horario']
     idproc = obj['idProc']
-    
+    ocorrencia = obj['ocorrencia']
     periodo = Historico_os.select(fn.MAX(Historico_os.periodo)).where((Historico_os.id_os == osid)  &
     (Historico_os.id_proc == idproc)).scalar()
     if not periodo:
@@ -1444,6 +1470,7 @@ def fimProcesso():
     if (althistos):
         althistos = althistos.get()
         althistos.fim = horario
+        althistos.ocorrencias = ocorrencia
         althistos.save()
         return jsonify("Período "+str(periodo)+" Finalizado!")
     return jsonify("Periodo do processo não iniciado!")
@@ -1558,3 +1585,4 @@ def osinprogress():
 if __name__ == "__main__" :
      app.run(debug=True)
      socketio.run(app, debug=True)
+     csrf.init_app(app)

@@ -18,15 +18,15 @@
     
     <!--Grid row-->
     
-      <div class="card text-center" color="#000" id="progress">
+    <!--  <div class="card text-center" color="#000" id="progress">--->
       {% for n_os in historico_os %}
-        <h5 class="card-title" id="os-progress-card"><a href="/redirect/{{n_os}}" target="_blank" style="color:black"> N. OS {{n_os}}</a></h5>
+        <!--  <h5 class="card-title" id="os-progress-card"><a href="/redirect/{{n_os}}" target="_blank" style="color:black"> N. OS {{n_os}}</a></h5>
           
-        <div class="progress" id="progress-{{n_os}}">
+        <div class="progress" id="progress-{{n_os}}">  --->
           
           <script>progress(`{{n_os}}`)</script>
          
-        </div>
+        <!--  </div>--->
         {%endfor%}
 
         <div id="modals-to-open"></div>

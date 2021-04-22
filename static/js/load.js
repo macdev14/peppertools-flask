@@ -32,6 +32,7 @@ if (document.getElementById('numero_nf-label') && typeof document.getElementById
   document.getElementById('numero_nf-label').innerHTML = 'Número N.F';
   document.getElementById('data_nf-label').innerHTML = 'Data da N.F';
   document.getElementById('valor_nf-label').innerHTML = 'Valor da N.F';
+  document.getElementById('data_nf').placeholder = 'dd/mm/yyyy';
 
 }
 

@@ -234,9 +234,9 @@ class Material(Model):
         database = db
 
 class notafiscal(Model):
-    id_nf = PrimaryKeyField()
+    ID = PrimaryKeyField()
     numero_nf = IntegerField()
-    data_nf= TextField()
+    data_nf= DateTimeField(default=datetime.datetime.now)
     valor_nf = TextField()
     class Meta:
         db_table = 'notafiscal'
@@ -256,6 +256,7 @@ class Historico_os(Model):
     id_os = IntegerField()
     inicio = TextField()
     fim = TextField()
+    ocorrencias = TextField()
     periodo = IntegerField()
     data = TextField()
     qtd = IntegerField() 

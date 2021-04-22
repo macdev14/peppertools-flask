@@ -22,7 +22,8 @@ export default class Table extends React.Component
             modalOpen: false,
             divHeight: 0,
             hideNav: false,
-            osProd:[]
+            osProd:[],
+            nRows : 0
         }
     }
 
@@ -53,7 +54,7 @@ resize() {
   let response = axios.get('https://peppertools.herokuapp.com/api/processos', {headers: {'authorization': localStorage.getItem('auth') }}).then((response) => {
   // console.log(response.data)
    response.data.map((val, i) => {
-   
+    this.setState({nRows: i})
     let arr = [...this.state.processos, {field : val['Nome'], flex: 1, headerAlign: 'center', 
     renderCell: (params) => {
             //console.log(params)
@@ -157,10 +158,11 @@ resize() {
 
         }else{
         var that = this;
+        //var ht = (that.state.nRows*52) + 52
         //console.log('production')
         //console.log(that.state.production)
         return(
-         <div style={{ height: 400, width: '100%', color: '#000000', display: 'flex', justifyContent:'center', alignItems:'center' }}>
+         <div style={{ height:750, width: '100%', color: '#000000', display: 'flex', justifyContent:'center', alignItems:'center' }}>
        <ThemeProvider theme={that.theme}>
        <DataGrid apiRef={that.requestProcesses} columns={that.state.processos} rows={that.state.production} />
        </ThemeProvider>;

@@ -18,7 +18,7 @@
 <hr>
 
 <form method="post" action="/os/form/{{field['Id']}}">
-
+	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 	<div class="container">
 		<div class="form-row">
 
@@ -84,7 +84,7 @@
 					</select> 
 					<p id="msg">
 
-						<form action="/clientes/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Cliente</button></form>
+						<a href="/clientes/form/" target="_blank">  <button type="button" class="btn btn-primary btn-sm">Cadastrar Cliente</button></a>
 					</p>
 
 
@@ -107,7 +107,7 @@
 						{%endfor%}
 
 					</select> 
-					<p id="msg"><form action="/linha/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Linha</button></form></p>
+					<p id="msg"><a href="/linha/form/" target="_blank"><button type="button" class="btn btn-primary btn-sm">Cadastrar Linha</button></a></p>
 
 
 				</div>

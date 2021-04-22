@@ -719,6 +719,22 @@
         "documentation": {}
     },
     {
+        "label": "CSRFProtect",
+        "importPath": "flask_wtf.csrf",
+        "description": "flask_wtf.csrf",
+        "isExtraImport": true,
+        "detail": "flask_wtf.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "generate_csrf",
+        "importPath": "flask_wtf.csrf",
+        "description": "flask_wtf.csrf",
+        "isExtraImport": true,
+        "detail": "flask_wtf.csrf",
+        "documentation": {}
+    },
+    {
         "label": "os,",
         "kind": 6,
         "isExtraImport": true,
@@ -1932,7 +1948,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def osinprogress():\n    os = os_em_historico()\n    return jsonify(os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)\n     socketio.run(app, debug=True)",
+        "peekOfCode": "def osinprogress():\n    os = os_em_historico()\n    return jsonify(os)\nif __name__ == \"__main__\" :\n     app.run(debug=True)\n     socketio.run(app, debug=True)\n     csrf.init_app(app)",
         "detail": "app",
         "documentation": {}
     },
@@ -1968,7 +1984,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'",
+        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\ncsrf = CSRFProtect(app)",
         "detail": "app",
         "documentation": {}
     },
@@ -1977,7 +1993,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\ncsrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'",
         "detail": "app",
         "documentation": {}
     },
@@ -1986,7 +2002,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "db = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'",
+        "peekOfCode": "db = SQL(os.environ['DB'])\"\"\"\n#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\ncsrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -1995,7 +2011,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "#db = SQL(\"sqlite:///peppertools.db\")\napp = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\ncsrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'",
         "detail": "app",
         "documentation": {}
     },
@@ -2004,7 +2020,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
+        "peekOfCode": "app = Flask(__name__)\napp.add_template_global(get_level,name='get_level')\nJINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\ncsrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'",
         "detail": "app",
         "documentation": {}
     },
@@ -2013,7 +2029,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'",
+        "peekOfCode": "JINJA2_ENVIRONMENT_OPTIONS = { 'undefined' : Undefined, '' : None,  'get_level': get_level}\nsocketio = SocketIO(app)\ncors = CORS(app)\ncsrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)",
         "detail": "app",
         "documentation": {}
     },
@@ -2022,7 +2038,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "socketio = SocketIO(app)\ncors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'",
+        "peekOfCode": "socketio = SocketIO(app)\ncors = CORS(app)\ncsrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'",
         "detail": "app",
         "documentation": {}
     },
@@ -2031,7 +2047,16 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "cors = CORS(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)",
+        "peekOfCode": "cors = CORS(app)\ncsrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "csrf",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "csrf = CSRFProtect(app)\napp.config['CORS_HEADERS'] = 'Content-Type'\napp.secret_key = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\n#SESSION_COOKIE_DOMAIN = 'peppertools.herokuapp.com'\nos.environ['SECRET_KEY'] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\napp.config[\"SECRET_KEY\"] = 'caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79'\nQRcode(app)\nTEMPLATE_FOLDER = '/templates/'\nHTML_FILE = 'layout.html'\n#app.add_template_global(name=HTML_FILE, f=TEMPLATE_FOLDER)",
         "detail": "app",
         "documentation": {}
     },
@@ -2535,7 +2560,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Material(Model):\n    ID = PrimaryKeyField()\n    nome = TextField()\n    cod_material = TextField()\n    class Meta:\n        db_table = 'Material'\n        database = db\nclass notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()",
+        "peekOfCode": "class Material(Model):\n    ID = PrimaryKeyField()\n    nome = TextField()\n    cod_material = TextField()\n    class Meta:\n        db_table = 'Material'\n        database = db\nclass notafiscal(Model):\n    ID = PrimaryKeyField()\n    numero_nf = IntegerField()",
         "detail": "model",
         "documentation": {}
     },
@@ -2544,7 +2569,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class notafiscal(Model):\n    id_nf = PrimaryKeyField()\n    numero_nf = IntegerField()\n    data_nf= TextField()\n    valor_nf = TextField()\n    class Meta:\n        db_table = 'notafiscal'\n        database = db\nclass processos(Model):\n    ID = PrimaryKeyField()",
+        "peekOfCode": "class notafiscal(Model):\n    ID = PrimaryKeyField()\n    numero_nf = IntegerField()\n    data_nf= DateTimeField(default=datetime.datetime.now)\n    valor_nf = TextField()\n    class Meta:\n        db_table = 'notafiscal'\n        database = db\nclass processos(Model):\n    ID = PrimaryKeyField()",
         "detail": "model",
         "documentation": {}
     },
@@ -2562,7 +2587,7 @@
         "kind": 6,
         "importPath": "model",
         "description": "model",
-        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    periodo = IntegerField()\n    data = TextField()\n    qtd = IntegerField() \n    qtdFim = IntegerField()",
+        "peekOfCode": "class Historico_os(Model):\n    ID = PrimaryKeyField()\n    id_proc = IntegerField()\n    id_os = IntegerField()\n    inicio = TextField()\n    fim = TextField()\n    ocorrencias = TextField()\n    periodo = IntegerField()\n    data = TextField()\n    qtd = IntegerField() ",
         "detail": "model",
         "documentation": {}
     },

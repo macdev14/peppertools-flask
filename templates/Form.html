@@ -27,6 +27,7 @@
   
 
 <form action="/{{table}}/form/{{ content['ID'] or content['Id'] or content['id']}}" method="post">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     {% for i in range(TableLen) %}
     {% if TableCol[i]  != 'ID' and  TableCol[i] != 'id_nf' and TableCol[i] != 'id' and TableCol[i] != 'Id' %}
     <div class="form-group"> 
@@ -47,7 +48,7 @@
            
           </select> <br>
           <p id="msg">
-            <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+            <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
            </p>
           </div>
           
@@ -68,7 +69,7 @@
              
             </select> <br>
             <p id="msg">
-              <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+              <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
              </p>
             </div>
   
@@ -92,7 +93,7 @@
 
          
               <p id="msg">
-                <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+                  <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
                </p>
 
                 </div>
@@ -124,7 +125,7 @@
 
 {% if table == 'ponto' %}
 
-<form action='fim/{{content["id"]}}'><button class="btn btn-warning btn-lg">
+<form action='fim/{{content["id"]}}'> <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/><button class="btn btn-warning btn-lg">
   Finalizar Ponto <i class=".glyphicon-glyphicon-pencil"></i></button> </form> 
 
 
@@ -135,16 +136,19 @@
 
 
   <form action="/delete/table={{table}}&id={{ content['ID'] or content['id'] or content['Id'] }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <button class="btn btn-danger btn-md">
      Deletar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></form>
     <br>
 <form action="/{{table}}/form/" method="get">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
   <button class="btn btn-primary btn-md">
    Cadastrar Novo <i class=".glyphicon-glyphicon-pencil"></i>
   </button></form>
 
   <form action="/{{table}}" method="get">
+    
     <button class="btn btn-primary btn-md">
      Voltar <i class=".glyphicon-glyphicon-pencil"></i>
     </button></form>
@@ -160,8 +164,10 @@
  
   {% if table == 'ponto' %}
   <form action="/{{table}}/form/inicio" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     {%else%}
     <form action="/{{table}}/form/" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
   {%endif%}
     
       <button class="btn btn-primary btn-sm float-right">Cadastrar</button>
@@ -185,7 +191,7 @@
             {% endif %}
           </select> 
           <p id="msg">
-            <form action="/{{TableCol[i]}}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+           <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
            </p>
           </div>
           {% elif sel2Col and TableCol[i] == sel2Col  and sel2Col != 'cod_item' %}
@@ -204,7 +210,7 @@
              
             </select> 
            <p id="msg">
-            <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+            <a href="/{{ TableCol[i] }}/form/" target="_blank"><button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
            </p>
           </div>
             {% elif sel3Col and TableCol[i] == sel3Col and sel3Col != 'cod_item'%}
@@ -223,7 +229,7 @@
                
               </select>
               <p id="msg">
-                <form action="/{{ TableCol[i] }}/form/" method="post"> <button class="btn btn-primary btn-sm">Cadastrar Opcão</button></form>
+                <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
                </p>
      </div>
     {% elif TableCol[i] == 'cod_item' %}
