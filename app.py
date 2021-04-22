@@ -1229,6 +1229,7 @@ def invalid_route(e):
 
 @app.route('/app/api/login', methods=['POST'])
 @cross_origin()
+@csrf.exempt
 def longlogin():
     obj = json.loads(request.data)
     rows = usuarios.select(usuarios.ds_senha).where(usuarios.ds_login == obj['username'])
@@ -1251,6 +1252,7 @@ def longlogin():
     
 
 @app.route('/api/login', methods=['POST'])
+@csrf.exempt
 def log():
    
     obj = json.loads(request.data)
@@ -1284,6 +1286,7 @@ def log():
   
 @app.route('/os/all')
 @login_required
+@csrf.exempt
 def all_api():
     rows = Cadastro_OS.select()
     rows = [model_to_dict(row) for row in rows]
@@ -1294,6 +1297,7 @@ def all_api():
 @app.route('/api/os/<int:osid>', methods=['POST', 'GET'])
 @auth_required
 @cross_origin()
+@csrf.exempt
 def osApi(osid):
     try:
         rows = Cadastro_OS.select().where(Cadastro_OS.Id == osid)
@@ -1314,6 +1318,7 @@ def osApi(osid):
  
 @app.route('/api/os/limit=<int:limit>', methods=['GET', 'POST'])
 @auth_required
+@csrf.exempt
 def osApiall(limit):
   #  try:
         rows = list(Cadastro_OS.select(Cadastro_OS, Clientes.nome).from_(Cadastro_OS, Clientes).where(Cadastro_OS.Id_Cliente == Clientes.ID).order_by(Cadastro_OS.Numero_Os.desc()).limit(int(limit)).dicts())
@@ -1339,6 +1344,7 @@ def osApiall(limit):
 
 @app.route('/api/os/q=<string:query>', methods=['GET', 'POST'])
 @auth_required
+@csrf.exempt
 def osApiSearch(query):
   #  try:
         if len(query) < 2:
@@ -1371,6 +1377,7 @@ def osApiSearch(query):
 
 @app.route('/api/os/new')
 @auth_required
+@csrf.exempt
 def osApiNum():
     try:
           os_num = Cadastro_OS.select(fn.MAX(Cadastro_OS.Numero_Os)).scalar()
@@ -1381,6 +1388,7 @@ def osApiNum():
 
 @app.route('/api/clientes', methods=['GET', 'POST'])
 @auth_required
+@csrf.exempt
 def allClientes():
     clients = list(Clientes.select().dicts())
     #clients = [model_to_dict(client) for client in clients]
@@ -1389,6 +1397,7 @@ def allClientes():
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
 @app.route('/api/processos/inicio', methods=['POST'])
 @auth_required
+@csrf.exempt
 def inicioProcesso():
     try:
         obj = json.loads(request.data)
@@ -1434,6 +1443,7 @@ def inicioProcesso():
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
 @app.route('/api/processos', methods=['GET'])
 @auth_required
+@csrf.exempt
 def allProcesso():
     if request.method == 'GET':
         process_list = processos.select()
@@ -1443,6 +1453,7 @@ def allProcesso():
 @cross_origin(origin='*',headers=['Content- Type','Authorization', 'authorization'])
 @app.route('/api/processos/fim', methods=['POST'])
 @auth_required
+@csrf.exempt
 def fimProcesso():
     
     obj = json.loads(request.data)
@@ -1481,6 +1492,7 @@ def fimProcesso():
 
 @app.route('/api/clientes/id=<int:id>', methods=['GET', 'POST'])
 @auth_required
+@csrf.exempt
 def IdClientes(id):
     #stmt = "SELECT ID, nome FROM Clientes ORDER BY nome ASC"
     res = Clientes.select(Clientes.ID, Clientes.nome).where(Clientes.ID == id).order_by(Clientes.ID.asc())
@@ -1490,6 +1502,7 @@ def IdClientes(id):
 @app.route('/api/clientes/', defaults={'query': 'none'}, methods=['POST', 'GET'])
 @app.route('/api/clientes/q=<string:query>', methods=['POST', 'GET'])
 @auth_required
+@csrf.exempt
 def nome(query):
     #stmt = "SELECT ID, nome FROM Clientes ORDER BY nome ASC"
     res = list(Clientes.select().where(Clientes.nome.contains(query)).order_by(Clientes.ID.asc()).dicts())
@@ -1498,6 +1511,7 @@ def nome(query):
 
 @app.route('/api/clientes/limit=<int:limit>', methods=['GET','POST'])
 @auth_required
+@csrf.exempt
 def cliLimit(limit):
     res = list(Clientes.select().order_by(Clientes.ID.asc()).limit(int(limit)).dicts())
     #res = [model_to_dict(row) for row in res]
@@ -1506,6 +1520,7 @@ def cliLimit(limit):
 
 @app.route('/api/estoque/limit=<int:limit>', methods=['GET','POST'])
 @auth_required
+@csrf.exempt
 def allEstoque(limit):
    
     if request.method == 'GET':
@@ -1522,6 +1537,7 @@ def allEstoque(limit):
 
 @app.route('/api/estoque/q=<string:query>&col=<string:col>', methods=['GET'])
 @auth_required
+@csrf.exempt
 def queryEstoque(query, col):
     rows = Estoque.select(Estoque, Clientes.nome).from_(Estoque, Clientes).where(Estoque.id_cliente == Clientes.ID, Estoque[col].contains(query)).order_by(Estoque.qt.desc())
     #stmt = "SELECT e.*, c.nome FROM Estoque e, Clientes c WHERE c.ID = e.id_cliente AND "+ col + "=" + query +" ORDER BY e.ID DESC"
@@ -1532,6 +1548,7 @@ def queryEstoque(query, col):
 
 @app.route('/api/item/allitems', methods=['GET'])
 @auth_required
+@csrf.exempt
 def getItems():
     rows = list(item.select(item, Material.nome).from_(item, Material).where(item.cod_mat == Material.ID).order_by(item.id.desc()).dicts())
     return jsonify(rows)
@@ -1539,6 +1556,7 @@ def getItems():
 
 @app.route('/api/item/<int:itemid>', methods=['GET', 'POST'])
 @auth_required
+@csrf.exempt
 def alterItems():
     if request.method == 'GET':
         rows = list(item.select().where(item.id== iditem).dicts())
@@ -1554,6 +1572,7 @@ def alterItems():
 
 @app.route('/api/item/', methods=['POST'])
 @auth_required
+@csrf.exempt
 def createItem():
     obj = json.loads(request.data)
     item.create(descricao=obj['descricao'], cod_mat=obj['cod_mat'])
