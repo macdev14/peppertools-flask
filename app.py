@@ -811,7 +811,7 @@ def nfform(idnota):
                 data['numero_nf']= 0
                 flash('Erro ao cadastrar Numero')
             try:
-                data['valor_nf'] = float(data['valor'])
+                data['valor_nf'] = data['valor']
             except:
                 data['valor_nf'] = 0.00
                 flash('Erro ao cadastrar Valor')
@@ -819,11 +819,11 @@ def nfform(idnota):
             try:
                 data['data_nf'] = datetime.datetime.strptime(data['data_nf'], '%d/%m/%Y').strftime('%Y-%m-%d')
             except:
-                pass
-            try:
-                data['data_nf'] = datetime.datetime.strptime(data['data_nf'], '%d/%m/%Y %H:%M:%S').strftime('%Y-%m-%d')
-            except:    
-                flash('Erro ao cadastrar data') 
+                
+                try:
+                    data['data_nf'] = datetime.datetime.strptime(data['data_nf'], '%d/%m/%Y %H:%M:%S').strftime('%Y-%m-%d')
+                except:    
+                    flash('Erro ao cadastrar data') 
 
             notafiscal.create(
                     numero_nf=data['numero_nf'], 
