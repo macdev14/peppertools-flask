@@ -354,9 +354,11 @@
      <tr class="style13">
        <td class="LINHA"><div align="left"></div>      <div align="center"></div></td>
      </tr>
+     {% for ocorrencia in ocorrencias%}
      <tr class="style13">
-       <td class="LINHA">&nbsp;</td>
+       <td class="LINHA">{{ ocorrencia['Nome'] }} - {{ ocorrencia['ocorrencias'] }}</td>
      </tr>
+     {%endfor%}
      <tr class="style13">
        <td class="LINHA">&nbsp;</td>
      </tr>
