@@ -1,5 +1,6 @@
 Authlib
 Click==7.0
+dotenv
 gunicorn==19.10.0
 itsdangerous==1.1.0
 Jinja2==2.11.1
