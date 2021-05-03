@@ -69,8 +69,8 @@ def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
-    response.headers['Access-Control-Allow-Origin'] = '*'
-   # response.headers["authorization"] = session.get('_permanent')
+    #response.headers['Access-Control-Allow-Origin'] = '*'
+    #response.headers["authorization"] = session.get('_permanent')
     response.headers["Access-Control-Allow-Credentials"] = "true"
     response.headers["Access-Control-Allow-Headers"] = "Access-Control-Allow-Headers, Authorization, Origin, X-Requested-With, Content-Type, Accept"
     response.headers["Access-Control-Allow-Methods"] = "GET,HEAD,OPTIONS,POST,PUT"
@@ -86,6 +86,13 @@ Session(app)
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                           'favicon.ico',mimetype='image/vnd.microsoft.icon')
+
+@app.route('/scan')
+#@login_required
+#@managerLevel
+def qrscanner():
+    return render_template("scanner.html", title="Escanear QR")
+
 
 @app.route('/')
 @login_required
@@ -209,11 +216,11 @@ def buscar():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
-    """
+    
     if not request.is_secure and app.env != "development":
         url = request.url.replace("http://", "https://", 1)
         code = 301
-        return redirect(url, code=code) """
+        return redirect(url, code=code)
     tz = pytz.timezone('America/Sao_Paulo')
     x = datetime.datetime.now(tz=tz)
     date = x.strftime("%d/%m/%Y")
@@ -874,7 +881,7 @@ def inicio():
 @app.route('/item/form/<int:iditem>', methods=['POST', 'GET'])
 @login_required
 @employeeLevel
-def items(iditem):
+def itens(iditem):
     Keys = list(item._meta.fields.keys())
     if iditem != '':
         if request.method == 'GET':
@@ -1182,7 +1189,7 @@ def redirect_num(n_os):
         return redirect('#')
 
 @app.route('/linha/form/', defaults={'idlinha': ''}, methods=['POST', 'GET'])
-@app.route('/linha/form/<int:idlinha>', methods=['POST', 'GET'])
+@app.route('/linha/form/<int:idlinha>/', methods=['POST', 'GET'])
 @login_required
 def linha_os(idlinha):
     if idlinha!='':
@@ -1203,6 +1210,10 @@ def linha_os(idlinha):
         linha.create(nome= request.form['nome'], numero_inicial = num).execute()
     pageLinha = page('linha')
     return pageLinha.render()
+
+@app.route('/<string:table>/<string:column>/')
+def srchRelation(table, column):
+    return idCheck(table, column)
 
 @app.errorhandler(404) 
 def invalid_route(e): 
@@ -1489,8 +1500,6 @@ def fimProcesso():
     #except:
        #return jsonify("O.S Inválida!") 
 
-
-
 @app.route('/api/clientes/id=<int:id>', methods=['GET', 'POST'])
 @auth_required
 @csrf.exempt
@@ -1578,15 +1587,6 @@ def createItem():
     obj = json.loads(request.data)
     item.create(descricao=obj['descricao'], cod_mat=obj['cod_mat'])
     
-
-    
-
-    
-
-
-
-
-
 @app.route('/api/progress/<int:n_os>', methods=['GET'])
 @auth_required
 def progress(n_os):
@@ -1598,11 +1598,8 @@ def osinprogress():
     os = os_em_historico()
     return jsonify(os)
 
-
-
-
-
 if __name__ == "__main__" :
      app.run(debug=True)
      socketio.run(app, debug=True)
      csrf.init_app(app)
+     

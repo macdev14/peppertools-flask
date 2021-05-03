@@ -48,7 +48,7 @@
            
           </select> <br>
           <p id="msg">
-            <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
+            <a href="/{{ table }}/{{ TableCol[i] }}/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
            </p>
           </div>
           
@@ -69,7 +69,7 @@
              
             </select> <br>
             <p id="msg">
-              <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
+              <a href="/{{ table }}/{{ TableCol[i] }}/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
              </p>
             </div>
   
@@ -93,7 +93,7 @@
 
          
               <p id="msg">
-                  <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
+                  <a href="/{{ table }}/{{ TableCol[i] }}/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
                </p>
 
                 </div>
@@ -191,7 +191,7 @@
             {% endif %}
           </select> 
           <p id="msg">
-           <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
+           <a href="/{{ table }}/{{ TableCol[i] }}/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
            </p>
           </div>
           {% elif sel2Col and TableCol[i] == sel2Col  and sel2Col != 'cod_item' %}
@@ -210,7 +210,7 @@
              
             </select> 
            <p id="msg">
-            <a href="/{{ TableCol[i] }}/form/" target="_blank"><button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
+            <a href="/{{ table }}/{{ TableCol[i] }}/" target="_blank"><button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
            </p>
           </div>
             {% elif sel3Col and TableCol[i] == sel3Col and sel3Col != 'cod_item'%}
@@ -229,7 +229,7 @@
                
               </select>
               <p id="msg">
-                <a href="/{{ TableCol[i] }}/form/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
+                <a href="/{{ table }}/{{ TableCol[i] }}/" target="_blank"> <button type="button" class="btn btn-primary btn-sm">Cadastrar Opcão</button></a>
                </p>
      </div>
     {% elif TableCol[i] == 'cod_item' %}

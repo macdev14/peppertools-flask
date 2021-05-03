@@ -7,23 +7,17 @@ try:
     from urllib.parse import urlparse
 except ImportError:
      from urlparse import urlparse
-from flask import flash, redirect, render_template, request, session, escape, Response, Markup, jsonify
+from flask import flash, redirect, render_template, request, session, escape, Response, Markup, jsonify, url_for
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
 #import mysql.connector as sqlite3
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from model import *
+from dotenv import load_dotenv
+dotenv_path = str.join(os.path.dirname(__file__), '.env')  # Path to .env file
+load_dotenv(dotenv_path)
 """
-os.environ['SECRET_KEY'] =  "caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79"
-os.environ['DB'] =  "mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n"
-os.environ['HOST']= "nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
-os.environ['USER'] =  "rkpmtiv6bbvm81e5"
-os.environ['PASSWORD'] = "yz1mq64u3h1sab93"
-os.environ['DATABASE'] = "ztqqdjf98kpnzn4n"
-
-
-
 db = SQL(os.environ['DB'])
 conn = sqlite3.connect(
             host=os.environ['HOST'],
@@ -475,3 +469,16 @@ def os_em_historico():
     n_os = list(n_os)
    #print(n_os.reverse())
     return n_os
+
+def idCheck(table, col_id):
+    #if col_id in str_to_class(table)._meta.fields.keys() 
+    if 'cli' in col_id:
+        return redirect(url_for('.cadCli'))
+    elif 'for' in col_id:
+        return redirect(url_for('.fornecedor'))
+    elif 'item' in col_id:
+        return redirect(url_for('.itens'))
+    elif 'func' in col_id:
+        return redirect(url_for('.func'))
+    else:
+        return redirect('/')

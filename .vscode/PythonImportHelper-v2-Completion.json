@@ -232,6 +232,14 @@
         "documentation": {}
     },
     {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -765,6 +773,14 @@
         "description": "functools",
         "isExtraImport": true,
         "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -1363,7 +1379,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'",
+        "peekOfCode": "def before_request():\n    \"\"\"Connect to the database before each request\"\"\"\n    db.connect()\n@app.after_request\ndef after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    #response.headers['Access-Control-Allow-Origin'] = '*'",
         "detail": "app",
         "documentation": {}
     },
@@ -1372,7 +1388,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    response.headers['Access-Control-Allow-Origin'] = '*'\n   # response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"\n    response.headers[\"Access-Control-Allow-Headers\"] = \"Access-Control-Allow-Headers, Authorization, Origin, X-Requested-With, Content-Type, Accept\"\n    response.headers[\"Access-Control-Allow-Methods\"] = \"GET,HEAD,OPTIONS,POST,PUT\"",
+        "peekOfCode": "def after_request(response):\n    db.close()\n    response.headers[\"Cache-Control\"] = \"no-cache, no-store, must-revalidate\"\n    response.headers[\"Expires\"] = 0\n    response.headers[\"Pragma\"] = \"no-cache\"\n    #response.headers['Access-Control-Allow-Origin'] = '*'\n    #response.headers[\"authorization\"] = session.get('_permanent')\n    response.headers[\"Access-Control-Allow-Credentials\"] = \"true\"\n    response.headers[\"Access-Control-Allow-Headers\"] = \"Access-Control-Allow-Headers, Authorization, Origin, X-Requested-With, Content-Type, Accept\"\n    response.headers[\"Access-Control-Allow-Methods\"] = \"GET,HEAD,OPTIONS,POST,PUT\"",
         "detail": "app",
         "documentation": {}
     },
@@ -1381,7 +1397,16 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()",
+        "peekOfCode": "def favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/scan')\n#@login_required\n#@managerLevel\ndef qrscanner():\n    return render_template(\"scanner.html\", title=\"Escanear QR\")\n@app.route('/')\n@login_required",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "qrscanner",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def qrscanner():\n    return render_template(\"scanner.html\", title=\"Escanear QR\")\n@app.route('/')\n@login_required\n@managerLevel\ndef index():\n    os = os_em_historico()\n    #os = Cadastro_OS.select(Cadastro_OS.Id, Cadastro_OS.Numero_Os).join(Historico_os, on=(Cadastro_OS.Id == Historico_os.id_os)).distinct()\n    #historico_os = Historico_os.select().dicts()\n    response = Response(render_template(\"home.html\", title= \"Inicio\", auth=session.get('token'), historico_os=os,active1=\"active\",active2=\"\", active3=\"\", active4=\"\"))",
         "detail": "app",
         "documentation": {}
     },
@@ -1471,7 +1496,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"",
+        "peekOfCode": "def buscar():\n    #return render_template(\"buscar_os.html\", title= \"Inicio\", active1=\"\",active2=\"\", active3=\"\", active4=\"active\")\n    return underdev()\n@app.route('/login', methods=[\"GET\", \"POST\"])\ndef login():\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)\n    tz = pytz.timezone('America/Sao_Paulo')",
         "detail": "app",
         "documentation": {}
     },
@@ -1480,7 +1505,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def login():\n    \"\"\"\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code) \"\"\"\n    tz = pytz.timezone('America/Sao_Paulo')\n    x = datetime.datetime.now(tz=tz)\n    date = x.strftime(\"%d/%m/%Y\")\n    if request.method == 'POST':",
+        "peekOfCode": "def login():\n    if not request.is_secure and app.env != \"development\":\n        url = request.url.replace(\"http://\", \"https://\", 1)\n        code = 301\n        return redirect(url, code=code)\n    tz = pytz.timezone('America/Sao_Paulo')\n    x = datetime.datetime.now(tz=tz)\n    date = x.strftime(\"%d/%m/%Y\")\n    if request.method == 'POST':\n        user = request.form.get('user')",
         "detail": "app",
         "documentation": {}
     },
@@ -1665,11 +1690,11 @@
         "documentation": {}
     },
     {
-        "label": "items",
+        "label": "itens",
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def items(iditem):\n    Keys = list(item._meta.fields.keys())\n    if iditem != '':\n        if request.method == 'GET':\n            try:\n                materials = Material.select(Material.nome, Material.ID)\n                iteminfo = item.select().where(item.id == iditem)\n                itempage = page('item', content=iteminfo[0], edit=True, select=materials)\n                return itempage.render()\n            except:",
+        "peekOfCode": "def itens(iditem):\n    Keys = list(item._meta.fields.keys())\n    if iditem != '':\n        if request.method == 'GET':\n            try:\n                materials = Material.select(Material.nome, Material.ID)\n                iteminfo = item.select().where(item.id == iditem)\n                itempage = page('item', content=iteminfo[0], edit=True, select=materials)\n                return itempage.render()\n            except:",
         "detail": "app",
         "documentation": {}
     },
@@ -1741,7 +1766,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())\n        #print(idos[0]['Id'])\n        return redirect('/os/form/'+ str(idos[0]['Id']))\n    except:\n        return redirect('#')\n@app.route('/linha/form/', defaults={'idlinha': ''}, methods=['POST', 'GET'])\n@app.route('/linha/form/<int:idlinha>', methods=['POST', 'GET'])\n@login_required",
+        "peekOfCode": "def redirect_num(n_os):\n    try:\n        idos = list(Cadastro_OS.select(Cadastro_OS.Id).where(Cadastro_OS.Numero_Os == n_os).dicts())\n        #print(idos[0]['Id'])\n        return redirect('/os/form/'+ str(idos[0]['Id']))\n    except:\n        return redirect('#')\n@app.route('/linha/form/', defaults={'idlinha': ''}, methods=['POST', 'GET'])\n@app.route('/linha/form/<int:idlinha>/', methods=['POST', 'GET'])\n@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -1751,6 +1776,15 @@
         "importPath": "app",
         "description": "app",
         "peekOfCode": "def linha_os(idlinha):\n    if idlinha!='':\n        content = linha.select().where(linha.id==idlinha)\n        if request.method == 'POST':\n            try:\n                num = int(request.form['numero_inicial'])\n            except:\n                num = 0\n            content.update(nome= request.form['nome'], numero_inicial = num).execute()\n        pageLinha = page('linha', content=content[0])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "srchRelation",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def srchRelation(table, column):\n    return idCheck(table, column)\n@app.errorhandler(404) \ndef invalid_route(e): \n    return underdev()",
         "detail": "app",
         "documentation": {}
     },
@@ -1930,7 +1964,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def createItem():\n    obj = json.loads(request.data)\n    item.create(descricao=obj['descricao'], cod_mat=obj['cod_mat'])\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\n@auth_required\ndef progress(n_os):\n    return os_em_andamento(n_os)\n@app.route('/api/progress/allos', methods=['GET'])\n@auth_required",
+        "peekOfCode": "def createItem():\n    obj = json.loads(request.data)\n    item.create(descricao=obj['descricao'], cod_mat=obj['cod_mat'])\n@app.route('/api/progress/<int:n_os>', methods=['GET'])\n@auth_required\ndef progress(n_os):\n    return os_em_andamento(n_os)\n@app.route('/api/progress/allos', methods=['GET'])\n@auth_required\ndef osinprogress():",
         "detail": "app",
         "documentation": {}
     },
@@ -2128,7 +2162,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "#app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required",
+        "peekOfCode": "#app.config[\"SESSION_FILE_DIR\"] = mkdtemp()\napp.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/scan')\n#@login_required",
         "detail": "app",
         "documentation": {}
     },
@@ -2137,7 +2171,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel",
+        "peekOfCode": "app.config[\"SESSION_PERMANENT\"] = False\napp.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/scan')\n#@login_required\n#@managerLevel",
         "detail": "app",
         "documentation": {}
     },
@@ -2146,7 +2180,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/')\n@login_required\n@managerLevel\ndef index():",
+        "peekOfCode": "app.config[\"SESSION_TYPE\"] = \"filesystem\"\nSession(app)\n@app.route('/favicon.ico')\ndef favicon():\n    return send_from_directory(os.path.join(app.root_path, 'static'),\n                          'favicon.ico',mimetype='image/vnd.microsoft.icon')\n@app.route('/scan')\n#@login_required\n#@managerLevel\ndef qrscanner():",
         "detail": "app",
         "documentation": {}
     },
@@ -2349,47 +2383,20 @@
         "documentation": {}
     },
     {
-        "label": "os.environ['SECRET_KEY']",
-        "kind": 5,
+        "label": "idCheck",
+        "kind": 2,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "os.environ['SECRET_KEY'] =  \"caf3cc4546725599c99158599d443fc815bd137b73b0b69bc804f3ba483aeaa224c75a2b3fc1f35eccfdfef6cdd01858450435ef6daed0c49bf01fbe1e7b3b79\"\nos.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],",
+        "peekOfCode": "def idCheck(table, col_id):\n    #if col_id in str_to_class(table)._meta.fields.keys() \n    if 'cli' in col_id:\n        return redirect(url_for('.cadCli'))\n    elif 'for' in col_id:\n        return redirect(url_for('.fornecedor'))\n    elif 'item' in col_id:\n        return redirect(url_for('.itens'))\n    elif 'func' in col_id:\n        return redirect(url_for('.func'))",
         "detail": "helper",
         "documentation": {}
     },
     {
-        "label": "os.environ['DB']",
+        "label": "dotenv_path",
         "kind": 5,
         "importPath": "helper",
         "description": "helper",
-        "peekOfCode": "os.environ['DB'] =  \"mysql://rkpmtiv6bbvm81e5:yz1mq64u3h1sab93@nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ztqqdjf98kpnzn4n\"\nos.environ['HOST']= \"nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com\"\nos.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],",
-        "detail": "helper",
-        "documentation": {}
-    },
-    {
-        "label": "os.environ['USER']",
-        "kind": 5,
-        "importPath": "helper",
-        "description": "helper",
-        "peekOfCode": "os.environ['USER'] =  \"rkpmtiv6bbvm81e5\"\nos.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"",
-        "detail": "helper",
-        "documentation": {}
-    },
-    {
-        "label": "os.environ['PASSWORD']",
-        "kind": 5,
-        "importPath": "helper",
-        "description": "helper",
-        "peekOfCode": "os.environ['PASSWORD'] = \"yz1mq64u3h1sab93\"\nos.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\n#db = SQL(\"sqlite:///peppertools34.db\")",
-        "detail": "helper",
-        "documentation": {}
-    },
-    {
-        "label": "os.environ['DATABASE']",
-        "kind": 5,
-        "importPath": "helper",
-        "description": "helper",
-        "peekOfCode": "os.environ['DATABASE'] = \"ztqqdjf98kpnzn4n\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"\n#db = SQL(\"sqlite:///peppertools34.db\")\n'''def getData(pref1, cond1, table, limit=False, column = \"\"):",
+        "peekOfCode": "dotenv_path = str.join(os.path.dirname(__file__), '.env')  # Path to .env file\nload_dotenv(dotenv_path)\n\"\"\"\ndb = SQL(os.environ['DB'])\nconn = sqlite3.connect(\n            host=os.environ['HOST'],\n            user=os.environ['USER'],\n            password=os.environ['PASSWORD'],\n            database=os.environ['DATABASE']\n        )\"\"\"",
         "detail": "helper",
         "documentation": {}
     },
